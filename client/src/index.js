@@ -20,6 +20,7 @@ class App extends React.Component {
       <div>
         <h1>Let's Go!</h1>
         <button>Push me</button>
+        <button>I want to go to do input box!!!!</button>
       </div>);
   }
 }
