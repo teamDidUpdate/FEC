@@ -15,3 +15,11 @@ Navigate to the root directory of FEC, then install the required packages by run
 
 ## Opening a PR
 When you're ready to merge your fork with FEC:Master, open a PR and merge.
+
+## To Resolve a Conflict
+
+### Manual Option
+Pull from your upstream or master, depending on where the conflict is happening. Next, checkout your working branch and run `git merge upstream master` to merge the master branch with your master branch. Then, resolve the merge conflicts on your local machine. Finally, push your changes and open a pull request.
+
+### Rebasing Option
+TODO
