@@ -3,7 +3,7 @@ let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
 
-app.post('/FILL_ME_IN', function (req, res) {
+app.post('/', function (req, res) {
   // TODO - your code here!
 
 });
