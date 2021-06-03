@@ -12,13 +12,14 @@ class App extends React.Component {
   }
 
   fetchStuff(term) {
-    // TODO
+    // EXTRA COMMENTS HELLLLOOOO FFFFFOOOOO :o WASSUP.
   }
 
   render() {
     return (
       <div>
         <h1>Let's Go!</h1>
+        <button>Push me</button>
       </div>);
   }
 }
