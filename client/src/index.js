@@ -19,6 +19,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Let's Go!</h1>
+        <button>Push me</button>
       </div>);
   }
 }
