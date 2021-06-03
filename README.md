@@ -19,7 +19,7 @@ When you're ready to merge your fork with FEC:Master, open a PR and merge.
 ## To Resolve a Conflict
 
 ### Manual Option
-Pull from your upstream or master, depending on where the conflict is happening. Next, checkout your working branch and run `git merge upstream master` to merge the master branch with your master branch. Then, resolve the merge conflicts on your local machine. Finally, push your changes and open a pull request.
+Pull from your upstream or master, depending on where the conflict is happening. Next, checkout your working branch and run `git merge upstream master` to merge the master branch with your master branch. Then, resolve the merge conflicts on your local machine. Finally, push your changes and open a new PR.
 
 ### Rebasing Option
-TODO
+Fetch all branches of remote upstream with `git fetch upstream`. Next, rewrite your master with upstream’s master using `git rebase upstream/master`. Then, push your updates to master. You may need to force the push with “--force”. `git push origin master --force`. Lastly, open up a new PR.
