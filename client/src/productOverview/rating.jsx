@@ -1,8 +1,7 @@
 import React from 'react';
-import StarsRating from 'stars-rating';
 
 
-class Rating extends React.Component {
+export default class Rating extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,6 +19,3 @@ class Rating extends React.Component {
     );
   }
 }
-
-export default Rating;
-
