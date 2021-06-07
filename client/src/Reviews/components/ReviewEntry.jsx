@@ -11,7 +11,7 @@ class ReviewEntry extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=13023', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=13023', {
       headers: {
         Authorization: 'KEYGOESHERE'
       }
