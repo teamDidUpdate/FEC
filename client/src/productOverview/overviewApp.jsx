@@ -7,8 +7,20 @@ import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 
 class OverviewApp extends React.Component {
+
   constructor(props) {
     super(props);
+    this.state = {
+      currentStyle: productStyle.results[0]
+    };
+    this.changeStyle = this.changeStyle.bind(this);
+  }
+
+  changeStyle(style) {
+    console.log(style);
+    this.setState({
+      currentStyle: style
+    });
   }
 
   render () {
@@ -16,16 +28,16 @@ class OverviewApp extends React.Component {
     return (
       <div>
         <div id="header" className="overview-header">
-          <h1>logo</h1>
+          <h1>LOGO</h1>
         </div>
         <div className="overview-row">
           <div className="col-md-5">
-            <Image productStyle={productStyle}/>
+            <Image productStyle={this.state.currentStyle}/>
           </div>
           <div className="col-md-7">
             <Rating />
             <Title product={currentProduct}/>
-            <Style />
+            <Style changeStyle={this.changeStyle}/>
           </div>
         </div>
       </div>

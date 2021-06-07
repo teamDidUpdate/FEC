@@ -11,8 +11,8 @@ const Style = (props) => {
       <div>
         STYLE > SELECTED STYLE
       </div>
-      
-      {styles.map((style) => <img className="style-image" src={style.photos[0].thumbnail_url} key={style.style_id}></img>)}
+
+      {styles.map((style) => <img className="style-image" src={style.photos[0].thumbnail_url} key={style.style_id} onClick={() => props.changeStyle(style)}></img>)}
     </div>
   );
 };
