@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import OverviewApp from './productOverview/overviewApp.jsx';
+import QAwidget from './QA/QAwidget.jsx';
 
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <OverviewApp />
+        <QAwidget />
       </div>);
   }
 }

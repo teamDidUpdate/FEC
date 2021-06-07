@@ -3,6 +3,7 @@ var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
+  mode: 'development',
   entry: `${SRC_DIR}/index.jsx`,
   output: {
     filename: 'bundle.js',
@@ -11,11 +12,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
       },
     ],
   },
