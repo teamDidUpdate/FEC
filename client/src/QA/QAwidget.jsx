@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import '../../dist/styles.css';
 
 import QAsearch from './QAcomponents/QAsearch.jsx';
 import QuestionList from './QAcomponents/QuestionList.jsx';

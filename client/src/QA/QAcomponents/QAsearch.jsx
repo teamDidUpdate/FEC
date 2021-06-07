@@ -1,5 +1,5 @@
 import React from 'react';
-// import '../QA/QAstyles.scss';
+
 
 const QAsearch = (props) => (
   <div>
