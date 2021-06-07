@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
+import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
 
 
@@ -23,8 +24,11 @@ const App = () => {
       <div>
         <ReviewsOverview />
       </div>
-
-    </div>);
+      <div>
+        <QAwidget />
+      </div>
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById('app'));
