@@ -13,17 +13,10 @@ const App = () => {
     console.log(`ProductId changed to ${productId}`);
   }, [productId]);
 
-  // useEffect(async () => {
-  //   // fetch our default product
-  //     // id = 13023
-  //   await fetch()
-
-  // }, []);
-
   return (
     <div>
       <div>
-        <OverviewApp />
+        <OverviewApp productId={productId} setProductId={setProductId}/>
       </div>
       <div>
         <RelatedItemsAndComparison productId={productId} setProductId={setProductId} />
