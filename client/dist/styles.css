@@ -20,9 +20,9 @@ body {
 }
 
 .main-image {
-  padding-left: 60px;
-  width: 500px;
-  height: 500px;
+  padding-left: 10%;
+  width: 65%;
+  height: 70%;
   /* position: absolute; */
   /* clip: rect(0px, 600px, 600px, 0); */
 }
@@ -36,7 +36,7 @@ body {
 }
 
 .gallery-image {
-  width: 50px;
+  width: 20%;
   height: auto;
 }
 
@@ -74,3 +74,9 @@ body {
   grid-column: 1;
   grid-row: 1 / 5;
 }
+
+/* relate items */
+
+/* Q & A */
+
+/* Reviews */
