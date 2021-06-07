@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      productId: '13023'
     };
 
   }
@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <OverviewApp />
+        <OverviewApp id={this.state.productId}/>
       </div>);
   }
 }
