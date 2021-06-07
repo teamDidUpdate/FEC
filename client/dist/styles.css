@@ -8,6 +8,11 @@ body {
   color: black;
 }
 
+.highlight {
+  text-align: center;
+  color: rgb(83, 82, 82);
+}
+
 .main-pic {
   /* position: relative; */
   grid-column: 1 / 4;
@@ -37,6 +42,7 @@ body {
 
 
 .overview-row {
+  margin-top: 20px;
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 10px;
@@ -46,6 +52,11 @@ body {
 .col-md-5 {
   grid-column: 1 / 4;
   grid-row: 1 / 4;
+}
+
+.col-md-7 {
+  grid-column: 4 / 5;
+  grid-row: 1 / 3;
 }
 
 .col-md-2 {

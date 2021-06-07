@@ -30,6 +30,7 @@ class OverviewApp extends React.Component {
         <div id="header" className="overview-header">
           <h1>LOGO</h1>
         </div>
+        <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SLAE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
         <div className="overview-row">
           <div className="col-md-5">
             <Image productStyle={this.state.currentStyle}/>
