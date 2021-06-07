@@ -5,10 +5,14 @@ const Image = (props) => {
   const images = currentImg.photos;
   return (
     <div>
-      <div col="one">
-        {images.map((image) => <img className="gallery-image" src={image.thumbnail_url}></img>)}
+      <div className="images">
+        <div className="main-pic">
+          <img className="main-image" src={currentImg.photos[0].url}></img>
+        </div>
+        <div className="style-pics">
+          {images.map((image) => <div><img className="gallery-image" src={image.thumbnail_url}></img></div>)}
+        </div>
       </div>
-      <img className="main-image" src={currentImg.photos[0].url}></img>
     </div>
   );
 };
