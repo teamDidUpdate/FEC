@@ -1,29 +1,36 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
+import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
 
+const App = () => {
+  const [productId, setProductId] = useState(13023);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      repos: []
-    };
+  useEffect(() => {
+    console.log(`ProductId changed to ${productId}`);
+  }, [productId]);
 
-  }
+  // useEffect(async () => {
+  //   // fetch our default product
+  //     // id = 13023
+  //   await fetch()
 
-  fetchStuff(term) {
-    // EXTRA COMMENTS HELLLLOOOO FFFFFOOOOO :o WASSUP.
-  }
+  // }, []);
 
-  render() {
-    return (
+  return (
+    <div>
       <div>
         <OverviewApp />
+      </div>
+      <div>
+        <RelatedItemsAndComparison productId={productId} setProductId={setProductId}/>
+      </div>
+      <div>
         <QAwidget />
-      </div>);
-  }
-}
+      </div>
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -1,5 +1,3 @@
-// GET: /qa/questions/:product_id
-
 var sample = {
   "questions": {
     "product_id": "5",

@@ -19,6 +19,7 @@ class QAwidget extends React.Component {
   }
   // Fetch data
   // use axios GET request with promise chain
+  // GET: /qa/questions/:product_id
 
   // Render
   render() {
