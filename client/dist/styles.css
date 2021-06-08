@@ -82,3 +82,10 @@ body {
   color: black;
   float: left;
 }
+
+
+
+/*Review */
+.individualReview{
+  border-bottom: 10px;
+}

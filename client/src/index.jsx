@@ -22,11 +22,10 @@ const App = () => {
         <RelatedItemsAndComparison productId={productId} setProductId={setProductId} />
       </div>
       <div>
+        <QAwidget productId={productId} setProductId={setProductId}/>
         <ReviewsOverview />
       </div>
-      <div>
-        <QAwidget productId={productId} setProductId={setProductId}/>
-      </div>
+
     </div>
   );
 };
