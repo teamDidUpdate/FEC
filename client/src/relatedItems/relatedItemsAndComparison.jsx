@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import RelatedCard from './relatedCard.jsx';
 
-const RelatedItemsAndComparison = ( {productId, setProductId, getProductById}) => {
+const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) => {
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const RelatedItemsAndComparison = ( {productId, setProductId, getProductById}) =
   };
 
   return (
-    <table>
+    <table className='related-items'>
       <tbody>
         {relatedItems.map(relatedItem => {
           return (
