@@ -14,6 +14,21 @@ app.post('/', function (req, res) {
 
 });
 
+app.get('/product', function (req, res) {
+  let productId = req.query.productId;
+  axios({
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}`,
+    method: 'GET',
+    headers: { Authorization: APIToken.TOKEN }
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+});
+
 app.get('/relatedItems', function (req, res) {
   let productId = req.query.productId;
   axios({
@@ -22,7 +37,7 @@ app.get('/relatedItems', function (req, res) {
     headers: { Authorization: APIToken.TOKEN }
   })
     .then((response) => {
-      res.send(response.data);
+      res.status(200).send(response.data);
     })
     .catch((err) => {
       res.status(400).send(err);
@@ -36,7 +51,6 @@ app.get('/getReview', (req, res) => {
     headers: { Authorization: APIToken.TOKEN }
   })
     .then((response) => {
-      console.log(response.data.results);
       res.send(response.data.results);
     })
     .catch((err) => {
