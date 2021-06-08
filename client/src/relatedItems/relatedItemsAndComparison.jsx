@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 const RelatedItemsAndComparison = ( {productId, setProductId}) => {
   const [relatedItemIds, setRelatedItemIds] = useState([]);
-  // https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}
 
   useEffect(async () => {
     try {
-      let response = await fetch(`http://localhost:1128/relatedItems`);
+      let response = await fetch(`http://localhost:1128/relatedItems/?productId=${productId}`);
       if (!response.ok) {
         throw 'Error while fetching related items';
       }
       let data = await response.json();
-      console.log(data);
+      setRelatedItemIds(data);
+      // TODO: for each id, fetch the relevant product info
     } catch (err) {
       console.log(err);
     }
