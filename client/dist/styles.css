@@ -87,5 +87,9 @@ body {
 
 /*Review */
 .individualReview{
-  border-bottom: 10px;
+  border-bottom: 3px solid #494949;
+}
+
+.summary{
+  font-weight: bold;
 }

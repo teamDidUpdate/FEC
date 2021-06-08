@@ -11,7 +11,7 @@ class ReviewEntry extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/getReview')
+    axios.post('/getReview', { productID: '13023' })
       .then((res) => {
         res.data.forEach((element) => {
           this.setState({
@@ -25,19 +25,22 @@ class ReviewEntry extends React.Component {
       });
   }
 
-
   render() {
     return (
       <div>
+
         {this.state.entry.map((element) => (
           <div className='individualReview'>
-            <p className='rating'>Rating: {element.rating} THIS WILL BE REPLACED WITH STARS LATER</p>
-            <p className='reviewerName'>{element.reviewer_name + ' ' + new Date(element.date)}</p>
+            <p className='rating'>Rating: {element.rating}</p>
+            <p className='reviewerName'>{element.reviewer_name}</p>
+            <p className='reviewData'>{Date(element.date).substring(0,15)}</p>
             <p className='summary'>{element.summary}</p>
             <p className='body'>{element.body}</p>
             <p className='helpfulness'>Helpful? {element.helpfulness} | Report</p>
             {element.photos.length > 0 ?
-              <img src = {element.photos[0].url} className='reviewImages'></img> :
+              <div className='reviewImages'>
+                <img src={element.photos[0].url} height="100" width="100"></img>
+              </div> :
               <img src=''></img>
             }
           </div>
@@ -48,4 +51,3 @@ class ReviewEntry extends React.Component {
 }
 
 export default ReviewEntry;
-
