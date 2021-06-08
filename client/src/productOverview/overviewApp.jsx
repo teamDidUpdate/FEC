@@ -17,7 +17,6 @@ class OverviewApp extends React.Component {
   }
 
   changeStyle(style) {
-    console.log(style);
     this.setState({
       currentStyle: style
     });
@@ -38,7 +37,7 @@ class OverviewApp extends React.Component {
           <div className="col-md-7">
             <Rating />
             <Title product={currentProduct}/>
-            <Style changeStyle={this.changeStyle}/>
+            <Style currentStyle={this.state.currentStyle} changeStyle={this.changeStyle}/>
           </div>
         </div>
       </div>
