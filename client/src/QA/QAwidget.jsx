@@ -8,10 +8,13 @@ import QuestionList from './QAcomponents/QuestionList.jsx';
 import Helpful from './QAcomponents/QAhelpful.jsx';
 
 const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) => {
-  console.log(currentProduct)
+
   const [questions, setQuestions] = useState(sample.questions);
   const [searchInput, setSearchInput] = useState('');
   const [product, setProduct] = useState('');
+
+  // const fetchData = async ()
+  console.log(currentProduct)
 
   // Fetch data
   // use axios GET request with promise chain
