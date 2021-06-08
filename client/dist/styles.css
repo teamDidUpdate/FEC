@@ -93,5 +93,14 @@ body {
 
 /*Review */
 .individualReview{
+<<<<<<< HEAD
+  border-bottom: 3px solid #494949;
+}
+
+.summary{
+  font-weight: bold;
+}
+=======
   border-bottom: 10px;
 }
+>>>>>>> c0b16ecb559d9d569d13610bcdda17c9f99f5507
