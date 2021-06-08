@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/../client/dist'));
 
-// /reviews/meta
+// fetch all the data from API
 app.get('/getProduct', function (req, res) {
   let productId = req.query.productId;
   axios.all([
@@ -48,36 +48,6 @@ app.get('/getProduct', function (req, res) {
     .catch((err) => {
       console.log('getall error:' + err);
       res.send(404);
-    });
-});
-
-app.get('/product', function (req, res) {
-  let productId = req.query.productId;
-  axios({
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}`,
-    method: 'GET',
-    headers: { Authorization: APIToken.TOKEN }
-  })
-    .then((response) => {
-      res.status(200).send(response.data);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
-});
-
-app.get('/relatedItems', function (req, res) {
-  let productId = req.query.productId;
-  axios({
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/related`,
-    method: 'GET',
-    headers: { Authorization: APIToken.TOKEN }
-  })
-    .then((response) => {
-      res.status(200).send(response.data);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
     });
 });
 
