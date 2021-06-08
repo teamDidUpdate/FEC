@@ -26,19 +26,21 @@ const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) =>
   };
 
   return (
-    <table className='related-items'>
-      <tbody>
-        {relatedItems.map(relatedItem => {
-          return (
-            <tr key={relatedItem.id}>
-              <td>{relatedItem.category}</td>
-              <td>{relatedItem.name}</td>
-              <td>{relatedItem.price}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className='related-items-and-comparison'>
+      {relatedItems.map(relatedItem => {
+        return (
+          <table className='related-items'>
+            <tbody>
+              <tr key={relatedItem.id}>
+                <td>{relatedItem.category}</td>
+                <td>{relatedItem.name}</td>
+                <td>{relatedItem.default_price}</td>
+              </tr>
+            </tbody>
+          </table>
+        );
+      })}
+    </div>
   );
 };
 
