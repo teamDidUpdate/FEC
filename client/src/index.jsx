@@ -64,6 +64,7 @@ const App = () => {
           productId={productId}
           setProductId={setProductId}
           getProductById={getProductById}
+          currentProduct={currentProduct}
         />
       </div>
       <div>
