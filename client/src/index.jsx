@@ -14,7 +14,7 @@ const App = () => {
 
 
   useEffect(() => {
-    axios.get('/getProduct', {params: {productId: 13023 }})
+    axios.get('/getProduct', {params: {productId: productId }})
       .then((response)=> {
         setCurrentProduct(response.data);
       })
@@ -22,6 +22,7 @@ const App = () => {
         console.log(err);
         return;
       });
+
     (async () => {
       await handleProductIdChange();
     })();
@@ -50,6 +51,7 @@ const App = () => {
     <div>
       <div>
         <OverviewApp productId={productId}
+          currentProduct={currentProduct}
           setProductId={setProductId}
           getProductById={getProductById}/>
       </div>
