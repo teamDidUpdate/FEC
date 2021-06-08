@@ -6,14 +6,15 @@ const Style = (props) => {
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
   const skus = props.currentStyle.skus;
+  const sizeKeys = [];
   for (let key in skus) {
-    currentSize.push(skus[key].size);
+    currentSize.push([key, skus[key].size]);
   }
 
   return (
     <div>
       <div>
-        {props.currentStyle.original_price}
+        ${props.currentStyle.original_price}
         {onSale && <text> Sale Price: {onSale}</text>}
       </div>
       <div>
@@ -25,7 +26,7 @@ const Style = (props) => {
       <div className="size-selector">
         <select id="size-select">
           <option value="">SELECT SIZE</option>
-          {currentSize.map((size) => <option value="size">{size}</option>)}
+          {currentSize.map((size) => <option key={size[0]} value="size">{size[1]}</option>)}
         </select>
         <select id="quan-select">
           <option value="">1</option>
