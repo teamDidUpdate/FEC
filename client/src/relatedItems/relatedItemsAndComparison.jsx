@@ -5,20 +5,21 @@ const RelatedItemsAndComparison = ({product, productId, setProductId, getProduct
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
-    getRelatedItems();
+    if (product !== undefined && Object.keys(product).length !== 0) {
+      getRelatedItems();
+    }
   }, [product]);
 
   const getRelatedItems = async () => {
-    if (product !== undefined) {
-      try {
-        let items = product.relatedIds.map(relatedId => {
-          return getProductById(relatedId);
-        });
-        let newItems = await Promise.all(items);
-        setRelatedItems(newItems);
-      } catch (err) {
-        console.log(err);
-      }
+    try {
+      let items = await product.relatedIds.map(relatedId => {
+        return getProductById(relatedId);
+      });
+      let newItems = await Promise.all(items);
+      console.log(newItems);
+      setRelatedItems(newItems);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -26,7 +27,9 @@ const RelatedItemsAndComparison = ({product, productId, setProductId, getProduct
     <div className='related-items-and-comparison'>
       {relatedItems.length !== 0 ? relatedItems.map(relatedItem => {
         return (
-          <RelatedCard relatedItem={relatedItem}/>
+          <div key={relatedItem.overview.id}>
+            <RelatedCard relatedItem={relatedItem}/>
+          </div>
         );
       }) : null}
     </div>

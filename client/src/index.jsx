@@ -24,14 +24,16 @@ const App = () => {
 
   const getProductById = async (id) => {
     try {
-      axios.get('/getProduct', {params: {productId: id }})
+      let newProduct = {};
+      await axios.get('/getProduct', {params: {productId: id }})
         .then((response)=> {
-          return response.data;
+          newProduct = response.data;
         })
         .catch((err)=> {
           console.log(err);
           return;
         });
+      return newProduct;
     } catch (err) {
       console.log(err);
     }

@@ -43,7 +43,7 @@ app.get('/getProduct', function (req, res) {
         meta: obj6.data
       };
       var stringedProduct = JSON.stringify(product);
-      res.send(stringedProduct);
+      res.status(200).send(stringedProduct);
     }))
     .catch((err) => {
       console.log('getall error:' + err);
@@ -51,6 +51,7 @@ app.get('/getProduct', function (req, res) {
     });
 });
 
+// Should this route be deleted?
 app.post('/getReview', (req, res) => {
   var productId = Object.values(req.body)[0];
   axios({
