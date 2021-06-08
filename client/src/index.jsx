@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
-import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
-
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
@@ -66,8 +64,7 @@ const App = () => {
         <QAwidget />
       </div>
       <div>
-        <ReviewEntry productId={productId}
-          currentProduct={currentProduct}/>
+        <ReviewsOverview />
       </div>
 
     </div>
