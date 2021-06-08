@@ -13,8 +13,9 @@ export default class Rating extends React.Component {
 
   render() {
     return (
-      <div>★★★★★
-       Read all [#] reviews
+      <div>
+        ★★★★★
+        Read all [#] reviews
       </div>
 
     );

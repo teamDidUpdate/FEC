@@ -36,7 +36,7 @@ app.get('/getReview', (req, res) => {
     headers: { Authorization: APIToken.TOKEN }
   })
     .then((response) => {
-      console.log(response.data.results);
+
       res.send(response.data.results);
     })
     .catch((err) => {
