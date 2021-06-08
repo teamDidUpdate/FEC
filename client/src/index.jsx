@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
@@ -10,7 +11,17 @@ const App = () => {
   const [productId, setProductId] = useState(13023);
   const [currentProduct, setCurrentProduct] = useState({});
 
+
+
   useEffect(() => {
+    axios.get('/getProduct', {params: {productId: 13023 }})
+      .then((response)=> {
+        setCurrentProduct(response.data);
+      })
+      .catch((err)=> {
+        console.log(err);
+        return;
+      });
     (async () => {
       await handleProductIdChange();
     })();
