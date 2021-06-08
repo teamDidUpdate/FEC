@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
+import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
+
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
@@ -10,7 +12,6 @@ import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.
 const App = () => {
   const [productId, setProductId] = useState(13023);
   const [currentProduct, setCurrentProduct] = useState({});
-
 
 
   useEffect(() => {
@@ -70,7 +71,8 @@ const App = () => {
         />
       </div>
       <div>
-        <ReviewsOverview />
+        <ReviewEntry productId={productId}
+          currentProduct={currentProduct}/>
       </div>
 
     </div>
