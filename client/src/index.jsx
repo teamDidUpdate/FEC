@@ -11,7 +11,6 @@ const App = () => {
   const [productId, setProductId] = useState(13023);
   const [currentProduct, setCurrentProduct] = useState({});
 
-
   useEffect(() => {
     axios.get('/getProduct', {params: {productId: productId }})
       .then((response)=> {
@@ -21,26 +20,18 @@ const App = () => {
         console.log(err);
         return;
       });
-
-    (async () => {
-      await handleProductIdChange();
-    })();
   }, [productId]);
-
-  const handleProductIdChange = async () => {
-    let newProduct = await getProductById(productId);
-    setCurrentProduct(newProduct);
-  };
 
   const getProductById = async (id) => {
     try {
-      let response = await fetch(`http://localhost:1128/product/?productId=${id}`);
-      if (!response.ok) {
-        throw 'Error while fetching product by Id';
-      }
-      let product = await response.json();
-      // to make this generally applicable for all widgets, do not set state here
-      return product;
+      axios.get('/getProduct', {params: {productId: id }})
+        .then((response)=> {
+          return response.data;
+        })
+        .catch((err)=> {
+          console.log(err);
+          return;
+        });
     } catch (err) {
       console.log(err);
     }
@@ -57,6 +48,7 @@ const App = () => {
       <div>
         <RelatedItemsAndComparison
           productId={productId}
+          product={currentProduct}
           setProductId={setProductId}
           getProductById={getProductById}/>
       </div>

@@ -37,7 +37,7 @@ app.get('/getProduct', function (req, res) {
       var product = {
         overview: obj1.data,
         styles: obj2.data,
-        relatedProducts: obj3.data,
+        relatedIds: obj3.data,
         questionsAnswers: obj4.data,
         reviews: obj5.data,
         meta: obj6.data
