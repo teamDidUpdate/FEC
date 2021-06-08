@@ -1,7 +1,7 @@
 const productStyle = {
   "product_id": "13023",
   "results": [
-      {
+     {
           "style_id": 64131,
           "name": "Forest Green & Black",
           "original_price": "140.00",

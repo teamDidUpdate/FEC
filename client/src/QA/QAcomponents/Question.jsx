@@ -7,7 +7,7 @@ const Question = (props) => {
   let answerList = answerKey.map(Ans => props.question.answers[Ans]);
 
   return (
-    <div>
+    <div className='question'>
       <span>Q: {props.question.question_body}</span>
       {/* <Helpful report={'report'}/> */}
       {answerList.map((answer, key) => (

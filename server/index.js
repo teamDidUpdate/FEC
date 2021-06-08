@@ -49,10 +49,9 @@ app.get('/getQA', (req, res) => {
   axios({
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=13023',
     method: 'GET',
-    headers: { Authorization: APIToken.TOKEN}
+    headers: { Authorization: APIToken.TOKEN }
   })
     .then((res) => {
-      console.log(res.data.results);
       res.send(res.data.results);
     })
     .catch((err) => {
@@ -61,7 +60,6 @@ app.get('/getQA', (req, res) => {
     });
 });
 
-app.get('/getReview', (req, res) => {
 app.post('/getReview', (req, res) => {
   var productId = Object.values(req.body)[0];
   axios({

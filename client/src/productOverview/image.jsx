@@ -17,7 +17,7 @@ const Image = (props) => {
           <img className="main-image" src={imageURL}></img>
         </div>
         <div className="style-pics">
-          {images.map((image) => <div><img className="gallery-image" src={image.thumbnail_url} onClick={(e) => setImageURL(e.target.src)}></img></div>)}
+          {images.map((image) => <div key={image.url} onClick={(e) => setImageURL(image.url)}><img className="gallery-image" src={image.thumbnail_url}></img></div>)}
         </div>
       </div>
     </div>

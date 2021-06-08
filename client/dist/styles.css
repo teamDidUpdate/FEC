@@ -89,6 +89,12 @@ body {
   float: left;
 }
 
+/* Question component */
+.question {
+  /* background-color: greenyellow; */
+  grid-column-start: span 3;
+}
+
 
 
 /*Review */
