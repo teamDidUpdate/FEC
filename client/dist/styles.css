@@ -1,6 +1,6 @@
 body {
-  padding-left: 18%;
-  padding-right: 18%;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 #header {
@@ -20,9 +20,9 @@ body {
 }
 
 .main-image {
-  padding-left: 60px;
-  width: 500px;
-  height: 500px;
+  padding-left: 12%;
+  width: 80%;
+  height: 75%;
   /* position: absolute; */
   /* clip: rect(0px, 600px, 600px, 0); */
 }
@@ -36,13 +36,13 @@ body {
 }
 
 .gallery-image {
-  width: 50px;
+  width: 25%;
   height: auto;
 }
 
 
 .overview-row {
-  margin-top: 20px;
+  margin-top: 3%;
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 10px;
@@ -74,6 +74,12 @@ body {
   grid-column: 1;
   grid-row: 1 / 5;
 }
+
+#size-select {
+  margin-top: 10%;
+  text-align: center;
+}
+
 
 /* Q & A */
 .qa-header {

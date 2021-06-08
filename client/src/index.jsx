@@ -8,18 +8,45 @@ import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
+  const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
-    console.log(`ProductId changed to ${productId}`);
+    (async () => {
+      await handleProductIdChange();
+    })();
   }, [productId]);
+
+  const handleProductIdChange = async () => {
+    let newProduct = await getProductById(productId);
+    setCurrentProduct(newProduct);
+  };
+
+  const getProductById = async (id) => {
+    try {
+      let response = await fetch(`http://localhost:1128/product/?productId=${id}`);
+      if (!response.ok) {
+        throw 'Error while fetching product by Id';
+      }
+      let product = await response.json();
+      // to make this generally applicable for all widgets, do not set state here
+      return product;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
       <div>
-        <OverviewApp productId={productId} setProductId={setProductId}/>
+        <OverviewApp productId={productId}
+          setProductId={setProductId}
+          getProductById={getProductById}/>
       </div>
       <div>
-        <RelatedItemsAndComparison productId={productId} setProductId={setProductId} />
+        <RelatedItemsAndComparison
+          productId={productId}
+          setProductId={setProductId}
+          getProductById={getProductById}/>
       </div>
       <div>
         <QAwidget productId={productId} setProductId={setProductId}/>
