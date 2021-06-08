@@ -19,6 +19,13 @@ class QAwidget extends React.Component {
   // Fetch data
   // use axios GET request with promise chain
   // GET: /qa/questions/:product_id
+  fetchQuestions () {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=13023', {
+      headers: {
+        Authorization: TOKEN
+      }
+    });
+  }
 
   // Render
   render() {
