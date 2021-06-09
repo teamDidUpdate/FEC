@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import APIToken from '../../../../config.js';
+import RatingEntry from './RatingEntry.jsx';
 class ReviewEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -29,37 +30,36 @@ class ReviewEntry extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className='numberOfReviews'>{this.state.allReviews.length} Reviews</div>
-        {this.state.allReviews.length > 2 ?
-          this.state.currentlyShowing.map((review) =>
-            <div className='individualReview' key={review.review_id}>
-              <div className='header'>
-                <p className='rating' id='alignleft'>Rating: {review.rating}</p>
-                <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
-                <br></br>
-              </div>
-              <br></br>
-              <p className='summary'>{review.summary}</p>
-              <br></br>
-              <p className='body'>{review.body}</p>
-              <br></br>
-              <p className='helpfulness'>Helpful? Yes ({review.helpfulness}) | Report</p>
-              <br></br>
-              {review.photos.length > 0 ?
-                <div className='reviewImages'>
-                  <img src={review.photos[0].url} height="100" width="100"></img>
-                </div> :
-                <img src=''></img>
-              }
-            </div>) :
-          null
-        }
-        <br></br>
-        {this.state.allReviews.length > 2 ?
-          <button>More Reviews</button> :
-          null}
-        <button>Add Review</button>
+      <div className="ReviewsOverview">
+        <div><RatingEntry productId={this.props.productId}
+          setProductId={this.props.setProductId}
+          getProductById={this.props.getProductById} /></div>
+        <div className='reviewEntry'>
+          <div className='numberOfReviews'>{this.state.allReviews.length} Reviews</div>
+          {this.state.allReviews.length > 2 ?
+            this.state.currentlyShowing.map((review) =>
+              <div className='individualReview' key={review.review_id}>
+                <div className='header'>
+                  <p className='rating' id='alignleft'>Rating: {review.rating}</p>
+                  <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
+                  <br></br>
+                </div>
+                <p className='summary'>{review.summary}</p>
+
+                <p className='body'>{review.body}</p>
+
+                <p className='helpfulness'>Helpful? Yes ({review.helpfulness}) | Report</p>
+
+                {review.photos.length > 0 ?
+                  <div className='reviewImages'>
+                    <img src={review.photos[0].url} height="100" width="100"></img>
+                  </div> :
+                  <img src=''></img>
+                }
+              </div>) :
+            null
+          }
+        </div>
       </div>
     );
   }

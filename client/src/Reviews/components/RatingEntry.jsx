@@ -6,62 +6,57 @@ class RatingEntry extends React.Component {
     super(props);
 
     this.state = {
-      allReviews: [],
-      currentlyShowing: []
+      metadata: {}
     };
   }
-
   componentDidMount() {
-    for (var i = 1; i < 10; i++) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${this.props.productId}&count=5&page=${i}`, {
-        headers: {
-          Authorization: APIToken.TOKEN
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${this.props.productId}`, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
+      .then((response) => {
+        for (var key in response.data) {
+          this.state.metadata[key] = response.data[key];
         }
-      })
-        .then((res) => {
-          this.setState({
-            allReviews: this.state.allReviews.concat(res.data.results),
-            currentlyShowing: this.state.allReviews.slice(0, 2)
-          });
-        });
-    }
+      });
   }
 
+  calculateQuarterRating(object) {
+    var sum = 0;
+    var quant = 0;
+    for (var key in object) {
+      sum = sum + (Number(key) * Number(object[key]));
+      quant += Number(object[key]);
+    }
+    var number = sum / quant;
+    return (Math.round(number * 4) / 4).toFixed(2);
+
+  }
   render() {
     return (
       <div>
-        <div className='numberOfReviews'>{this.state.allReviews.length} Reviews</div>
-        {this.state.allReviews.length > 2 ?
-          this.state.currentlyShowing.map((review) =>
-            <div className='individualReview' key={review.review_id}>
-              <div className='header'>
-                <p className='rating' id='alignleft'>Rating: {review.rating}</p>
-                <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
-                <br></br>
-              </div>
-              <br></br>
-              <p className='summary'>{review.summary}</p>
-              <br></br>
-              <p className='body'>{review.body}</p>
-              <br></br>
-              <p className='helpfulness'>Helpful? Yes ({review.helpfulness}) | Report</p>
-              <br></br>
-              {review.photos.length > 0 ?
-                <div className='reviewImages'>
-                  <img src={review.photos[0].url} height="100" width="100"></img>
-                </div> :
-                <img src=''></img>
-              }
-            </div>) :
-          null
-        }
-        <br></br>
-        {this.state.allReviews.length > 2 ?
-          <button>More Reviews</button> :
+        <div className='RatingsHeading'>Ratings and Reviews</div>
+
+        {Object.keys(this.state.metadata).length > 0 ?
+          <div>
+            <div className='quarterRating'>{this.calculateQuarterRating(this.state.metadata.ratings)}</div>
+            <div className='recommendationPercent'>{Number(this.state.metadata.recommended.true) / (Number(this.state.metadata.recommended.false) + Number(this.state.metadata.recommended.true)) * 100} % of people recommend this product. </div>
+            <div className='fiveStars'>5 Stars {this.state.metadata.ratings[5]} </div>
+            <div className='fourStars'>4 Stars {this.state.metadata.ratings[4]}</div>
+            <div className='threeStars'>3 Stars {this.state.metadata.ratings[3]}</div>
+            <div className='twoStars'>2 Stars {this.state.metadata.ratings[2]}</div>
+            <div className='oneStars'>1 Stars {this.state.metadata.ratings[1]}</div>
+
+          </div>
+
+          :
           null}
-        <button>Add Review</button>
+
+
       </div>
     );
+
   }
 }
 

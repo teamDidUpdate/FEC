@@ -66,8 +66,7 @@ const App = () => {
         <QAwidget />
       </div>
       <div>
-        <RatingEntry productId={productId}
-          currentProduct={currentProduct}
+        <ReviewEntry productId={productId}
           setProductId={setProductId}
           getProductById={getProductById} />
       </div>
