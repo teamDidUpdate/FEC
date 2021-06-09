@@ -4,6 +4,8 @@ import Rating from './rating.jsx';
 import Title from './title.jsx';
 import Style from './style.jsx';
 import Image from './image.jsx';
+import Description from './description.jsx';
+import Share from './share.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 
@@ -40,6 +42,8 @@ const OverviewApp = (props) => {
           <Title product={overviewProduct}/>
           <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
         </div>
+        <Description product={overviewProduct}/>
+        <Share />
       </div>
     </div>
   );
