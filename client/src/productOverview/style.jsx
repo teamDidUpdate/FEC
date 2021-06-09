@@ -4,14 +4,36 @@ import productStyle from './sampleStyle.js';
 
 const Style = (props) => {
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
+  const [sizeNumber, setSizeNumber] = useState(0);
   let styles = props.allStyles;
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
+  const quantity = [];
   const skus = props.currentStyle.skus;
   const sizeKeys = [];
   for (let key in skus) {
     currentSize.push([key, skus[key].size]);
+    quantity.push([key, skus[key].quantity]);
   }
+
+  const getLimit = () => {
+    let limitNumber;
+
+    for (let j = 0; j < quantity.length; j++) {
+      if (quantity[j][0] === sizeNumber) {
+        limitNumber = quantity[j][1];
+        break;
+      }
+    }
+    if (limitNumber === undefined) {
+      return [1];
+    }
+    let numberOption = [];
+    for (let i = 1; i < limitNumber + 1; i++) {
+      numberOption.push(i);
+    }
+    return numberOption;
+  };
 
   return (
     <div className="style">
@@ -37,15 +59,12 @@ const Style = (props) => {
         )}
       </div>
       <div className="size-selector">
-        <select id="size-select">
+        <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)}>
           <option value="">SELECT SIZE</option>
-          {currentSize.map((size) => <option key={size[0]} value="size">{size[1]}</option>)}
+          {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
         </select>
         <select id="quan-select">
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
-          <option value="">4</option>
+          {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
         </select>
       </div>
       <Cart />
