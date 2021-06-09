@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
 import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
-
+import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
@@ -15,11 +15,11 @@ const App = () => {
 
 
   useEffect(() => {
-    axios.get('/getProduct', {params: {productId: productId }})
-      .then((response)=> {
+    axios.get('/getProduct', { params: { productId: productId } })
+      .then((response) => {
         setCurrentProduct(response.data);
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log(err);
         return;
       });
@@ -54,13 +54,13 @@ const App = () => {
         <OverviewApp productId={productId}
           currentProduct={currentProduct}
           setProductId={setProductId}
-          getProductById={getProductById}/>
+          getProductById={getProductById} />
       </div>
       <div>
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId}
-          getProductById={getProductById}/>
+          getProductById={getProductById} />
       </div>
       <div>
         <QAwidget
@@ -70,10 +70,11 @@ const App = () => {
           currentProduct={currentProduct}/>
       </div>
       <div>
-        <ReviewEntry productId={productId}
-          currentProduct={currentProduct}/>
+        <RatingEntry productId={productId}
+          currentProduct={currentProduct}
+          setProductId={setProductId}
+          getProductById={getProductById} />
       </div>
-
     </div>
   );
 };
