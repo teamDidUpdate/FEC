@@ -7,7 +7,7 @@ const MoreAnswers = () => (
       border: 'none',
       background: 'none',
       cursor: 'pointer'}}>
-        Load More Answers
+        MORE ANSWERED QUESTIONS
     </button>
   </div>
 );

@@ -6,8 +6,9 @@ import sample from './sampleData.js';
 import Search from './QAcomponents/Search.jsx';
 import QuestionList from './QAcomponents/QuestionList.jsx';
 import Helpful from './QAcomponents/Helpful.jsx';
+import AddQuestion from './QAcomponents/AddQuestion.jsx';
 
-const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) => {
+const QAwidget = ( { currentProduct } ) => {
 
   // const [questions, setQuestions] = useState(sample.questions);
   const [searchInput, setSearchInput] = useState('');
@@ -25,6 +26,7 @@ const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) =
             questions={currentProduct.questionsAnswers.results} />
           : console.log('loading Q&A')}
         {/* <Helpful report={'Add Answer'} /> */}
+        <AddQuestion productID={currentProduct.product_id}/>
 
       </div>
     </div>
