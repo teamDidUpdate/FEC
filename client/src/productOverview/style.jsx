@@ -17,8 +17,8 @@ const Style = (props) => {
     <div className="style">
       {onSale
         ? <div className="price-tag">
+          {onSale && <span style={{color: 'red', marginRight: '10px'}}>${onSale}</span>}
           <span style={{ 'textDecorationLine': 'line-through' }}>${props.currentStyle.original_price}</span>
-          {onSale && <span> Sale Price: ${onSale}</span>}
         </div>
         : <div className="price-tag">
         ${props.currentStyle.original_price}
