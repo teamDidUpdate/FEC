@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
+import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
+import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
@@ -11,37 +13,29 @@ const App = () => {
   const [productId, setProductId] = useState(13023);
   const [currentProduct, setCurrentProduct] = useState({});
 
-
-
   useEffect(() => {
-    axios.get('/getProduct', {params: {productId: productId }})
-      .then((response)=> {
+    axios.get('/getProduct', { params: { productId: productId } })
+      .then((response) => {
         setCurrentProduct(response.data);
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log(err);
         return;
       });
-
-    (async () => {
-      await handleProductIdChange();
-    })();
   }, [productId]);
-
-  const handleProductIdChange = async () => {
-    let newProduct = await getProductById(productId);
-    setCurrentProduct(newProduct);
-  };
 
   const getProductById = async (id) => {
     try {
-      let response = await fetch(`http://localhost:1128/product/?productId=${id}`);
-      if (!response.ok) {
-        throw 'Error while fetching product by Id';
-      }
-      let product = await response.json();
-      // to make this generally applicable for all widgets, do not set state here
-      return product;
+      let newProduct = {};
+      await axios.get('/getProduct', {params: {productId: id }})
+        .then((response)=> {
+          newProduct = response.data;
+        })
+        .catch((err)=> {
+          console.log(err);
+          return;
+        });
+      return newProduct;
     } catch (err) {
       console.log(err);
     }
@@ -53,21 +47,23 @@ const App = () => {
         <OverviewApp productId={productId}
           currentProduct={currentProduct}
           setProductId={setProductId}
-          getProductById={getProductById}/>
+          getProductById={getProductById} />
       </div>
       <div>
         <RelatedItemsAndComparison
           productId={productId}
+          product={currentProduct}
           setProductId={setProductId}
-          getProductById={getProductById}/>
+          getProductById={getProductById} />
       </div>
       <div>
         <QAwidget />
       </div>
       <div>
-        <ReviewsOverview />
+        <ReviewEntry productId={productId}
+          setProductId={setProductId}
+          getProductById={getProductById} />
       </div>
-
     </div>
   );
 };

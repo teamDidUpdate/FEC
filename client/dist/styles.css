@@ -1,9 +1,76 @@
+/* ------------ CSS RESET ------------ */
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ------------- STYLES START HERE ------------- */
+
+/* ------------ box-sizing ------------ */
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/* ------------ Overview and General ------------ */
+
 body {
   padding-left: 16%;
   padding-right: 16%;
 }
 
-#header {
+.overview-header {
   background-color: rgba(198, 202, 201, 0.932);
   color: black;
 }
@@ -117,7 +184,7 @@ body {
 }
 
 
-/* Q & A */
+/* ------------ Q & A ------------ */
 .qa-header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 26px;
@@ -127,11 +194,77 @@ body {
 
 
 
-/*Review */
+/* ------------ Review ------------ */
 .individualReview{
-  border-bottom: 3px solid #494949;
+    border: 1px solid #494949;
+    margin: 30px;
+    padding: 10px;
 }
 
 .summary{
   font-weight: bold;
+}
+
+#alignleft {
+	float: left;
+}
+#alignright {
+	float: right;
+}
+
+p#alignright {
+  font-size: 12;
+  font-size: x-small;
+  font-style: italic;
+  color: gray;
+}
+
+.helpfulness {
+  font-size: 12;
+  font-size: x-small;
+  color: gray;
+}
+
+.numberOfReviews {
+    text-align: center;
+    font-weight: bold;
+}
+
+.ReviewsOverview {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  font: 1.6rem/1.4 Helvetica,Arial,sans-serif;
+}
+
+.recommendationPercent {
+  font-size: 16px;
+}
+
+
+/* ------------ Related Items ------------ */
+.grid-outer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+.grid-outer-container > div {
+  background:#eee;
+  padding:1em;
+}
+
+.grid-container > div {
+  display: grid;
+  grid-gap: 1px;
+}
+
+.grid-item {
+  border: 1px solid black;
+}
+
+.related-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }

@@ -1,6 +1,5 @@
 const express = require('express');
 const APIToken = require('../config.js');
-const bodyParser = require('body-parser');
 const axios = require('axios');
 let app = express();
 
@@ -37,13 +36,13 @@ app.get('/getProduct', function (req, res) {
       var product = {
         overview: obj1.data,
         styles: obj2.data,
-        relatedProducts: obj3.data,
+        relatedIds: obj3.data,
         questionsAnswers: obj4.data,
         reviews: obj5.data,
         meta: obj6.data
       };
       var stringedProduct = JSON.stringify(product);
-      res.send(stringedProduct);
+      res.status(200).send(stringedProduct);
     }))
     .catch((err) => {
       console.log('getall error:' + err);
@@ -51,6 +50,7 @@ app.get('/getProduct', function (req, res) {
     });
 });
 
+// Should this route be deleted?
 app.post('/getReview', (req, res) => {
   var productId = Object.values(req.body)[0];
   axios({

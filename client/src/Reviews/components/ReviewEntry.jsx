@@ -1,53 +1,69 @@
 import React from 'react';
 import axios from 'axios';
-
+import APIToken from '../../../../config.js';
+import RatingEntry from './RatingEntry.jsx';
 class ReviewEntry extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      entry: []
+      allReviews: [],
+      currentlyShowing: []
     };
   }
 
   componentDidMount() {
-    axios.post('/getReview', { productID: '13023' })
-      .then((res) => {
-        res.data.forEach((element) => {
+    for (var i = 1; i < 10; i++) {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${this.props.productId}&count=5&page=${i}`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      })
+        .then((res) => {
           this.setState({
-            entry: this.state.entry.concat(element)
+            allReviews: this.state.allReviews.concat(res.data.results),
+            currentlyShowing: this.state.allReviews.slice(0, 2)
           });
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        return;
-      });
+    }
   }
 
   render() {
     return (
-      <div>
+      <div className="ReviewsOverview">
+        <div><RatingEntry productId={this.props.productId}
+          setProductId={this.props.setProductId}
+          getProductById={this.props.getProductById} /></div>
+        <div className='reviewEntry'>
+          <div className='numberOfReviews'>{this.state.allReviews.length} Reviews</div>
+          {this.state.allReviews.length > 2 ?
+            this.state.currentlyShowing.map((review) =>
+              <div className='individualReview' key={review.review_id}>
+                <div className='header'>
+                  <p className='rating' id='alignleft'>Rating: {review.rating}</p>
+                  <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
+                  <br></br>
+                </div>
+                <p className='summary'>{review.summary}</p>
 
-        {this.state.entry.map((element) => (
-          <div className='individualReview'>
-            <p className='rating'>Rating: {element.rating}</p>
-            <p className='reviewerName'>{element.reviewer_name}</p>
-            <p className='reviewData'>{Date(element.date).substring(0,15)}</p>
-            <p className='summary'>{element.summary}</p>
-            <p className='body'>{element.body}</p>
-            <p className='helpfulness'>Helpful? {element.helpfulness} | Report</p>
-            {element.photos.length > 0 ?
-              <div className='reviewImages'>
-                <img src={element.photos[0].url} height="100" width="100"></img>
-              </div> :
-              <img src=''></img>
-            }
-          </div>
-        ))}
+                <p className='body'>{review.body}</p>
+
+                <p className='helpfulness'>Helpful? Yes ({review.helpfulness}) | Report</p>
+
+                {review.photos.length > 0 ?
+                  <div className='reviewImages'>
+                    <img src={review.photos[0].url} height="100" width="100"></img>
+                  </div> :
+                  <img src=''></img>
+                }
+              </div>) :
+            null
+          }
+        </div>
       </div>
     );
   }
 }
+
 
 export default ReviewEntry;
