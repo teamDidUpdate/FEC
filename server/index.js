@@ -1,6 +1,5 @@
 const express = require('express');
 const APIToken = require('../config.js');
-const bodyParser = require('body-parser');
 const axios = require('axios');
 let app = express();
 

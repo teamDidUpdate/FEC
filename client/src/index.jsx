@@ -2,6 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
+<<<<<<< HEAD
+=======
+import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
+import RatingEntry from './Reviews/components/RatingEntry.jsx';
+>>>>>>> cb6772a0133f64f47ca1e23d07006faaaf8a18f4
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
@@ -12,11 +17,11 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
-    axios.get('/getProduct', {params: {productId: productId }})
-      .then((response)=> {
+    axios.get('/getProduct', { params: { productId: productId } })
+      .then((response) => {
         setCurrentProduct(response.data);
       })
-      .catch((err)=> {
+      .catch((err) => {
         console.log(err);
         return;
       });
@@ -45,20 +50,27 @@ const App = () => {
         <OverviewApp productId={productId}
           currentProduct={currentProduct}
           setProductId={setProductId}
-          getProductById={getProductById}/>
+          getProductById={getProductById} />
       </div>
       <div>
         <RelatedItemsAndComparison
           productId={productId}
           product={currentProduct}
           setProductId={setProductId}
-          getProductById={getProductById}/>
+          getProductById={getProductById} />
       </div>
       <div>
         <QAwidget />
       </div>
       <div>
+<<<<<<< HEAD
         <ReviewsOverview />
+=======
+        <RatingEntry productId={productId}
+          currentProduct={currentProduct}
+          setProductId={setProductId}
+          getProductById={getProductById} />
+>>>>>>> cb6772a0133f64f47ca1e23d07006faaaf8a18f4
       </div>
     </div>
   );
