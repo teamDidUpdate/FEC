@@ -17,7 +17,7 @@ const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) =
     <div>
 
       <div>Question Answers</div>
-      <QAsearch />
+      <Search />
       {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
         <QuestionList
           searchInput={searchInput}
