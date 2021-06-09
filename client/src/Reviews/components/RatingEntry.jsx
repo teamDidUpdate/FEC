@@ -41,7 +41,7 @@ class RatingEntry extends React.Component {
         {Object.keys(this.state.metadata).length > 0 ?
           <div>
             <div className='quarterRating'>{this.calculateQuarterRating(this.state.metadata.ratings)}</div>
-            <div className='recommendationPercent'>{Number(this.state.metadata.recommended.true) / (Number(this.state.metadata.recommended.false) + Number(this.state.metadata.recommended.true)) * 100} % of people recommend this product. </div>
+            <div className='recommendationPercent'>{Math.floor((Number(this.state.metadata.recommended.true) / (Number(this.state.metadata.recommended.false) + Number(this.state.metadata.recommended.true)) * 100))}% of people recommend this product. </div>
             <div className='fiveStars'>5 Stars {this.state.metadata.ratings[5]} </div>
             <div className='fourStars'>4 Stars {this.state.metadata.ratings[4]}</div>
             <div className='threeStars'>3 Stars {this.state.metadata.ratings[3]}</div>

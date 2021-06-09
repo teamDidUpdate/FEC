@@ -13,8 +13,8 @@ class ReviewEntry extends React.Component {
   }
 
   componentDidMount() {
-    for (var i = 1; i < 10; i++) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${this.props.productId}&count=5&page=${i}`, {
+    for (var i = 1; i < 3; i++) {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${this.props.productId}&count=15&page=${i}`, {
         headers: {
           Authorization: APIToken.TOKEN
         }
@@ -53,6 +53,7 @@ class ReviewEntry extends React.Component {
                 {review.photos.length > 0 ?
                   <div className='reviewImages'>
                     <img src={review.photos[0].url} height="100" width="100"></img>
+
                   </div> :
                   <img src=''></img>
                 }
