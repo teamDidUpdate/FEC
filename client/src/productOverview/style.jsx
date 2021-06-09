@@ -25,10 +25,13 @@ const Style = (props) => {
       }
     }
     if (limitNumber === undefined) {
-      return [1];
+      return ['-'];
     }
     let numberOption = [];
     for (let i = 1; i < limitNumber + 1; i++) {
+      if (limitNumber > 15) {
+        limitNumber = 15;
+      }
       numberOption.push(i);
     }
     return numberOption;
@@ -46,7 +49,7 @@ const Style = (props) => {
         </div>
       }
       <p className="stlye-text">
-        <b className="bold-text">STYLE {'>'}</b> SELECTED STYLE
+        <b className="bold-text">STYLE {'>'}</b> {props.currentStyle.name}
       </p>
       <div className="style-selector">
 
@@ -57,16 +60,18 @@ const Style = (props) => {
           </div>
         )}
       </div>
-      <div className="size-selector">
-        <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)}>
-          <option value="">SELECT SIZE</option>
-          {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
-        </select>
-        <select id="quan-select">
-          {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
-        </select>
-      </div>
-      <Cart />
+      <form id="add-product-form">
+        <div className="size-selector">
+          <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)}>
+            <option value="">SELECT SIZE</option>
+            {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
+          </select>
+          <select id="quan-select">
+            {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
+          </select>
+        </div>
+        <Cart />
+      </form>
     </div>
   );
 };
