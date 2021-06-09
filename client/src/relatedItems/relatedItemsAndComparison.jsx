@@ -9,7 +9,6 @@ const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) =>
     axios.get('/relatedIds', { params: { productId: productId } })
       .then((response) => {
         let relatedIds = response.data;
-        console.log('relatedIds', relatedIds);
         return getRelatedProducts(relatedIds);
       })
       .catch((err) => {
@@ -24,7 +23,6 @@ const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) =>
         return getRelatedProductById(id);
       });
       let relatedItems = await Promise.all(items);
-      console.log('relatedItems', relatedItems);
       setRelatedProducts(relatedItems);
     } catch (err) {
       console.log(err);
