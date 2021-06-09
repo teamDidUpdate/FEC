@@ -1,4 +1,5 @@
 import React from 'react';
+import Cart from './cart.jsx';
 import productStyle from './sampleStyle.js';
 
 const Style = (props) => {
@@ -15,18 +16,20 @@ const Style = (props) => {
     <div className="style">
       {onSale
         ? <div className="price-tag">
-          <text style={{'textDecorationLine': 'line-through'}}>${props.currentStyle.original_price}</text>
-          {onSale && <text> Sale Price: ${onSale}</text>}
+          <span style={{ 'textDecorationLine': 'line-through' }}>${props.currentStyle.original_price}</span>
+          {onSale && <span> Sale Price: ${onSale}</span>}
         </div>
         : <div className="price-tag">
         ${props.currentStyle.original_price}
         </div>
       }
-      <div>
-        STYLE {'>'} SELECTED STYLE
-      </div>
+      <p className="stlye-text">
+        <b className="bold-text">STYLE {'>'}</b> SELECTED STYLE
+      </p>
       <div className="style-selector">
-        {styles.map((style) => <img className="style-image" src={style.photos[0].thumbnail_url} key={style.style_id} onClick={(e) => { props.changeStyle(style); } }></img>)}
+
+        {styles.map((style) =>
+          <img className="style-image" key={style.style_id} src={style.photos[0].thumbnail_url} onClick={(e) => { props.changeStyle(style); } }></img>)}
       </div>
       <div className="size-selector">
         <select id="size-select">
@@ -38,9 +41,9 @@ const Style = (props) => {
           <option value="">2</option>
           <option value="">3</option>
           <option value="">4</option>
-
         </select>
       </div>
+      <Cart />
     </div>
   );
 };
