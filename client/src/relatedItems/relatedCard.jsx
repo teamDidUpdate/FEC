@@ -15,6 +15,7 @@ const RelatedCard = ({relatedItem}) => {
       <div className='grid-item'>{relatedItem.overview.category}</div>
       <div className='grid-item'>{relatedItem.overview.name}</div>
       <div className='grid-item'>{relatedItem.overview.default_price}</div>
+      <div className='grid-item'>RATING PLACEHOLDER</div>
     </div>
   );
 };
