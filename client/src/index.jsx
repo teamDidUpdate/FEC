@@ -45,9 +45,7 @@ const App = () => {
     <div>
       <div>
         <OverviewApp productId={productId}
-          currentProduct={currentProduct}
-          setProductId={setProductId}
-          getProductById={getProductById} />
+          setProductId={setProductId} />
       </div>
       <div>
         <RelatedItemsAndComparison

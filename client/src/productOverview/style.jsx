@@ -3,10 +3,8 @@ import Cart from './cart.jsx';
 import productStyle from './sampleStyle.js';
 
 const Style = (props) => {
-
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
-
-  let styles = productStyle.results;
+  let styles = props.allStyles;
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
   const skus = props.currentStyle.skus;
@@ -32,9 +30,9 @@ const Style = (props) => {
       <div className="style-selector">
 
         {styles.map((style) =>
-          <div className="container">
-            <img className="style-image" key={style.style_id} src={style.photos[0].thumbnail_url} onClick={(e) => { props.changeStyle(style); setCurrentStyleId(style.style_id); } }></img>
-            {currentStyleId === style.style_id && <div class="top-right">✔</div>}
+          <div className="container" key={style.style_id}>
+            <img className="style-image" src={style.photos[0].thumbnail_url} onClick={(e) => { props.setCurrentStyle(style); setCurrentStyleId(style.style_id); } }></img>
+            {currentStyleId === style.style_id && <div className="top-right">✔</div>}
           </div>
         )}
       </div>
