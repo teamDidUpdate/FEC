@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RelatedCard from './RelatedCard.jsx';
 
-const RelatedItemsAndComparison = ({product, productId, setProductId, getProductById}) => {
+const RelatedItemsAndComparison = ({product, setProductId, getProductById}) => {
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,6 @@ const RelatedItemsAndComparison = ({product, productId, setProductId, getProduct
         return getProductById(relatedId);
       });
       let newItems = await Promise.all(items);
-      console.log(newItems);
       setRelatedItems(newItems);
     } catch (err) {
       console.log(err);
@@ -24,11 +23,11 @@ const RelatedItemsAndComparison = ({product, productId, setProductId, getProduct
   };
 
   return (
-    <div className='related-items-and-comparison'>
+    <div className='related-items-and-comparison grid-outer-container'>
       {relatedItems.length !== 0 ? relatedItems.map(relatedItem => {
         return (
-          <div key={relatedItem.overview.id}>
-            <RelatedCard relatedItem={relatedItem}/>
+          <div className='related-card grid-container' key={relatedItem.overview.id}>
+            <RelatedCard relatedItem={relatedItem} setProductId={setProductId}/>
           </div>
         );
       }) : null}

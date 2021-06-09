@@ -5,27 +5,18 @@ const RelatedCard = ({relatedItem}) => {
   const imageURL = relatedItem.styles.results[0].photos[0].thumbnail_url;
 
   return (
-    <table className='related-items'>
-      <tbody>
-        <tr>
-          <button onClick={() => console.log('PLACEHOLDER')}>Action</button>
-          <td><img src={imageURL !== null ? imageURL : 'https://bit.ly/3507jj5'} height="100" width="100"></img></td>
-          <td>{relatedItem.overview.category}</td>
-          <td>{relatedItem.overview.name}</td>
-          <td>{relatedItem.overview.default_price}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div className='related-items grid-container'>
+      <div className='grid-item'>
+        <button onClick={() => console.log('PLACEHOLDER')}>Compare</button>
+      </div>
+      <div className='grid-item'>
+        <img className='related-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
+      </div>
+      <div className='grid-item'>{relatedItem.overview.category}</div>
+      <div className='grid-item'>{relatedItem.overview.name}</div>
+      <div className='grid-item'>{relatedItem.overview.default_price}</div>
+    </div>
   );
 };
 
-
-/*
-  {element.photos.length > 0 ?
-    <div className='reviewImages'>
-      <img src={element.photos[0].url} height="100" width="100"></img>
-    </div> :
-    <img src=''></img>
-  }
-*/
 export default RelatedCard;

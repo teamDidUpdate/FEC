@@ -60,7 +60,6 @@ const App = () => {
       <div>
         <ReviewsOverview />
       </div>
-
     </div>
   );
 };

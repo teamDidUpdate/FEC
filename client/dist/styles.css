@@ -171,11 +171,28 @@ body {
 
 
 /* ------------ Related Items ------------ */
-table.related-items {
-  border: 4px solid black;
+.grid-outer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(200px, auto);
 }
 
-td {
+.grid-outer-container > div {
+  background:#eee;
+  padding:1em;
+}
+
+.grid-container > div {
+  display: grid;
+}
+
+.grid-item {
   border: 1px solid black;
-  padding: 2px;
+}
+
+.related-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
