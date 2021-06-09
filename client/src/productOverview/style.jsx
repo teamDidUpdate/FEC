@@ -29,7 +29,11 @@ const Style = (props) => {
       <div className="style-selector">
 
         {styles.map((style) =>
-          <img className="style-image" key={style.style_id} src={style.photos[0].thumbnail_url} onClick={(e) => { props.changeStyle(style); } }></img>)}
+          <div className="container">
+            <img className="style-image" key={style.style_id} src={style.photos[0].thumbnail_url} onClick={(e) => { props.changeStyle(style); } }></img>
+            <div class="top-right">✔</div>
+          </div>
+        )}
       </div>
       <div className="size-selector">
         <select id="size-select">

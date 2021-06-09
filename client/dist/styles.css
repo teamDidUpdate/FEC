@@ -133,6 +133,8 @@ body {
 }
 
 .style-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 8%;
   position: relative;
 }
@@ -174,9 +176,20 @@ body {
   background-color: white;
 }
 
-.style-image:active {
-  content: '✔';
-  color: black;
+.container {
+
+  position: relative;
+  text-align: center;
+  color: rgb(12, 12, 12);
+}
+
+.top-right {
+  position: absolute;
+  top: 2px;
+  right: 20%;
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 10px;
 }
 
 
