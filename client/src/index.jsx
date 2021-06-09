@@ -57,7 +57,11 @@ const App = () => {
           getProductById={getProductById} />
       </div>
       <div>
-        <QAwidget />
+        <QAwidget
+          productId={productId}
+          setProductId={setProductId}
+          getProductById={getProductById}
+          currentProduct={currentProduct}/>
       </div>
       <div>
         <ReviewEntry productId={productId}
