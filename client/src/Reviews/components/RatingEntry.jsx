@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import APIToken from '../../../../config.js';
-class ReviewEntry extends React.Component {
+class RatingEntry extends React.Component {
   constructor(props) {
     super(props);
 
@@ -66,4 +66,4 @@ class ReviewEntry extends React.Component {
 }
 
 
-export default ReviewEntry;
+export default RatingEntry;
