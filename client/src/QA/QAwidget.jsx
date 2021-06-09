@@ -66,7 +66,7 @@ const QAwidget = ( { currentProduct } ) => {
               <QuestionList
                 searchInput={searchInput}
                 questions={currentProduct.questionsAnswers.results} />
-              : console.log('loading Q&A')}
+              : null}
           </Grid>
         </Grid>
       </Grid>
