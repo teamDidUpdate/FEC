@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import Cart from './cart.jsx';
 
 const Style = (props) => {
@@ -37,6 +38,18 @@ const Style = (props) => {
     return numberOption;
   };
 
+  const handleSubmit = (e) => {
+    console.log('test');
+    axios.post('/addToCart', { 'skuId': sizeNumber })
+      .then((data) => {
+        if (data.data === 'Created') {
+          alert('Added 1 product');
+        }
+      })
+      .catch((err) => { console.log('add to cart error:' + err); });
+    e.preventDefault();
+  };
+
   return (
     <div className="style">
       {onSale
@@ -60,7 +73,7 @@ const Style = (props) => {
           </div>
         )}
       </div>
-      <form id="add-product-form">
+      <form id="add-product-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="size-selector">
           <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)}>
             <option value="">SELECT SIZE</option>
