@@ -12,16 +12,21 @@ const Style = (props) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="style">
+      {onSale
+        ? <div className="price-tag">
+          <text style={{'textDecorationLine': 'line-through'}}>${props.currentStyle.original_price}</text>
+          {onSale && <text> Sale Price: ${onSale}</text>}
+        </div>
+        : <div className="price-tag">
         ${props.currentStyle.original_price}
-        {onSale && <text> Sale Price: {onSale}</text>}
-      </div>
+        </div>
+      }
       <div>
         STYLE {'>'} SELECTED STYLE
       </div>
       <div className="style-selector">
-        {styles.map((style) => <img className="style-image" src={style.photos[0].thumbnail_url} key={style.style_id} onClick={() => props.changeStyle(style)}></img>)}
+        {styles.map((style) => <img className="style-image" src={style.photos[0].thumbnail_url} key={style.style_id} onClick={(e) => { props.changeStyle(style); } }></img>)}
       </div>
       <div className="size-selector">
         <select id="size-select">
@@ -31,6 +36,9 @@ const Style = (props) => {
         <select id="quan-select">
           <option value="">1</option>
           <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+
         </select>
       </div>
     </div>
