@@ -1,30 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import RelatedCard from './RelatedCard.jsx';
+import axios from 'axios';
 
-const RelatedItemsAndComparison = ({product, productId, setProductId, getProductById}) => {
-  const [relatedItems, setRelatedItems] = useState([]);
+const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) => {
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    if (Object.keys(product).length !== 0) {
-      getRelatedItems();
-    }
-  }, [product]);
-
-  const getRelatedItems = async () => {
-    try {
-      let items = await product.relatedIds.map(relatedId => {
-        return getProductById(relatedId);
+    axios.get('/relatedIds', { params: { productId: productId } })
+      .then((response) => {
+        let relatedIds = response.data;
+        console.log('relatedIds', relatedIds);
+        return getRelatedProducts(relatedIds);
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
       });
-      let newItems = await Promise.all(items);
-      setRelatedItems(newItems);
+  }, [productId]);
+
+  const getRelatedProducts = async (ids) => {
+    try {
+      let items = await ids.map(id => {
+        return getRelatedProductById(id);
+      });
+      let relatedItems = await Promise.all(items);
+      console.log('relatedItems', relatedItems);
+      setRelatedProducts(relatedItems);
     } catch (err) {
       console.log(err);
     }
   };
 
+  const getRelatedProductById = async (id) => {
+    let relatedProduct = {};
+    await axios.get('/relatedProduct', { params: { productId: id } })
+      .then((response) => {
+        relatedProduct = response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+    return relatedProduct;
+  };
+
+
   return (
     <div className='related-items-and-comparison grid-outer-container'>
-      {relatedItems.length !== 0 ? relatedItems.map(relatedItem => {
+      {relatedProducts.length !== 0 ? relatedProducts.map(relatedItem => {
         return (
           <div
             className='related-card grid-container'
