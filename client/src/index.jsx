@@ -24,6 +24,10 @@ const App = () => {
       });
   }, [productId]);
 
+  const changeProductId = (id) => {
+    setProductId(id);
+  };
+
   const getProductById = async (id) => {
     try {
       let newProduct = {};
@@ -53,7 +57,7 @@ const App = () => {
         <RelatedItemsAndComparison
           productId={productId}
           product={currentProduct}
-          setProductId={setProductId}
+          changeProductId={changeProductId}
           getProductById={getProductById} />
       </div>
       <div>

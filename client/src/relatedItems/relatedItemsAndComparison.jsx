@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import RelatedCard from './RelatedCard.jsx';
 
-const RelatedItemsAndComparison = ({product, setProductId, getProductById}) => {
+const RelatedItemsAndComparison = ({product, productId, changeProductId, getProductById}) => {
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
-    if (product !== undefined && Object.keys(product).length !== 0) {
+    if (Object.keys(product).length !== 0) {
       getRelatedItems();
     }
   }, [product]);
@@ -26,8 +26,12 @@ const RelatedItemsAndComparison = ({product, setProductId, getProductById}) => {
     <div className='related-items-and-comparison grid-outer-container'>
       {relatedItems.length !== 0 ? relatedItems.map(relatedItem => {
         return (
-          <div className='related-card grid-container' key={relatedItem.overview.id}>
-            <RelatedCard relatedItem={relatedItem} setProductId={setProductId}/>
+          <div
+            className='related-card grid-container'
+            key={relatedItem.overview.id}
+            onClick={() => changeProductId(relatedItem.overview.id)}
+          >
+            <RelatedCard relatedItem={relatedItem}/>
           </div>
         );
       }) : null}
