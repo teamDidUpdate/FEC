@@ -11,12 +11,14 @@ const Answers = ({ answer }) => (
       overflowWrap: 'anywhere'
     }}>A: {answer.body}</div>
 
-    <p className='answer-user' style={{
+    <span className='answer-user' style={{
       marginLeft: '40px',
       color: 'GrayText'
-    }}>by {answer.answerer_name}, {Date(answer.date).substring(4, 15)} | </p>
+    }}>by {answer.answerer_name}, {Date(answer.date).substring(4, 15)} | Helpful? Yes ({answer.helpfulness}) | Report
+      {/* <Helpful helpfulness={answer.helpfulness} report='Report' /> */}
+    </span>
 
-    <Helpful helpfulness={answer.helpfulness} report='Report' />
+
   </div>
 );
 

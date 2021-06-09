@@ -15,21 +15,20 @@ const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) =
 
   return (
     <div>
+      <div>
 
-      <div>Question Answers</div>
-      <Search />
-      {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
-        <QuestionList
-          searchInput={searchInput}
-          questions={currentProduct.questionsAnswers.results} />
-        : console.log('loading Q&A')}
+        <div>Question Answers</div>
+        <Search />
+        {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
+          <QuestionList
+            searchInput={searchInput}
+            questions={currentProduct.questionsAnswers.results} />
+          : console.log('loading Q&A')}
+        {/* <Helpful report={'Add Answer'} /> */}
 
-      {/* <QuestionList questions={questions.results}/> */}
-      <Helpful report={'Add Answer'} />
-
-      <Helpful report={'Add Answer'} />
-
+      </div>
     </div>
+
   );
 };
 

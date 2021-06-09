@@ -1,18 +1,11 @@
-import React from 'react';
+// import React from 'react';
 
-const Helpful = (props) => {
-  let input = '';
-  if (props.report === 'report') {
-    input = 'Report';
-  }
-  return (
-    <div>
-      Helpful?
-      <span>Yes</span>
-      <span>(0) | </span>
-      <span clasName='helpful-input'>{input}</span>
-    </div>
-  );
-};
+// const Helpful = ({ report, helpfulness }) => {
+//   return (
+//     <div>
+//       Helpful? Yes ({helpfulness}) | {report}
+//     </div>
+//   );
+// };
 
-export default Helpful;
+// export default Helpful;

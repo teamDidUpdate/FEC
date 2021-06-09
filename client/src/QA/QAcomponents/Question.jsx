@@ -14,7 +14,7 @@ const Question = ({ question }) => {
 
       <span className='question' style={{
         display: 'flex',
-        fontSize: '22px',
+        fontSize: '20px',
         fontWeight: 'bold',
         justifyContent: 'space-between',
         overflowWrap: 'anywhere'
