@@ -9,36 +9,20 @@ import Helpful from './QAcomponents/QAhelpful.jsx';
 
 const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) => {
 
-  const [questions, setQuestions] = useState(sample.questions);
+  // const [questions, setQuestions] = useState(sample.questions);
   const [searchInput, setSearchInput] = useState('');
   const [product, setProduct] = useState('');
 
-  // const fetchData = async ()
-  console.log(currentProduct)
-
-  // Fetch data
-  // use axios GET request with promise chain
-  // GET: /qa/questions/:product_id
-  // const fetchQuestions = () => {
-  //   axios.get('/getProduct')
-  //     .then((res) => {
-  //       res.data.forEach((file) => {
-  //         this.setState({
-  //           entry: this.state.entry.concat(file)
-  //         });
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return;
-  //     });
-  // };
-
   return (
-    <div>
-      <div className='qa-header'>Question Answers</div>
+    <div className='qa-widget'>
+
+      <div>Question Answers</div>
       <QAsearch />
-      <QuestionList questions={questions.results}/>
+      {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
+        <QuestionList questions={currentProduct.questionsAnswers.results} />
+        : console.log('loading Q&A')}
+
+      {/* <QuestionList questions={questions.results}/> */}
       <Helpful report={'Add Answer'} />
 
       <Helpful report={'Add Answer'} />

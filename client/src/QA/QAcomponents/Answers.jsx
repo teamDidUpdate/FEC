@@ -1,11 +1,22 @@
 import React from 'react';
 import Helpful from './QAhelpful.jsx';
 
-const Answers = (props) => (
+const Answers = ({ answer }) => (
   <div>
-    <div>A: {props.answer.body}</div>
-    <p>by {props.answer.answerer_name}, {props.answer.date.substring(0, 10)} | </p>
-    <Helpful helpfulness={props.answer.helpfulness} report='Report' />
+    <div className='answer' style={{
+      marginLeft: '10px',
+      marginTop: '10px',
+      marginBottom: '5px',
+      fontSize: '18px',
+      overflowWrap: 'anywhere'
+    }}>A: {answer.body}</div>
+
+    <p className='answer-user' style={{
+      marginLeft: '40px',
+      color: 'GrayText'
+    }}>by {answer.answerer_name}, {Date(answer.date).substring(4, 15)} | </p>
+    
+    <Helpful helpfulness={answer.helpfulness} report='Report' />
   </div>
 );
 

@@ -1,17 +1,20 @@
 import React from 'react';
 import Helpful from './QAhelpful.jsx';
 import Answers from './Answers.jsx';
+import MoreAnswers from './MoreAnswers.jsx';
 
-const Question = (props) => {
-  let answerKey = Object.keys(props.question.answers);
-  let answerList = answerKey.map(Ans => props.question.answers[Ans]);
+const Question = ({ question }) => {
+  let answerKey = Object.keys(question.answers);
+  let answerList = answerKey.map(Ans => question.answers[Ans]);
 
   return (
-    <div className='question'>
-      <span>Q: {props.question.question_body}</span>
-      {/* <Helpful report={'report'}/> */}
-      {answerList.map((answer, key) => (
-        <Answers key={key} answer={answer} />
+    <div>
+      <span>Q: {question.question_body}</span>
+      <div>
+
+      </div>
+      {answerList.map(answer => (
+        <Answers key={answer.id} answer={answer} />
       ))}
     </div>
   );

@@ -10,7 +10,7 @@ const Helpful = (props) => {
       Helpful?
       <span>Yes</span>
       <span>(0) | </span>
-      <span>{input}</span>
+      <span clasName='helpful-input'>{input}</span>
     </div>
   );
 };
