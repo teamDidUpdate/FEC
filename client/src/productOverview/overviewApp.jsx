@@ -30,11 +30,11 @@ class OverviewApp extends React.Component {
           <h1>LOGO</h1>
         </div>
         <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SLAE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
-        <div className="overview-row">
-          <div className="col-md-5">
+        <div className="overview-container">
+          <div className="image-gallary">
             <Image productStyle={this.state.currentStyle}/>
           </div>
-          <div className="col-md-7">
+          <div className="style-section">
             <Rating />
             <Title product={currentProduct}/>
             <Style currentStyle={this.state.currentStyle} changeStyle={this.changeStyle}/>

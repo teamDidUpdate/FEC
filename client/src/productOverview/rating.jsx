@@ -13,7 +13,7 @@ export default class Rating extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="rating">
         ★★★★★
         Read all [#] reviews
       </div>
