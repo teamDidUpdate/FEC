@@ -1,6 +1,6 @@
 body {
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 16%;
+  padding-right: 16%;
 }
 
 #header {
@@ -53,11 +53,6 @@ body {
 }
 
 .gallery-image {
-  width: 80px;
-  height: 80px;
-}
-
-.myClass {
   width: 80px;
   height: 80px;
 }
