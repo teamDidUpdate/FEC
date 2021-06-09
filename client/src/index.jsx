@@ -49,8 +49,8 @@ const App = () => {
       </div>
       <div>
         <RelatedItemsAndComparison
-          productId={productId}
           product={currentProduct}
+          productId={productId}
           setProductId={setProductId}
           getProductById={getProductById} />
       </div>
