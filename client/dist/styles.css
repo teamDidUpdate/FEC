@@ -68,8 +68,8 @@ html {
 /* ------------ Overview and General ------------ */
 
 body {
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 16%;
+  padding-right: 16%;
 }
 
 #header {
@@ -208,6 +208,29 @@ p#alignright {
 
 
 /* ------------ Related Items ------------ */
-table.related-items {
-  border: 2px solid black;
+.grid-outer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+.grid-outer-container > div {
+  background:#eee;
+  padding:1em;
+}
+
+.grid-container > div {
+  display: grid;
+  grid-gap: 1px;
+}
+
+.grid-item {
+  border: 1px solid black;
+}
+
+.related-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
