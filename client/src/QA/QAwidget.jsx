@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import QAsearch from './QAcomponents/QAsearch.jsx';
-import QuestionList from './QAcomponents/QuestionList.jsx';
 import sample from './sampleData.js';
 
-class QAwidget extends React.Component {
-  constructor(props) {
-    super(props);
-    // State
-    this.state = {
-      questions: sample.questions, // set this back to :[]
-      answers: []
-    };
-    // Bindings
+import Search from './QAcomponents/Search.jsx';
+import QuestionList from './QAcomponents/QuestionList.jsx';
+import Helpful from './QAcomponents/Helpful.jsx';
 
-  }
-  // Fetch data
-  // use axios GET request with promise chain
-  // GET: /qa/questions/:product_id
+const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) => {
 
-  // Render
-  render() {
-    return (
+  // const [questions, setQuestions] = useState(sample.questions);
+  const [searchInput, setSearchInput] = useState('');
+  const [product, setProduct] = useState('');
+
+  return (
+    <div>
       <div>
-        <div className='qa-header'>Question Answers</div>
-        <QAsearch />
-        <QuestionList answers={this.state.answers} questions={this.state.questions.results}/>
+
+        <div>Question Answers</div>
+        <Search />
+        {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
+          <QuestionList
+            searchInput={searchInput}
+            questions={currentProduct.questionsAnswers.results} />
+          : console.log('loading Q&A')}
+        {/* <Helpful report={'Add Answer'} /> */}
+
       </div>
-    );
-  }
-}
+    </div>
+
+  );
+};
 
 export default QAwidget;

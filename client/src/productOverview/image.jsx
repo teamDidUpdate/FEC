@@ -13,8 +13,8 @@ const Image = (props) => {
   return (
     <div>
       <div className="images">
-        <div className="main-pic">
-          <img className="main-image" src={imageURL}></img>
+        <div className="image-container">
+          <img src={imageURL}></img>
         </div>
         <div className="style-pics">
           {images.map((image) => <div key={image.url} onClick={(e) => setImageURL(image.url)}><img className="gallery-image" src={image.thumbnail_url}></img></div>)}
