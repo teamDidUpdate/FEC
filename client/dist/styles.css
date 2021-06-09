@@ -281,9 +281,12 @@ p#alignright {
 /* ------------ Related Items ------------ */
 .grid-outer-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-auto-flow: column;
+  align-self: left;
   grid-gap: 1em;
   grid-auto-rows: minmax(200px, auto);
+  grid-auto-columns: minmax(200px, auto);
 }
 
 .grid-outer-container > div {

@@ -44,27 +44,26 @@ const App = () => {
   return (
     <div>
       <div>
-        <OverviewApp productId={productId}
-          setProductId={setProductId} />
+        {/* <OverviewApp productId={productId}
+          setProductId={setProductId} /> */}
       </div>
       <div>
         <RelatedItemsAndComparison
           product={currentProduct}
           productId={productId}
-          setProductId={setProductId}
-          getProductById={getProductById} />
+          setProductId={setProductId} />
       </div>
       <div>
-        <QAwidget
+        {/* <QAwidget
           productId={productId}
           setProductId={setProductId}
           getProductById={getProductById}
-          currentProduct={currentProduct}/>
+          currentProduct={currentProduct}/> */}
       </div>
       <div>
-        <ReviewEntry productId={productId}
+        {/* <ReviewEntry productId={productId}
           setProductId={setProductId}
-          getProductById={getProductById} />
+          getProductById={getProductById} /> */}
       </div>
     </div>
   );
