@@ -6,13 +6,11 @@ import Style from './style.jsx';
 import Image from './image.jsx';
 import Description from './description.jsx';
 import Share from './share.jsx';
-import products from './sampleProducts.js';
-import productStyle from './sampleStyle.js';
 
 const OverviewApp = (props) => {
-  const [overviewProduct, setOverviewProduct] = useState(products[0]);
-  const [allStyles, setAllStyles] = useState(productStyle.results);
-  const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
+  const [overviewProduct, setOverviewProduct] = useState(null);
+  const [allStyles, setAllStyles] = useState(null);
+  const [currentStyle, setCurrentStyle] = useState(null);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: props.productId } })
@@ -33,18 +31,22 @@ const OverviewApp = (props) => {
         <h1>LOGO</h1>
       </div>
       <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SLAE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
-      <div className="overview-container">
-        <div className="image-gallary">
-          <Image productStyle={currentStyle}/>
+      {(overviewProduct === null || allStyles === null || currentStyle === null)
+        ? <div>Loading</div>
+        :
+        <div className="overview-container">
+          <div className="image-gallary">
+            <Image productStyle={currentStyle}/>
+          </div>
+          <div className="style-section">
+            <Rating />
+            <Title product={overviewProduct}/>
+            <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
+          </div>
+          <Description product={overviewProduct}/>
+          <Share />
         </div>
-        <div className="style-section">
-          <Rating />
-          <Title product={overviewProduct}/>
-          <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
-        </div>
-        <Description product={overviewProduct}/>
-        <Share />
-      </div>
+      }
     </div>
   );
 

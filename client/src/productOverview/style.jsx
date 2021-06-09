@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Cart from './cart.jsx';
-import productStyle from './sampleStyle.js';
 
 const Style = (props) => {
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
