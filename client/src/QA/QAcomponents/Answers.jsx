@@ -1,5 +1,6 @@
 import React from 'react';
 import Helpful from './Helpful.jsx';
+import Photos from './Photos.jsx';
 
 const Answers = ({ answer }) => (
   <div>
@@ -10,6 +11,12 @@ const Answers = ({ answer }) => (
       fontSize: '18px',
       overflowWrap: 'anywhere'
     }}>A: {answer.body}</div>
+
+    <div className='answer-photo'>
+      {answer.photos.map((photo, id) => (
+        <Photos photo={photo} key={id}/>
+      ))}
+    </div>
 
     <span className='answer-user' style={{
       marginLeft: '40px',

@@ -172,6 +172,15 @@ body {
   padding-bottom: 10px;
 }
 
+.photo {
+
+  outline: none;
+  top: 25%;
+  left: 25%;
+  width: 10vw;
+  height: 15vh;
+}
+
 .helpful-input {
   text-decoration: underline;
 }
