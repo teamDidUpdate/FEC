@@ -1,5 +1,5 @@
 import React from 'react';
-import Helpful from './QAhelpful.jsx';
+import Helpful from './Helpful.jsx';
 import Answers from './Answers.jsx';
 import MoreAnswers from './MoreAnswers.jsx';
 
@@ -8,14 +8,26 @@ const Question = ({ question }) => {
   let answerList = answerKey.map(Ans => question.answers[Ans]);
 
   return (
-    <div>
-      <span>Q: {question.question_body}</span>
+    <div style={{
+      marginTop: '10px'
+    }}>
+
+      <span className='question' style={{
+        display: 'flex',
+        fontSize: '22px',
+        fontWeight: 'bold',
+        justifyContent: 'space-between',
+        overflowWrap: 'anywhere'
+      }}>Q: {question.question_body}
+      </span>
+
       <div>
 
       </div>
       {answerList.map(answer => (
         <Answers key={answer.id} answer={answer} />
       ))}
+
     </div>
   );
 };

@@ -3,9 +3,9 @@ import axios from 'axios';
 
 import sample from './sampleData.js';
 
-import QAsearch from './QAcomponents/QAsearch.jsx';
+import Search from './QAcomponents/Search.jsx';
 import QuestionList from './QAcomponents/QuestionList.jsx';
-import Helpful from './QAcomponents/QAhelpful.jsx';
+import Helpful from './QAcomponents/Helpful.jsx';
 
 const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) => {
 
@@ -19,7 +19,9 @@ const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) =
       <div>Question Answers</div>
       <QAsearch />
       {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
-        <QuestionList questions={currentProduct.questionsAnswers.results} />
+        <QuestionList
+          searchInput={searchInput}
+          questions={currentProduct.questionsAnswers.results} />
         : console.log('loading Q&A')}
 
       {/* <QuestionList questions={questions.results}/> */}
