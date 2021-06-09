@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RelatedCard from './RelatedCard.jsx';
 
-const RelatedItemsAndComparison = ({product, productId, changeProductId, getProductById}) => {
+const RelatedItemsAndComparison = ({product, productId, setProductId, getProductById}) => {
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const RelatedItemsAndComparison = ({product, productId, changeProductId, getProd
           <div
             className='related-card grid-container'
             key={relatedItem.overview.id}
-            onClick={() => changeProductId(relatedItem.overview.id)}
+            onClick={() => setProductId(relatedItem.overview.id)}
           >
             <RelatedCard relatedItem={relatedItem}/>
           </div>
