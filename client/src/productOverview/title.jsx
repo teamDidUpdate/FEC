@@ -4,7 +4,7 @@ const Title = (props) => {
   return (
     <div>
       <div className="category">{props.product.category}</div>
-      <h2>{props.product.name}</h2>
+      <h2 className="product-name">{props.product.name}</h2>
     </div>
   );
 };
