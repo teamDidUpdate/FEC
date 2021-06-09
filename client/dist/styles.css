@@ -196,7 +196,15 @@ p#alignright {
     font-weight: bold;
 }
 
+.ReviewsOverview {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  font: 1.6rem/1.4 Helvetica,Arial,sans-serif;
+}
 
+.recommendationPercent {
+  font-size: 16px;
+}
 
 
 /* ------------ Related Items ------------ */
