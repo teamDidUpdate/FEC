@@ -9,13 +9,14 @@ import productStyle from './sampleStyle.js';
 
 const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
+  const [allStyles, setAllStyles] = useState(productStyle.results);
   const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: props.productId } })
       .then((response) => {
-        console.log(response.data);
         setOverviewProduct(response.data.overview);
+        setAllStyles(response.data.styles.results);
         setCurrentStyle(response.data.styles.results[0]);
       })
       .catch((err) => {
@@ -37,7 +38,7 @@ const OverviewApp = (props) => {
         <div className="style-section">
           <Rating />
           <Title product={overviewProduct}/>
-          <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle}/>
+          <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
         </div>
       </div>
     </div>

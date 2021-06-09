@@ -3,10 +3,8 @@ import Cart from './cart.jsx';
 import productStyle from './sampleStyle.js';
 
 const Style = (props) => {
-
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
-
-  let styles = productStyle.results;
+  let styles = props.allStyles;
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
   const skus = props.currentStyle.skus;
