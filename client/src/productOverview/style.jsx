@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Cart from './cart.jsx';
 import productStyle from './sampleStyle.js';
 
 const Style = (props) => {
+
+  const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
+
   let styles = productStyle.results;
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
@@ -30,8 +33,8 @@ const Style = (props) => {
 
         {styles.map((style) =>
           <div className="container">
-            <img className="style-image" key={style.style_id} src={style.photos[0].thumbnail_url} onClick={(e) => { props.changeStyle(style); } }></img>
-            <div class="top-right">✔</div>
+            <img className="style-image" key={style.style_id} src={style.photos[0].thumbnail_url} onClick={(e) => { props.changeStyle(style); setCurrentStyleId(style.style_id); } }></img>
+            {currentStyleId === style.style_id && <div class="top-right">✔</div>}
           </div>
         )}
       </div>
