@@ -185,6 +185,7 @@ body {
 
 .grid-container > div {
   display: grid;
+  grid-gap: 1px;
 }
 
 .grid-item {
