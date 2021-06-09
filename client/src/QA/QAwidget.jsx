@@ -14,7 +14,7 @@ const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) =
   const [product, setProduct] = useState('');
 
   return (
-    <div className='qa-widget'>
+    <div>
 
       <div>Question Answers</div>
       <QAsearch />
