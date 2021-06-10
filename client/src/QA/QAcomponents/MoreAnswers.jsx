@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Answers from './Answers.jsx';
 
-const MoreAnswers = () => (
+const MoreAnswers = ({ answers }) => (
   <div>
     <button style={{
       marginLeft: '10px',

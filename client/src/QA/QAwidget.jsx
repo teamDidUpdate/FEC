@@ -8,29 +8,16 @@ import QuestionList from './QAcomponents/QuestionList.jsx';
 import Helpful from './QAcomponents/Helpful.jsx';
 import AddQuestion from './QAcomponents/AddQuestion.jsx';
 
-// Material-UI imports
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: '80vw'
-  },
-  questionsStyle: {
-    maxHeight: '50vh',
-    overflow: 'scroll'
-  }
-}));
-
-const QAwidget = ( { currentProduct } ) => {
-
-  // const [questions, setQuestions] = useState(sample.questions);
+const QAwidget = ( { productId } ) => {
+  const [questions, setQuestions] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [product, setProduct] = useState('');
-  const classes = useStyles();
+
+  useEffect(() => {
+    axios.get('/qa/questions', {params: { productId: productId }})
+      .then(response => setQuestions(response.data))
+      .catch(err => console.log(err));
+  }, [productId]);
 
   let handleSearch = (searchInput) => {
     searchInput.length > 2
@@ -41,66 +28,25 @@ const QAwidget = ( { currentProduct } ) => {
   // Bindings
   handleSearch = handleSearch.bind(this);
 
+
   return (
-    <Box elevation={0} className={classes.root}>
+    <div>
+      <div className='qa-widget'>
 
-      <Grid container direction='column' spacing={1}>
-        <Grid item>
-          <Typography variant='h5'
-            style={{
-              paddingBottom: 0,
-              paddingTop: 4,
-              matgin: '10px 0px 0px 10px'
-            }}>Question and Answers
-          </Typography>
-        </Grid>
+        <div className='qa-header'>Question And Answers</div>
+        <Search
+          handleSearch={handleSearch} />
 
-        <Grid item>
-          <Search handleSearch={handleSearch} />
-        </Grid>
+        {questions !== undefined && Object.keys(questions).length !== 0 ?
+          <QuestionList
+            searchInput={searchInput}
+            questions={questions.results} />
+          : console.log('loading Q&A')}
 
-        <Grid item className={classes.questionsStyle}>
-          <Grid container direction='column' spacing={3} style={{
-            maxWidth: '97%'
-          }}>{currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
-              <QuestionList
-                searchInput={searchInput}
-                questions={currentProduct.questionsAnswers.results} />
-              : null}
-          </Grid>
-        </Grid>
-      </Grid>
+        <AddQuestion productID={questions.product_id}/>
 
-      <Grid container justify='center' alignItems='center' spacing={1}>
-        ADD FUNCTIONALITIES TO EXPAND/COLLAPSE QUESTIONS HERE
-
-        <Grid item>
-          <AddQuestion
-            productID={currentProduct.product_id} />
-        </Grid>
-      </Grid>
-
-    </Box>
-
-
-  // <div>
-  //   <div>
-
-  //     <div>Question Answers</div>
-  //     <Search
-  //       handleSearch={handleSearch} />
-
-  //     {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
-  //       <QuestionList
-  //         searchInput={searchInput}
-  //         questions={currentProduct.questionsAnswers.results} />
-  //       : console.log('loading Q&A')}
-
-  //     <AddQuestion productID={currentProduct.product_id}/>
-
-  //   </div>
-  // </div>
-
+      </div>
+    </div>
   );
 };
 
