@@ -48,29 +48,36 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
     return relatedProduct;
   };
 
-  // check to see if related products should be scrollable
-  // useEffect(() => {
-  //   const screenBuffer = 200;
-  //   let productWidth = document.getElementById('related-carousel').clientWidth;
+  // check to see if right scroll button should display
+  useEffect(() => {
+    const screenBuffer = 150;
+    let productWidth = document.getElementsByClassName('grid-outer-container')[0].clientWidth;
 
-  //   if (productWidth + screenBuffer < screenWidth) {
-  //     setScrollable({ ...scrollable, right: false });
-  //   }
-  //   if (productWidth + screenBuffer < screenWidth) {
-  //     setScrollable({ ...scrollable, right: true });
-  //   }
-  // }), [screenWidth];
+    if (productWidth + screenBuffer < screenWidth) {
+      setScrollable((previousState) => {
+        previousState.right = false;
+        return previousState;
+      });
+    } else if (productWidth + screenBuffer > screenWidth) {
+      setScrollable((previousState) => {
+        previousState.right = true;
+        return previousState;
+      });
+    }
+  }), [screenWidth];
 
   // determine if the left scroll button should display
   useEffect(() => {
     if (productLocation <= 0) {
-      let temp = {...scrollable};
-      temp.left = false;
-      setScrollable(temp);
+      setScrollable((previousState) => {
+        previousState.left = false;
+        return previousState;
+      });
     } else if (productLocation > 0) {
-      let temp = {...scrollable};
-      temp.left = true;
-      setScrollable(temp);
+      setScrollable((previousState) => {
+        previousState.left = true;
+        return previousState;
+      });
     }
   }, [productLocation]);
 
@@ -96,7 +103,7 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   };
 
   return (
-    <div className='related-items-and-comparison grid-outer-container' id='related-carousel'>
+    <div className='related-items-and-comparison grid-outer-container'>
       <div>
         <h2>Related Products</h2>
       </div>

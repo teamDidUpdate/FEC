@@ -323,6 +323,7 @@ justify-content: start;
 
 .grid-item {
   border: 1px solid black;
+  background-color: cornflowerblue;
 }
 
 .related-image {
