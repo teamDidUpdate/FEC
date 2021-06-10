@@ -10,7 +10,7 @@ import AddQuestion from './QAcomponents/AddQuestion.jsx';
 
 const QAwidget = ( { productId } ) => {
   const [questions, setQuestions] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState(null);
   const [product, setProduct] = useState('');
 
   useEffect(() => {
@@ -25,9 +25,17 @@ const QAwidget = ( { productId } ) => {
       : setSearchInput('');
   };
 
+  let SearchedQuestions = (questionInput, searchField) => {
+    questionInput
+      .filter(q => q.question_body
+        .toLowerCase()
+        .includes(searchField
+          .toLowerCase()));
+  };
+
   // Bindings
   handleSearch = handleSearch.bind(this);
-
+  SearchedQuestions = SearchedQuestions.bind(this);
 
   return (
     <div>
@@ -39,6 +47,7 @@ const QAwidget = ( { productId } ) => {
 
         {questions !== undefined && Object.keys(questions).length !== 0 ?
           <QuestionList
+            SearchedQuestions={SearchedQuestions}
             searchInput={searchInput}
             questions={questions.results} />
           : console.log('loading Q&A')}
