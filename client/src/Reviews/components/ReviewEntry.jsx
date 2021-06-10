@@ -57,7 +57,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 <img src=''></img>
               }
             </div>) :
-          null
+          <button>Add a Review</button>
         }
       </div>
     </div>

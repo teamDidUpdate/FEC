@@ -69,28 +69,40 @@ const RatingEntry = ({ currentProductId, setRating }) => {
           </div>
           <br></br>
           <div className='characteristics'>
-            <div className='Fit'>Fitment
-              <ProgressBar completed={(currentProduct.characteristics.Fit.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
-              <div className='characteristicsValues'>
-                <div className='characteristicsValuesLeft'>Too Small</div>
-                <div className='characteristicsValuesRight'>Too Large</div>
-              </div>
-            </div>
-            <div className='Length'>Length <ProgressBar completed={(currentProduct.characteristics.Length.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
-              <div className='characteristicsValues'>
-                <div className='characteristicsValuesLeft'>Too Short</div>
-                <div className='characteristicsValuesRight'>Too Long</div>
-              </div></div>
-            <div className='Comfort'>Comfort<ProgressBar completed={(currentProduct.characteristics.Comfort.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
-              <div className='characteristicsValues'>
-                <div className='characteristicsValuesLeft'>Rough</div>
-                <div className='characteristicsValuesRight'>Soft</div>
-              </div></div>
-            <div className='Quality'>Quality<ProgressBar completed={(currentProduct.characteristics.Quality.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
-              <div className='characteristicsValues'>
-                <div className='characteristicsValuesLeft'>Poor Quality</div>
-                <div className='characteristicsValuesRight'>Perfect</div>
-              </div></div>
+            {currentProduct.characteristics.Fit !== undefined ?
+              <div className='Fit'>Fitment
+                <ProgressBar completed={(currentProduct.characteristics.Fit.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+                <div className='characteristicsValues'>
+                  <div className='characteristicsValuesLeft'>Too Small</div>
+                  <div className='characteristicsValuesRight'>Too Large</div>
+                </div>
+              </div> :
+              null}
+
+            {currentProduct.characteristics.Length !== undefined ?
+              <div className='Length'>Length <ProgressBar completed={(currentProduct.characteristics.Length.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+                <div className='characteristicsValues'>
+                  <div className='characteristicsValuesLeft'>Too Short</div>
+                  <div className='characteristicsValuesRight'>Too Long</div>
+                </div></div> :
+              null}
+
+            {currentProduct.characteristics.Comfort !== undefined ?
+              <div className='Comfort'>Comfort<ProgressBar completed={(currentProduct.characteristics.Comfort.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+                <div className='characteristicsValues'>
+                  <div className='characteristicsValuesLeft'>Rough</div>
+                  <div className='characteristicsValuesRight'>Soft</div>
+                </div></div> :
+              null}
+
+            {currentProduct.characteristics.Quality !== undefined ?
+              <div className='Quality'>Quality<ProgressBar completed={(currentProduct.characteristics.Quality.value / 5) * 100} bgColor={'black'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+                <div className='characteristicsValues'>
+                  <div className='characteristicsValuesLeft'>Poor Quality</div>
+                  <div className='characteristicsValuesRight'>Perfect</div>
+                </div></div> :
+              null}
+
           </div>
         </div> :
         null}
