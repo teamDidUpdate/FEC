@@ -279,24 +279,46 @@ p#alignright {
 
 
 /* ------------ Related Items ------------ */
+/* to consider:
+display: grid;
+justify-content: center;
+width: 100%;
+overflow: hidden;
+
+outer container
+display: grid;
+width: 95%;
+padding: 0 2vw;
+grid-template-rows: 10% 90%;
+justify-content: start;
+*/
+
 .grid-outer-container {
   display: grid;
-  /* grid-template-columns: repeat(4, 1fr); */
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   align-self: left;
+  background:#eee;
+  padding:1em;
+  /* overflow: hidden; */
+}
+
+.related-wrapper {
+  display: grid;
   grid-gap: 1em;
+  grid-auto-flow: column;
+  /* grid-template-columns: 1f 8f 1f; */
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 1px;
+  grid-auto-flow: column;
   grid-auto-rows: minmax(200px, auto);
   grid-auto-columns: minmax(300px, auto);
 }
 
-.grid-outer-container > div {
-  background:#eee;
-  padding:1em;
-}
-
-.grid-container > div {
+.grid-item-container {
   display: grid;
-  grid-gap: 1px;
 }
 
 .grid-item {

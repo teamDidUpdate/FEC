@@ -5,7 +5,7 @@ const RelatedCard = ({ product }) => {
   const imageURL = product.styles.results[0].photos[0].thumbnail_url;
 
   return (
-    <div className='related-items grid-container'>
+    <>
       <div className='grid-item'>
         <button onClick={() => console.log('PLACEHOLDER')}>Compare</button>
       </div>
@@ -16,7 +16,7 @@ const RelatedCard = ({ product }) => {
       <div className='grid-item'>{product.overview.name}</div>
       <div className='grid-item'>{product.overview.default_price}</div>
       <div className='grid-item'>RATING PLACEHOLDER</div>
-    </div>
+    </>
   );
 };
 

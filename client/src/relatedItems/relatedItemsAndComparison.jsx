@@ -49,25 +49,30 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   };
 
   // check to see if related products should be scrollable
-  useEffect(() => {
-    const screenBuffer = 200;
-    let productWidth = document.getElementById('related-carousel').clientWidth;
-    if (productWidth + screenBuffer < screenWidth) {
-      setScrollable({ ...scrollable, right: false });
-    }
-    if (productWidth + screenBuffer < screenWidth) {
-      setScrollable({ ...scrollable, right: true });
-    }
-  }), [screenWidth];
+  // useEffect(() => {
+  //   const screenBuffer = 200;
+  //   let productWidth = document.getElementById('related-carousel').clientWidth;
+
+  //   if (productWidth + screenBuffer < screenWidth) {
+  //     setScrollable({ ...scrollable, right: false });
+  //   }
+  //   if (productWidth + screenBuffer < screenWidth) {
+  //     setScrollable({ ...scrollable, right: true });
+  //   }
+  // }), [screenWidth];
 
   // determine if the left scroll button should display
   useEffect(() => {
     if (productLocation <= 0) {
-      setScrollable({...scrollable, left: false });
-    } else {
-      setScrollable({...scrollable, left: true });
+      let temp = {...scrollable};
+      temp.left = false;
+      setScrollable(temp);
+    } else if (productLocation > 0) {
+      let temp = {...scrollable};
+      temp.left = true;
+      setScrollable(temp);
     }
-  }), [productLocation];
+  }, [productLocation]);
 
   // carousel functionality
   const moveCarousel = (direction, event) => {
@@ -95,19 +100,19 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
       <div>
         <h2>Related Products</h2>
       </div>
-      <div id='relatedWrapper'>
-        <button
-          show={scrollable.left}
-          position={'left'}
-          onClick={(e) => moveCarousel('left', e)}
-        >
-          LEFT
-        </button>
-        <div id='relatedCardContainer'>
+      <div className='related-wrapper'>
+        {scrollable.left ?
+          <button
+            onClick={(e) => moveCarousel('left', e)}
+          >
+            LEFT
+          </button> : null
+        }
+        <div className='relatedCardContainer grid-container'>
           {relatedProducts.length !== 0 ? relatedProducts.map(product => {
             return (
               <div
-                className='related-card grid-container'
+                className='related-card grid-item-container'
                 key={product.overview.id}
                 onClick={() => setProductId(product.overview.id)}
               >
@@ -116,13 +121,13 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
             );
           }) : null}
         </div>
-        <button
-          show={scrollable.right}
-          position={'right'}
-          onClick={(e) => moveCarousel('right', e)}
-        >
-          RIGHT
-        </button>
+        {scrollable.right ?
+          <button
+            onClick={(e) => moveCarousel('right', e)}
+          >
+            RIGHT
+          </button> : null
+        }
       </div>
     </div>
   );
