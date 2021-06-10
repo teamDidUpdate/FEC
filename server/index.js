@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/../client/dist'));
 
-// fetch data from product overview
+/* -------- PRODUCT OVERVIEW FETCHING -------- */
 app.get('/overview', function (req, res) {
   let productId = req.query.productId;
   axios.all([
@@ -31,6 +31,18 @@ app.get('/overview', function (req, res) {
     .catch((err) => {
       console.log('get overview error:' + err);
       res.send(404);
+    });
+});
+
+/* -------- ADD TO CART POST REQUEST -------- */
+app.post('/addToCart', (req, res) => {
+  const skuId = req.body.skuId;
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart', {"sku_id" : skuId}, {headers: { Authorization: APIToken.TOKEN}})
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.send(err);
     });
 });
 
