@@ -46,6 +46,14 @@ app.post('/addToCart', (req, res) => {
     });
 });
 
+/* -------- QUESTION & ANSWER -------- */
+app.get('/qa/questions', (req, res) => {
+  let productId = req.query.productId;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=${productId}`, {headers: { Authorization: APIToken.TOKEN }})
+    .then(response => res.status(200).json(response.data))
+    .catch(err => res.status(400).send('Error while fetching Q&A'));
+});
+
 /* -------- RELATED PRODUCT FETCHING -------- */
 app.get('/relatedIds', function (req, res) {
   let productId = req.query.productId;
