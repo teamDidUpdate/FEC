@@ -4,7 +4,7 @@ import APIToken from '../../../../config.js';
 import StarsRating from 'stars-rating';
 import RatingEntry from './RatingEntry.jsx';
 
-const ReviewEntry = ({ productId }) => {
+const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [currentProduct, setCurrentProduct] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
@@ -28,9 +28,14 @@ const ReviewEntry = ({ productId }) => {
     }
   }, [productId]);
 
+  // for grab rating
+  useEffect(() => {
+    setReviewCount(allReviews.length);
+  }, [allReviews]);
+
   return (
     <div className="ReviewsOverview">
-      <RatingEntry currentProductId={productId}/>
+      <RatingEntry currentProductId={productId} setRating={setRating}/>
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{allReviews.length} Reviews</div>
         {allReviews.length > 0 ?

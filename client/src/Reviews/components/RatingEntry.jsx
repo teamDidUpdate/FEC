@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import APIToken from '../../../../config.js';
 import { render } from 'react-dom';
+import Stars from './stars.jsx';
 import StarsRating from 'stars-rating';
 
 
-const RatingEntry = ({ currentProductId }) => {
+const RatingEntry = ({ currentProductId, setRating }) => {
   const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
@@ -15,12 +16,14 @@ const RatingEntry = ({ currentProductId }) => {
       }
     })
       .then((response) => {
-        for (var key in response.data) {
-          currentProduct[key] = response.data[key];
-        }
+        setCurrentProduct(response.data);
+        // for (var key in response.data) {
+        //   currentProduct[key] = response.data[key];
+        // }
       });
 
   }, [currentProductId]);
+
 
   var calculate = function (object) {
     var sum = 0;
@@ -33,6 +36,11 @@ const RatingEntry = ({ currentProductId }) => {
     return Number((Math.round(number * 4) / 4).toFixed(2));
   };
 
+  // for grab rating
+  useEffect(() => {
+    setRating(calculate(currentProduct.ratings));
+  }, [currentProduct]);
+
   return (
     <div>
 
@@ -41,8 +49,7 @@ const RatingEntry = ({ currentProductId }) => {
           <div className='RatingsHeading'>Ratings and Reviews</div>
           <div className='StarAndQuarterRating'>
             <div className='quarterRating' >{calculate(currentProduct.ratings)}</div>
-            <div className='StarsRating'><StarsRating count={5} value={calculate(currentProduct.ratings)} half={true} edit={false} color2={'#333300'} /></div>
-
+            <Stars calValue = {calculate(currentProduct.ratings)}/>
           </div>
           <div className='recommendationPercent'>{((Number(currentProduct.recommended.true) / (Number(currentProduct.recommended.false) + Number(currentProduct.recommended.true))) * 100).toString().substring(0, 2)}% of people recommend this product!</div>
           <div className='StarsGraphRating'>
