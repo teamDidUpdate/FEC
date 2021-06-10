@@ -279,6 +279,53 @@ p#alignright {
 
 
 /* ------------ Related Items ------------ */
+.carousel {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 1000px;
+  height: 600px;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: #000;
+  background: white;
+  opacity: .75;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #000;
+  background: white;
+  opacity: .75;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+
+
+
+
+
+
 /* to consider:
 display: grid;
 justify-content: center;
@@ -293,7 +340,7 @@ grid-template-rows: 10% 90%;
 justify-content: start;
 */
 
-.grid-outer-container {
+/* .grid-outer-container {
   display: grid;
   justify-content: start;
   width: 100%;
@@ -304,11 +351,11 @@ justify-content: start;
   display: grid;
   position: relative;
   overflow-x: scroll;
-  grid-auto-flow: column;
+  grid-auto-flow: column; */
   /* display: grid;
   grid-gap: 1em;
   overflow-x: scroll; */
-}
+/* }
 
 .grid-container {
   display: grid;
@@ -341,4 +388,4 @@ justify-content: start;
   opacity: .85;
   background-color: white;
   border: none;
-};
+}; */

@@ -11,35 +11,36 @@ import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
-  const [currentProduct, setCurrentProduct] = useState({});
+  // const [currentProduct, setCurrentProduct] = useState({});
 
-  useEffect(() => {
-    axios.get('/getProduct', { params: { productId: productId } })
-      .then((response) => {
-        setCurrentProduct(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        return;
-      });
-  }, [productId]);
+  // useEffect(() => {
+  //   console.log('getting products');
+  //   axios.get('/getProduct', { params: { productId: productId } })
+  //     .then((response) => {
+  //       setCurrentProduct(response.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       return;
+  //     });
+  // }, [productId]);
 
-  const getProductById = async (id) => {
-    try {
-      let newProduct = {};
-      await axios.get('/getProduct', {params: {productId: id }})
-        .then((response)=> {
-          newProduct = response.data;
-        })
-        .catch((err)=> {
-          console.log(err);
-          return;
-        });
-      return newProduct;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getProductById = async (id) => {
+  //   try {
+  //     let newProduct = {};
+  //     await axios.get('/getProduct', {params: {productId: id }})
+  //       .then((response)=> {
+  //         newProduct = response.data;
+  //       })
+  //       .catch((err)=> {
+  //         console.log(err);
+  //         return;
+  //       });
+  //     return newProduct;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div>
@@ -49,7 +50,6 @@ const App = () => {
       </div>
       <div>
         <RelatedItemsAndComparison
-          product={currentProduct}
           productId={productId}
           setProductId={setProductId} />
       </div>
