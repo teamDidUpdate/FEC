@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
 import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
 import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';

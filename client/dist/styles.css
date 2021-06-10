@@ -233,16 +233,25 @@ body {
 
 /* ------------ Review ------------ */
 .individualReview{
-    border: 1px solid #494949;
+    border-bottom: 1px solid #494949;
     margin: 30px;
     padding: 10px;
 }
 
+.StarAndQuarterRating {
+  display: flex;
+}
+
 .summary{
   font-weight: bold;
+  float: left;
 }
 
 #alignleft {
+	float: left;
+}
+
+.alignleft {
 	float: left;
 }
 #alignright {
@@ -275,6 +284,15 @@ p#alignright {
 
 .recommendationPercent {
   font-size: 16px;
+}
+
+.StarsGraphRating {
+  font-size: small;
+  text-decoration-line: underline;
+}
+
+.theStars {
+  padding-top: 10px;
 }
 
 
