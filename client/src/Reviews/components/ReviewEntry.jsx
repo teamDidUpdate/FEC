@@ -28,6 +28,11 @@ class ReviewEntry extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.props.setReviewCount(this.state.allReviews.length);
+  }
+
+
   render() {
     return (
       <div className="ReviewsOverview">

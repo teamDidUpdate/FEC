@@ -41,7 +41,7 @@ const OverviewApp = (props) => {
             <Image productStyle={currentStyle}/>
           </div>
           <div className="style-section">
-            <Rating />
+            <Rating reviewCount={props.reviewCount}/>
             <Title product={overviewProduct}/>
             <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
           </div>
