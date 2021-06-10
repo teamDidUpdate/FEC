@@ -105,7 +105,6 @@ app.get('/getAverageRating', function (req, res) {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`,
     {headers: { Authorization: APIToken.TOKEN }})
     .then((response) => {
-      console.log(response.data);
       res.send(JSON.stringify(calculateAverage(response.data.ratings)));
     })
     .catch((err) => {
