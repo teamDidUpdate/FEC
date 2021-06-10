@@ -281,32 +281,38 @@ p#alignright {
 /* ------------ Related Items ------------ */
 .carousel {
   position: relative;
-  height: 100vh;
+  height: 40vh;
   display: flex;
-  justify-content: center;
+  /* justify-content: left; */
   align-items: center;
+  overflow: hidden;
 }
 
-.card {
-  width: 500px;
+.card-container {
+  display: grid;
+  grid-auto-flow: row;
+  width: 600px;
   height: 300px;
-  border-radius: 10px;
-  opacity: 0;
   transition-duration: 1s ease;
   border: 1px solid black;
-  background-color: gray;
+  margin: 2em;
+  /* background-color: lightgray; */
 }
 
-.card.active {
-  opacity: 1;
-  transition-duration: 1s;
-  transform: scale(1.08);
+.card-item {
+  margin-bottom: 2px;
+}
+
+.related-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .right-arrow {
   position: absolute;
   top: 50%;
-  right: 4px;
+  right: 0;
   font-size: 3rem;
   color: #000;
   background: white;
@@ -319,7 +325,7 @@ p#alignright {
 .left-arrow {
   position: absolute;
   top: 50%;
-  left: 4px;
+  left: 0;
   font-size: 3rem;
   color: #000;
   background: white;
@@ -329,13 +335,12 @@ p#alignright {
   user-select: none;
 }
 
-.related-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.action-btn {
+  font-size: 2rem;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
 }
-
-
 
 
 
