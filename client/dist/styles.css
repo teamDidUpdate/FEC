@@ -322,12 +322,17 @@ body {
 /* ------------ Review ------------ */
 .individualReview{
     border-bottom: 1px solid #494949;
-    margin: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
     padding: 10px;
 }
 
 .StarAndQuarterRating {
   display: flex;
+}
+
+.quarterRating {
+  font-size: -webkit-xxx-large;
 }
 
 .summary{
@@ -348,8 +353,7 @@ body {
 
 p#alignright {
   font-size: 12;
-  font-size: x-small;
-  font-style: italic;
+  font-size: small;
   color: gray;
 }
 
@@ -360,8 +364,8 @@ p#alignright {
 }
 
 .numberOfReviews {
-    text-align: center;
     font-weight: bold;
+    margin-left: 40px;
 }
 
 .ReviewsOverview {
@@ -381,9 +385,25 @@ p#alignright {
 
 .theStars {
   padding-top: 10px;
+  font-size: large;
 }
 
+.ratingReview {
+  font-size: 16px;
+}
 
+.characteristicsValuesRight {
+  margin-left: 85px;
+}
+.characteristicsValues {
+  display: flex;
+  font-size: small;
+}
+
+.characteristicsValuesRight {
+  margin-left: auto;
+  margin-right: 0;
+}
 /* ------------ Related Items ------------ */
 .grid-outer-container {
   display: grid;
