@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Cart from './cart.jsx';
 
@@ -14,6 +14,10 @@ const Style = (props) => {
   for (let key in skus) {
     currentSize.push([key, skus[key].size]);
     quantity.push([key, skus[key].quantity]);
+  }
+
+  if (currentStyleId !== props.currentStyle.style_id) {
+    setCurrentStyleId(props.currentStyle.style_id);
   }
 
   const getLimit = () => {
@@ -75,11 +79,11 @@ const Style = (props) => {
       </div>
       <form id="add-product-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="size-selector">
-          <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)}>
+          <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)} required>
             <option value="">SELECT SIZE</option>
             {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
           </select>
-          <select id="quan-select">
+          <select id="quan-select" required>
             {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
           </select>
         </div>
