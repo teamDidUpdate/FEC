@@ -11,10 +11,10 @@ const RelatedCard = ({ product, id }) => {
       <div className='card-item'>
         <img className='related-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
       </div>
-      <div className='card-item'>{product.overview.category}</div>
-      <div className='card-item'>{product.overview.name}</div>
-      <div className='card-item'>{product.overview.default_price}</div>
-      <div className='card-item'>RATING PLACEHOLDER</div>
+      <div className='card-item text'>{product.overview.category}</div>
+      <div className='card-item text'>{product.overview.name}</div>
+      <div className='card-item text'>{product.overview.default_price}</div>
+      <div className='card-item text'>RATING PLACEHOLDER</div>
     </div>
   );
 };

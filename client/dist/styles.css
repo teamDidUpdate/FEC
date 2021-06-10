@@ -281,10 +281,10 @@ p#alignright {
 /* ------------ Related Items ------------ */
 .carousel {
   position: relative;
-  height: 40vh;
+  height: 48vh;
   display: grid;
   grid-auto-flow: column;
-  /* justify-content: left; */
+  justify-content: left;
   align-items: center;
   overflow: hidden;
   overflow-x: scroll;
@@ -295,14 +295,14 @@ p#alignright {
   display: grid;
   /* grid-auto-flow: row; */
   width: 18vw;
-  height: 36vh;
+  height: 42vh;
   border: 1px solid black;
-  margin: 2em;
+  margin: 2rem;
   /* background-color: lightgray; */
 }
 
-.card-item {
-  margin-bottom: 2px;
+.card-item.text {
+  margin-left: 1em;
 }
 
 .related-image {
@@ -343,6 +343,9 @@ p#alignright {
   right: 2px;
   cursor: pointer;
   user-select: none;
+  background: white;
+  border-radius: 2rem;
+  opacity: .55;
 }
 
 
