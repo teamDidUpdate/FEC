@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
 import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
 import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
@@ -11,11 +10,15 @@ import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
+  const [reviewCount, setReviewCount] = useState(0);
+  const [rating, setRating] = useState(0);
 
   return (
     <div>
       <div>
         <OverviewApp productId={productId}
+          reviewCount={reviewCount}
+          rating={rating}
           setProductId={setProductId} />
       </div>
       <div>
@@ -30,7 +33,9 @@ const App = () => {
       </div>
       <div>
         <ReviewEntry productId={productId}
-          setProductId={setProductId} />
+          setProductId={setProductId}
+          setReviewCount={setReviewCount}
+          setRating={setRating} />
       </div>
     </div>
   );

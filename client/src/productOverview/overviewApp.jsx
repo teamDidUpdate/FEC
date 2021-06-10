@@ -4,6 +4,8 @@ import Rating from './rating.jsx';
 import Title from './title.jsx';
 import Style from './style.jsx';
 import Image from './image.jsx';
+import Description from './description.jsx';
+import Share from './share.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 
@@ -30,17 +32,23 @@ const OverviewApp = (props) => {
       <div id="header" className="overview-header">
         <h1>LOGO</h1>
       </div>
-      <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SLAE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
-      <div className="overview-container">
-        <div className="image-gallary">
-          <Image productStyle={currentStyle}/>
+      <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
+      {(overviewProduct === null || allStyles === null || currentStyle === null)
+        ? <div>Loading</div>
+        :
+        <div className="overview-container">
+          <div className="image-gallary">
+            <Image productStyle={currentStyle}/>
+          </div>
+          <div className="style-section">
+            <Rating reviewCount={props.reviewCount} rating={props.rating}/>
+            <Title product={overviewProduct}/>
+            <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
+          </div>
+          <Description product={overviewProduct}/>
+          <Share />
         </div>
-        <div className="style-section">
-          <Rating />
-          <Title product={overviewProduct}/>
-          <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
-        </div>
-      </div>
+      }
     </div>
   );
 
