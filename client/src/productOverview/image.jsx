@@ -19,17 +19,21 @@ const Image = (props) => {
     setImageIdx(0);
   }, [props]);
 
+  useEffect(() => {
+    setImageURL(images[imageIdx].url);
+  }, [imageIdx]);
+
   const handleClick = (next) => {
     if (next === 1) {
       setImageIdx(prevIdx => prevIdx + 1);
     } else {
       setImageIdx(prevIdx => prevIdx - 1);
     }
-    setImageURL(images[imageIdx].url);
+
   };
 
   const handleScroll = () => {
-    if (end < images.length) {
+    if (end < images.length - 1) {
       setStart(prevStart => prevStart + 1);
       setEnd(prevEnd => prevEnd + 1);
       setImageIdx(prevIdx => prevIdx + 1);

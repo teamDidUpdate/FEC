@@ -1,22 +1,15 @@
 import React from 'react';
+import axios from 'axios';
+import Stars from '../Reviews/components/stars.jsx';
 
-export default class Rating extends React.Component {
-  constructor(props) {
-    super(props);
+const Rating = (props) => {
+  return (
+    <div className="rating">
+      <Stars calValue={props.rating}/>
+      Read all {props.reviewCount} reviews
+    </div>
 
-  }
+  );
+};
 
-  getRate() {
-
-  }
-
-  render() {
-    return (
-      <div className="rating">
-        ★★★★★
-        Read all [#] reviews
-      </div>
-
-    );
-  }
-}
+export default Rating;
