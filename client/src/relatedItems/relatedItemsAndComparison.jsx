@@ -48,7 +48,7 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
     return relatedProduct;
   };
 
-  // check to see if right scroll button should display
+  // check to see if RIGHT scroll button should display
   useEffect(() => {
     const screenBuffer = 150;
     let productWidth = document.getElementsByClassName('grid-outer-container')[0].clientWidth;
@@ -66,7 +66,7 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
     }
   }), [screenWidth];
 
-  // determine if the left scroll button should display
+  // determine if the LEFT scroll button should display
   useEffect(() => {
     if (productLocation <= 0) {
       setScrollable((previousState) => {
@@ -85,8 +85,9 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   const moveCarousel = (direction, event) => {
     // think about how to refactor significan selection
     let area = event.target.parentNode.parentNode.children[1];
+    console.log('area', area);
     let relatedWidth = event.target.parentNode.parentNode.children[1].children[1].clientWidth;
-
+    console.log('relatedWidth', relatedWidth);
     if (direction === 'right') {
       area.scrollLeft += relatedWidth;
       let loc = area.scrollLeft + relatedWidth;
@@ -97,6 +98,12 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
       setProductLocation(loc);
     }
   };
+
+  // check to see if screen size shifts
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleResize = () => {
     setScreenWidth(window.innerWidth);

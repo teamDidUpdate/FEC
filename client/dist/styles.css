@@ -295,26 +295,28 @@ justify-content: start;
 
 .grid-outer-container {
   display: grid;
-  grid-auto-flow: row;
-  align-self: left;
-  background:#eee;
-  padding:1em;
-  /* overflow: hidden; */
+  justify-content: start;
+  width: 100%;
+  overflow: hidden;
 }
 
 .related-wrapper {
   display: grid;
+  position: relative;
+  /* display: grid;
   grid-gap: 1em;
   grid-auto-flow: column;
-  /* grid-template-columns: 1f 8f 1f; */
+  overflow-x: scroll; */
 }
 
 .grid-container {
   display: grid;
-  grid-gap: 1px;
+  grid-gap: 2vw;
   grid-auto-flow: column;
   grid-auto-rows: minmax(200px, auto);
   grid-auto-columns: minmax(300px, auto);
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
 .grid-item-container {
