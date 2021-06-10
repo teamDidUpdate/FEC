@@ -100,6 +100,36 @@ body {
 
 .image-container {
   margin-left: 0.8%;
+  position: relative;
+  margin: auto;
+}
+
+.next, .prev {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.prev {
+  right: 93%;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
 }
 
 .image-container img {
@@ -117,13 +147,15 @@ body {
 }
 
 .gallery-image {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 
 .style-pics {
+  display: block flex;
   grid-column: 1;
   grid-row: 1;
+  height: 35em;
 }
 
 .price-tag,
@@ -213,6 +245,31 @@ body {
   width: 30px;
   height: auto;
 }
+
+.gallery-container {
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-rows: auto 2px;
+  gap: 2px;
+}
+
+.blackLine {
+  border: rgb(97, 95, 95) 1px solid;
+  background: rgb(97, 95, 95);
+  width: 70px;
+  height: 4px;
+}
+
+#arrow {
+  color: #494949;
+  height: 5px;
+  width: 70px;
+  font-size: 1.2em;
+  text-align: center;
+  position: static;
+}
+
+
 
 /* ------------ Q & A ------------ */
 /* .QA-widget {

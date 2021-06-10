@@ -6,11 +6,13 @@ import Style from './style.jsx';
 import Image from './image.jsx';
 import Description from './description.jsx';
 import Share from './share.jsx';
+import products from './sampleProducts.js';
+import productStyle from './sampleStyle.js';
 
 const OverviewApp = (props) => {
-  const [overviewProduct, setOverviewProduct] = useState(null);
-  const [allStyles, setAllStyles] = useState(null);
-  const [currentStyle, setCurrentStyle] = useState(null);
+  const [overviewProduct, setOverviewProduct] = useState(products[0]);
+  const [allStyles, setAllStyles] = useState(productStyle.results);
+  const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: props.productId } })
@@ -30,7 +32,7 @@ const OverviewApp = (props) => {
       <div id="header" className="overview-header">
         <h1>LOGO</h1>
       </div>
-      <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SLAE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
+      <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :

@@ -75,11 +75,11 @@ const Style = (props) => {
       </div>
       <form id="add-product-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="size-selector">
-          <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)}>
+          <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)} required>
             <option value="">SELECT SIZE</option>
             {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
           </select>
-          <select id="quan-select">
+          <select id="quan-select" required>
             {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
           </select>
         </div>

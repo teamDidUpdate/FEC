@@ -36,7 +36,7 @@ app.get('/overview', function (req, res) {
 
 /* -------- ADD TO CART POST REQUEST -------- */
 app.post('/addToCart', (req, res) => {
-  const skuId = req.body.skuId;
+  const skuId = Number(req.body.skuId);
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart', {"sku_id" : skuId}, {headers: { Authorization: APIToken.TOKEN}})
     .then((response) => {
       res.send(response.data);
@@ -45,7 +45,6 @@ app.post('/addToCart', (req, res) => {
       res.send(err);
     });
 });
-
 
 /* -------- REVIEWS FETCHING-------- */
 app.post('/getReview', (req, res) => {
