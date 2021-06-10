@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Cart from './cart.jsx';
 
@@ -14,6 +14,10 @@ const Style = (props) => {
   for (let key in skus) {
     currentSize.push([key, skus[key].size]);
     quantity.push([key, skus[key].quantity]);
+  }
+
+  if (currentStyleId !== props.currentStyle.style_id) {
+    setCurrentStyleId(props.currentStyle.style_id);
   }
 
   const getLimit = () => {

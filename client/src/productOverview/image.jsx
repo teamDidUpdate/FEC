@@ -5,12 +5,19 @@ const Image = (props) => {
   const [images, setImages] = useState(currentImg.photos);
   const [imageIdx, setImageIdx] = useState(0);
   const [imageURL, setImageURL] = useState(images[imageIdx].url);
-  let restImages = [];
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(7);
 
   if (images !== currentImg.photos) {
     setImageURL(currentImg.photos[0].url);
     setImages(currentImg.photos);
   }
+
+  useEffect(() => {
+    setStart(0);
+    setEnd(7);
+    setImageIdx(0);
+  }, [props]);
 
   const handleClick = (next) => {
     if (next === 1) {
@@ -19,6 +26,15 @@ const Image = (props) => {
       setImageIdx(prevIdx => prevIdx - 1);
     }
     setImageURL(images[imageIdx].url);
+  };
+
+  const handleScroll = () => {
+    if (end < images.length) {
+      setStart(prevStart => prevStart + 1);
+      setEnd(prevEnd => prevEnd + 1);
+      setImageIdx(prevIdx => prevIdx + 1);
+      setImageURL(images[imageIdx + 1].url);
+    }
   };
 
   return (
@@ -31,11 +47,11 @@ const Image = (props) => {
           {(imageURL !== images[0].url) && <a className="prev" onClick={() => { handleClick(0); }}>&#10094;</a>}
         </div>
         <div className="style-pics">
-          {images.map((image) => <div className="gallery-container" key={image.url} onClick={(e) => setImageURL(image.url)}>
+          {images.slice(start, end).map((image) => <div className="gallery-container" key={image.url} onClick={(e) => setImageURL(image.url)}>
             <img className="gallery-image" src={image.thumbnail_url}></img>
             {(imageURL === image.url) && <span className="blackLine"></span>}
           </div>)}
-          {images.length > 7 && <div id="arrow">﹀</div>}
+          {(images.length > 7 && end < images.length) && <div className="arrow" onClick={() => handleScroll()}>﹀</div>}
         </div>
       </div>
     </div>
