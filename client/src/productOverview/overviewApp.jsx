@@ -13,6 +13,7 @@ const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
   const [allStyles, setAllStyles] = useState(productStyle.results);
   const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
+  const [expendView, setView] = useState(false);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: props.productId } })
@@ -38,13 +39,17 @@ const OverviewApp = (props) => {
         :
         <div className="overview-container">
           <div className="image-gallary">
-            <Image productStyle={currentStyle}/>
+            <Image currentStyle={currentStyle} expendView={expendView} setView={setView}/>
           </div>
-          <div className="style-section">
-            <Rating reviewCount={props.reviewCount} rating={props.rating}/>
-            <Title product={overviewProduct}/>
-            <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
-          </div>
+          {expendView ?
+            <div className="style-section"></div>
+            : <div className="style-section">
+              <Rating reviewCount={props.reviewCount} rating={props.rating}/>
+              <Title product={overviewProduct}/>
+              <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
+            </div>
+
+          }
           <Description product={overviewProduct}/>
           <Share />
         </div>

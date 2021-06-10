@@ -17,9 +17,6 @@ const RatingEntry = ({ currentProductId, setRating }) => {
     })
       .then((response) => {
         setCurrentProduct(response.data);
-        // for (var key in response.data) {
-        //   currentProduct[key] = response.data[key];
-        // }
       });
 
   }, [currentProductId]);
