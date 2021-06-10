@@ -50,16 +50,19 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
 
   // check to see if RIGHT scroll button should display
   useEffect(() => {
-    const screenBuffer = 150;
+    const screenBuffer = 50;
     let productWidth = document.getElementsByClassName('grid-outer-container')[0].clientWidth;
-
+    console.log('ProductWidth + buffer', productWidth + screenBuffer);
+    console.log('screenWidth ', screenWidth);
     if (productWidth + screenBuffer < screenWidth) {
       setScrollable((previousState) => {
-        previousState.right = false;
+        console.log('setting to false');
+        previousState.right = true;
         return previousState;
       });
     } else if (productWidth + screenBuffer > screenWidth) {
       setScrollable((previousState) => {
+        console.log('setting to true');
         previousState.right = true;
         return previousState;
       });
@@ -70,7 +73,7 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   useEffect(() => {
     if (productLocation <= 0) {
       setScrollable((previousState) => {
-        previousState.left = false;
+        previousState.left = true;
         return previousState;
       });
     } else if (productLocation > 0) {

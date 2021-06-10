@@ -303,9 +303,10 @@ justify-content: start;
 .related-wrapper {
   display: grid;
   position: relative;
+  overflow-x: scroll;
+  grid-auto-flow: column;
   /* display: grid;
   grid-gap: 1em;
-  grid-auto-flow: column;
   overflow-x: scroll; */
 }
 
@@ -315,7 +316,7 @@ justify-content: start;
   grid-auto-flow: column;
   grid-auto-rows: minmax(200px, auto);
   grid-auto-columns: minmax(300px, auto);
-  overflow: scroll;
+  overflow-x: scroll;
   scroll-behavior: smooth;
 }
 
@@ -333,3 +334,11 @@ justify-content: start;
   height: 200px;
   object-fit: cover;
 }
+
+.button {
+  position: absolute !important;
+  padding: 0;
+  opacity: .85;
+  background-color: white;
+  border: none;
+};
