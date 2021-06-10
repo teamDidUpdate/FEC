@@ -282,18 +282,20 @@ p#alignright {
 .carousel {
   position: relative;
   height: 40vh;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   /* justify-content: left; */
   align-items: center;
   overflow: hidden;
+  overflow-x: scroll;
 }
 
 .card-container {
+  position: relative;
   display: grid;
-  grid-auto-flow: row;
-  width: 600px;
-  height: 300px;
-  transition-duration: 1s ease;
+  /* grid-auto-flow: row; */
+  width: 18vw;
+  height: 36vh;
   border: 1px solid black;
   margin: 2em;
   /* background-color: lightgray; */
@@ -338,6 +340,7 @@ p#alignright {
 .action-btn {
   font-size: 2rem;
   position: absolute;
+  right: 2px;
   cursor: pointer;
   user-select: none;
 }
