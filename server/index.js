@@ -46,22 +46,6 @@ app.post('/addToCart', (req, res) => {
     });
 });
 
-/* -------- REVIEWS FETCHING-------- */
-app.post('/getReview', (req, res) => {
-  var productId = Object.values(req.body)[0];
-  axios({
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${productId}`,
-    method: 'GET',
-    headers: { Authorization: APIToken.TOKEN }
-  })
-    .then((response) => {
-      res.send(response.data.results);
-    })
-    .catch((err) => {
-      res.send(404);
-    });
-});
-
 /* -------- RELATED PRODUCT FETCHING -------- */
 app.get('/relatedIds', function (req, res) {
   let productId = req.query.productId;
@@ -103,6 +87,50 @@ app.get('/relatedProduct', function (req, res) {
     }))
     .catch((err) => {
       console.log('getall error:' + err);
+      res.send(404);
+    });
+});
+
+/************METADATA ************/
+/*
+Need to do two things
+1. import StarsRating from 'stars-rating';
+2. <div className='StarsRating'><StarsRating count={5} value={YOUR VALUE HERE!!!!} half={true} edit={false} color2={'#333300'} /></div>
+*/
+
+//Helper for Below
+var calculateAverage = function (object) {
+  var sum = 0;
+  var quant = 0;
+  for (var key in object) {
+    sum = sum + (Number(key) * Number(object[key]));
+    quant += Number(object[key]);
+  }
+  var number = sum / quant;
+  return Number((Math.round(number * 4) / 4).toFixed(2));
+};
+
+//Pass through some productId and you will get returned an average rating for it rounded to the nearest 0.25
+app.get('/getAverageRating', function (req, res) {
+  let productId = req.query.productId;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`,
+    {headers: { Authorization: APIToken.TOKEN }})
+    .then((response) => {
+      res.send(JSON.stringify(calculateAverage(response.data.ratings)));
+    })
+    .catch((err) => {
+      res.send(404);
+    });
+});
+
+app.get('/getNumberOfReviews', function (req, res) {
+  let productId = req.query.productId;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${productId}&count=50`,
+    {headers: { Authorization: APIToken.TOKEN }})
+    .then((response) => {
+      res.send(JSON.stringify(response.data.results.length));
+    })
+    .catch((err) => {
       res.send(404);
     });
 });
