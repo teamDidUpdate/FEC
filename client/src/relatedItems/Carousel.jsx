@@ -30,7 +30,11 @@ const Carousel = ({ products }) => {
       <MdKeyboardArrowRight className='right-arrow' onClick={nextCard}/>
       {products.map((product, index) => {
         return (
-          <RelatedCard product={product} key={product.overview.id} className='card'/>
+          <div className={index === current ? 'card active' : 'card'}>
+            {index === current &&
+              <RelatedCard product={product} key={product.overview.id} className='card'/>
+            }
+          </div>
         );
       })}
     </section>

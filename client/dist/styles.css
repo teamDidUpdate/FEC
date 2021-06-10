@@ -288,15 +288,25 @@ p#alignright {
 }
 
 .card {
-  width: 1000px;
-  height: 600px;
+  width: 500px;
+  height: 300px;
   border-radius: 10px;
+  opacity: 0;
+  transition-duration: 1s ease;
+  border: 1px solid black;
+  background-color: gray;
+}
+
+.card.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
 }
 
 .right-arrow {
   position: absolute;
   top: 50%;
-  right: 32px;
+  right: 4px;
   font-size: 3rem;
   color: #000;
   background: white;
@@ -309,7 +319,7 @@ p#alignright {
 .left-arrow {
   position: absolute;
   top: 50%;
-  left: 32px;
+  left: 4px;
   font-size: 3rem;
   color: #000;
   background: white;
@@ -319,8 +329,11 @@ p#alignright {
   user-select: none;
 }
 
-
-
+.related-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
 
 
@@ -376,11 +389,6 @@ justify-content: start;
   background-color: cornflowerblue;
 }
 
-.related-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
 
 .button {
   position: absolute !important;
