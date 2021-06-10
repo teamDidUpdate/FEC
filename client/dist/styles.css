@@ -286,7 +286,7 @@ p#alignright {
   align-self: left;
   grid-gap: 1em;
   grid-auto-rows: minmax(200px, auto);
-  grid-auto-columns: minmax(200px, auto);
+  grid-auto-columns: minmax(300px, auto);
 }
 
 .grid-outer-container > div {

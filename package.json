@@ -37,7 +37,8 @@
     "jquery": "^3.1.1",
     "react": "^16.4",
     "react-dom": "^16.4",
-    "react-favicon": "0.0.23"
+    "react-favicon": "0.0.23",
+    "react-icons": "^4.2.0"
   },
   "homepage": "https://github.com/JoeyRivera01/FEC#readme"
 }
