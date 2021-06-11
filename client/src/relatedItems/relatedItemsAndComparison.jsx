@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import RelatedCard from './RelatedCard.jsx';
+import Carousel from './Carousel.jsx';
 import axios from 'axios';
 
-const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) => {
+const RelatedItemsAndComparison = ({productId, setProductId}) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
+  // const [productLocation, setProductLocation] = useState(0);
+  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // const [scrollable, setScrollable] = useState({left: false, right: true});
 
+  // get related products when the productId changes
   useEffect(() => {
     axios.get('/relatedIds', { params: { productId: productId } })
       .then((response) => {
@@ -17,6 +21,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) =>
       });
   }, [productId]);
 
+  // gets related products for each id
   const getRelatedProducts = async (ids) => {
     try {
       let items = await ids.map(id => {
@@ -29,6 +34,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) =>
     }
   };
 
+  // fetches a related product from the server
   const getRelatedProductById = async (id) => {
     let relatedProduct = {};
     await axios.get('/relatedProduct', { params: { productId: id } })
@@ -42,21 +48,8 @@ const RelatedItemsAndComparison = ({productId, setProductId, getProductById}) =>
     return relatedProduct;
   };
 
-
   return (
-    <div className='related-items-and-comparison grid-outer-container'>
-      {relatedProducts.length !== 0 ? relatedProducts.map(relatedItem => {
-        return (
-          <div
-            className='related-card grid-container'
-            key={relatedItem.overview.id}
-            onClick={() => setProductId(relatedItem.overview.id)}
-          >
-            <RelatedCard relatedItem={relatedItem}/>
-          </div>
-        );
-      }) : null}
-    </div>
+    <Carousel products={relatedProducts} />
   );
 };
 
