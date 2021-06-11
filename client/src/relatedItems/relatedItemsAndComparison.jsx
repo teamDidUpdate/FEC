@@ -46,7 +46,12 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   };
 
   return (
-    <Carousel products={relatedProducts} productId={productId} setProductId={setProductId}/>
+    <Carousel
+      products={relatedProducts}
+      productId={productId}
+      setProductId={setProductId}
+      className='blur-box'
+    />
   );
 };
 
