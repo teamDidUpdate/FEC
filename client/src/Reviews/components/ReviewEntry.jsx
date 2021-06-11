@@ -49,7 +49,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   return (
-    <div className="ReviewsOverview">
+    <div className="ReviewsOverview" id="jumpEntry">
       <RatingEntry currentProductId={productId} setRating={setRating} />
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{allReviews.length} Reviews sorted by Relevance</div>
