@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Cart from './cart.jsx';
+import Share from './share.jsx';
 
 const Style = (props) => {
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
@@ -110,6 +111,7 @@ const Style = (props) => {
         </div>
         {stock && <Cart />}
       </form>
+      <Share />
     </div>
   );
 };

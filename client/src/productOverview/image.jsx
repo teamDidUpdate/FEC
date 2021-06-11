@@ -31,9 +31,10 @@ const Image = (props) => {
   useEffect(() => {
     if (props.expendView) {
       setImgStyle({display: 'none'});
-      // setContainerStyle({width: '115.5%'});
+      setContainerStyle({width: '135.5%'});
     } else {
       setImgStyle({});
+      setContainerStyle({width: '100%'});
     }
   }, [props.expendView]);
 
@@ -106,7 +107,7 @@ const Image = (props) => {
                 setZoomIn(!zoomIn);
                 props.setView(!props.expendView);
               }
-            }} style={{ background: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+            }} style={expendStyle}></div>
           }
           {!zoomIn && <div className="zoom-icon" onClick={() => props.setView(!props.expendView) }>
             <span className="zoom-icon-up">⌜ ⌝</span>
