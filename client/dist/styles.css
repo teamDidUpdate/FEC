@@ -461,7 +461,7 @@ p#alignright {
   user-select: none;
   background: white;
   border-radius: 2rem;
-  opacity: .55;
+  opacity: .75;
   box-shadow: 3px 2px 2px grey;
   z-index: 10;
 }
