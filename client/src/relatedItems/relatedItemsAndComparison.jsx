@@ -50,7 +50,6 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
       products={relatedProducts}
       productId={productId}
       setProductId={setProductId}
-      className='blur-box'
     />
   );
 };
