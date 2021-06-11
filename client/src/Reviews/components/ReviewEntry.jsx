@@ -28,23 +28,22 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     }
   }, [productId]);
 
-  // for grab rating
   useEffect(() => {
     setReviewCount(allReviews.length);
   }, [allReviews]);
 
   var handleImageClick = function (event) {
 
-    var modal = document.getElementById("myModal");
-    var modalImg = document.getElementById("img01");
-    modal.style.display = "block";
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById('img01');
+    modal.style.display = 'block';
     modalImg.src = event.target.src;
   };
 
   var handleModalClose = (event) => {
-    var modal = document.getElementById("myModal");
-    var span = document.getElementsByClassName("close")[0];
-    modal.style.display = "none";
+    var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName('close')[0];
+    modal.style.display = 'none';
   };
 
   var handleHelpfulnessClick = (event) => {
@@ -55,11 +54,14 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
       event.target.innerText++;
       event.target.className = 'clickedFalse';
     }
+  };
 
+  var handleMoreReviews = () => {
+    setCurrentlyShowing(previousState => previousState.concat(allReviews.splice(2, 4)));
   };
 
   return (
-    <div className="ReviewsOverview">
+    <div className='ReviewsOverview'>
       <RatingEntry currentProductId={productId} setRating={setRating} />
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{allReviews.length} Reviews sorted by Relevance</div>
@@ -82,20 +84,12 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               <p className='helpfulness'>Was this review helpful? Yes (<span className='clickedTrue' id={review.review_id} onClick={handleHelpfulnessClick}>{review.helpfulness}</span>)</p>
               <div>{review.photos.length > 0 ?
                 review.photos.map((element) => (
-                  // <img src={element.url} height='150' width='150' onClick={handleImageClick} key={element.url}></img>
-
-                  // <img id="myImg" src="img_snow.jpg" alt="Snow" style="width:100%;max-width:300px">
-                  // <div id="myModal" class="modal">
-                  //   <span class="close">&times;</span>
-                  //   <img class="modal-content" id="img01">
-                  //     <div id="caption"></div>
-
                   <div className='Modals' key={element.url}>
-                    <img id="myImg" src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
-                    <div id="myModal" className="modal">
-                      <span className="close" onClick={handleModalClose}>&times;</span>
-                      <img className="modal-content" id="img01"></img>
-                      <div id="caption"></div>
+                    <img id='myImg' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
+                    <div id='myModal' className='modal'>
+                      <span className='close' onClick={handleModalClose}>&times;</span>
+                      <img className='modal-content' id='img01'></img>
+                      <div id='caption'></div>
                     </div>
                   </div>
                 )) :
@@ -103,7 +97,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
             </div>) :
           null}
         <div className='reviewButtons'>
-          <button className='moreReviews'>More Reviews</button>
+          <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
           <button className='addReviews'>Add a Review</button>
         </div>
 

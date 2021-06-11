@@ -371,6 +371,7 @@ body {
 .summary{
   font-weight: bold;
   float: left;
+  font-size: 18px;
 }
 
 #alignleft {
@@ -399,6 +400,7 @@ p#alignright {
 .numberOfReviews {
     font-weight: bold;
     margin-left: 40px;
+    font-size: 18px;
 }
 
 .ReviewsOverview {
