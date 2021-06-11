@@ -21,7 +21,7 @@ const App = () => {
           rating={rating}
           setProductId={setProductId} />
       </div>
-      {/* <div>
+      <div>
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId} />
@@ -37,7 +37,7 @@ const App = () => {
           setProductId={setProductId}
           setReviewCount={setReviewCount}
           setRating={setRating} />
-      </div> */}
+      </div>
     </div>
   );
 };
