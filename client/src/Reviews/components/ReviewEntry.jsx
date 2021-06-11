@@ -33,8 +33,18 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     setReviewCount(allReviews.length);
   }, [allReviews]);
 
-  var handleImageClick = function () {
-    console.log('placeholder');
+  var handleImageClick = function (event) {
+
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    modal.style.display = "block";
+    modalImg.src = event.target.src;
+  };
+
+  var handleModalClose = (event) => {
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    modal.style.display = "none";
   };
 
   var handleHelpfulnessClick = (event) => {
@@ -60,6 +70,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={'#333300'} /></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
                 <br></br>
+                <br></br>
               </div>
               <p className='summary'>{review.summary}</p>
               <br></br>
@@ -71,7 +82,22 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               <p className='helpfulness'>Was this review helpful? Yes (<span className='clickedTrue' id={review.review_id} onClick={handleHelpfulnessClick}>{review.helpfulness}</span>)</p>
               <div>{review.photos.length > 0 ?
                 review.photos.map((element) => (
-                  <img src={element.url} height='150' width='150' onClick={handleImageClick} key={element.url}></img>
+                  // <img src={element.url} height='150' width='150' onClick={handleImageClick} key={element.url}></img>
+
+                  // <img id="myImg" src="img_snow.jpg" alt="Snow" style="width:100%;max-width:300px">
+                  // <div id="myModal" class="modal">
+                  //   <span class="close">&times;</span>
+                  //   <img class="modal-content" id="img01">
+                  //     <div id="caption"></div>
+
+                  <div className='Modals' key={element.url}>
+                    <img id="myImg" src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
+                    <div id="myModal" className="modal">
+                      <span className="close" onClick={handleModalClose}>&times;</span>
+                      <img className="modal-content" id="img01"></img>
+                      <div id="caption"></div>
+                    </div>
+                  </div>
                 )) :
                 null}</div>
             </div>) :
