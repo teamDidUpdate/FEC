@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const MoreAnswers = () => (
-  <div>
-    <button style={{
-      marginLeft: '10px',
-      border: 'none',
-      background: 'none',
-      cursor: 'pointer'}}>
-        Load More Answers
-    </button>
-  </div>
-);
+import Answers from './Answers.jsx';
+
+const MoreAnswers = ({ answer, answerList }) => {
+  const [collapseAnswers, setCollapseAnswers] = useState(true);
+
+  return (
+    <div>
+      {
+        collapseAnswers
+          ? <div>
+            <button
+              onClick={() => {
+                setCollapseAnswers(!collapseAnswers);
+              }}>
+           More Answers
+            </button>
+          </div>
+          : <div>
+            {answerList.slice(2).map((answer) => {
+              return (
+                <Answers answer={answer} key={answer.id} />
+              );
+            })}
+            <div>
+              <button
+                onClick={() => {
+                  setCollapseAnswers(!collapseAnswers);
+                }}>
+                Collapse Answers
+              </button>
+            </div>
+          </div>
+      }
+    </div>
+  );
+};
 
 export default MoreAnswers;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import ReviewsOverview from './Reviews/ReviewsOverview.jsx';
 import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
 import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
@@ -11,41 +10,15 @@ import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
-  const [currentProduct, setCurrentProduct] = useState({});
-
-  useEffect(() => {
-    console.log('getting products');
-    axios.get('/getProduct', { params: { productId: productId } })
-      .then((response) => {
-        setCurrentProduct(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        return;
-      });
-  }, [productId]);
-
-  const getProductById = async (id) => {
-    try {
-      let newProduct = {};
-      await axios.get('/getProduct', {params: {productId: id }})
-        .then((response)=> {
-          newProduct = response.data;
-        })
-        .catch((err)=> {
-          console.log(err);
-          return;
-        });
-      return newProduct;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [reviewCount, setReviewCount] = useState(0);
+  const [rating, setRating] = useState(0);
 
   return (
     <div>
       <div>
         <OverviewApp productId={productId}
+          reviewCount={reviewCount}
+          rating={rating}
           setProductId={setProductId} />
       </div>
       <div>
@@ -56,14 +29,13 @@ const App = () => {
       <div>
         <QAwidget
           productId={productId}
-          setProductId={setProductId}
-          getProductById={getProductById}
-          currentProduct={currentProduct}/>
+          setProductId={setProductId}/>
       </div>
       <div>
         <ReviewEntry productId={productId}
           setProductId={setProductId}
-          getProductById={getProductById} />
+          setReviewCount={setReviewCount}
+          setRating={setRating} />
       </div>
     </div>
   );

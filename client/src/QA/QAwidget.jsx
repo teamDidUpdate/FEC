@@ -1,34 +1,61 @@
+// Main functinalities imports
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import sample from './sampleData.js';
-
+// JSX imports
 import Search from './QAcomponents/Search.jsx';
 import QuestionList from './QAcomponents/QuestionList.jsx';
 import Helpful from './QAcomponents/Helpful.jsx';
+import AddQuestion from './QAcomponents/AddQuestion.jsx';
 
-const QAwidget = ( {currentProduct, productId, setProductId, getProductById} ) => {
-
-  // const [questions, setQuestions] = useState(sample.questions);
-  const [searchInput, setSearchInput] = useState('');
+const QAwidget = ( { productId } ) => {
+  const [questions, setQuestions] = useState([]);
+  const [searchInput, setSearchInput] = useState(null);
   const [product, setProduct] = useState('');
+
+  useEffect(() => {
+    axios.get('/qa/questions', {params: { productId: productId }})
+      .then(response => setQuestions(response.data))
+      .catch(err => console.log(err));
+  }, [productId]);
+
+  let handleSearch = (searchInput) => {
+    searchInput.length > 2
+      ? setSearchInput(searchInput)
+      : setSearchInput('');
+  };
+
+  let SearchedQuestions = (questionInput, searchField) => {
+    questionInput
+      .filter(q => q.question_body
+        .toLowerCase()
+        .includes(searchField
+          .toLowerCase()));
+  };
+
+  // Bindings
+  handleSearch = handleSearch.bind(this);
+  SearchedQuestions = SearchedQuestions.bind(this);
 
   return (
     <div>
-      <div>
+      <div className='qa-widget'>
 
-        <div>Question Answers</div>
-        <Search />
-        {currentProduct !== undefined && Object.keys(currentProduct).length !== 0 ?
+        <div className='qa-header'>Question And Answers</div>
+        <Search
+          handleSearch={handleSearch} />
+
+        {questions !== undefined && Object.keys(questions).length !== 0 ?
           <QuestionList
+            SearchedQuestions={SearchedQuestions}
             searchInput={searchInput}
-            questions={currentProduct.questionsAnswers.results} />
+            questions={questions.results} />
           : console.log('loading Q&A')}
-        {/* <Helpful report={'Add Answer'} /> */}
+
+        <AddQuestion productID={questions.product_id}/>
 
       </div>
     </div>
-
   );
 };
 

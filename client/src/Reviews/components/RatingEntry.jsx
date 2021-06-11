@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import APIToken from '../../../../config.js';
-class RatingEntry extends React.Component {
-  constructor(props) {
-    super(props);
+import { render } from 'react-dom';
+import Stars from './stars.jsx';
+import StarsRating from 'stars-rating';
 
-    this.state = {
-      metadata: {}
-    };
-  }
-  componentDidMount() {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${this.props.productId}`, {
+
+const RatingEntry = ({ currentProductId, setRating }) => {
+  const [currentProduct, setCurrentProduct] = useState({});
+
+  useEffect(() => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${currentProductId}`, {
       headers: {
         Authorization: APIToken.TOKEN
       }
     })
       .then((response) => {
-        for (var key in response.data) {
-          this.state.metadata[key] = response.data[key];
-        }
+        setCurrentProduct(response.data);
+        // for (var key in response.data) {
+        //   currentProduct[key] = response.data[key];
+        // }
       });
-  }
 
-  calculateQuarterRating(object) {
+  }, [currentProductId]);
+
+
+  var calculate = function (object) {
     var sum = 0;
     var quant = 0;
     for (var key in object) {
@@ -30,35 +33,42 @@ class RatingEntry extends React.Component {
       quant += Number(object[key]);
     }
     var number = sum / quant;
-    return (Math.round(number * 4) / 4).toFixed(2);
+    return Number((Math.round(number * 4) / 4).toFixed(2));
+  };
 
-  }
-  render() {
-    return (
-      <div>
-        <div className='RatingsHeading'>Ratings and Reviews</div>
+  // for grab rating
+  useEffect(() => {
+    setRating(calculate(currentProduct.ratings));
+  }, [currentProduct]);
 
-        {Object.keys(this.state.metadata).length > 0 ?
-          <div>
-            <div className='quarterRating'>{this.calculateQuarterRating(this.state.metadata.ratings)}</div>
-            <div className='recommendationPercent'>{Number(this.state.metadata.recommended.true) / (Number(this.state.metadata.recommended.false) + Number(this.state.metadata.recommended.true)) * 100} % of people recommend this product. </div>
-            <div className='fiveStars'>5 Stars {this.state.metadata.ratings[5]} </div>
-            <div className='fourStars'>4 Stars {this.state.metadata.ratings[4]}</div>
-            <div className='threeStars'>3 Stars {this.state.metadata.ratings[3]}</div>
-            <div className='twoStars'>2 Stars {this.state.metadata.ratings[2]}</div>
-            <div className='oneStars'>1 Stars {this.state.metadata.ratings[1]}</div>
+  return (
+    <div>
 
+      {Object.keys(currentProduct).length > 0 ?
+        <div>
+          <div className='RatingsHeading'>Ratings and Reviews</div>
+          <div className='StarAndQuarterRating'>
+            <div className='quarterRating' >{calculate(currentProduct.ratings)}</div>
+            <Stars calValue = {calculate(currentProduct.ratings)}/>
           </div>
-
-          :
-          null}
-
-
-      </div>
-    );
-
-  }
-}
+          <div className='recommendationPercent'>{((Number(currentProduct.recommended.true) / (Number(currentProduct.recommended.false) + Number(currentProduct.recommended.true))) * 100).toString().substring(0, 2)}% of people recommend this product!</div>
+          <div className='StarsGraphRating'>
+            <div className='theStars' id='5Stars'>5 Stars</div>
+            <div className='theStars' id='4Stars'>4 Stars</div>
+            <div className='theStars' id='3Stars'>3 Stars</div>
+            <div className='theStars' id='2Stars'>2 Stars</div>
+            <div className='theStars' id='1Stars'>1 Stars</div>
+          </div>
+        </div> :
+        null}
+      {/* {Object.keys(currentProduct).length > 0 ?
+      <div className='RatingsHeading'>Ratings and Reviews</div>
+      <div className='quarterRating'></div>
+      <div className='recommendationPercent'>{currentProduct}</div>
+      : null} */}
+    </div>
+  );
+};
 
 
 export default RatingEntry;
