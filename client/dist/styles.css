@@ -281,24 +281,32 @@ p#alignright {
 /* ------------ Related Items ------------ */
 .carousel {
   position: relative;
-  height: 48vh;
+  height: 44vh;
   display: grid;
   grid-auto-flow: column;
   justify-content: left;
   align-items: center;
-  overflow: hidden;
+}
+
+.cards-container {
+  position: relative;
+  width: 100%;
+  height: 44vh;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: left;
+  align-items: center;
+  overflow-x: hidden;
   overflow-x: scroll;
 }
 
 .card-container {
   position: relative;
   display: grid;
-  /* grid-auto-flow: row; */
-  width: 18vw;
-  height: 42vh;
+  width: 16vw;
+  height: 40vh;
   border: 1px solid black;
-  margin: 2rem;
-  /* background-color: lightgray; */
+  margin: 1em;
 }
 
 .card-item.text {
@@ -307,7 +315,7 @@ p#alignright {
 
 .related-image {
   width: 100%;
-  height: 200px;
+  height: 225px;
   object-fit: cover;
 }
 
@@ -347,64 +355,3 @@ p#alignright {
   border-radius: 2rem;
   opacity: .55;
 }
-
-
-
-/* to consider:
-display: grid;
-justify-content: center;
-width: 100%;
-overflow: hidden;
-
-outer container
-display: grid;
-width: 95%;
-padding: 0 2vw;
-grid-template-rows: 10% 90%;
-justify-content: start;
-*/
-
-/* .grid-outer-container {
-  display: grid;
-  justify-content: start;
-  width: 100%;
-  overflow: hidden;
-}
-
-.related-wrapper {
-  display: grid;
-  position: relative;
-  overflow-x: scroll;
-  grid-auto-flow: column; */
-  /* display: grid;
-  grid-gap: 1em;
-  overflow-x: scroll; */
-/* }
-
-.grid-container {
-  display: grid;
-  grid-gap: 2vw;
-  grid-auto-flow: column;
-  grid-auto-rows: minmax(200px, auto);
-  grid-auto-columns: minmax(300px, auto);
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
-
-.grid-item-container {
-  display: grid;
-}
-
-.grid-item {
-  border: 1px solid black;
-  background-color: cornflowerblue;
-}
-
-
-.button {
-  position: absolute !important;
-  padding: 0;
-  opacity: .85;
-  background-color: white;
-  border: none;
-}; */
