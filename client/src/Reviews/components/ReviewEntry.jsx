@@ -35,14 +35,14 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
   return (
     <div className="ReviewsOverview">
-      <RatingEntry currentProductId={productId} setRating={setRating}/>
+      <RatingEntry currentProductId={productId} setRating={setRating} />
       <div className='reviewEntry'>
-        <div className='numberOfReviews'>{allReviews.length} Reviews</div>
+        <div className='numberOfReviews'>{allReviews.length} Reviews sorted by Relevance</div>
         {allReviews.length > 0 ?
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
               <div className='header'>
-                <div className='rating' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={'#333300'}/></div>
+                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={'#333300'} /></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
                 <br></br>
               </div>
@@ -50,14 +50,22 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               <br></br>
               <p className='body'>{review.body}</p>
               <p className='helpfulness'>Helpful? Yes ({review.helpfulness}) | Report</p>
-              {review.photos.length > 0 ?
+              <div>{review.photos.length > 0 ?
+                review.photos.map((element) => (
+                  <img src={element.url} height='150' width='150'></img>
+                )) :
+                null}</div>
+              {/* {review.photos.length > 0 ?
+              <div>
+                {console.log(review.photos)}
+              </div>
                 <div className='reviewImages'>
                   <img src={review.photos[0].url} height="100" width="100"></img>
                 </div> :
                 <img src=''></img>
-              }
+              } */}
             </div>) :
-          null
+          <button>Add a Review</button>
         }
       </div>
     </div>
