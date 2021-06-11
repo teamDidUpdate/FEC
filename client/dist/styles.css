@@ -404,6 +404,11 @@ p#alignright {
   margin-left: auto;
   margin-right: 0;
 }
+
+p.recommendedTrue {
+  font-size: small;
+}
+
 /* ------------ Related Items ------------ */
 .carousel {
   position: relative;
