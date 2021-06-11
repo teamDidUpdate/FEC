@@ -194,6 +194,7 @@ body {
   margin-top: 8px;
   display: grid;
   grid-template-columns: 80px auto;
+  color: #494949;
 }
 
 .style-section div {
