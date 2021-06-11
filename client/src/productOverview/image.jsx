@@ -8,6 +8,7 @@ const Image = (props) => {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(7);
   const [imgStyle, setImgStyle] = useState({});
+  const [containerStyle, setContainerStyle] = useState({});
 
   if (images !== currentImg.photos) {
     setImageURL(currentImg.photos[0].url);
@@ -26,7 +27,8 @@ const Image = (props) => {
 
   useEffect(() => {
     if (props.expendView) {
-      setImgStyle({width: '133.5%'});
+      setImgStyle({display: 'none'});
+      // setContainerStyle({width: '115.5%'});
     } else {
       setImgStyle({});
     }
@@ -51,18 +53,33 @@ const Image = (props) => {
     }
   };
 
-  const toggleImgStyle = () => {
-    if (props.expendView) {
-      setImgStyle({width: '133.5%'});
-    }
+  const handleZoom = (e) => {
+    let container = document.getElementById('main-div');
+    let img = document.getElementById('main-img');
+    let imgWidth = img.naturalWidth;
+    let imgHeight = img.naturalHeight;
+    let ratio = imgHeight / imgWidth;
+
+
+    let boxWidth = container.clientWidth;
+    let rect = e.target.getBoundingClientRect();
+    let xPos = e.clientX - rect.left;
+    let yPos = e.clientY - rect.top;
+    let xPercent = xPos / (boxWidth / 100) + '%';
+    let yPercent = yPos / ((boxWidth * ratio) / 100) + '%';
+    Object.assign(container.style, {
+      backgroundPosition: xPercent + ' ' + yPercent,
+      backgroundSize: imgWidth * 2.5 + 'px'
+    });
   };
 
   return (
     <div>
       <div className="images">
-        <div className="image-container" style={imgStyle}>
-          <img src={imageURL}></img>
-          <div className="zoom-icon" onClick={() => {props.setView(!props.expendView);} }>
+        <div className="image-container" style={containerStyle}>
+          <img id="main-img" src={imageURL} style={imgStyle}></img>
+          {props.expendView && <div id="main-div" onClick={(e) => handleZoom(e)} style={{background: `url(${imageURL})`,backgroundSize: 'cover'}}></div>}
+          <div className="zoom-icon" onClick={() => { props.setView(!props.expendView); } }>
             <span className="zoom-icon-up">⌜ ⌝</span>
             <span className="zoom-icon-down">⌞ ⌟</span>
           </div>
