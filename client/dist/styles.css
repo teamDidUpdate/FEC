@@ -70,17 +70,37 @@ html {
 body {
   padding-left: 16%;
   padding-right: 16%;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .overview-header {
-  padding-top: 4%;
-  background-color: rgba(198, 202, 201, 0.932);
-  color: black;
+  margin-top: 1px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 7%;
+  background-color: #d6d6d6;
+  color: #2d2d2d;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+}
+
+.logo-img {
+  width: 60px;
+  position: absolute;
+  left: 8px;
+  top: -2px;
+}
+.logo-imgtwo {
+  width: 60px;
+  position: absolute;
+  left: 8px;
+  top: -10px;
 }
 
 .highlight {
   text-align: center;
-  color: rgb(83, 82, 82);
+  color: #69706e;
   margin-top: 1.5%;
 }
 
