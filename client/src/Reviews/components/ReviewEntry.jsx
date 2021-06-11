@@ -33,6 +33,21 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     setReviewCount(allReviews.length);
   }, [allReviews]);
 
+  var handleImageClick = function () {
+    console.log('placeholder');
+  };
+
+  var handleHelpfulnessClick = (event) => {
+    var stringId = event.target.id.toString();
+    if (event.target.className === 'clickedTrue') {
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${stringId}/helpful`, 'placeHolder',
+        { headers: { Authorization: APIToken.TOKEN } });
+      event.target.innerText++;
+      event.target.className = 'clickedFalse';
+    }
+
+  };
+
   return (
     <div className="ReviewsOverview">
       <RatingEntry currentProductId={productId} setRating={setRating} />
@@ -49,24 +64,22 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               <p className='summary'>{review.summary}</p>
               <br></br>
               <p className='body'>{review.body}</p>
-              <p className='helpfulness'>Helpful? Yes ({review.helpfulness}) | Report</p>
+              {review.recommend === true ?
+                <p className='recommendedTrue'>
+                  <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
+                null}
+              <p className='helpfulness'>Was this review helpful? Yes (<span className='clickedTrue' id={review.review_id} onClick={handleHelpfulnessClick}>{review.helpfulness}</span>)</p>
               <div>{review.photos.length > 0 ?
                 review.photos.map((element) => (
-                  <img src={element.url} height='150' width='150'></img>
+                  <img src={element.url} height='150' width='150' onClick={handleImageClick} key={element.url}></img>
                 )) :
                 null}</div>
-              {/* {review.photos.length > 0 ?
-              <div>
-                {console.log(review.photos)}
-              </div>
-                <div className='reviewImages'>
-                  <img src={review.photos[0].url} height="100" width="100"></img>
-                </div> :
-                <img src=''></img>
-              } */}
             </div>) :
-          <button>Add a Review</button>
-        }
+          null}
+        <div className='moreReviews'>{allReviews.length === 0 ?
+          <button>More Reviews</button> :
+          <button>Add a Review</button>}
+        </div>
       </div>
     </div>
   );
