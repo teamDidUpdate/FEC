@@ -405,8 +405,9 @@ p#alignright {
   display: grid;
   grid-template-columns: 1fr 3fr;
   font: 1.6rem/1.4 Helvetica,Arial,sans-serif;
-  border-top: solid 1px;
   font-size:12px;
+  margin-bottom: 30px;
+  margin-top: 50px;
 }
 
 .recommendationPercent {
@@ -456,6 +457,23 @@ p.recommendedTrue {
   float:right;
 }
 .clickedTrue{
+  text-decoration: underline;
+}
+
+.reviewPhotos {
+  display: flex;
+}
+
+.Modals {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+p.helpfulness {
+  margin-top: 10px;
+}
+
+span.reviewSort {
   text-decoration: underline;
 }
 
@@ -571,7 +589,7 @@ p.recommendedTrue {
 .modal-content {
   margin: auto;
   display: block;
-  width: 80%;
+  width: 100%;
   max-width: 700px;
 }
 
@@ -604,9 +622,24 @@ p.recommendedTrue {
   cursor: pointer;
 }
 
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

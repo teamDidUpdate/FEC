@@ -17,9 +17,9 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         { headers: { Authorization: APIToken.TOKEN } },
         { params: { productId: productId } })
         .then((response) => {
-          setAllReviews(response.data.results);
-          setCurrentlyShowing(response.data.results.slice(0, 2));
-          setSortedReviews(response.data.results.sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
+          setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
+          setCurrentlyShowing(response.data.results.splice(0, 2));
+          setAllReviews(response.data.results.slice(0));
         })
         .catch((err) => {
           console.log(err);
@@ -32,8 +32,11 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     setReviewCount(allReviews.length);
   }, [allReviews]);
 
-  var handleImageClick = function (event) {
+  useEffect(() => {
+    setCurrentlyShowing(currentlyShowing);
+  }, [currentlyShowing]);
 
+  var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById('img01');
     modal.style.display = 'block';
@@ -56,20 +59,28 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     }
   };
 
-  useEffect(() => {
-    setCurrentlyShowing(currentlyShowing);
-  }, [currentlyShowing]);
-
   var handleMoreReviews = () => {
-    setCurrentlyShowing(previousState => previousState.concat(allReviews.splice(4, 2)));
+    setCurrentlyShowing(previousState => previousState.concat(allReviews.splice(0, 2)));
+  };
+
+  var handleSortClick = (e) => {
+    var currentSort = document.getElementById('dropdown');
+    currentSort.innerText = '';
+    currentSort.append(e.target);
   };
 
   return (
     <div className='ReviewsOverview'>
       <RatingEntry currentProductId={productId} setRating={setRating} />
       <div className='reviewEntry'>
-        <div className='numberOfReviews'>{allReviews.length} Reviews sorted by Relevance</div>
-        {allReviews.length > 0 ?
+        <div className='numberOfReviews'>{sortedReviews.length} reviews, sorted by {' '}
+          <div class="dropdown" id='dropdown'>
+            <span> relevance</span>
+            <div class="dropdown-content" onClick={handleSortClick}>
+              <p>newest</p>
+            </div>
+          </div></div>
+        {currentlyShowing.length > 0 ?
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
               <div className='reviewHeader'>
@@ -88,7 +99,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                   <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
                 null}
               <p className='helpfulness'>Was this review helpful? Yes (<span className='clickedTrue' id={review.review_id} onClick={handleHelpfulnessClick}>{review.helpfulness}</span>)</p>
-              <div>{review.photos.length > 0 ?
+              <div className='reviewPhotos'>{review.photos.length > 0 ?
                 review.photos.map((element) => (
                   <div className='Modals' key={element.url}>
                     <img id='myImg' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
