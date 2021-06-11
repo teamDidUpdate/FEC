@@ -45,7 +45,16 @@ const Image = (props) => {
     } else {
       setImageIdx(imageIdx === 0 ? 0 : imageIdx - 1);
     }
+  };
 
+  const handleThumClick = (url) => {
+    setImageURL(url);
+    for (let i = 0; i < images.length; i++) {
+      if (images[i].url === url) {
+        setImageIdx(i);
+        return;
+      }
+    }
   };
 
   const handleScroll = () => {
@@ -105,7 +114,7 @@ const Image = (props) => {
         </div>
         {!zoomIn &&
         <div className="style-pics">
-          {images.slice(start, end).map((image) => <div className="gallery-container" key={image.url} onClick={(e) => setImageURL(image.url)}>
+          {images.slice(start, end).map((image) => <div className="gallery-container" key={image.url} onClick={(e) => handleThumClick(image.url)}>
             <img className="gallery-image" src={image.thumbnail_url}></img>
             {(imageURL === image.url) && <span className="blackLine"></span>}
           </div>)}
