@@ -46,7 +46,7 @@ const Carousel = ({ products }) => {
         {products.map((product, index) => {
           return (
             index >= current || current + 2 >= length ?
-              <RelatedCard product={product} id={product.overview.id}/>
+              <RelatedCard product={product} key={product.overview.id} onClick={product.overview.id}/>
               : null
           );
         })}

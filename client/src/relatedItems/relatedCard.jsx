@@ -6,7 +6,7 @@ const RelatedCard = ({ product, id }) => {
   const imageURL = product.styles.results[0].photos[0].thumbnail_url;
 
   return (
-    <div className='card-container' key={id}>
+    <div className='card-container'>
       <MdStarBorder className='action-btn' onClick={() => console.log('PLACEHOLDER')}/>
       <div className='card-item'>
         <img className='related-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
