@@ -5,6 +5,7 @@ const RelatedCard = ({ product, productId, setProductId }) => {
   const [action, setAction] = useState();
   const imageURL = product.styles.results[0].photos[0].thumbnail_url;
 
+  console.log(product);
   return (
     <div className='card-container' onClick={() => setProductId(product.overview.id)}>
       <MdStarBorder className='action-btn' onClick={() => console.log('PLACEHOLDER')}/>
