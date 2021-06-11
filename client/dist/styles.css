@@ -412,6 +412,7 @@ body {
 .summary{
   font-weight: bold;
   float: left;
+  font-size: 18px;
 }
 
 #alignleft {
@@ -427,19 +428,18 @@ body {
 
 p#alignright {
   font-size: 12;
-  font-size: small;
   color: gray;
 }
 
 .helpfulness {
   font-size: 12;
-  font-size: x-small;
   color: gray;
 }
 
 .numberOfReviews {
     font-weight: bold;
     margin-left: 40px;
+    font-size: 18px;
 }
 
 .ReviewsOverview {
