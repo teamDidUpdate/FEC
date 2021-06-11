@@ -326,10 +326,7 @@ body {
   height: 30px;
 } */
 
-/* Question component */
-
-/* Search Bar component */
-.qa-searchbar {
+/* .qa-searchbar {
   width: 90%;
   padding-bottom: 10px;
 }
@@ -345,7 +342,7 @@ body {
 
 .helpful-input {
   text-decoration: underline;
-}
+} */
 
 /* ------------ Review ------------ */
 .individualReview{
