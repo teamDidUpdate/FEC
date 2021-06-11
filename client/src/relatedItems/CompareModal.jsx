@@ -8,7 +8,7 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
   }
 
   const [overviewProduct, setOverviewProduct] = useState({});
-  const [features, setFeatures] = useState(null);
+  const [comparedFeatures, setComparedFeatures] = useState(null);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: productId } })
@@ -26,10 +26,18 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
   }, [overviewProduct]);
 
   const getCompareList = () => {
-    let featuresList = {};
+    let featureList = {};
     overviewProduct.features.forEach((obj) => {
-      console.log(obj.feature);
+      featureList[obj.feature] = [obj.value, ' '];
     });
+    relatedProduct.overview.features.forEach((obj) => {
+      if (featureList[obj.feature]) {
+        featureList[obj.feature][1] = [obj.value];
+      } else {
+        featureList[obj.feature] = [' ', obj.value];
+      }
+    });
+    setComparedFeatures(featureList);
   };
 
   return ReactDom.createPortal(
@@ -46,7 +54,18 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
             </tr>
           </thead>
           <tbody>
-            {}
+            {comparedFeatures ?
+              Object.keys(comparedFeatures).map((feature, index) => {
+                return (
+                  <tr key={index}>
+                    <td className='modal-body'>{comparedFeatures[feature][0]}</td>
+                    <td className='modal-body'>{feature}</td>
+                    <td className='modal-body'>{comparedFeatures[feature][1]}</td>
+                  </tr>
+                );
+              })
+              : null
+            }
           </tbody>
         </table>
       </div>
