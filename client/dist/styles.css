@@ -141,7 +141,6 @@ body {
   left: 95%;
   font-weight: bolder;
   font-size: 15px;
-  /* position: relative; */
 }
 
 .zoom-icon-down {
@@ -169,6 +168,7 @@ body {
 }
 
 .next {
+  position: absolute;
   right: 0;
   border-radius: 3px 0 0 3px;
 }

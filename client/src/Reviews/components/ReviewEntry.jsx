@@ -29,8 +29,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   }, [productId]);
 
   useEffect(() => {
-    setReviewCount(allReviews.length);
-  }, [allReviews]);
+    setReviewCount(sortedReviews.length);
+  }, [sortedReviews]);
 
   useEffect(() => {
     setCurrentlyShowing(currentlyShowing);

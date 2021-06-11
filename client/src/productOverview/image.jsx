@@ -97,15 +97,17 @@ const Image = (props) => {
       <div className="images">
         <div className="image-container" style={containerStyle}>
           <img id="main-img" src={imageURL} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
-          {props.expendView && <div id="main-div" onClick={(e) => {
-            if (!zoomIn) {
-              setZoomIn(!zoomIn);
-              handleZoom(e);
-            } else {
-              setZoomIn(!zoomIn);
-              props.setView(!props.expendView);
-            }
-          }} style={{ background: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>}
+          {props.expendView &&
+            <div id="main-div" onClick={(e) => {
+              if (!zoomIn) {
+                setZoomIn(!zoomIn);
+                handleZoom(e);
+              } else {
+                setZoomIn(!zoomIn);
+                props.setView(!props.expendView);
+              }
+            }} style={{ background: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
+          }
           {!zoomIn && <div className="zoom-icon" onClick={() => props.setView(!props.expendView) }>
             <span className="zoom-icon-up">⌜ ⌝</span>
             <span className="zoom-icon-down">⌞ ⌟</span>
