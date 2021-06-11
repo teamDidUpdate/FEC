@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Feature = (props) => {
-  console.log(props.features);
   return (
     <div>
       {props.features &&
