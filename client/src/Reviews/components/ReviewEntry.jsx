@@ -6,7 +6,7 @@ import RatingEntry from './RatingEntry.jsx';
 
 const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [currentProduct, setCurrentProduct] = useState([]);
-  const [allReviews, setAllReviews] = useState([]);
+  const [storedReviews, setstoredReviews] = useState([]);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
 
@@ -19,7 +19,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         .then((response) => {
           setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
           setCurrentlyShowing(response.data.results.splice(0, 2));
-          setAllReviews(response.data.results.slice(0));
+          setstoredReviews(response.data.results.slice(0));
         })
         .catch((err) => {
           console.log(err);
@@ -29,8 +29,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   }, [productId]);
 
   useEffect(() => {
-    setReviewCount(allReviews.length);
-  }, [allReviews]);
+    setReviewCount(storedReviews.length);
+  }, [storedReviews]);
 
   useEffect(() => {
     setCurrentlyShowing(currentlyShowing);
@@ -60,13 +60,23 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var handleMoreReviews = () => {
-    setCurrentlyShowing(previousState => previousState.concat(allReviews.splice(0, 2)));
+    setCurrentlyShowing(previousState => previousState.concat(storedReviews.splice(0, 2)));
   };
 
   var handleSortClick = (e) => {
     var currentSort = document.getElementById('dropdown');
     currentSort.innerText = '';
     currentSort.append(e.target);
+  };
+
+  var handleAddReview = () => {
+    var modal = document.getElementById('reviewModal');
+    modal.style.display = 'block';
+  };
+
+  var handleReviewModalClose = () => {
+    var modal = document.getElementById('reviewModal');
+    modal.style.display = 'none';
   };
 
   return (
@@ -115,6 +125,16 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           null}
         <div className='reviewButtons'>
           <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
+          <div className='reviewButton'>
+            <button className='addReview' id="myBtn" onClick={handleAddReview}>Open Modal</button>
+            <div id="reviewModal" class="modal">
+              <div class="addReview-modal-content" onClick={handleReviewModalClose}>
+                <span class="close" onClick={handleReviewModalClose}>&times;</span>
+                <button>Submit Review!</button>
+                <p>Some text in the Modal..</p>
+              </div>
+            </div>
+          </div>
           <button className='addReviews'>Add a Review</button>
         </div>
 
