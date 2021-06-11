@@ -455,7 +455,7 @@ p.recommendedTrue {
 .addReviews{
   float:right;
 }
-.clickedTrue, .clickedFalse{
+.clickedTrue{
   text-decoration: underline;
 }
 
