@@ -25,7 +25,6 @@ const Image = (props) => {
 
   useEffect(() => {
     setImageURL(images[imageIdx].url);
-    console.log('test');
     setExpendStyle({backgroundSize: 'cover', backgroundPosition: 'center'});
   }, [imageIdx]);
 
@@ -57,12 +56,14 @@ const Image = (props) => {
     }
   };
 
-  const handleScroll = () => {
-    if (end < images.length - 1) {
+  const handleScroll = (direction) => {
+    if (end < images.length - 1 && direction === 'down') {
       setStart(prevStart => prevStart + 1);
       setEnd(prevEnd => prevEnd + 1);
-      setImageIdx(prevIdx => prevIdx + 1);
-      setImageURL(images[imageIdx + 1].url);
+    }
+    if (direction === 'up') {
+      setStart(prevStart => prevStart - 1);
+      setEnd(prevEnd => prevEnd - 1);
     }
   };
 
@@ -118,7 +119,8 @@ const Image = (props) => {
             <img className="gallery-image" src={image.thumbnail_url}></img>
             {(imageURL === image.url) && <span className="blackLine"></span>}
           </div>)}
-          {(images.length > 7 && end < images.length) && <div className="arrow" onClick={() => handleScroll()}>﹀</div>}
+          {(images.length > 7 && start > 0) && <div className="arrow up" onClick={() => handleScroll('up')}>︿</div>}
+          {(images.length > 7 && end < images.length - 1) && <div className="arrow down" onClick={() => handleScroll('down')}>﹀</div>}
         </div>
         }
       </div>
