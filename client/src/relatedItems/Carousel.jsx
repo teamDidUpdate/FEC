@@ -4,7 +4,7 @@ import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/Md';
 
 const Carousel = ({ products }) => {
   const [current, setCurrent] = useState(0);
-  const [length, setLength] = useState(products.length);
+  const [length, setLength] = useState(4);
   const [scrollable, setScrollable] = useState({right: true, left: false});
 
   // need to figure out why this rerenders when the `products` do not change
@@ -15,16 +15,9 @@ const Carousel = ({ products }) => {
 
   useEffect(() => {
     if (current + 3 >= length) {
-      console.log(`current is ${current}, length is ${length}, and I'm setting right to false`);
-      setScrollable((previousState) => {
-        previousState.right = false;
-        return previousState;
-      });
+      setScrollable({right: false, left: true});
     } else if (current === 0) {
-      setScrollable((previousState) => {
-        previousState.left = false;
-        return previousState;
-      });
+      setScrollable({right: true, left: false});
     } else {
       setScrollable({right: true, left: true});
     }
@@ -38,9 +31,6 @@ const Carousel = ({ products }) => {
     setCurrent(current <= 0 ? 0 : current - 1 );
   };
 
-  if (!Array.isArray(products) || products.length <= 0) {
-    return null;
-  }
 
   return (
     <section className='carousel'>
@@ -54,7 +44,6 @@ const Carousel = ({ products }) => {
       }
       <div className='cards-container'>
         {products.map((product, index) => {
-          console.log(current);
           return (
             index >= current || current + 2 >= length ?
               <RelatedCard product={product} id={product.overview.id}/>
