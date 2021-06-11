@@ -544,6 +544,10 @@ span.reviewSort {
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
+.addReview {
+  float: right;
+}
+
 /* Modal Content (Image) */
 .modal-content {
   margin: auto;
