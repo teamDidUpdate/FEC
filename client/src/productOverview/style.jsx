@@ -5,12 +5,14 @@ import Cart from './cart.jsx';
 const Style = (props) => {
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
   const [sizeNumber, setSizeNumber] = useState(0);
+  const [stock, setStock] = useState(true);
   let styles = props.allStyles;
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
   const quantity = [];
   const skus = props.currentStyle.skus;
   const sizeKeys = [];
+
   for (let key in skus) {
     currentSize.push([key, skus[key].size]);
     quantity.push([key, skus[key].quantity]);
@@ -19,6 +21,21 @@ const Style = (props) => {
   if (currentStyleId !== props.currentStyle.style_id) {
     setCurrentStyleId(props.currentStyle.style_id);
   }
+
+  useEffect(() => {
+    setStock(stock);
+  }, [sizeNumber]);
+
+  const checkStock = () => {
+    for (let j = 0; j < quantity.length; j++) {
+      if (quantity[j][0] === sizeNumber) {
+        if (quantity[j][1] > 0) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
 
   const getLimit = () => {
     let limitNumber;
@@ -43,7 +60,6 @@ const Style = (props) => {
   };
 
   const handleSubmit = (e) => {
-    console.log('test');
     axios.post('/addToCart', { 'skuId': sizeNumber })
       .then((data) => {
         if (data.data === 'Created') {
@@ -79,7 +95,12 @@ const Style = (props) => {
       </div>
       <form id="add-product-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="size-selector">
-          <select id="size-select" value={sizeNumber} onChange={(e) => setSizeNumber(e.target.value)} required>
+          <select id="size-select" value={sizeNumber} onChange={(e) => {
+            setSizeNumber(e.target.value);
+            if (sizeNumber === 0) {
+              setStock(false);
+            }
+          }} required>
             <option value="">SELECT SIZE</option>
             {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
           </select>
@@ -87,7 +108,7 @@ const Style = (props) => {
             {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
           </select>
         </div>
-        <Cart />
+        {stock && <Cart />}
       </form>
     </div>
   );
