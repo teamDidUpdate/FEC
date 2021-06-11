@@ -44,13 +44,13 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
     <>
       <div className='overlay' onClick={onClose}/>
       <div className='compare-modal'>
-        <h2>Compare Products</h2>
-        <table>
+        <h2 className='modal-title'>Compare Products</h2>
+        <table className='compare-table'>
           <thead>
             <tr>
-              <th className='modal-header'>{overviewProduct.name}</th>
-              <th className='modal-header'>Features</th>
-              <th className='modal-header'>{relatedProduct.overview.name}</th>
+              <th className='modal-header left'>{overviewProduct.name}</th>
+              <th className='modal-header center'>Features</th>
+              <th className='modal-header right'>{relatedProduct.overview.name}</th>
             </tr>
           </thead>
           <tbody>
@@ -58,9 +58,9 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
               Object.keys(comparedFeatures).map((feature, index) => {
                 return (
                   <tr key={index}>
-                    <td className='modal-body'>{comparedFeatures[feature][0]}</td>
-                    <td className='modal-body'>{feature}</td>
-                    <td className='modal-body'>{comparedFeatures[feature][1]}</td>
+                    <td className='modal-body left'>{comparedFeatures[feature][0]}</td>
+                    <td className='modal-body center'>{feature}</td>
+                    <td className='modal-body right'>{comparedFeatures[feature][1]}</td>
                   </tr>
                 );
               })

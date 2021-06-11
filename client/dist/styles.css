@@ -520,6 +520,36 @@ p#alignright {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
-  padding: 50px;
+  padding: 16vh 8vw 16vh 8vw;
   z-index: 1000;
+  text-align: center;
+  font: 16px Arial, sans-serif;
+  border: 1px solid #000;
+  box-shadow: 3px 2px 2px #333;
+  color: #333;
 }
+
+.modal-title {
+  text-align: left;
+};
+
+.modal-header {
+  font-weight: bold;
+  margin: 1em;
+};
+
+.modal-header.left {
+  text-align: left;
+};
+
+.modal-body {
+  margin: 1em;
+};
+
+.modal-body.left {
+  text-align: left;
+};
+
+.modal-body.right {
+  text-align: right;
+};
