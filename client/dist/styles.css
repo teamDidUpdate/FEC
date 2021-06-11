@@ -429,8 +429,7 @@ p#alignright {
   position: relative;
   display: grid;
   width: 16vw;
-  /* height: 40vh; */
-  height: max-content;
+  height: 40vh;
   border: 1px solid black;
   margin: 1em;
   transition: all 2s;
@@ -447,10 +446,9 @@ p#alignright {
   font-weight: bold;
 }
 
-/* .card-item.text.rating {
+.card-item.text.rating {
   margin-top: 0;
-  margin-bottom: 8px;
-} */
+}
 
 .related-image {
   width: 100%;
