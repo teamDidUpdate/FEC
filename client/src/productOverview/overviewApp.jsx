@@ -13,6 +13,7 @@ const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
   const [allStyles, setAllStyles] = useState(productStyle.results);
   const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
+  const [expendView, setView] = useState(false);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: props.productId } })
@@ -30,7 +31,12 @@ const OverviewApp = (props) => {
   return (
     <div>
       <div id="header" className="overview-header">
-        <h1>LOGO</h1>
+        <h1>THREADS</h1>
+        {/* [backup img] <img className="logo-img" src="https://img.icons8.com/ios/452/squiggly-line.png"></img> */}
+        <img className="logo-img" src="https://static.thenounproject.com/png/3268844-200.png"></img>
+        <img className="logo-imgtwo" src="https://static.thenounproject.com/png/3268844-200.png"></img>
+
+
       </div>
       <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
@@ -38,13 +44,17 @@ const OverviewApp = (props) => {
         :
         <div className="overview-container">
           <div className="image-gallary">
-            <Image productStyle={currentStyle}/>
+            <Image currentStyle={currentStyle} expendView={expendView} setView={setView}/>
           </div>
-          <div className="style-section">
-            <Rating reviewCount={props.reviewCount} rating={props.rating}/>
-            <Title product={overviewProduct}/>
-            <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
-          </div>
+          {expendView ?
+            <div className="style-section"></div>
+            : <div className="style-section">
+              <Rating reviewCount={props.reviewCount} rating={props.rating}/>
+              <Title product={overviewProduct}/>
+              <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
+            </div>
+
+          }
           <Description product={overviewProduct}/>
           <Share />
         </div>
