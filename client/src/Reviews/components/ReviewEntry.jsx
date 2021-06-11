@@ -56,14 +56,14 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         {allReviews.length > 0 ?
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
-              <div className='header'>
+              <div className='reviewHeader'>
                 <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={'#333300'} /></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
                 <br></br>
               </div>
               <p className='summary'>{review.summary}</p>
               <br></br>
-              <p className='body'>{review.body}</p>
+              <p className='reviewBody'>{review.body}</p>
               {review.recommend === true ?
                 <p className='recommendedTrue'>
                   <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
@@ -76,10 +76,12 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 null}</div>
             </div>) :
           null}
-        <div className='moreReviews'>{allReviews.length === 0 ?
-          <button>More Reviews</button> :
-          <button>Add a Review</button>}
+        <div className='reviewButtons'>
+          <button className='moreReviews'>More Reviews</button>
+          <button className='addReviews'>Add a Review</button>
         </div>
+
+
       </div>
     </div>
   );

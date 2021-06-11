@@ -31,6 +31,7 @@ const App = () => {
           productId={productId}
           setProductId={setProductId}/>
       </div>
+      <br></br>
       <div>
         <ReviewEntry productId={productId}
           setProductId={setProductId}
