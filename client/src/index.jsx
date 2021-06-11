@@ -11,42 +11,42 @@ import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
-  // const [currentProduct, setCurrentProduct] = useState({});
+  const [currentProduct, setCurrentProduct] = useState({});
 
-  // useEffect(() => {
-  //   console.log('getting products');
-  //   axios.get('/getProduct', { params: { productId: productId } })
-  //     .then((response) => {
-  //       setCurrentProduct(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return;
-  //     });
-  // }, [productId]);
+  useEffect(() => {
+    console.log('getting products');
+    axios.get('/getProduct', { params: { productId: productId } })
+      .then((response) => {
+        setCurrentProduct(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+  }, [productId]);
 
-  // const getProductById = async (id) => {
-  //   try {
-  //     let newProduct = {};
-  //     await axios.get('/getProduct', {params: {productId: id }})
-  //       .then((response)=> {
-  //         newProduct = response.data;
-  //       })
-  //       .catch((err)=> {
-  //         console.log(err);
-  //         return;
-  //       });
-  //     return newProduct;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const getProductById = async (id) => {
+    try {
+      let newProduct = {};
+      await axios.get('/getProduct', {params: {productId: id }})
+        .then((response)=> {
+          newProduct = response.data;
+        })
+        .catch((err)=> {
+          console.log(err);
+          return;
+        });
+      return newProduct;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
       <div>
-        {/* <OverviewApp productId={productId}
-          setProductId={setProductId} /> */}
+        <OverviewApp productId={productId}
+          setProductId={setProductId} />
       </div>
       <div>
         <RelatedItemsAndComparison
@@ -54,16 +54,16 @@ const App = () => {
           setProductId={setProductId} />
       </div>
       <div>
-        {/* <QAwidget
+        <QAwidget
           productId={productId}
           setProductId={setProductId}
           getProductById={getProductById}
-          currentProduct={currentProduct}/> */}
+          currentProduct={currentProduct}/>
       </div>
       <div>
-        {/* <ReviewEntry productId={productId}
+        <ReviewEntry productId={productId}
           setProductId={setProductId}
-          getProductById={getProductById} /> */}
+          getProductById={getProductById} />
       </div>
     </div>
   );

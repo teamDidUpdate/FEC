@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import RelatedCard from './RelatedCard.jsx';
-import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/Md';
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
+import { CSSTransition } from 'react-transition-group';
 
 const Carousel = ({ products }) => {
   const [current, setCurrent] = useState(0);
   const [length, setLength] = useState(4);
   const [scrollable, setScrollable] = useState({right: true, left: false});
 
-  // need to figure out why this rerenders when the `products` do not change
   useEffect(() => {
     setLength(products.length);
     setCurrent(0);

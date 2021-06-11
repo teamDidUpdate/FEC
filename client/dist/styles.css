@@ -297,7 +297,6 @@ p#alignright {
   justify-content: left;
   align-items: center;
   overflow-x: hidden;
-  overflow-x: scroll;
 }
 
 .card-container {
@@ -307,6 +306,7 @@ p#alignright {
   height: 40vh;
   border: 1px solid black;
   margin: 1em;
+  transition: all 2s;
 }
 
 .card-item.text {
