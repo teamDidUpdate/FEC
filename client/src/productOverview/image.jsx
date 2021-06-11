@@ -43,7 +43,7 @@ const Image = (props) => {
     if (next === 1) {
       setImageIdx(prevIdx => prevIdx + 1);
     } else {
-      setImageIdx(prevIdx => prevIdx - 1);
+      setImageIdx(imageIdx === 0 ? 0 : imageIdx - 1);
     }
 
   };
