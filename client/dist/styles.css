@@ -359,6 +359,11 @@ body {
   display: flex;
 }
 
+.reviewBody {
+  font-size: large;
+  margin: 10px 0px;
+}
+
 .quarterRating {
   font-size: -webkit-xxx-large;
 }
@@ -400,6 +405,7 @@ p#alignright {
   display: grid;
   grid-template-columns: 1fr 3fr;
   font: 1.6rem/1.4 Helvetica,Arial,sans-serif;
+  border-top: solid 1px;
 }
 
 .recommendationPercent {
@@ -435,6 +441,18 @@ p#alignright {
 
 p.recommendedTrue {
   font-size: small;
+}
+
+.individualReview {
+  box-shadow: 0 8px 6px -6px grey;
+}
+
+.moreReviews{
+  float: left;
+}
+
+.addReviews{
+  float:right;
 }
 
 /* ------------ Related Items ------------ */
