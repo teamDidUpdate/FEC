@@ -38,9 +38,7 @@ const RelatedCard = ({ product, productId, setProductId }) => {
   return (
     <div className='card-container'>
       <MdStarBorder className='action-btn' onClick={() => setModalOpen(true)}/>
-      <CompareModal open={modalOpen} onClose={() => setModalOpen(false)}>
-        Yo Teapot, I'm a modal!
-      </CompareModal>
+      <CompareModal open={modalOpen} productId={productId} relatedProduct={product} onClose={() => setModalOpen(false)}/>
       <div className='card-inner-container'onClick={() => setProductId(product.overview.id)}>
         <div className='card-item'>
           <img className='related-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
