@@ -3,7 +3,7 @@ import RelatedCard from './RelatedCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
 import { CSSTransition } from 'react-transition-group';
 
-const Carousel = ({ products }) => {
+const Carousel = ({ products, setProductId }) => {
   const [current, setCurrent] = useState(0);
   const [length, setLength] = useState(4);
   const [scrollable, setScrollable] = useState({right: true, left: false});
@@ -46,7 +46,10 @@ const Carousel = ({ products }) => {
         {products.map((product, index) => {
           return (
             index >= current || current + 2 >= length ?
-              <RelatedCard product={product} key={product.overview.id} onClick={product.overview.id}/>
+              <RelatedCard
+                product={product}
+                key={product.overview.id}
+                setProductId={setProductId}/>
               : null
           );
         })}
