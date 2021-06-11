@@ -53,6 +53,13 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   useEffect(() => {
     setReviewCount(sortedReviews.length);
   }, [sortedReviews]);
+<<<<<<< HEAD
+=======
+
+  useEffect(() => {
+    setCurrentlyShowing(currentlyShowing);
+  }, [currentlyShowing]);
+>>>>>>> 8cf85defd12ca77da6300f9ec80276b151eaf93e
 
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
