@@ -46,7 +46,7 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   };
 
   return (
-    <Carousel products={relatedProducts} setProductId={setProductId}/>
+    <Carousel products={relatedProducts} productId={productId} setProductId={setProductId}/>
   );
 };
 

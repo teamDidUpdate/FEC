@@ -438,7 +438,15 @@ p#alignright {
 
 .card-item.text {
   margin-left: 1em;
+  color: #333;
+  font: 16px AvantGarde, Arial, sans-serif;
 }
+
+.card-item.text.name {
+  font-weight: bold;
+}
+
+
 
 .related-image {
   width: 100%;
