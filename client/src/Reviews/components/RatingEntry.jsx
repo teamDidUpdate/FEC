@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import APIToken from '../../../../config.js';
 import { render } from 'react-dom';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Stars from './stars.jsx';
@@ -11,16 +10,10 @@ const RatingEntry = ({ currentProductId, setRating }) => {
   const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${currentProductId}`, {
-      headers: {
-        Authorization: APIToken.TOKEN
-      }
-    })
+    axios.get('/fetchMeta', {params: { productId: currentProductId } } )
       .then((response) => {
         setCurrentProduct(response.data);
       });
-
-
   }, [currentProductId]);
 
 

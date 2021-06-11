@@ -4,7 +4,9 @@ const axios = require('axios');
 let app = express();
 
 // adding middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -13,13 +15,17 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/overview', function (req, res) {
   let productId = req.query.productId;
   axios.all([
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}`, {headers: {
-      Authorization: APIToken.TOKEN
-    }}),
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/styles`, {headers: {
-      Authorization: APIToken.TOKEN
-    }})
-  ])
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      }),
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/styles`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      })
+    ])
     .then(axios.spread((detail, styles) => {
       var product = {
         overview: detail.data,
@@ -37,7 +43,13 @@ app.get('/overview', function (req, res) {
 /* -------- ADD TO CART POST REQUEST -------- */
 app.post('/addToCart', (req, res) => {
   const skuId = Number(req.body.skuId);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart', {"sku_id" : skuId}, {headers: { Authorization: APIToken.TOKEN}})
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart', {
+      "sku_id": skuId
+    }, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
     .then((response) => {
       res.send(response.data);
     })
@@ -49,7 +61,11 @@ app.post('/addToCart', (req, res) => {
 /* -------- QUESTION & ANSWER -------- */
 app.get('/qa/questions', (req, res) => {
   let productId = req.query.productId;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=${productId}`, {headers: { Authorization: APIToken.TOKEN }})
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=${productId}`, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
     .then(response => res.status(200).json(response.data))
     .catch(err => res.status(400).send('Error while fetching Q&A'));
 });
@@ -57,8 +73,11 @@ app.get('/qa/questions', (req, res) => {
 /* -------- RELATED PRODUCT FETCHING -------- */
 app.get('/relatedIds', function (req, res) {
   let productId = req.query.productId;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/related`,
-    {headers: { Authorization: APIToken.TOKEN }})
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/related`, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
     .then((response) => {
       res.status(200).json(response.data);
     })
@@ -71,19 +90,27 @@ app.get('/relatedIds', function (req, res) {
 app.get('/relatedProduct', function (req, res) {
   let productId = req.query.productId;
   axios.all([
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}`, {headers: {
-      Authorization: APIToken.TOKEN
-    }}),
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/styles`, {headers: {
-      Authorization: APIToken.TOKEN
-    }}),
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/related`, {headers: {
-      Authorization: APIToken.TOKEN
-    }}),
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {headers: {
-      Authorization: APIToken.TOKEN
-    }})
-  ])
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      }),
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/styles`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      }),
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${productId}/related`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      }),
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      })
+    ])
     .then(axios.spread((obj1, obj2, obj3, obj4) => {
       var product = {
         overview: obj1.data,
@@ -98,7 +125,37 @@ app.get('/relatedProduct', function (req, res) {
       res.send(404);
     });
 });
+/************REVIEWS************/
 
+app.get('/fetchReviews', (req, res) => {
+  let productId = req.query.productId;
+  for (var i = 1; i < 2; i++) {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${productId}&count=50&page=${i}`, {
+        headers: {
+          Authorization: APIToken.TOKEN
+        }
+      })
+      .then((response) => {
+        res.send(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(404);
+      });
+  }
+});
+
+app.get('/helpfulReview', (req, res) => {
+  let productId = req.query.productId;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${productId}/helpful`, 'placeHolder', {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
+    .then((response) => {
+      res.send(200);
+    });
+});
 /************METADATA ************/
 /*
 Need to do two things
@@ -119,10 +176,13 @@ var calculateAverage = function (object) {
 };
 
 //Pass through some productId and you will get returned an average rating for it rounded to the nearest 0.25
-app.get('/getAverageRating', function (req, res) {
+app.get('/getAverageRating', (req, res) => {
   let productId = req.query.productId;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`,
-    {headers: { Authorization: APIToken.TOKEN }})
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
     .then((response) => {
       res.send(JSON.stringify(calculateAverage(response.data.ratings)));
     })
@@ -133,8 +193,11 @@ app.get('/getAverageRating', function (req, res) {
 
 app.get('/getNumberOfReviews', function (req, res) {
   let productId = req.query.productId;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${productId}&count=50`,
-    {headers: { Authorization: APIToken.TOKEN }})
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${productId}&count=50`, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
     .then((response) => {
       res.send(JSON.stringify(response.data.results.length));
     })
@@ -142,6 +205,19 @@ app.get('/getNumberOfReviews', function (req, res) {
       res.send(404);
     });
 });
+
+app.get('/fetchMeta', (req, res) => {
+  let productId = req.query.productId;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {
+      headers: {
+        Authorization: APIToken.TOKEN
+      }
+    })
+    .then((response) => {
+      res.send(response.data);
+    });
+});
+
 
 let PORT = process.env.PORT || 1128;
 
