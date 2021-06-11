@@ -738,7 +738,6 @@ span.reviewSort {
   z-index: 10;
 }
 
-<<<<<<< HEAD
 .overlay {
   position: fixed;
   top: 0;
@@ -789,5 +788,3 @@ span.reviewSort {
 .modal-body.right {
   text-align: right;
 };
-=======
->>>>>>> 3f35ebec969ea152c02fba541126355bbaa39fbd
