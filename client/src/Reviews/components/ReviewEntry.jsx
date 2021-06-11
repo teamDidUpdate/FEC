@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import APIToken from '../../../../config.js';
 import StarsRating from 'stars-rating';
 import RatingEntry from './RatingEntry.jsx';
 
@@ -12,20 +11,16 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
 
   useEffect(() => {
-    for (var i = 1; i < 2; i++) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/?product_id=${productId}&count=50&page=${i}`,
-        { headers: { Authorization: APIToken.TOKEN } },
-        { params: { productId: productId } })
-        .then((response) => {
-          setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
-          setCurrentlyShowing(response.data.results.splice(0, 2));
-          setstoredReviews(response.data.results.slice(0));
-        })
-        .catch((err) => {
-          console.log(err);
-          return;
-        });
-    }
+    axios.get('/fetchReviews', { params: { productId: productId } })
+      .then((response) => {
+        setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
+        setCurrentlyShowing(response.data.results.splice(0, 2));
+        setstoredReviews(response.data.results.slice(0));
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
   }, [productId]);
 
   useEffect(() => {
@@ -52,8 +47,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   var handleHelpfulnessClick = (event) => {
     var stringId = event.target.id.toString();
     if (event.target.className === 'clickedTrue') {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${stringId}/helpful`, 'placeHolder',
-        { headers: { Authorization: APIToken.TOKEN } });
+      axios.get('/helpfulReview', { params: { productId: productId } });
       event.target.innerText++;
       event.target.className = 'clickedFalse';
     }
@@ -84,9 +78,9 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
       <RatingEntry currentProductId={productId} setRating={setRating} />
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{sortedReviews.length} reviews, sorted by {' '}
-          <div class="dropdown" id='dropdown'>
+          <div className="dropdown" id='dropdown'>
             <span> relevance</span>
-            <div class="dropdown-content" onClick={handleSortClick}>
+            <div className="dropdown-content" onClick={handleSortClick}>
               <p>newest</p>
             </div>
           </div></div>
@@ -126,19 +120,16 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         <div className='reviewButtons'>
           <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
           <div className='reviewButton'>
-            <button className='addReview' id="myBtn" onClick={handleAddReview}>Open Modal</button>
+            <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
             <div id="reviewModal" class="modal">
-              <div class="addReview-modal-content" onClick={handleReviewModalClose}>
-                <span class="close" onClick={handleReviewModalClose}>&times;</span>
+              <div className="addReview-modal-content" onClick={handleReviewModalClose}>
+                <span className="close" onClick={handleReviewModalClose}>&times;</span>
                 <button>Submit Review!</button>
                 <p>Some text in the Modal..</p>
               </div>
             </div>
           </div>
-          <button className='addReviews'>Add a Review</button>
         </div>
-
-
       </div>
     </div>
   );
