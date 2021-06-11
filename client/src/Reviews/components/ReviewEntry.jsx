@@ -8,11 +8,38 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [storedReviews, setstoredReviews] = useState([]);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
+  const [fiveStarReview, setFiveStarReview] = useState([]);
+  const [fourStarReview, setFourStarReview] = useState([]);
+  const [threeStarReview, setThreeStarReview] = useState([]);
+  const [twoStarReview, setTwoStarReview] = useState([]);
+  const [oneStarReview, setOneStarReview] = useState([]);
 
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
+        response.data.results.map((element)=> {
+          if (element.rating === 5) {
+            setFiveStarReview(previousState => previousState.concat(element));
+          }
+
+          if (element.rating === 4) {
+            setFourStarReview(previousState => previousState.concat(element));
+          }
+
+          if (element.rating === 3) {
+            setThreeStarReview(previousState => previousState.concat(element));
+          }
+
+          if (element.rating === 2) {
+            setTwoStarReview(previousState => previousState.concat(element));
+          }
+
+          if (element.rating === 2) {
+            setOneStarReview(previousState => previousState.concat(element));
+          }
+
+        });
         setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
         setCurrentlyShowing(response.data.results.splice(0, 2));
         setstoredReviews(response.data.results.slice(0));
@@ -24,12 +51,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   }, [productId]);
 
   useEffect(() => {
-    setReviewCount(storedReviews.length);
-  }, [storedReviews]);
-
-  useEffect(() => {
-    setCurrentlyShowing(currentlyShowing);
-  }, [currentlyShowing]);
+    setReviewCount(sortedReviews.length);
+  }, [sortedReviews]);
 
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
@@ -121,7 +144,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
           <div className='reviewButton'>
             <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
-            <div id="reviewModal" class="modal">
+            <div id="reviewModal" className="modal">
               <div className="addReview-modal-content" onClick={handleReviewModalClose}>
                 <span className="close" onClick={handleReviewModalClose}>&times;</span>
                 <button>Submit Review!</button>
