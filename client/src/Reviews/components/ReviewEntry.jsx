@@ -76,6 +76,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               </div>
               <p className='summary'>{review.summary}</p>
               <br></br>
+
+              <br></br>
               <p className='reviewBody'>{review.body}</p>
               {review.recommend === true ?
                 <p className='recommendedTrue'>
