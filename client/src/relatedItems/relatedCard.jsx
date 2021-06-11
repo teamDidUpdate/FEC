@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {MdStarBorder} from 'react-icons/Md';
 
-const RelatedCard = ({ product, id }) => {
+const RelatedCard = ({ product }) => {
   const [action, setAction] = useState();
   const imageURL = product.styles.results[0].photos[0].thumbnail_url;
 
