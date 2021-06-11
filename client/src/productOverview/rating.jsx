@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import Stars from '../Reviews/components/stars.jsx';
+import StarsRating from 'stars-rating';
 
 const Rating = (props) => {
   return (
     <div className="rating">
-      <Stars calValue={props.rating}/>
-      Read all {props.reviewCount} reviews
+      <StarsRating count={5} value={props.calValue} half={true} edit={false} color2={'#333300'} />
+      {props.reviewCount > 0
+        ? <div className="review-text" style={{textDecoration: 'underline'}}>
+        Read all {props.reviewCount} reviews
+        </div>
+        : <div className="review-text">No Reviews</div>}
     </div>
 
   );

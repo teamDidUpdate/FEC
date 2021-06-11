@@ -25,7 +25,6 @@ const Image = (props) => {
 
   useEffect(() => {
     setImageURL(images[imageIdx].url);
-    console.log('test');
     setExpendStyle({backgroundSize: 'cover', backgroundPosition: 'center'});
   }, [imageIdx]);
 

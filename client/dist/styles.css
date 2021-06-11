@@ -188,11 +188,16 @@ body {
   padding-top: 16px;
 }
 
-.price-tag,
 .rating {
   margin-bottom: 6%;
   font-size: 16px;
   margin-top: 8px;
+  display: grid;
+  grid-template-columns: 80px auto;
+}
+
+.style-section div {
+  margin-bottom: 5%;
 }
 
 .style-selector {
