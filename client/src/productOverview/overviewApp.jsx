@@ -5,7 +5,7 @@ import Title from './title.jsx';
 import Style from './style.jsx';
 import Image from './image.jsx';
 import Description from './description.jsx';
-import Share from './share.jsx';
+import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 
@@ -56,7 +56,7 @@ const OverviewApp = (props) => {
 
           }
           <Description product={overviewProduct}/>
-          <Share />
+          <Feature features={overviewProduct.features}/>
         </div>
       }
     </div>
