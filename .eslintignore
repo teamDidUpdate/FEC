@@ -3,3 +3,4 @@
 **/lib
 **/vendor
 **/*.min.js
+**/bundle.js

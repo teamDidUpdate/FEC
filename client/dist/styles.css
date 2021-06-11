@@ -350,12 +350,17 @@ body {
 /* ------------ Review ------------ */
 .individualReview{
     border-bottom: 1px solid #494949;
-    margin: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
     padding: 10px;
 }
 
 .StarAndQuarterRating {
   display: flex;
+}
+
+.quarterRating {
+  font-size: -webkit-xxx-large;
 }
 
 .summary{
@@ -376,8 +381,7 @@ body {
 
 p#alignright {
   font-size: 12;
-  font-size: x-small;
-  font-style: italic;
+  font-size: small;
   color: gray;
 }
 
@@ -388,8 +392,8 @@ p#alignright {
 }
 
 .numberOfReviews {
-    text-align: center;
     font-weight: bold;
+    margin-left: 40px;
 }
 
 .ReviewsOverview {
@@ -409,33 +413,99 @@ p#alignright {
 
 .theStars {
   padding-top: 10px;
+  font-size: large;
 }
 
+.ratingReview {
+  font-size: 16px;
+}
 
+.characteristicsValuesRight {
+  margin-left: 85px;
+}
+.characteristicsValues {
+  display: flex;
+  font-size: small;
+}
+
+.characteristicsValuesRight {
+  margin-left: auto;
+  margin-right: 0;
+}
 /* ------------ Related Items ------------ */
-.grid-outer-container {
+.carousel {
+  position: relative;
+  height: 44vh;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em;
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-flow: column;
+  justify-content: left;
+  align-items: center;
 }
 
-.grid-outer-container > div {
-  background:#eee;
-  padding:1em;
-}
-
-.grid-container > div {
+.cards-container {
+  position: relative;
+  width: 100%;
+  height: 44vh;
   display: grid;
-  grid-gap: 1px;
+  grid-auto-flow: column;
+  justify-content: left;
+  align-items: center;
+  overflow-x: hidden;
 }
 
-.grid-item {
+.card-container {
+  position: relative;
+  display: grid;
+  width: 16vw;
+  height: 40vh;
   border: 1px solid black;
+  margin: 1em;
+  transition: all 2s;
+}
+
+.card-item.text {
+  margin-left: 1em;
 }
 
 .related-image {
   width: 100%;
-  height: 200px;
+  height: 225px;
   object-fit: cover;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 3rem;
+  color: #000;
+  background: white;
+  opacity: .75;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  font-size: 3rem;
+  color: #000;
+  background: white;
+  opacity: .75;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.action-btn {
+  font-size: 2rem;
+  position: absolute;
+  right: 2px;
+  cursor: pointer;
+  user-select: none;
+  background: white;
+  border-radius: 2rem;
+  opacity: .55;
 }
