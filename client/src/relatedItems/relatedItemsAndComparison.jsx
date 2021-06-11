@@ -4,9 +4,6 @@ import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId}) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
-  // const [productLocation, setProductLocation] = useState(0);
-  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  // const [scrollable, setScrollable] = useState({left: false, right: true});
 
   // get related products when the productId changes
   useEffect(() => {
@@ -49,7 +46,7 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
   };
 
   return (
-    <Carousel products={relatedProducts} />
+    <Carousel products={relatedProducts} setProductId={setProductId}/>
   );
 };
 
