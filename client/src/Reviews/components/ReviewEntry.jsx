@@ -56,8 +56,14 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     }
   };
 
+  useEffect(() => {
+    setCurrentlyShowing(currentlyShowing);
+  }, [currentlyShowing]);
+
   var handleMoreReviews = () => {
-    setCurrentlyShowing(previousState => previousState.concat(allReviews.splice(2, 4)));
+    console.log(currentlyShowing, 'before');
+    setCurrentlyShowing(previousState => previousState.concat(allReviews.splice(4, 2)));
+    console.log(currentlyShowing, 'after');
   };
 
   return (
