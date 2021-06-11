@@ -37,7 +37,7 @@ const OverviewApp = (props) => {
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :
-        <div className="overview-container" id="overview-container">
+        <div className="overview-container">
           <div className="image-gallary">
             <Image currentStyle={currentStyle} expendView={expendView} setView={setView}/>
           </div>
