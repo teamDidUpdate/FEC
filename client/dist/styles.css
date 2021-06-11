@@ -99,7 +99,6 @@ body {
 }
 
 .image-container {
-  margin-left: 0.8%;
   width: 100%;
   position: relative;
 }
@@ -156,8 +155,6 @@ body {
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
-
-
 
 .style-image {
   width: 55px;
@@ -287,8 +284,6 @@ body {
   gap: 2px;
 }
 
-
-
 .arrow {
   color: black;
   height: 15px;
@@ -306,16 +301,13 @@ body {
   font-size: 40px;
 }
 
-
 #main-div {
-  cursor: zoom-in;
-  width: 139.5%;
+  cursor: crosshair;;
+  width: 135.5%;
   height: 36em;
-  /* background: url("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"); */
   background-position: center;
-  background-size: cover;
   position: relative;
-  /* background-position: 25% 25%; */
+  background-size: 'cover';
 }
 
 
