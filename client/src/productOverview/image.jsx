@@ -8,7 +8,6 @@ const Image = (props) => {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(7);
   const [imgStyle, setImgStyle] = useState({});
-  const [expendStyle, setExpendStyle] = useState({backgroundSize: 'cover', backgroundPosition: 'center'});
   const [containerStyle, setContainerStyle] = useState({});
   const [zoomIn, setZoomIn] = useState(false);
 
@@ -25,7 +24,6 @@ const Image = (props) => {
 
   useEffect(() => {
     setImageURL(images[imageIdx].url);
-    setExpendStyle({backgroundSize: 'cover', backgroundPosition: 'center'});
   }, [imageIdx]);
 
   useEffect(() => {
@@ -107,7 +105,7 @@ const Image = (props) => {
                 setZoomIn(!zoomIn);
                 props.setView(!props.expendView);
               }
-            }} style={expendStyle}></div>
+            }} style={{backgroundImage: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
           }
           {!zoomIn && <div className="zoom-icon" onClick={() => props.setView(!props.expendView) }>
             <span className="zoom-icon-up">⌜ ⌝</span>
