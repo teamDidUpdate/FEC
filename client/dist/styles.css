@@ -397,6 +397,11 @@ body {
   margin-bottom: 10px;
 }
 
+#currentDrop, #dropdown {
+  text-decoration: underline;
+  cursor:pointer;
+}
+
 .reviewHidden {
   display: none;
 }

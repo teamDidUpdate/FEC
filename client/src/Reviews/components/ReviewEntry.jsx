@@ -5,7 +5,8 @@ import RatingEntry from './RatingEntry.jsx';
 
 const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [currentProduct, setCurrentProduct] = useState([]);
-  const [storedReviews, setstoredReviews] = useState([]);
+  const [masterListOfReviews, setMasterListOfReviews] = useState([]);
+  const [storedReviews, setStoredReviews] = useState([]);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
   const [fiveStarReviews, setFiveStarReviews] = useState([]);
@@ -50,7 +51,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         });
 
         setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
-        setstoredReviews(response.data.results.slice(0));
+        setStoredReviews(response.data.results.slice(0));
+        setMasterListOfReviews(response.data.results.slice(0));
         setCurrentlyShowing(response.data.results.slice(0, 2));
       })
       .catch((err) => {
@@ -88,13 +90,15 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var handleMoreReviews = () => {
-    setCurrentlyShowing(previousState => previousState.concat(storedReviews.splice(2, 2)));
-  };
+    var length = currentlyShowing.length;
+    setCurrentlyShowing(() => []);
+    var checkCurrentSort = document.getElementById('currentDrop');
+    if (checkCurrentSort.innerText === 'newest') {
+      setCurrentlyShowing(previousState => previousState.concat(sortedReviews.slice(0, length + 2)));
+    } else {
+      setCurrentlyShowing(previousState => previousState.concat(storedReviews.slice(0, length + 2)));
+    }
 
-  var handleSortClick = (e) => {
-    var currentSort = document.getElementById('dropdown');
-    currentSort.innerText = '';
-    currentSort.append(e.target);
   };
 
   var handleAddReview = () => {
@@ -115,9 +119,30 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     console.log(event.target.value);
   };
 
+  var convertDate = (string) => {
+    var strDate = string.substring(0, 10);
+    var readableDate = new Date(strDate);
+    var returnedDate = readableDate.toString().substring(0, 10);
+    return returnedDate;
+  };
+
+  var dropDown = (event) => {
+    var length = currentlyShowing.length;
+    setCurrentlyShowing(() => []);
+    var currentlyShowingSort = document.getElementById('currentDrop');
+    var selectedDropDownText = document.getElementById('dropDownOption1');
+    var temp = currentlyShowingSort.innerHTML;
+    currentlyShowingSort.innerHTML = selectedDropDownText.innerHTML;
+    selectedDropDownText.innerHTML = temp;
+
+    if (currentlyShowingSort.innerText === 'newest') {
+      setCurrentlyShowing(() => sortedReviews.slice(0, length));
+    } else {
+      setCurrentlyShowing(()=> storedReviews.slice(0, length));
+    }
+  };
 
   return (
-
     <div className="ReviewsOverview" id="jumpEntry">
 
       <RatingEntry
@@ -131,11 +156,11 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         oneStarReviews={oneStarReviews}
         storedReviews={storedReviews} />
       <div className='reviewEntry'>
-        <div className='numberOfReviews'>{sortedReviews.length} reviews, sorted by {' '}
+        <div className='numberOfReviews'>{masterListOfReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
-            <span> relevance</span>
-            <div className="dropdown-content" onClick={handleSortClick}>
-              <p>newest</p>
+            <span id = 'currentDrop'> relevance</span>
+            <div className="dropdown-content">
+              <p id ='dropDownOption1' onClick={dropDown}>newest</p>
             </div>
           </div></div>
         {currentlyShowing.length > 0 ?
@@ -143,7 +168,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
             <div className='individualReview' key={review.review_id}>
               <div className='reviewHeader'>
                 <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={'#333300'} /></div>
-                <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + Date(review.date).substring(4, 15)}</p>
+                <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + convertDate(review.date)}</p>
                 <br></br>
                 <br></br>
               </div>
