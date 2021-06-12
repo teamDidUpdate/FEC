@@ -98,14 +98,11 @@ const Style = (props) => {
         <div className="size-selector">
           <select id="size-select" value={sizeNumber} onChange={(e) => {
             setSizeNumber(e.target.value);
-            if (sizeNumber === 0) {
-              setStock(false);
-            }
           }} required>
             <option value="">SELECT SIZE</option>
             {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
           </select>
-          <select id="quan-select" required>
+          <select id="quan-select" required onChange={() => { if (sizeNumber === 0) { setStock(false); } }}>
             {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
           </select>
         </div>
