@@ -10,11 +10,8 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
   const [productWithRating, setProductWithRating] = useState({});
   const [currentPos, setCurrentPos] = useState(0);
   const [length, setLength] = useState(0);
-  const [scrollable, setScrollable] = useState({right: true, left: false});
+  const [scrollable, setScrollable] = useState({right: false, left: false});
 
-  if (!related) {
-    console.log(Object.values(products));
-  }
   // set varibles to determine scrollability
   useEffect(() => {
     setLength(products.length);
@@ -76,12 +73,9 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
   };
 
   const saveOutfit = () => {
-    console.log('products', products);
-    console.log('productWithRating.overview.id', productWithRating.overview.id);
     let allOutfits = {...products};
     allOutfits[productWithRating.overview.id] = productWithRating;
     setOutfits(allOutfits);
-    // window.localStorage.removeItem('myThreads');
     window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
   };
 

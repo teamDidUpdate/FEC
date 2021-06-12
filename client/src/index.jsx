@@ -14,7 +14,6 @@ const App = () => {
   const [rating, setRating] = useState(0);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  console.log('currentProduct is now', currentProduct);
   return (
     <div>
       <div>

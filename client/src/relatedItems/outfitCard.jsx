@@ -4,7 +4,6 @@ import {IoMdCloseCircleOutline} from 'react-icons/Io';
 
 const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle}) => {
   const [defaultStyle, setDefaultStyle] = useState({});
-  console.log(outfit);
   const imageURL = outfit.styles.results[0].photos[0].thumbnail_url;
 
 

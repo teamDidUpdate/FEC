@@ -9,7 +9,6 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   // get saved outfits on inital render
   useEffect(() => {
     const savedOutfits = JSON.parse(window.localStorage.getItem('myThreads'));
-    console.log(savedOutfits);
     savedOutfits ? setOutfits(savedOutfits) : null;
   }, [productId]);
 
