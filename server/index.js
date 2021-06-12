@@ -45,7 +45,7 @@ app.post('/addToCart', (req, res) => {
   const skuId = Number(req.body.skuId);
 
   axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart', {
-    "sku_id": skuId
+    'sku_id': skuId
   }, {
     headers: {
       Authorization: APIToken.TOKEN

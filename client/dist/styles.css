@@ -750,12 +750,16 @@ span.reviewSort {
 }
 
 .compare-modal {
+  display: grid;
+  grid-template-rows: 1fr 8fr;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
-  padding: 16vh 8vw 16vh 8vw;
+  padding: 1em;
+  height: 36vh;
+  width: 28vw;
   z-index: 1000;
   text-align: center;
   font: 16px Arial, sans-serif;
@@ -764,27 +768,54 @@ span.reviewSort {
   color: #333;
 }
 
+.compare-table {
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+}
+
+.compare-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.compare-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
 .modal-title {
+  margin-bottom: .5em;
+  font-weight: lighter;
   text-align: left;
-};
+}
 
 .modal-header {
   font-weight: bold;
-  margin: 1em;
-};
-
-.modal-header.left {
-  text-align: left;
 };
 
 .modal-body {
-  margin: 1em;
-};
+  font-weight: lighter;
+}
 
-.modal-body.left {
+.left {
   text-align: left;
-};
+}
 
-.modal-body.right {
+.right {
   text-align: right;
+<<<<<<< HEAD
+}
+
+.center {
+  text-align: center;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+}
+=======
 };
+>>>>>>> 8cf85defd12ca77da6300f9ec80276b151eaf93e
