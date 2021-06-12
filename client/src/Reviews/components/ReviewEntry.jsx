@@ -68,9 +68,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
   var handleHelpfulnessClick = (event) => {
     var stringId = event.target.id.toString();
+    var id = document.getElementsByClassName(stringId)[0];
     if (event.target.className === 'clickedTrue') {
-      axios.get('/helpfulReview', { params: { productId: productId } });
-      event.target.innerText++;
+      axios.get('/helpfulReview', { params: { productId: stringId } });
+      id.innerText++;
       event.target.className = 'clickedFalse';
     }
   };
@@ -124,7 +125,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 <p className='recommendedTrue'>
                   <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
                 null}
-              <p className='helpfulness'>Was this review helpful? Yes (<span className='clickedTrue' id={review.review_id} onClick={handleHelpfulnessClick}>{review.helpfulness}</span>)</p>
+              <p className='helpfulness'>Was this review helpful?
+                <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
+                (<span className={review.review_id}>{review.helpfulness}</span>)
+              </p>
               <div className='reviewPhotos'>{review.photos.length > 0 ?
                 review.photos.map((element) => (
                   <div className='Modals' key={element.url}>

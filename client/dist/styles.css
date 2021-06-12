@@ -393,6 +393,11 @@ body {
     padding: 10px;
 }
 
+.clickedTrue, .clickedFalse {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 .StarAndQuarterRating {
   display: flex;
 }
