@@ -166,6 +166,10 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     oneStarId.className = 'numRating';
   };
 
+  var calculateProgressComplete = () => {
+
+  }
+
 
   return (
     <div>
@@ -182,28 +186,43 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
             <div className='theStars'>
               <span className='numRating' id='5Stars' onClick={handleStarClick} value={5}>5 Stars</span>
               <div className='progressBar'>
-                <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '5'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+                {console.log()}
+                <ProgressBar completed={
+                  Number(calculateEachAverage(currentProduct.ratings, '5')).toString() !== 'NaN' ?
+                    Number(calculateEachAverage(currentProduct.ratings, '5')) :
+                    0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
               </div>
             </div>
 
             <div className='theStars'>
               <span className='numRating' id='4Stars' onClick={handleStarClick} value={4}>4 Stars</span>
-              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '4'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              <ProgressBar completed={
+                Number(calculateEachAverage(currentProduct.ratings, '4')).toString() !== 'NaN' ?
+                  Number(calculateEachAverage(currentProduct.ratings, '4')) :
+                  0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
 
             <div className='theStars'>
               <span className='numRating' id='3Stars' onClick={handleStarClick} >3 Stars</span>
-              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '3'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              <ProgressBar completed={
+                Number(calculateEachAverage(currentProduct.ratings, '3')).toString() !== 'NaN' ?
+                  Number(calculateEachAverage(currentProduct.ratings, '3')) :
+                  0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
 
             <div className='theStars'>
               <span className='numRating' id='2Stars' onClick={handleStarClick}>2 Stars</span>
-              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '2'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              <ProgressBar completed={
+                Number(calculateEachAverage(currentProduct.ratings, '2')).toString() !== 'NaN' ?
+                  Number(calculateEachAverage(currentProduct.ratings, '2')) :
+                  0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
 
             <div className='theStars'>
               <span className='numRating' id='1Stars' onClick={handleStarClick}>1 Stars</span>
-              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1')).toString() !== 'NaN' ?
+                Number(calculateEachAverage(currentProduct.ratings, '1')) :
+                0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
             {currentFilter.length !== 0 ?
               <div className='filters'>
