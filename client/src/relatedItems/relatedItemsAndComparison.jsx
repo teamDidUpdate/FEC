@@ -4,6 +4,13 @@ import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId}) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [outfits, setOutfits] = useState({});
+
+  // get saved outfits on inital render
+  useEffect(() => {
+    const savedOutfits = JSON.parse(window.localStorage.getItem('myThreads'));
+    savedOutfits ? setOutfits(savedOutfits) : null;
+  }, []);
 
   // get related products when the productId changes
   useEffect(() => {
@@ -54,6 +61,11 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
         setProductId={setProductId}
       />
       <h2 className='section-header'>YOUR OUTFIT</h2>
+      <Carousel
+        products={outfits}
+        productId={productId}
+        setProductId={setProductId}
+      />
     </>
   );
 };

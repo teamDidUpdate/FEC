@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import RelatedCard from './RelatedCard.jsx';
+import OutfitCard from './OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
 import { CSSTransition } from 'react-transition-group';
 
-const Carousel = ({ products, productId, setProductId }) => {
+const Carousel = ({ products, productId, setProductId, related }) => {
   const [current, setCurrent] = useState(0);
   const [length, setLength] = useState(4);
   const [scrollable, setScrollable] = useState({right: true, left: false});
@@ -31,7 +32,6 @@ const Carousel = ({ products, productId, setProductId }) => {
     setCurrent(current <= 0 ? 0 : current - 1 );
   };
 
-
   return (
     <section className='carousel'>
       {scrollable.left ?
@@ -45,13 +45,23 @@ const Carousel = ({ products, productId, setProductId }) => {
       <div className='cards-container'>
         {products.map((product, index) => {
           return (
-            index >= current || current + 2 >= length ?
-              <RelatedCard
-                product={product}
-                key={product.overview.id}
-                productId={productId}
-                setProductId={setProductId}/>
-              : null
+            related ?
+              index >= current || current + 2 >= length ?
+                <RelatedCard
+                  product={product}
+                  key={product.overview.id}
+                  productId={productId}
+                  setProductId={setProductId}
+                />
+                : null
+              : index >= current || current + 2 >= length ?
+                <OutfitCard
+                  outfit={product}
+                  key={product.overview.id}
+                  productId={productId}
+                  setProductId={setProductId}
+                />
+                : null
           );
         })}
       </div>
