@@ -56,16 +56,18 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
     <>
       <h2 className='section-header'>RELATED PRODUCTS</h2>
       <Carousel
+        related={true}
         products={relatedProducts}
         productId={productId}
         setProductId={setProductId}
       />
       <h2 className='section-header'>YOUR OUTFIT</h2>
-      <Carousel
+      {/* <Carousel
+        related={false}
         products={outfits}
         productId={productId}
         setProductId={setProductId}
-      />
+      /> */}
     </>
   );
 };

@@ -3,6 +3,7 @@ import RelatedCard from './RelatedCard.jsx';
 import OutfitCard from './OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
 import { CSSTransition } from 'react-transition-group';
+import axios from 'axios';
 
 const Carousel = ({ products, productId, setProductId, related }) => {
   const [current, setCurrent] = useState(0);
@@ -32,6 +33,31 @@ const Carousel = ({ products, productId, setProductId, related }) => {
     setCurrent(current <= 0 ? 0 : current - 1 );
   };
 
+  const getDefaultStyle = (prod) => {
+    prod.styles.results.forEach(style => {
+      if (style['default?'] === true) {
+        return style;
+      }
+    });
+    return prod.styles.results[0];
+  };
+
+  const getStarRating = async (id) => {
+    let averageRating = 0;
+    await axios.get('/getAverageRating', { params: { productId: id } })
+      .then((response) => {
+        console.log('response.data:', response.data);
+        averageRating = response.data;
+        return;
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+    console.log('returning from average rating', averageRating);
+    return averageRating;
+  };
+
   return (
     <section className='carousel'>
       {scrollable.left ?
@@ -52,6 +78,8 @@ const Carousel = ({ products, productId, setProductId, related }) => {
                   key={product.overview.id}
                   productId={productId}
                   setProductId={setProductId}
+                  getStarRating={getStarRating}
+                  getDefaultStyle={getDefaultStyle}
                 />
                 : null
               : index >= current || current + 2 >= length ?
@@ -60,6 +88,7 @@ const Carousel = ({ products, productId, setProductId, related }) => {
                   key={product.overview.id}
                   productId={productId}
                   setProductId={setProductId}
+                  getStarRating={getStarRating}
                 />
                 : null
           );
