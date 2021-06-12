@@ -11,7 +11,7 @@ const RatingEntry = ({ currentProductId, setRating }) => {
   const [currentProduct, setCurrentProduct] = useState({});
 
   useEffect(() => {
-    axios.get('/fetchMeta', {params: { productId: currentProductId } } )
+    axios.get('/fetchMeta', { params: { productId: currentProductId } })
       .then((response) => {
         setCurrentProduct(response.data);
       });
@@ -36,18 +36,25 @@ const RatingEntry = ({ currentProductId, setRating }) => {
   var calculateEachAverage = (object, currentNumber) => {
     var total = 0;
     for (var key in object) {
-      total += key * object[key];
+      total += Number(object[key]);
     }
-    var result = total / (object[currentNumber] * currentNumber);
-    return result;
+    var result = object[currentNumber] / total;
+    return result * 100;
   };
 
   var handleStarClick = function (event) {
-    console.log(<ReviewEntry/>);
+    var currentStar = event.target.innerText.toString()[0];
+    var clickedYet = document.getElementById(currentStar + 'Stars');
+    if (clickedYet.className === 'numRating') {
+      clickedYet.className += 'ClickedTrue';
+    } else {
+      clickedYet.className = 'numRating';
+    }
+
   };
+
   return (
     <div>
-
       {Object.keys(currentProduct).length > 0 ?
         <div>
           <div className='RatingsHeading'>Ratings {'&'} Reviews</div>
@@ -56,13 +63,35 @@ const RatingEntry = ({ currentProductId, setRating }) => {
             <Stars calValue={calculate(currentProduct.ratings)} />
           </div>
           <div className='recommendationPercent'>{((Number(currentProduct.recommended.true) / (Number(currentProduct.recommended.false) + Number(currentProduct.recommended.true))) * 100).toString().substring(0, 2)}% of people recommend this product!</div>
+
           <div className='StarsGraphRating'>
-            <div className='theStars' id='5Stars' onClick={handleStarClick}>5 Stars
-              <div className='progressBar'><ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '5'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div></div>
-            <div className='theStars' id='4Stars'>4 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '4'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
-            <div className='theStars' id='3Stars'>3 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '3'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
-            <div className='theStars' id='2Stars'>2 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '2'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
-            <div className='theStars' id='1Stars'>1 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
+            <div className='theStars'>
+              <span className='numRating' id='5Stars' onClick={handleStarClick} value={5}>5 Stars</span>
+              <div className='progressBar'>
+                <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '5'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              </div>
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='4Stars' onClick={handleStarClick} value={4}>4 Stars</span>
+              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '4'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='3Stars' onClick={handleStarClick} >3 Stars</span>
+              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '3'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='2Stars' onClick={handleStarClick}>2 Stars</span>
+              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '2'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='1Stars' onClick={handleStarClick}>1 Stars</span>
+              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
           </div>
           <br></br>
           <div className='characteristics'>

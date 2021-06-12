@@ -386,6 +386,21 @@ body {
 } */
 
 /* ------------ Review ------------ */
+
+.numRatingClickedTrue {
+  font-weight:bold;
+}
+
+.numRatingClickedTrue:hover {
+  cursor:pointer;
+}
+
+.numRating:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #00b300;
+
+}
 .individualReview{
     border-bottom: 1px solid #494949;
     margin-bottom: 30px;

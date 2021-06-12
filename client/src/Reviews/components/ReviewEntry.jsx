@@ -8,10 +8,47 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [storedReviews, setstoredReviews] = useState([]);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
+  const [fiveStarReviews, setFiveStarReviews] = useState([]);
+  const [fourStarReviews, setFourStarReviews] = useState([]);
+  const [threeStarReviews, setThreeStarReviews] = useState([]);
+  const [twoStarReviews, setTwoStarReviews] = useState([]);
+  const [oneStarReviews, setOneStarReviews] = useState([]);
+
+
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
+        var emptyArray = [];
+        setCurrentlyShowing(emptyArray.slice());
+        setFiveStarReviews(emptyArray.slice());
+        setFourStarReviews(emptyArray.slice());
+        setThreeStarReviews(emptyArray.slice());
+        setTwoStarReviews(emptyArray.slice());
+        setOneStarReviews(emptyArray.slice());
+
+        response.data.results.map((element) => {
+          if (element.rating === 5) {
+            setFiveStarReviews((previousState) => previousState.concat(element));
+          }
+
+          if (element.rating === 4) {
+            setFourStarReviews((previousState) => previousState.concat(element));
+          }
+
+          if (element.rating === 3) {
+            setThreeStarReviews((previousState) => previousState.concat(element));
+          }
+
+          if (element.rating === 2) {
+            setTwoStarReviews((previousState) => previousState.concat(element));
+          }
+
+          if (element.rating === 1) {
+            setOneStarReviews((previousState) => previousState.concat(element));
+          }
+        });
+
         setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
         setCurrentlyShowing(response.data.results.splice(0, 2));
         setstoredReviews(response.data.results.slice(0));
@@ -25,6 +62,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   useEffect(() => {
     setReviewCount(sortedReviews.length);
   }, [sortedReviews]);
+
 
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
@@ -77,12 +115,46 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     console.log(event.target.value);
   };
 
+  var test = () => {
+    var innerTest = document.getElementsByClassName('numRatingClickedTrue');
+    var emptyArray = [];
+    for (var i = 0; i < innerTest.length; i++) {
+      var currentRatingSelected = innerTest[i].innerText[0];
+      if (currentRatingSelected === '5') {
+        setCurrentlyShowing(() => emptyArray.concat(fiveStarReviews));
+        setFiveStarReviews([]);
+      }
 
+      if (currentRatingSelected === '4') {
+        setCurrentlyShowing(() => emptyArray.concat(fourStarReviews));
+        setFourStarReviews([]);
+      }
+
+      if (currentRatingSelected === '3') {
+        setCurrentlyShowing(() => emptyArray.concat(threeStarReviews));
+        setThreeStarReviews([]);
+      }
+
+      if (currentRatingSelected === '2') {
+        setCurrentlyShowing((previousState) => previousState.concat(twoStarReviews));
+        setTwoStarReviews([]);
+      }
+
+      if (currentRatingSelected === '1') {
+        setCurrentlyShowing(() => emptyArray.concat(oneStarReviews));
+        setOneStarReviews([]);
+      }
+
+    }
+  };
 
   return (
+
     <div className="ReviewsOverview" id="jumpEntry">
+
       <RatingEntry currentProductId={productId} setRating={setRating} />
       <div className='reviewEntry'>
+        <button onClick={test}>Test</button>
         <div className='numberOfReviews'>{sortedReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
             <span> relevance</span>
@@ -112,6 +184,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
                 (<span className={review.review_id}>{review.helpfulness}</span>)
               </p>
+
               <div className='reviewPhotos'>{review.photos.length > 0 ?
                 review.photos.map((element) => (
                   <div className='Modals' key={element.url}>
@@ -119,7 +192,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     <div id='myModal' className='modal'>
                       <span className='close' onClick={handleModalClose}>&times;</span>
                       <img className='modal-content' id='img01'></img>
-                      <div id='caption'></div>
                     </div>
                   </div>
                 )) :
@@ -133,26 +205,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
             <div id="reviewModal" className="modal">
               <div className="addReview-modal-content">
                 <span className="close" onClick={handleReviewModalClose}>&times;</span>
-                <form class="boilerform" action="" method="post">
-                  <fieldset class="c-form">
-                    <legend class="c-form__heading">Contact form</legend>
-                    <div class="c-form__row">
-                      <label for="name" class="c-label">Name</label>
-                      <input type="text" name="name" id="name" class="c-input-field" value="" autocorrect="off" required />
-                    </div>
-                    <div class="c-form__row">
-                      <label for="email" class="c-label">Email</label>
-                      <input type="email" name="email" id="email" autocapitalize="none" autocorrect="off" class="c-input-field" required />
-                    </div>
-                    <div class="c-form__row">
-                      <label for="message" class="c-label">Your message</label>
-                      <textarea name="message" id="message" class="c-input-field c-input-field--multiline" rows="10"></textarea>
-                    </div>
-                    <div class="c-form__row">
-                      <button class="c-button" type="submit">Submit</button>
-                    </div>
-                  </fieldset>
-                </form>
               </div>
             </div>
           </div>
