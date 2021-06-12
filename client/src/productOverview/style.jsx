@@ -6,7 +6,6 @@ import Share from './share.jsx';
 const Style = (props) => {
   const [currentStyleId, setCurrentStyleId] = useState(props.currentStyle.style_id);
   const [sizeNumber, setSizeNumber] = useState(0);
-  const [stock, setStock] = useState(true);
   let styles = props.allStyles;
   let onSale = props.currentStyle.sale_price;
   const currentSize = [];
@@ -22,10 +21,6 @@ const Style = (props) => {
   if (currentStyleId !== props.currentStyle.style_id) {
     setCurrentStyleId(props.currentStyle.style_id);
   }
-
-  useEffect(() => {
-    setStock(stock);
-  }, [sizeNumber]);
 
   const checkStock = () => {
     for (let j = 0; j < quantity.length; j++) {
@@ -100,17 +95,25 @@ const Style = (props) => {
       </div>
       <form id="add-product-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="size-selector">
-          <select id="size-select" value={sizeNumber} onChange={(e) => {
-            setSizeNumber(e.target.value);
-          }} required>
-            <option value="">SELECT SIZE</option>
-            {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
-          </select>
+          {currentSize[0][1] ?
+            <select id="size-select" value={sizeNumber} onChange={(e) => {
+              setSizeNumber(e.target.value);
+            }} required>
+              <option value="">SELECT SIZE</option>
+              {currentSize.map((size) => <option key={size[0]} value={size[0]}>{size[1]}</option>)}
+            </select>
+            : <select id="size-select" value={sizeNumber} onChange={(e) => {
+              setSizeNumber(e.target.value);
+            }} required>
+              <option value="">OUT OF STOCK</option>
+            </select>
+          }
+
           <select id="quan-select" required onChange={() => { if (sizeNumber === 0) { setStock(false); } }}>
             {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
           </select>
         </div>
-        {(stock && sizeNumber !== 'null') && <Cart />}
+        {(currentSize[0][1] && sizeNumber !== 'null') && <Cart />}
       </form>
       <Share />
     </div>
