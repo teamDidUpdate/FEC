@@ -39,6 +39,11 @@ const Style = (props) => {
   };
 
   const getLimit = () => {
+    console.log('test');
+    if (quantity[0][0] === null) {
+      setStock(false);
+    }
+
     let limitNumber;
 
     for (let j = 0; j < quantity.length; j++) {
@@ -106,7 +111,7 @@ const Style = (props) => {
             {getLimit().map((q) => <option key={q} value="size">{q}</option>)}
           </select>
         </div>
-        {stock && <Cart />}
+        {(stock && sizeNumber !== 'null') && <Cart />}
       </form>
       <Share />
     </div>
