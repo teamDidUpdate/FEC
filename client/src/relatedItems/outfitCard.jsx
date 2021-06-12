@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarsRating from 'stars-rating';
 import {IoMdCloseCircleOutline} from 'react-icons/Io';
 
-const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle}) => {
+const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOutfit}) => {
   const [defaultStyle, setDefaultStyle] = useState({});
   const imageURL = outfit.styles.results[0].photos[0].thumbnail_url;
 
@@ -14,18 +14,10 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle}) => {
     })();
   }, [outfit]);
 
-  // const removeOutfit = (outfit) => {
-  //   let allOutfits = {...outfits};
-  //   delete allOutfits[outfit.overview.id];
-  //   setOutfits(allOutfits);
-  //   window.localStorage.removeItem('myThreads');
-  //   window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
-  // };
-
   return (
     <>
       <div className='card-container'>
-        <IoMdCloseCircleOutline className='action-btn' onClick={() => console.log('click')}/>
+        <IoMdCloseCircleOutline className='action-btn' onClick={() => deleteOutfit(outfit.overview.id)}/>
         <div className='card-inner-container'onClick={() => setProductId(outfit.overview.id)}>
           <div className='card-item'>
             <img className='card-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
