@@ -17,14 +17,22 @@ const Carousel = ({ products, productId, setProductId, related }) => {
   }, [products]);
 
   useEffect(() => {
-    if (current + 3 >= length) {
+    let buffer = related ? 3 : 2;
+    console.log('related', related);
+    console.log('length', length);
+    console.log('current', current);
+    console.log('buffer', buffer);
+
+    if (current === 0 && current + buffer >= length) {
+      setScrollable({left: false, right: false});
+    } else if (current === 0 && current + buffer < length) {
+      setScrollable({left: false, right: true});
+    } else if (current !== 0 && current + buffer >= length) {
       setScrollable({right: false, left: true});
-    } else if (current === 0) {
-      setScrollable({right: true, left: false});
     } else {
       setScrollable({right: true, left: true});
     }
-  }, [current]);
+  }, [current, length]);
 
   const nextCard = () => {
     setCurrent(current >= length - 1 ? length - 1 : current + 1);
@@ -102,7 +110,7 @@ const Carousel = ({ products, productId, setProductId, related }) => {
         { length !== 0 && !related ?
           products.map((product, index) => {
             return (
-              index >= current || current + 2 >= length ?
+              index >= current || current + 1 >= length ?
                 <OutfitCard
                   outfit={product}
                   key={product.overview.id}
