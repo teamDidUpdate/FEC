@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel.jsx';
 import axios from 'axios';
 
-const RelatedItemsAndComparison = ({productId, setProductId}) => {
+const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, overviewRating}) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfits, setOutfits] = useState([]);
 
   // get saved outfits on inital render
   useEffect(() => {
     const savedOutfits = JSON.parse(window.localStorage.getItem('myThreads'));
+    console.log(savedOutfits);
     savedOutfits ? setOutfits(savedOutfits) : null;
-  }, []);
+  }, [productId]);
 
   // get related products when the productId changes
   useEffect(() => {
@@ -60,6 +61,8 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
         products={relatedProducts}
         productId={productId}
         setProductId={setProductId}
+        overviewProduct={overviewProduct}
+        overviewRating={overviewRating}
       />
       <h2 className='section-header'>YOUR OUTFIT</h2>
       <Carousel
@@ -67,6 +70,9 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
         products={outfits}
         productId={productId}
         setProductId={setProductId}
+        setOutfits={setOutfits}
+        overviewProduct={overviewProduct}
+        overviewRating={overviewRating}
       />
     </>
   );

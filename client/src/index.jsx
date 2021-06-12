@@ -14,6 +14,7 @@ const App = () => {
   const [rating, setRating] = useState(0);
   const [currentProduct, setCurrentProduct] = useState({});
 
+  console.log('currentProduct is now', currentProduct);
   return (
     <div>
       <div>
@@ -23,11 +24,13 @@ const App = () => {
           setProductId={setProductId}
           setCurrentProduct={setCurrentProduct} />
       </div>
-      {/* <div>
+      <div>
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId}
-          currentProduct={currentProduct}/>
+          overviewProduct={currentProduct}
+          overviewRating={rating}
+        />
       </div>
       <div>
         <QAwidget
@@ -40,7 +43,7 @@ const App = () => {
           setProductId={setProductId}
           setReviewCount={setReviewCount}
           setRating={setRating} />
-      </div> */}
+      </div>
     </div>
   );
 };

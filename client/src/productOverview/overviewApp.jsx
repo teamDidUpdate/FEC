@@ -15,19 +15,19 @@ const OverviewApp = (props) => {
   const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
   const [expendView, setView] = useState(false);
 
-  // useEffect(() => {
-  //   axios.get('/overview', { params: { productId: props.productId } })
-  //     .then((response) => {
-  //       setOverviewProduct(response.data.overview);
-  //       setAllStyles(response.data.styles.results);
-  //       setCurrentStyle(response.data.styles.results[0]);
-  //       props.setCurrentProduct(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return;
-  //     });
-  // }, [props.productId]);
+  useEffect(() => {
+    axios.get('/overview', { params: { productId: props.productId } })
+      .then((response) => {
+        setOverviewProduct(response.data.overview);
+        setAllStyles(response.data.styles.results);
+        setCurrentStyle(response.data.styles.results[0]);
+        props.setCurrentProduct(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+  }, [props.productId]);
 
   return (
     <div>

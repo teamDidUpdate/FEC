@@ -6,35 +6,50 @@ import { FiPlusCircle } from 'react-icons/Fi';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
-const Carousel = ({ products, productId, setProductId, related }) => {
-  const [current, setCurrent] = useState(0);
+const Carousel = ({ products, productId, setProductId, related, overviewProduct, overviewRating, setOutfits}) => {
+  const [productWithRating, setProductWithRating] = useState({});
+  const [currentPos, setCurrentPos] = useState(0);
   const [length, setLength] = useState(0);
   const [scrollable, setScrollable] = useState({right: true, left: false});
 
+  if (!related) {
+    console.log(Object.values(products));
+  }
+  // set varibles to determine scrollability
   useEffect(() => {
     setLength(products.length);
-    setCurrent(0);
+    setCurrentPos(0);
   }, [products]);
 
+  // combine the current overview product with its rating
+  useEffect(() => {
+    if (overviewProduct && overviewRating) {
+      let combinedProd = {...overviewProduct};
+      combinedProd['rating'] = overviewRating;
+      setProductWithRating(combinedProd);
+    }
+  }, [overviewProduct, overviewRating]);
+
+  // check to see if arrow buttons appear
   useEffect(() => {
     let buffer = related ? 3 : 2;
-    if (current === 0 && current + buffer >= length) {
+    if (currentPos === 0 && currentPos + buffer >= length) {
       setScrollable({left: false, right: false});
-    } else if (current === 0 && current + buffer < length) {
+    } else if (currentPos === 0 && currentPos + buffer < length) {
       setScrollable({left: false, right: true});
-    } else if (current !== 0 && current + buffer >= length) {
+    } else if (currentPos !== 0 && currentPos + buffer >= length) {
       setScrollable({right: false, left: true});
     } else {
       setScrollable({right: true, left: true});
     }
-  }, [current, length]);
+  }, [currentPos, length]);
 
   const nextCard = () => {
-    setCurrent(current >= length - 1 ? length - 1 : current + 1);
+    setCurrentPos(currentPos >= length - 1 ? length - 1 : currentPos + 1);
   };
 
   const prevCard = () => {
-    setCurrent(current <= 0 ? 0 : current - 1 );
+    setCurrentPos(currentPos <= 0 ? 0 : currentPos - 1 );
   };
 
   const getDefaultStyle = (prod) => {
@@ -60,13 +75,15 @@ const Carousel = ({ products, productId, setProductId, related }) => {
     return averageRating;
   };
 
-  // const saveOutfit = (outfit) => {
-  //   let allOutfits = {...outfits};
-  //   allOutfits[outfit.overview.id] = outfit;
-  //   setOutfits(allOutfits);
-  //   window.localStorage.removeItem('myThreads');
-  //   window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
-  // };
+  const saveOutfit = () => {
+    console.log('products', products);
+    console.log('productWithRating.overview.id', productWithRating.overview.id);
+    let allOutfits = {...products};
+    allOutfits[productWithRating.overview.id] = productWithRating;
+    setOutfits(allOutfits);
+    // window.localStorage.removeItem('myThreads');
+    window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
+  };
 
   return (
     <section className='carousel'>
@@ -82,7 +99,7 @@ const Carousel = ({ products, productId, setProductId, related }) => {
         { length !== 0 && related ?
           products.map((product, index) => {
             return (
-              index >= current || current + 2 >= length ?
+              index >= currentPos || currentPos + 2 >= length ?
                 <RelatedCard
                   product={product}
                   key={product.overview.id}
@@ -97,21 +114,22 @@ const Carousel = ({ products, productId, setProductId, related }) => {
           : null
         }
         {!related ?
-          <div className='empty-card'>
+          <div className='empty-card' onClick={() => saveOutfit()}>
             <h2>Add to Outfit</h2>
-            <FiPlusCircle id='add-outfit-btn' onClick={() => console.log('click')}/>
+            <FiPlusCircle id='add-outfit-btn' />
           </div>
           : null }
         { length !== 0 && !related ?
-          products.map((product, index) => {
+          Object.values(products).map((product, index) => {
             return (
-              index >= current || current + 1 >= length ?
+              index >= currentPos || currentPos + 1 >= length ?
                 <OutfitCard
                   outfit={product}
                   key={product.overview.id}
                   productId={productId}
                   setProductId={setProductId}
                   getStarRating={getStarRating}
+                  getDefaultStyle={getDefaultStyle}
                 />
                 : null
             );
