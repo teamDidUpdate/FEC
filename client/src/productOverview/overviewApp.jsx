@@ -15,28 +15,25 @@ const OverviewApp = (props) => {
   const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
   const [expendView, setView] = useState(false);
 
-  // useEffect(() => {
-  //   axios.get('/overview', { params: { productId: props.productId } })
-  //     .then((response) => {
-  //       setOverviewProduct(response.data.overview);
-  //       setAllStyles(response.data.styles.results);
-  //       setCurrentStyle(response.data.styles.results[0]);
-  //       props.setCurrentProduct(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return;
-  //     });
-  // }, [props.productId]);
+  useEffect(() => {
+    axios.get('/overview', { params: { productId: props.productId } })
+      .then((response) => {
+        setOverviewProduct(response.data.overview);
+        setAllStyles(response.data.styles.results);
+        setCurrentStyle(response.data.styles.results[0]);
+        props.setCurrentProduct(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+  }, [props.productId]);
 
   return (
     <div>
       <div id="header" className="overview-header">
         <h1>THREADS</h1>
-        {/* [backup img] <img className="logo-img" src="https://img.icons8.com/ios/452/squiggly-line.png"></img> */}
         <img className="logo-img" src="icon/threadsLogo.png"></img>
-
-
       </div>
       <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
@@ -53,7 +50,6 @@ const OverviewApp = (props) => {
               <Title product={overviewProduct}/>
               <Style currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} allStyles={allStyles} />
             </div>
-
           }
           <Description product={overviewProduct}/>
           <Feature features={overviewProduct.features}/>
