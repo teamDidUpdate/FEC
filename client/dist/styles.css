@@ -764,7 +764,8 @@ h1.reviewModalSize {
   right: 8px;
   cursor: pointer;
   user-select: none;
-  background: rgba(255,255,255,0.7);
+  background: #FFF;
+  opacity: .75;
   border-radius: 2rem;
   box-shadow: 3px 2px 2px #333;
   z-index: 10;
@@ -847,7 +848,3 @@ h1.reviewModalSize {
   display: grid;
   grid-template-rows: repeat(8, 1fr);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 0c4eaab4ab51e311aae765a1062d5c10bb52abf0

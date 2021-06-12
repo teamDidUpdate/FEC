@@ -14,7 +14,12 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
 
   // set varibles to determine scrollability
   useEffect(() => {
-    setLength(products.length);
+    if (related) {
+      setLength(products.length);
+    } else {
+      console.log(Object.keys(products).length);
+      setLength(Object.keys(products).length);
+    }
     setCurrentPos(0);
   }, [products]);
 
@@ -40,6 +45,21 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
       setScrollable({right: true, left: true});
     }
   }, [currentPos, length]);
+
+  // if (!related) {
+  //   useEffect(() => {
+  //     let buffer = 2;
+  //     if (currentPos === 0 && currentPos + buffer >= length) {
+  //       setScrollable({left: false, right: false});
+  //     } else if (currentPos === 0 && currentPos + buffer < length) {
+  //       setScrollable({left: false, right: true});
+  //     } else if (currentPos !== 0 && currentPos + buffer >= length) {
+  //       setScrollable({right: false, left: true});
+  //     } else {
+  //       setScrollable({right: true, left: true});
+  //     }
+  //   }, [currentPos, length]);
+  // }
 
   const nextCard = () => {
     setCurrentPos(currentPos >= length - 1 ? length - 1 : currentPos + 1);
@@ -122,7 +142,6 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
                   key={product.overview.id}
                   productId={productId}
                   setProductId={setProductId}
-                  getStarRating={getStarRating}
                   getDefaultStyle={getDefaultStyle}
                 />
                 : null
