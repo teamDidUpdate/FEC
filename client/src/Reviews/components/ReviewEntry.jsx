@@ -71,12 +71,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
   var handleReviewSubmission = (event) => {
     event.preventDefault();
-    var test = document.getElementById('sometest');
-    var test2 = document.getElementById('sometest2');
-    var test3 = document.getElementById('recommended');
-    var tester = document.getElementById('tester');
-
-    console.log(test.value, test2.value, test3, tester);
   };
 
   var handleTextChange = (event) => {
@@ -139,28 +133,26 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
             <div id="reviewModal" className="modal">
               <div className="addReview-modal-content">
                 <span className="close" onClick={handleReviewModalClose}>&times;</span>
-                <h1 className='reviewModalSize'>Write your review</h1>
-                <div id='reviewSubmission'>
-                  <form id='tester'>
-                    <StarsRating count={5} color2={'black'} half={false} />
-                  </form>
-
-
-                  <input type='text' placeholder='sometext' id='sometest' onChange={handleTextChange}></input>
-                  <input type='text' placeholder='sometext' id='sometest2' onChange={handleTextChange}></input>
-                  <div id='recommended'>
-                    Do you recommend this product?
-                    <input type="radio" id="requiredYes"
-                      name="yes" value="yes"></input>
-                    <label htmlFor="contactChoice1">Yes</label>
-                    <input type="radio" id="requiredNo"
-                      name="no" value="no"></input>
-                    <label htmlFor="contactChoice1">No</label>
-                  </div>
-                  {/* <input type='text' placeholder='sometext'></input>
-                  <input type='text' placeholder='sometext'></input> */}
-                </div>
-                <button onClick={handleReviewSubmission}>Submit Review!</button>
+                <form class="boilerform" action="" method="post">
+                  <fieldset class="c-form">
+                    <legend class="c-form__heading">Contact form</legend>
+                    <div class="c-form__row">
+                      <label for="name" class="c-label">Name</label>
+                      <input type="text" name="name" id="name" class="c-input-field" value="" autocorrect="off" required />
+                    </div>
+                    <div class="c-form__row">
+                      <label for="email" class="c-label">Email</label>
+                      <input type="email" name="email" id="email" autocapitalize="none" autocorrect="off" class="c-input-field" required />
+                    </div>
+                    <div class="c-form__row">
+                      <label for="message" class="c-label">Your message</label>
+                      <textarea name="message" id="message" class="c-input-field c-input-field--multiline" rows="10"></textarea>
+                    </div>
+                    <div class="c-form__row">
+                      <button class="c-button" type="submit">Submit</button>
+                    </div>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
