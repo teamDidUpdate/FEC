@@ -654,6 +654,7 @@ span.reviewSort {
   grid-auto-flow: column;
   justify-content: left;
   align-items: center;
+  margin: 1em 0 1em 0;
 }
 
 .cards-container {
@@ -670,19 +671,21 @@ span.reviewSort {
 .card-container {
   position: relative;
   display: grid;
+  grid-template-rows: 1fr;
   width: 16vw;
   height: 40vh;
-  border: 1px solid black;
-  margin: 1em;
-  transition: all 2s;
-  box-shadow: 3px 2px 2px grey;
+  margin-right: 1em;
 }
 
 .card-inner-container {
   position: relative;
   display: grid;
-  width: 100%;
-  height: 100%;
+  grid-template-rows: 5fr 1fr 1fr 1fr 1fr;
+  width: 16vw;
+  height: 40vh;
+  box-shadow: 3px 2px 2px grey;
+  border: 1px solid black;
+  transition: all 2s;
 }
 
 .card-item.text {
@@ -699,9 +702,9 @@ span.reviewSort {
   margin-top: 0;
 }
 
-.related-image {
+.card-image {
   width: 100%;
-  height: 225px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -740,7 +743,6 @@ span.reviewSort {
   user-select: none;
   background: rgba(255,255,255,0.7);
   border-radius: 2rem;
-  /* opacity: .75; */
   box-shadow: 3px 2px 2px #333;
   z-index: 10;
 }

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId}) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfits, setOutfits] = useState({});
+  const [outfits, setOutfits] = useState([]);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -62,12 +62,12 @@ const RelatedItemsAndComparison = ({productId, setProductId}) => {
         setProductId={setProductId}
       />
       <h2 className='section-header'>YOUR OUTFIT</h2>
-      {/* <Carousel
+      <Carousel
         related={false}
         products={outfits}
         productId={productId}
         setProductId={setProductId}
-      /> */}
+      />
     </>
   );
 };

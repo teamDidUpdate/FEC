@@ -2,12 +2,13 @@ import React, {useState, useEffect} from 'react';
 import RelatedCard from './RelatedCard.jsx';
 import OutfitCard from './OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
+import { FiPlusCircle } from 'react-icons/Fi';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
 const Carousel = ({ products, productId, setProductId, related }) => {
   const [current, setCurrent] = useState(0);
-  const [length, setLength] = useState(4);
+  const [length, setLength] = useState(0);
   const [scrollable, setScrollable] = useState({right: true, left: false});
 
   useEffect(() => {
@@ -46,7 +47,6 @@ const Carousel = ({ products, productId, setProductId, related }) => {
     let averageRating = 0;
     await axios.get('/getAverageRating', { params: { productId: id } })
       .then((response) => {
-        console.log('response.data:', response.data);
         averageRating = response.data;
         return;
       })
@@ -54,9 +54,16 @@ const Carousel = ({ products, productId, setProductId, related }) => {
         console.log(err);
         return;
       });
-    console.log('returning from average rating', averageRating);
     return averageRating;
   };
+
+  // const saveOutfit = (outfit) => {
+  //   let allOutfits = {...outfits};
+  //   allOutfits[outfit.overview.id] = outfit;
+  //   setOutfits(allOutfits);
+  //   window.localStorage.removeItem('myThreads');
+  //   window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
+  // };
 
   return (
     <section className='carousel'>
@@ -69,9 +76,9 @@ const Carousel = ({ products, productId, setProductId, related }) => {
         : null
       }
       <div className='cards-container'>
-        {products.map((product, index) => {
-          return (
-            related ?
+        { length !== 0 && related ?
+          products.map((product, index) => {
+            return (
               index >= current || current + 2 >= length ?
                 <RelatedCard
                   product={product}
@@ -82,7 +89,15 @@ const Carousel = ({ products, productId, setProductId, related }) => {
                   getDefaultStyle={getDefaultStyle}
                 />
                 : null
-              : index >= current || current + 2 >= length ?
+            );
+          })
+          : null
+        }
+        {!related ? <FiPlusCircle onClick={() => console.log('click')}/> : null}
+        { length !== 0 && !related ?
+          products.map((product, index) => {
+            return (
+              index >= current || current + 2 >= length ?
                 <OutfitCard
                   outfit={product}
                   key={product.overview.id}
@@ -91,8 +106,10 @@ const Carousel = ({ products, productId, setProductId, related }) => {
                   getStarRating={getStarRating}
                 />
                 : null
-          );
-        })}
+            );
+          })
+          : null
+        }
       </div>
     </section>
   );
