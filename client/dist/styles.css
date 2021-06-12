@@ -387,6 +387,30 @@ body {
 
 /* ------------ Review ------------ */
 
+#ratingReset {
+  float: right;
+}
+
+#ratingReset{
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+
+.filters{
+  display: grid;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.reviewHidden {
+  display: none;
+}
+
+#currentFilters {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .numRatingClickedTrue {
   font-weight:bold;
 }

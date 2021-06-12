@@ -13,13 +13,13 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [threeStarReviews, setThreeStarReviews] = useState([]);
   const [twoStarReviews, setTwoStarReviews] = useState([]);
   const [oneStarReviews, setOneStarReviews] = useState([]);
+  const [emptyArray, setEmptyArray] = useState([]);
 
 
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
-        var emptyArray = [];
         setCurrentlyShowing(emptyArray.slice());
         setFiveStarReviews(emptyArray.slice());
         setFourStarReviews(emptyArray.slice());
@@ -50,8 +50,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         });
 
         setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
-        setCurrentlyShowing(response.data.results.splice(0, 2));
         setstoredReviews(response.data.results.slice(0));
+        setCurrentlyShowing(response.data.results.slice(0, 2));
       })
       .catch((err) => {
         console.log(err);
@@ -88,7 +88,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var handleMoreReviews = () => {
-    setCurrentlyShowing(previousState => previousState.concat(storedReviews.splice(0, 2)));
+    setCurrentlyShowing(previousState => previousState.concat(storedReviews.splice(2, 2)));
   };
 
   var handleSortClick = (e) => {
@@ -115,46 +115,22 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     console.log(event.target.value);
   };
 
-  var test = () => {
-    var innerTest = document.getElementsByClassName('numRatingClickedTrue');
-    var emptyArray = [];
-    for (var i = 0; i < innerTest.length; i++) {
-      var currentRatingSelected = innerTest[i].innerText[0];
-      if (currentRatingSelected === '5') {
-        setCurrentlyShowing(() => emptyArray.concat(fiveStarReviews));
-        setFiveStarReviews([]);
-      }
-
-      if (currentRatingSelected === '4') {
-        setCurrentlyShowing(() => emptyArray.concat(fourStarReviews));
-        setFourStarReviews([]);
-      }
-
-      if (currentRatingSelected === '3') {
-        setCurrentlyShowing(() => emptyArray.concat(threeStarReviews));
-        setThreeStarReviews([]);
-      }
-
-      if (currentRatingSelected === '2') {
-        setCurrentlyShowing((previousState) => previousState.concat(twoStarReviews));
-        setTwoStarReviews([]);
-      }
-
-      if (currentRatingSelected === '1') {
-        setCurrentlyShowing(() => emptyArray.concat(oneStarReviews));
-        setOneStarReviews([]);
-      }
-
-    }
-  };
 
   return (
 
     <div className="ReviewsOverview" id="jumpEntry">
 
-      <RatingEntry currentProductId={productId} setRating={setRating} />
+      <RatingEntry
+        currentProductId={productId}
+        setRating={setRating}
+        currentlyShowing={currentlyShowing} setCurrentlyShowing={setCurrentlyShowing}
+        fiveStarReviews={fiveStarReviews}
+        fourStarReviews={fourStarReviews}
+        threeStarReviews={threeStarReviews}
+        twoStarReviews={twoStarReviews}
+        oneStarReviews={oneStarReviews}
+        storedReviews={storedReviews} />
       <div className='reviewEntry'>
-        <button onClick={test}>Test</button>
         <div className='numberOfReviews'>{sortedReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
             <span> relevance</span>
