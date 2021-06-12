@@ -15,6 +15,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     axios.get('/fetchMeta', { params: { productId: currentProductId } })
       .then((response) => {
         setCurrentProduct(response.data);
+        resetFilterState();
       });
   }, [currentProductId]);
 
@@ -47,7 +48,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     var length = document.getElementsByClassName('numRatingClickedTrue').length;
     if (length === 0) {
       setCurrentlyShowing([]);
-      setCurrentFilter(()=> '');
+      setCurrentFilter(() => '');
     }
     var currentStar = event.target.innerText.toString()[0];
     var clickedYet = document.getElementById(currentStar + 'Stars');
@@ -56,27 +57,27 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
       clickedYet.className += 'ClickedTrue';
       if (currentStar === '5') {
         setCurrentlyShowing((previousState) => previousState.concat(fiveStarReviews));
-        setCurrentFilter((previousState)=> previousState + ' 5 Stars ');
+        setCurrentFilter((previousState) => previousState + ' 5 Stars ');
       }
 
       if (currentStar === '4') {
         setCurrentlyShowing((previousState) => previousState.concat(fourStarReviews));
-        setCurrentFilter((previousState)=> previousState + ' 4 Stars ');
+        setCurrentFilter((previousState) => previousState + ' 4 Stars ');
       }
 
       if (currentStar === '3') {
         setCurrentlyShowing((previousState) => previousState.concat(threeStarReviews));
-        setCurrentFilter((previousState)=> previousState + ' 3 Stars ');
+        setCurrentFilter((previousState) => previousState + ' 3 Stars ');
       }
 
       if (currentStar === '2') {
         setCurrentlyShowing((previousState) => previousState.concat(twoStarReviews));
-        setCurrentFilter((previousState)=> previousState + ' 2 Stars ');
+        setCurrentFilter((previousState) => previousState + ' 2 Stars ');
       }
 
       if (currentStar === '1') {
         setCurrentlyShowing((previousState) => previousState.concat(oneStarReviews));
-        setCurrentFilter((previousState)=> previousState + ' 1 Stars ');
+        setCurrentFilter((previousState) => previousState + ' 1 Stars ');
       }
 
     } else {
@@ -147,6 +148,12 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
   var copyOfStoredReviews = storedReviews.slice();
   var resetFilter = () => {
     setCurrentlyShowing(() => copyOfStoredReviews.slice(0, 2));
+    resetFilterState();
+
+  };
+
+  var resetFilterState = () => {
+    setCurrentFilter('');
     var fiveStarId = document.getElementById('5Stars');
     var fourStarId = document.getElementById('4Stars');
     var threeStarId = document.getElementById('3Stars');
@@ -157,7 +164,6 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     threeStarId.className = 'numRating';
     twoStarId.className = 'numRating';
     oneStarId.className = 'numRating';
-
   };
 
 
@@ -199,7 +205,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
               <span className='numRating' id='1Stars' onClick={handleStarClick}>1 Stars</span>
               <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
-            {document.getElementsByClassName('numRatingClickedTrue').length !== 0 ?
+            {currentFilter.length !== 0 ?
               <div className='filters'>
                 <div id='currentFilters'> Current Filter: {currentFilter}
                 </div>
@@ -207,7 +213,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
               </div> :
               <div className='filters'>
                 <div id='currentFilters' className='reviewHidden'>
-                Current Filters:
+                  Current Filters:
                 </div>
                 <div id='ratingReset' onClick={resetFilter} className='reviewHidden' >Reset Filter</div>
               </div>
