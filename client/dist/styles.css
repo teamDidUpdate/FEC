@@ -393,6 +393,14 @@ body {
     padding: 10px;
 }
 
+.clickedTrue {
+  cursor: pointer
+}
+.clickedTrue, .clickedFalse {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 .StarAndQuarterRating {
   display: flex;
 }
@@ -514,6 +522,12 @@ p.helpfulness {
 
 span.reviewSort {
   text-decoration: underline;
+}
+
+h1.reviewModalSize {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
 
 
