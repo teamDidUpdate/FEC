@@ -39,7 +39,6 @@ const Style = (props) => {
   };
 
   const getLimit = () => {
-    console.log('test');
     if (quantity[0][0] === null) {
       setStock(false);
     }
