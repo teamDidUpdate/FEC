@@ -68,9 +68,6 @@ const Image = (props) => {
 
   const handleZoom = (e) => {
     let container = document.getElementById('main-div');
-    let img = document.getElementById('main-img');
-    let imgWidth = img.naturalWidth;
-    let imgHeight = img.naturalHeight;
     let boxWidth = container.clientWidth;
     let boxHeight = container.clientHeight;
     let rect = e.target.getBoundingClientRect();
@@ -95,7 +92,7 @@ const Image = (props) => {
     <div>
       <div className="images">
         <div className="image-container" style={containerStyle}>
-          <img id="main-img" src={imageURL} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
+          <img id="main-img" src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
           {props.expendView &&
             <div id="main-div" onClick={(e) => {
               if (!zoomIn) {
