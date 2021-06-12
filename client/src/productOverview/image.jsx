@@ -25,16 +25,16 @@ const Image = (props) => {
 
   useEffect(() => {
     setImageURL(images[imageIdx].url);
-    console.log('test');
     setExpendStyle({backgroundSize: 'cover', backgroundPosition: 'center'});
   }, [imageIdx]);
 
   useEffect(() => {
     if (props.expendView) {
       setImgStyle({display: 'none'});
-      // setContainerStyle({width: '115.5%'});
+      setContainerStyle({width: '135.5%'});
     } else {
       setImgStyle({});
+      setContainerStyle({width: '100%'});
     }
   }, [props.expendView]);
 
@@ -57,12 +57,14 @@ const Image = (props) => {
     }
   };
 
-  const handleScroll = () => {
-    if (end < images.length - 1) {
+  const handleScroll = (direction) => {
+    if (end < images.length - 1 && direction === 'down') {
       setStart(prevStart => prevStart + 1);
       setEnd(prevEnd => prevEnd + 1);
-      setImageIdx(prevIdx => prevIdx + 1);
-      setImageURL(images[imageIdx + 1].url);
+    }
+    if (direction === 'up') {
+      setStart(prevStart => prevStart - 1);
+      setEnd(prevEnd => prevEnd - 1);
     }
   };
 
@@ -96,15 +98,17 @@ const Image = (props) => {
       <div className="images">
         <div className="image-container" style={containerStyle}>
           <img id="main-img" src={imageURL} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
-          {props.expendView && <div id="main-div" onClick={(e) => {
-            if (!zoomIn) {
-              setZoomIn(!zoomIn);
-              handleZoom(e);
-            } else {
-              setZoomIn(!zoomIn);
-              props.setView(!props.expendView);
-            }
-          }} style={{ background: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>}
+          {props.expendView &&
+            <div id="main-div" onClick={(e) => {
+              if (!zoomIn) {
+                setZoomIn(!zoomIn);
+                handleZoom(e);
+              } else {
+                setZoomIn(!zoomIn);
+                props.setView(!props.expendView);
+              }
+            }} style={expendStyle}></div>
+          }
           {!zoomIn && <div className="zoom-icon" onClick={() => props.setView(!props.expendView) }>
             <span className="zoom-icon-up">⌜ ⌝</span>
             <span className="zoom-icon-down">⌞ ⌟</span>
@@ -118,7 +122,8 @@ const Image = (props) => {
             <img className="gallery-image" src={image.thumbnail_url}></img>
             {(imageURL === image.url) && <span className="blackLine"></span>}
           </div>)}
-          {(images.length > 7 && end < images.length) && <div className="arrow" onClick={() => handleScroll()}>﹀</div>}
+          {(images.length > 7 && start > 0) && <div className="arrow up" onClick={() => handleScroll('up')}>︿</div>}
+          {(images.length > 7 && end < images.length - 1) && <div className="arrow down" onClick={() => handleScroll('down')}>﹀</div>}
         </div>
         }
       </div>

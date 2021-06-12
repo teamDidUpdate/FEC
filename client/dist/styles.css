@@ -70,17 +70,38 @@ html {
 body {
   padding-left: 16%;
   padding-right: 16%;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .overview-header {
-  padding-top: 4%;
-  background-color: rgba(198, 202, 201, 0.932);
-  color: black;
+  margin-top: 1px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 7%;
+  background-color: #d6d6d6;
+  color: #2d2d2d;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+}
+
+.logo-img {
+  width: 60px;
+  position: absolute;
+  left: 8px;
+  top: -2px;
+}
+
+.logo-imgtwo {
+  width: 60px;
+  position: absolute;
+  left: 8px;
+  top: -10px;
 }
 
 .highlight {
   text-align: center;
-  color: rgb(83, 82, 82);
+  color: #69706e;
   margin-top: 1.5%;
 }
 
@@ -120,7 +141,6 @@ body {
   left: 95%;
   font-weight: bolder;
   font-size: 15px;
-  /* position: relative; */
 }
 
 .zoom-icon-down {
@@ -148,6 +168,7 @@ body {
 }
 
 .next {
+  position: absolute;
   right: 0;
   border-radius: 3px 0 0 3px;
 }
@@ -185,14 +206,20 @@ body {
   grid-row: 1;
   height: 35em;
   margin-left: 3%;
-  margin-top: 3%;
+  padding-top: 16px;
 }
 
-.price-tag,
 .rating {
   margin-bottom: 6%;
   font-size: 16px;
   margin-top: 8px;
+  display: grid;
+  grid-template-columns: 80px auto;
+  color: #494949;
+}
+
+.style-section div {
+  margin-bottom: 5%;
 }
 
 .style-selector {
@@ -271,7 +298,7 @@ body {
 }
 
 .share-detail img {
-  margin-left: 10px;
+  margin-right: 10px;
   width: 30px;
   height: auto;
 }
@@ -284,12 +311,27 @@ body {
   gap: 2px;
 }
 
-.arrow {
+.down{
   color: rgb(199, 197, 197);
   height: 15px;
   width: 40px;
   text-align: center;
   position: absolute;
+  bottom: 15px;
+  left: 20%;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.up {
+  color: rgb(199, 197, 197);
+  height: 15px;
+  width: 40px;
+  text-align: center;
+  position: absolute;
+  top: -10px;
   left: 20%;
   font-weight: bold;
   font-size: 20px;
@@ -303,13 +345,12 @@ body {
 
 #main-div {
   cursor: crosshair;;
-  width: 135.5%;
+  width: 100%;
   height: 36em;
   background-position: center;
   position: relative;
   background-size: 'cover';
 }
-
 
 
 /* ------------ Q & A ------------ */
@@ -356,6 +397,11 @@ body {
   display: flex;
 }
 
+.reviewBody {
+  font-size: large;
+  margin: 10px 0px;
+}
+
 .quarterRating {
   font-size: -webkit-xxx-large;
 }
@@ -363,6 +409,7 @@ body {
 .summary{
   font-weight: bold;
   float: left;
+  font-size: 18px;
 }
 
 #alignleft {
@@ -378,25 +425,27 @@ body {
 
 p#alignright {
   font-size: 12;
-  font-size: small;
   color: gray;
 }
 
 .helpfulness {
   font-size: 12;
-  font-size: x-small;
   color: gray;
 }
 
 .numberOfReviews {
     font-weight: bold;
     margin-left: 40px;
+    font-size: 18px;
 }
 
 .ReviewsOverview {
   display: grid;
   grid-template-columns: 1fr 3fr;
   font: 1.6rem/1.4 Helvetica,Arial,sans-serif;
+  font-size:12px;
+  margin-bottom: 30px;
+  margin-top: 50px;
 }
 
 .recommendationPercent {
@@ -410,7 +459,7 @@ p#alignright {
 
 .theStars {
   padding-top: 10px;
-  font-size: large;
+  font-size: 12px;
 }
 
 .ratingReview {
@@ -433,6 +482,162 @@ p#alignright {
 p.recommendedTrue {
   font-size: small;
 }
+
+.individualReview {
+  box-shadow: 0 8px 6px -6px grey;
+}
+
+.moreReviews{
+  float: left;
+}
+
+.addReviews{
+  float:right;
+}
+
+.clickedTrue{
+  text-decoration: underline;
+}
+
+.reviewPhotos {
+  display: flex;
+}
+
+.Modals {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+p.helpfulness {
+  margin-top: 10px;
+}
+
+span.reviewSort {
+  text-decoration: underline;
+}
+
+
+/*********REVIEW IMAGES MODAL**********/
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.addReview {
+  float: right;
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content {
+  animation-name: 'zoom';
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.addReview-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.addReview-modal-content-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.addReview-modal-content-close:hover,
+.addReview-modal-content-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 /* ------------ Related Items ------------ */
 .carousel {
@@ -466,8 +671,25 @@ p.recommendedTrue {
   box-shadow: 3px 2px 2px grey;
 }
 
+.card-inner-container {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
 .card-item.text {
-  margin-left: 1em;
+  margin: 6px 12px 8px 12px;
+  color: #333;
+  font: 16px Arial, sans-serif;
+}
+
+.card-item.text.name {
+  font-weight: bold;
+}
+
+.card-item.text.rating {
+  margin-top: 0;
 }
 
 .related-image {
@@ -515,3 +737,54 @@ p.recommendedTrue {
   box-shadow: 3px 2px 2px grey;
   z-index: 10;
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: .7;
+  z-index: 1000;
+}
+
+.compare-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  padding: 16vh 8vw 16vh 8vw;
+  z-index: 1000;
+  text-align: center;
+  font: 16px Arial, sans-serif;
+  border: 1px solid #000;
+  box-shadow: 3px 2px 2px #333;
+  color: #333;
+}
+
+.modal-title {
+  text-align: left;
+};
+
+.modal-header {
+  font-weight: bold;
+  margin: 1em;
+};
+
+.modal-header.left {
+  text-align: left;
+};
+
+.modal-body {
+  margin: 1em;
+};
+
+.modal-body.left {
+  text-align: left;
+};
+
+.modal-body.right {
+  text-align: right;
+};

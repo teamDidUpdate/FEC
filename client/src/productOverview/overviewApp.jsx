@@ -5,7 +5,7 @@ import Title from './title.jsx';
 import Style from './style.jsx';
 import Image from './image.jsx';
 import Description from './description.jsx';
-import Share from './share.jsx';
+import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 
@@ -31,13 +31,18 @@ const OverviewApp = (props) => {
   return (
     <div>
       <div id="header" className="overview-header">
-        <h1>LOGO</h1>
+        <h1>THREADS</h1>
+        {/* [backup img] <img className="logo-img" src="https://img.icons8.com/ios/452/squiggly-line.png"></img> */}
+        <img className="logo-img" src="https://static.thenounproject.com/png/3268844-200.png"></img>
+        <img className="logo-imgtwo" src="https://static.thenounproject.com/png/3268844-200.png"></img>
+
+
       </div>
       <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :
-        <div className="overview-container" id="overview-container">
+        <div className="overview-container">
           <div className="image-gallary">
             <Image currentStyle={currentStyle} expendView={expendView} setView={setView}/>
           </div>
@@ -51,7 +56,7 @@ const OverviewApp = (props) => {
 
           }
           <Description product={overviewProduct}/>
-          <Share />
+          <Feature features={overviewProduct.features}/>
         </div>
       }
     </div>
