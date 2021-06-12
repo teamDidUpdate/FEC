@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Stars from './stars.jsx';
 import StarsRating from 'stars-rating';
+import ReviewEntry from './ReviewEntry.jsx';
 
 
 const RatingEntry = ({ currentProductId, setRating }) => {
@@ -42,7 +43,7 @@ const RatingEntry = ({ currentProductId, setRating }) => {
   };
 
   var handleStarClick = function (event) {
-    console.log(event.target.id[0]);
+    console.log(<ReviewEntry/>);
   };
   return (
     <div>

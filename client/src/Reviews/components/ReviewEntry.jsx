@@ -18,7 +18,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
-        response.data.results.map((element)=> {
+        response.data.results.map((element) => {
           if (element.rating === 5) {
             setFiveStarReview(previousState => previousState.concat(element));
           }
@@ -38,7 +38,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           if (element.rating === 2) {
             setOneStarReview(previousState => previousState.concat(element));
           }
-
         });
         setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
         setCurrentlyShowing(response.data.results.splice(0, 2));
@@ -53,13 +52,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   useEffect(() => {
     setReviewCount(sortedReviews.length);
   }, [sortedReviews]);
-<<<<<<< HEAD
-=======
-
-  useEffect(() => {
-    setCurrentlyShowing(currentlyShowing);
-  }, [currentlyShowing]);
->>>>>>> 8cf85defd12ca77da6300f9ec80276b151eaf93e
 
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
