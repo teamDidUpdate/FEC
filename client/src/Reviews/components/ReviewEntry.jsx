@@ -8,37 +8,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [storedReviews, setstoredReviews] = useState([]);
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
-  const [fiveStarReview, setFiveStarReview] = useState([]);
-  const [fourStarReview, setFourStarReview] = useState([]);
-  const [threeStarReview, setThreeStarReview] = useState([]);
-  const [twoStarReview, setTwoStarReview] = useState([]);
-  const [oneStarReview, setOneStarReview] = useState([]);
-
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
-        response.data.results.map((element) => {
-          if (element.rating === 5) {
-            setFiveStarReview(previousState => previousState.concat(element));
-          }
-
-          if (element.rating === 4) {
-            setFourStarReview(previousState => previousState.concat(element));
-          }
-
-          if (element.rating === 3) {
-            setThreeStarReview(previousState => previousState.concat(element));
-          }
-
-          if (element.rating === 2) {
-            setTwoStarReview(previousState => previousState.concat(element));
-          }
-
-          if (element.rating === 2) {
-            setOneStarReview(previousState => previousState.concat(element));
-          }
-        });
         setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
         setCurrentlyShowing(response.data.results.splice(0, 2));
         setstoredReviews(response.data.results.slice(0));
@@ -96,6 +69,22 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     modal.style.display = 'none';
   };
 
+  var handleReviewSubmission = (event) => {
+    event.preventDefault();
+    var test = document.getElementById('sometest');
+    var test2 = document.getElementById('sometest2');
+    var test3 = document.getElementById('recommended');
+    var tester = document.getElementById('tester');
+
+    console.log(test.value, test2.value, test3, tester);
+  };
+
+  var handleTextChange = (event) => {
+    console.log(event.target.value);
+  };
+
+
+
   return (
     <div className="ReviewsOverview" id="jumpEntry">
       <RatingEntry currentProductId={productId} setRating={setRating} />
@@ -148,10 +137,30 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           <div className='reviewButton'>
             <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
             <div id="reviewModal" className="modal">
-              <div className="addReview-modal-content" onClick={handleReviewModalClose}>
+              <div className="addReview-modal-content">
                 <span className="close" onClick={handleReviewModalClose}>&times;</span>
-                <button>Submit Review!</button>
-                <p>Some text in the Modal..</p>
+                <h1 className='reviewModalSize'>Write your review</h1>
+                <div id='reviewSubmission'>
+                  <form id='tester'>
+                    <StarsRating count={5} color2={'black'} half={false} />
+                  </form>
+
+
+                  <input type='text' placeholder='sometext' id='sometest' onChange={handleTextChange}></input>
+                  <input type='text' placeholder='sometext' id='sometest2' onChange={handleTextChange}></input>
+                  <div id='recommended'>
+                    Do you recommend this product?
+                    <input type="radio" id="requiredYes"
+                      name="yes" value="yes"></input>
+                    <label htmlFor="contactChoice1">Yes</label>
+                    <input type="radio" id="requiredNo"
+                      name="no" value="no"></input>
+                    <label htmlFor="contactChoice1">No</label>
+                  </div>
+                  {/* <input type='text' placeholder='sometext'></input>
+                  <input type='text' placeholder='sometext'></input> */}
+                </div>
+                <button onClick={handleReviewSubmission}>Submit Review!</button>
               </div>
             </div>
           </div>

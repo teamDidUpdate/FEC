@@ -524,6 +524,12 @@ span.reviewSort {
   text-decoration: underline;
 }
 
+h1.reviewModalSize {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
 
 /*********REVIEW IMAGES MODAL**********/
 #myImg {
