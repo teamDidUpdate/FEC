@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Question from './Question.jsx';
 
 const MoreQuestions = ({ questions }) => {
-  const [collapseQuestions, setcollapseQuestions] = useState(true);
+  const [collapseQuestions, setCollapseQuestions] = useState(true);
 
   return (
     <div>
@@ -37,7 +37,7 @@ const MoreQuestions = ({ questions }) => {
                 marginBottom: '10px'
               }}
               onClick={() => {
-                setcollapseQuestions(!collapseQuestions);
+                setCollapseQuestions(!collapseQuestions);
               }}>
                 Collapse Questions
               </button>
