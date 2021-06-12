@@ -74,6 +74,15 @@ app.get('/qa/questions', (req, res) => {
     .catch(err => res.status(400).send('Error while fetching Q&A'));
 });
 
+app.put('/question/helpful', (req, res) => {
+  let questionId = req.body.questionId;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/helpful`, 'placeholder', {headers: { Authorization: APIToken.TOKEN }})
+    .then(response => res.status(204))
+    .catch(err => {
+      res.status(400).send('Error updating helpful status');
+    });
+});
+
 /* -------- RELATED PRODUCT FETCHING -------- */
 app.get('/relatedIds', function (req, res) {
   let productId = req.query.productId;
