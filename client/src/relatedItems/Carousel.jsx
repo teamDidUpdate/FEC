@@ -93,7 +93,12 @@ const Carousel = ({ products, productId, setProductId, related }) => {
           })
           : null
         }
-        {!related ? <FiPlusCircle onClick={() => console.log('click')}/> : null}
+        {!related ?
+          <div className='empty-card'>
+            <h2>Add to Outfit</h2>
+            <FiPlusCircle id='add-outfit-btn' onClick={() => console.log('click')}/>
+          </div>
+          : null }
         { length !== 0 && !related ?
           products.map((product, index) => {
             return (
