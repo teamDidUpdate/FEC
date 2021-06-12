@@ -12,6 +12,7 @@ const App = () => {
   const [productId, setProductId] = useState(13023);
   const [reviewCount, setReviewCount] = useState(0);
   const [rating, setRating] = useState(0);
+  const [currentProduct, setCurrentProduct] = useState({});
 
   return (
     <div>
@@ -19,12 +20,14 @@ const App = () => {
         <OverviewApp productId={productId}
           reviewCount={reviewCount}
           rating={rating}
-          setProductId={setProductId} />
+          setProductId={setProductId}
+          setCurrentProduct={setCurrentProduct} />
       </div>
-      <div>
+      {/* <div>
         <RelatedItemsAndComparison
           productId={productId}
-          setProductId={setProductId} />
+          setProductId={setProductId}
+          currentProduct={currentProduct}/>
       </div>
       <div>
         <QAwidget
@@ -37,7 +40,7 @@ const App = () => {
           setProductId={setProductId}
           setReviewCount={setReviewCount}
           setRating={setRating} />
-      </div>
+      </div> */}
     </div>
   );
 };

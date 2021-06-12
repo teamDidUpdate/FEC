@@ -71,17 +71,17 @@ const Image = (props) => {
     let img = document.getElementById('main-img');
     let imgWidth = img.naturalWidth;
     let imgHeight = img.naturalHeight;
-    let ratio = imgHeight / imgWidth;
     let boxWidth = container.clientWidth;
+    let boxHeight = container.clientHeight;
     let rect = e.target.getBoundingClientRect();
     let xPos = e.clientX - rect.left;
     let yPos = e.clientY - rect.top;
     let xPercent = xPos / (boxWidth / 100) + '%';
-    let yPercent = yPos / ((boxWidth * ratio) / 100) + '%';
+    let yPercent = yPos / (boxHeight / 100) + '%';
 
     Object.assign(container.style, {
       backgroundPosition: xPercent + ' ' + yPercent,
-      backgroundSize: imgWidth * 2.5 + 'px'
+      backgroundSize: boxWidth * 3 + 'px'
     });
   };
 
