@@ -8,7 +8,6 @@ const Image = (props) => {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(7);
   const [imgStyle, setImgStyle] = useState({});
-  const [expendStyle, setExpendStyle] = useState({backgroundSize: 'cover', backgroundPosition: 'center'});
   const [containerStyle, setContainerStyle] = useState({});
   const [zoomIn, setZoomIn] = useState(false);
 
@@ -25,7 +24,6 @@ const Image = (props) => {
 
   useEffect(() => {
     setImageURL(images[imageIdx].url);
-    setExpendStyle({backgroundSize: 'cover', backgroundPosition: 'center'});
   }, [imageIdx]);
 
   useEffect(() => {
@@ -70,20 +68,17 @@ const Image = (props) => {
 
   const handleZoom = (e) => {
     let container = document.getElementById('main-div');
-    let img = document.getElementById('main-img');
-    let imgWidth = img.naturalWidth;
-    let imgHeight = img.naturalHeight;
-    let ratio = imgHeight / imgWidth;
     let boxWidth = container.clientWidth;
+    let boxHeight = container.clientHeight;
     let rect = e.target.getBoundingClientRect();
     let xPos = e.clientX - rect.left;
     let yPos = e.clientY - rect.top;
     let xPercent = xPos / (boxWidth / 100) + '%';
-    let yPercent = yPos / ((boxWidth * ratio) / 100) + '%';
+    let yPercent = yPos / (boxHeight / 100) + '%';
 
     Object.assign(container.style, {
       backgroundPosition: xPercent + ' ' + yPercent,
-      backgroundSize: imgWidth * 2.5 + 'px'
+      backgroundSize: boxWidth * 3 + 'px'
     });
   };
 
@@ -97,7 +92,7 @@ const Image = (props) => {
     <div>
       <div className="images">
         <div className="image-container" style={containerStyle}>
-          <img id="main-img" src={imageURL} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
+          <img id="main-img" src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
           {props.expendView &&
             <div id="main-div" onClick={(e) => {
               if (!zoomIn) {
@@ -107,7 +102,7 @@ const Image = (props) => {
                 setZoomIn(!zoomIn);
                 props.setView(!props.expendView);
               }
-            }} style={expendStyle}></div>
+            }} style={{backgroundImage: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
           }
           {!zoomIn && <div className="zoom-icon" onClick={() => props.setView(!props.expendView) }>
             <span className="zoom-icon-up">⌜ ⌝</span>

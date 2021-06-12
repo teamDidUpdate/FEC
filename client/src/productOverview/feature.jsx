@@ -5,7 +5,7 @@ const Feature = (props) => {
     <div>
       {props.features &&
           <div className="feature-container">
-            {props.features.map((f) => <div> ✓&nbsp; {f.value}</div>)}
+            {props.features.map((f) => <div key={f.feature}> ✓&nbsp; {f.value}</div>)}
           </div>
       }
     </div>

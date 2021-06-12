@@ -10,7 +10,7 @@ const MoreAnswers = ({ answer, answerList }) => {
       {
         collapseAnswers
           ? <div>
-            <button
+            <button className='more-answers'
               onClick={() => {
                 setCollapseAnswers(!collapseAnswers);
               }}>
@@ -24,7 +24,7 @@ const MoreAnswers = ({ answer, answerList }) => {
               );
             })}
             <div>
-              <button
+              <button className='collapse-answers'
                 onClick={() => {
                   setCollapseAnswers(!collapseAnswers);
                 }}>

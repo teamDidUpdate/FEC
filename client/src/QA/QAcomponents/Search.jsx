@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const Search = ({ handleSearch }) => {
+const Search = ({ handleSearch, searchInput }) => {
 
   const handleFocus = (event) => {
     event.preventDefault();
@@ -10,8 +10,8 @@ const Search = ({ handleSearch }) => {
   };
 
   return (
-    <div>
-      <form className='qa-search'>
+    <div className='qa-search'>
+      <form>
         <input style={{
           fontSize: 14,
           fontWeight: 600,

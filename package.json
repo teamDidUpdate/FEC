@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "react-dev": "webpack --mode development --watch"
   },
   "repository": {
@@ -24,8 +24,11 @@
     "@babel/preset-react": "^7.12.5",
     "babel-loader": "^8.2.1",
     "css-loader": "^5.2.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.28.0",
     "eslint-plugin-react": "^7.24.0",
+    "jest": "^27.0.4",
     "nodemon": "^2.0.7",
     "style-loader": "^2.0.0",
     "webpack": "^4.46.0",

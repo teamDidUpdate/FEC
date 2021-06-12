@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Stars from './stars.jsx';
 import StarsRating from 'stars-rating';
+import ReviewEntry from './ReviewEntry.jsx';
 
 
 const RatingEntry = ({ currentProductId, setRating }) => {
@@ -41,6 +42,9 @@ const RatingEntry = ({ currentProductId, setRating }) => {
     return result;
   };
 
+  var handleStarClick = function (event) {
+    console.log(<ReviewEntry/>);
+  };
   return (
     <div>
 
@@ -53,7 +57,7 @@ const RatingEntry = ({ currentProductId, setRating }) => {
           </div>
           <div className='recommendationPercent'>{((Number(currentProduct.recommended.true) / (Number(currentProduct.recommended.false) + Number(currentProduct.recommended.true))) * 100).toString().substring(0, 2)}% of people recommend this product!</div>
           <div className='StarsGraphRating'>
-            <div className='theStars' id='5Stars'>5 Stars
+            <div className='theStars' id='5Stars' onClick={handleStarClick}>5 Stars
               <div className='progressBar'><ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '5'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div></div>
             <div className='theStars' id='4Stars'>4 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '4'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
             <div className='theStars' id='3Stars'>3 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '3'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>

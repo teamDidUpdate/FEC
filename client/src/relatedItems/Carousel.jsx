@@ -18,11 +18,6 @@ const Carousel = ({ products, productId, setProductId, related }) => {
 
   useEffect(() => {
     let buffer = related ? 3 : 2;
-    console.log('related', related);
-    console.log('length', length);
-    console.log('current', current);
-    console.log('buffer', buffer);
-
     if (current === 0 && current + buffer >= length) {
       setScrollable({left: false, right: false});
     } else if (current === 0 && current + buffer < length) {

@@ -25,29 +25,21 @@ const QAwidget = ( { productId } ) => {
       : setSearchInput('');
   };
 
-  let SearchedQuestions = (questionInput, searchField) => {
-    questionInput
-      .filter(q => q.question_body
-        .toLowerCase()
-        .includes(searchField
-          .toLowerCase()));
-  };
-
   // Bindings
   handleSearch = handleSearch.bind(this);
-  SearchedQuestions = SearchedQuestions.bind(this);
 
   return (
     <div>
       <div className='qa-widget'>
 
-        <div className='qa-header'>Question And Answers</div>
+        <h3 className='qa-header'>Question And Answers</h3>
         <Search
-          handleSearch={handleSearch} />
+          handleSearch={handleSearch}
+          searchInput={searchInput} />
 
         {questions !== undefined && Object.keys(questions).length !== 0 ?
           <QuestionList
-            SearchedQuestions={SearchedQuestions}
+            productId={productId}
             searchInput={searchInput}
             questions={questions.results} />
           : console.log('loading Q&A')}
