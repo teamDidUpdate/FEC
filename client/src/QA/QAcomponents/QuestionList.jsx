@@ -12,7 +12,7 @@ const QuestionList = ({ questions, searchInput, productId }) => (
           .map((question, count) => (
             count > 3
               ? <MoreQuestions questions={questions} key={questions.question_id} />
-              : <Question question={question} productId={productId}key={question.question_id} />
+              : <Question question={question} productId={productId} key={question.question_id} />
           ))
         :
         questions.filter(q => {
