@@ -15,7 +15,9 @@ const QAwidget = ( { productId } ) => {
 
   useEffect(() => {
     axios.get('/qa/questions', {params: { productId: productId }})
-      .then(response => setQuestions(response.data))
+      .then(response => {
+        setQuestions(response.data);
+      })
       .catch(err => console.log(err));
   }, [productId]);
 
@@ -42,9 +44,11 @@ const QAwidget = ( { productId } ) => {
             productId={productId}
             searchInput={searchInput}
             questions={questions.results} />
-          : console.log('loading Q&A')}
+          : null}
 
-        <AddQuestion productID={questions.product_id}/>
+        <AddQuestion
+          productId={questions.productId}
+        />
 
       </div>
     </div>

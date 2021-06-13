@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
 const Photos = ({ photo }) => {
-  const [clicked, setClicked] = useState(false);
-  const imgClick = () => setClicked(!clicked);
 
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
@@ -15,18 +13,6 @@ const Photos = ({ photo }) => {
     var span = document.getElementsByClassName('close')[0];
     modal.style.display = 'none';
   };
-
-  // const smallPic = (
-  //   <div>
-  //     <img
-  //       src={photo}
-  //       onClick={() => imgClick()}
-  //       style={{
-  //         maxWidth: '100%',
-  //       }}
-  //     ></img>
-  //   </div>
-  // );
 
   return (
 
@@ -47,20 +33,7 @@ const Photos = ({ photo }) => {
       </div>
 
     </div>
-    // <div style={{
-    //   marginRight: '1.5%',
-    //   display: 'inline-flex',
-    //   flexDirection: 'row'
-    // }}>
-    //   <img
-    //     className='photo'
-    //     src={photo}
-    //     width={75}
-    //     height={75}></img>
-    // </div>
   );
 };
 
 export default Photos;
-
-{/* <img src={photo} className='photo' width={75} height={75}></img> */}
