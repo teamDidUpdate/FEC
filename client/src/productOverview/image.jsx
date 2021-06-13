@@ -68,20 +68,17 @@ const Image = (props) => {
 
   const handleZoom = (e) => {
     let container = document.getElementById('main-div');
-    let img = document.getElementById('main-img');
-    let imgWidth = img.naturalWidth;
-    let imgHeight = img.naturalHeight;
-    let ratio = imgHeight / imgWidth;
     let boxWidth = container.clientWidth;
+    let boxHeight = container.clientHeight;
     let rect = e.target.getBoundingClientRect();
     let xPos = e.clientX - rect.left;
     let yPos = e.clientY - rect.top;
     let xPercent = xPos / (boxWidth / 100) + '%';
-    let yPercent = yPos / ((boxWidth * ratio) / 100) + '%';
+    let yPercent = yPos / (boxHeight / 100) + '%';
 
     Object.assign(container.style, {
       backgroundPosition: xPercent + ' ' + yPercent,
-      backgroundSize: imgWidth * 2.5 + 'px'
+      backgroundSize: boxWidth * 3 + 'px'
     });
   };
 
@@ -95,7 +92,7 @@ const Image = (props) => {
     <div>
       <div className="images">
         <div className="image-container" style={containerStyle}>
-          <img id="main-img" src={imageURL} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
+          <img id="main-img" src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
           {props.expendView &&
             <div id="main-div" onClick={(e) => {
               if (!zoomIn) {

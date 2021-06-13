@@ -5,13 +5,14 @@ import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
 import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
-import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
+import RelatedItemsAndComparison from './relatedItems/RelatedEntry.jsx';
 
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
   const [reviewCount, setReviewCount] = useState(0);
   const [rating, setRating] = useState(0);
+  const [currentProduct, setCurrentProduct] = useState({});
 
   return (
     <div>
@@ -19,12 +20,16 @@ const App = () => {
         <OverviewApp productId={productId}
           reviewCount={reviewCount}
           rating={rating}
-          setProductId={setProductId} />
+          setProductId={setProductId}
+          setCurrentProduct={setCurrentProduct} />
       </div>
       <div>
         <RelatedItemsAndComparison
           productId={productId}
-          setProductId={setProductId} />
+          setProductId={setProductId}
+          overviewProduct={currentProduct}
+          overviewRating={rating}
+        />
       </div>
       <div>
         <QAwidget

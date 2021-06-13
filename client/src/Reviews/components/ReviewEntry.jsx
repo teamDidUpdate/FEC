@@ -9,7 +9,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [currentlyShowing, setCurrentlyShowing] = useState([]);
   const [sortedReviews, setSortedReviews] = useState([]);
 
-
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
@@ -27,10 +26,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     setReviewCount(sortedReviews.length);
   }, [sortedReviews]);
 
-  useEffect(() => {
-    setCurrentlyShowing(currentlyShowing);
-  }, [currentlyShowing]);
-
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById('img01');
@@ -46,9 +41,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
   var handleHelpfulnessClick = (event) => {
     var stringId = event.target.id.toString();
+    var id = document.getElementsByClassName(stringId)[0];
     if (event.target.className === 'clickedTrue') {
-      axios.get('/helpfulReview', { params: { productId: productId } });
-      event.target.innerText++;
+      axios.get('/helpfulReview', { params: { productId: stringId } });
+      id.innerText++;
       event.target.className = 'clickedFalse';
     }
   };
@@ -72,6 +68,16 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     var modal = document.getElementById('reviewModal');
     modal.style.display = 'none';
   };
+
+  var handleReviewSubmission = (event) => {
+    event.preventDefault();
+  };
+
+  var handleTextChange = (event) => {
+    console.log(event.target.value);
+  };
+
+
 
   return (
     <div className="ReviewsOverview" id="jumpEntry">
@@ -102,7 +108,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 <p className='recommendedTrue'>
                   <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
                 null}
-              <p className='helpfulness'>Was this review helpful? Yes (<span className='clickedTrue' id={review.review_id} onClick={handleHelpfulnessClick}>{review.helpfulness}</span>)</p>
+              <p className='helpfulness'>Was this review helpful?
+                <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
+                (<span className={review.review_id}>{review.helpfulness}</span>)
+              </p>
               <div className='reviewPhotos'>{review.photos.length > 0 ?
                 review.photos.map((element) => (
                   <div className='Modals' key={element.url}>
@@ -121,11 +130,29 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
           <div className='reviewButton'>
             <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
-            <div id="reviewModal" class="modal">
-              <div className="addReview-modal-content" onClick={handleReviewModalClose}>
+            <div id="reviewModal" className="modal">
+              <div className="addReview-modal-content">
                 <span className="close" onClick={handleReviewModalClose}>&times;</span>
-                <button>Submit Review!</button>
-                <p>Some text in the Modal..</p>
+                <form class="boilerform" action="" method="post">
+                  <fieldset class="c-form">
+                    <legend class="c-form__heading">Contact form</legend>
+                    <div class="c-form__row">
+                      <label for="name" class="c-label">Name</label>
+                      <input type="text" name="name" id="name" class="c-input-field" value="" autocorrect="off" required />
+                    </div>
+                    <div class="c-form__row">
+                      <label for="email" class="c-label">Email</label>
+                      <input type="email" name="email" id="email" autocapitalize="none" autocorrect="off" class="c-input-field" required />
+                    </div>
+                    <div class="c-form__row">
+                      <label for="message" class="c-label">Your message</label>
+                      <textarea name="message" id="message" class="c-input-field c-input-field--multiline" rows="10"></textarea>
+                    </div>
+                    <div class="c-form__row">
+                      <button class="c-button" type="submit">Submit</button>
+                    </div>
+                  </fieldset>
+                </form>
               </div>
             </div>
           </div>
