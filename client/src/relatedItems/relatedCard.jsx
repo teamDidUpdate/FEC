@@ -18,11 +18,16 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
     })();
   }, [product]);
 
+  const handleRelatedCardClick = async () => {
+    await setProductId(product.overview.id);
+    document.getElementById('header').scrollIntoView();
+  };
+
   return (
     <div className='card-container'>
       <MdStarBorder className='action-btn' onClick={() => setModalOpen(true)}/>
       <CompareModal open={modalOpen} productId={productId} relatedProduct={product} onClose={() => setModalOpen(false)}/>
-      <div className='card-inner-container'onClick={() => setProductId(product.overview.id)}>
+      <div className='card-inner-container'onClick={() => handleRelatedCardClick()}>
         <div className='card-item'>
           <img className='card-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
         </div>

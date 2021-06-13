@@ -710,7 +710,7 @@ h1.reviewModalSize {
 .cards-container {
   position: relative;
   width: 100%;
-  height: 44vh;
+  height: 40vh;
   display: grid;
   grid-auto-flow: column;
   justify-content: left;
@@ -753,7 +753,7 @@ h1.reviewModalSize {
 
 .card-image {
   width: 100%;
-  height: 200px;
+  height: 22vh;
   object-fit: cover;
 }
 
@@ -892,4 +892,55 @@ h1.reviewModalSize {
 .feature-list {
   display: grid;
   grid-template-rows: repeat(8, 1fr);
+}
+
+/* ---- CSSTransitions ---- */
+
+/* enter */
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 3000ms linear;
+}
+
+/* exit */
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 3000ms linear;
+}
+.fade-exit-done {
+  opacity: 0;
+}
+
+/* slide enter */
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.97) translateY(5px);
+  z-index: 1;
+}
+.slide-enter.slide-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 3000ms linear 1000ms, transform 3000ms ease-in-out 1000ms;
+}
+
+/* slide exit */
+.slide-exit {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+
+}
+.slide-exit.slide-exit-active {
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    transition: opacity 1500ms linear, transform 1500ms ease-out;
+}
+.slide-exit-done {
+  opacity: 0;
 }
