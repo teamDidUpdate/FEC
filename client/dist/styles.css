@@ -379,6 +379,14 @@ body {
     padding: 10px;
 }
 
+.clickedTrue {
+  cursor: pointer
+}
+.clickedTrue, .clickedFalse {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 .StarAndQuarterRating {
   display: flex;
 }
@@ -500,6 +508,12 @@ p.helpfulness {
 
 span.reviewSort {
   text-decoration: underline;
+}
+
+h1.reviewModalSize {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
 
 
@@ -626,6 +640,11 @@ span.reviewSort {
 
 
 /* ------------ Related Items ------------ */
+.section-header {
+  margin-top: 1em;
+  font-weight: lighter;
+}
+
 .carousel {
   position: relative;
   height: 44vh;
@@ -633,12 +652,13 @@ span.reviewSort {
   grid-auto-flow: column;
   justify-content: left;
   align-items: center;
+  margin: 1em 0 1em 0;
 }
 
 .cards-container {
   position: relative;
   width: 100%;
-  height: 44vh;
+  height: 40vh;
   display: grid;
   grid-auto-flow: column;
   justify-content: left;
@@ -649,19 +669,20 @@ span.reviewSort {
 .card-container {
   position: relative;
   display: grid;
+  grid-template-rows: 1fr;
   width: 16vw;
   height: 40vh;
-  border: 1px solid black;
-  margin: 1em;
-  transition: all 2s;
-  box-shadow: 3px 2px 2px grey;
+  margin-right: 2em;
 }
 
 .card-inner-container {
   position: relative;
   display: grid;
-  width: 100%;
-  height: 100%;
+  grid-template-rows: 5fr 1fr 1fr 1fr 1fr;
+  width: 16vw;
+  height: 40vh;
+  box-shadow: 3px 2px 2px grey;
+  border: 1px solid black;
 }
 
 .card-item.text {
@@ -678,10 +699,29 @@ span.reviewSort {
   margin-top: 0;
 }
 
-.related-image {
+.card-image {
   width: 100%;
-  height: 225px;
+  height: 22vh;
   object-fit: cover;
+}
+
+.empty-card {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 16vw;
+  height: 40vh;
+  margin-right: 2em;
+  background-color: #f1f1f1;
+  box-shadow: 3px 2px 2px grey;
+  border: 1px solid black;
+  cursor: pointer;
+  user-select: none;
+}
+
+#add-outfit-btn {
+  font-size: 3rem;
 }
 
 .right-arrow {
@@ -711,16 +751,16 @@ span.reviewSort {
 }
 
 .action-btn {
-  font-size: 2rem;
+  font-size: 1.5rem;
   position: absolute;
   top: 8px;
   right: 8px;
   cursor: pointer;
   user-select: none;
-  background: white;
-  border-radius: 2rem;
+  background: #FFF;
   opacity: .75;
-  box-shadow: 3px 2px 2px grey;
+  border-radius: 2rem;
+  box-shadow: 3px 2px 2px #333;
   z-index: 10;
 }
 
@@ -800,4 +840,55 @@ span.reviewSort {
 .feature-list {
   display: grid;
   grid-template-rows: repeat(8, 1fr);
+}
+
+/* ---- CSSTransitions ---- */
+
+/* enter */
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 3000ms linear;
+}
+
+/* exit */
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 3000ms linear;
+}
+.fade-exit-done {
+  opacity: 0;
+}
+
+/* slide enter */
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.97) translateY(5px);
+  z-index: 1;
+}
+.slide-enter.slide-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 3000ms linear 1000ms, transform 3000ms ease-in-out 1000ms;
+}
+
+/* slide exit */
+.slide-exit {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+
+}
+.slide-exit.slide-exit-active {
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    transition: opacity 1500ms linear, transform 1500ms ease-out;
+}
+.slide-exit-done {
+  opacity: 0;
 }

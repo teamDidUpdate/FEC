@@ -1,36 +1,95 @@
 import React, {useState, useEffect} from 'react';
 import RelatedCard from './RelatedCard.jsx';
+import OutfitCard from './OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
-import { CSSTransition } from 'react-transition-group';
+import { FiPlusCircle } from 'react-icons/Fi';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import axios from 'axios';
 
-const Carousel = ({ products, productId, setProductId }) => {
-  const [current, setCurrent] = useState(0);
-  const [length, setLength] = useState(4);
-  const [scrollable, setScrollable] = useState({right: true, left: false});
+const Carousel = ({ products, productId, setProductId, related, overviewProduct, overviewRating, setOutfits}) => {
+  const [productWithRating, setProductWithRating] = useState({});
+  const [currentPos, setCurrentPos] = useState(0);
+  const [length, setLength] = useState(0);
+  const [scrollable, setScrollable] = useState({right: false, left: false});
 
+  // set varibles to determine scrollability
   useEffect(() => {
-    setLength(products.length);
-    setCurrent(0);
+    if (related) {
+      setLength(products.length);
+    } else {
+      setLength(Object.keys(products).length);
+    }
+    setCurrentPos(0);
   }, [products]);
 
+  // combine the current overview product with its rating
   useEffect(() => {
-    if (current + 3 >= length) {
+    if (overviewProduct && overviewRating) {
+      let combinedProd = {...overviewProduct};
+      combinedProd['rating'] = overviewRating;
+      setProductWithRating(combinedProd);
+    }
+  }, [overviewProduct, overviewRating]);
+
+  // check to see if arrow buttons appear
+  useEffect(() => {
+    let buffer = related ? 3 : 2;
+    if (currentPos === 0 && currentPos + buffer >= length) {
+      setScrollable({left: false, right: false});
+    } else if (currentPos === 0 && currentPos + buffer < length) {
+      setScrollable({left: false, right: true});
+    } else if (currentPos !== 0 && currentPos + buffer >= length) {
       setScrollable({right: false, left: true});
-    } else if (current === 0) {
-      setScrollable({right: true, left: false});
     } else {
       setScrollable({right: true, left: true});
     }
-  }, [current]);
+  }, [currentPos, length]);
 
   const nextCard = () => {
-    setCurrent(current >= length - 1 ? length - 1 : current + 1);
+    setCurrentPos(currentPos >= length - 1 ? length - 1 : currentPos + 1);
   };
 
   const prevCard = () => {
-    setCurrent(current <= 0 ? 0 : current - 1 );
+    setCurrentPos(currentPos <= 0 ? 0 : currentPos - 1 );
   };
 
+  const getDefaultStyle = (prod) => {
+    prod.styles.results.forEach(style => {
+      if (style['default?'] === true) {
+        return style;
+      }
+    });
+    return prod.styles.results[0];
+  };
+
+  const getStarRating = async (id) => {
+    let averageRating = 0;
+    await axios.get('/getAverageRating', { params: { productId: id } })
+      .then((response) => {
+        averageRating = response.data;
+        return;
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+    return averageRating;
+  };
+
+  const saveOutfit = () => {
+    let allOutfits = {...products};
+    allOutfits[productWithRating.overview.id] = productWithRating;
+    setOutfits(allOutfits);
+    window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
+  };
+
+  const deleteOutfit = (id) => {
+    let allOutfits = {...products};
+    delete allOutfits[id];
+    setOutfits(allOutfits);
+    window.localStorage.removeItem('myThreads');
+    window.localStorage.setItem('myThreads', JSON.stringify(allOutfits));
+  };
 
   return (
     <section className='carousel'>
@@ -43,17 +102,62 @@ const Carousel = ({ products, productId, setProductId }) => {
         : null
       }
       <div className='cards-container'>
-        {products.map((product, index) => {
-          return (
-            index >= current || current + 2 >= length ?
-              <RelatedCard
-                product={product}
-                key={product.overview.id}
-                productId={productId}
-                setProductId={setProductId}/>
-              : null
-          );
-        })}
+        { length !== 0 && related ?
+          products.map((product, index) => {
+            return (
+              index >= currentPos || currentPos + 2 >= length ?
+                <TransitionGroup className="card-container">
+                  <CSSTransition
+                    key={product.overview.id}
+                    timeout={4500}
+                    classNames="slide"
+                  >
+                    <RelatedCard
+                      product={product}
+                      key={product.overview.id}
+                      productId={productId}
+                      setProductId={setProductId}
+                      getStarRating={getStarRating}
+                      getDefaultStyle={getDefaultStyle}
+                    />
+                  </CSSTransition>
+                </TransitionGroup>
+                : null
+            );
+          })
+          : null
+        }
+        {!related ?
+          <div className='empty-card' onClick={() => saveOutfit()}>
+            <h2>Add to Outfit</h2>
+            <FiPlusCircle id='add-outfit-btn' />
+          </div>
+          : null }
+        { length !== 0 && !related ?
+          Object.values(products).map((product, index) => {
+            return (
+              index >= currentPos || currentPos + 1 >= length ?
+                <TransitionGroup className="card-container">
+                  <CSSTransition
+                    key={product.overview.id}
+                    timeout={4500}
+                    classNames="slide"
+                  >
+                    <OutfitCard
+                      outfit={product}
+                      key={product.overview.id}
+                      productId={productId}
+                      setProductId={setProductId}
+                      getDefaultStyle={getDefaultStyle}
+                      deleteOutfit={deleteOutfit}
+                    />
+                  </CSSTransition>
+                </TransitionGroup>
+                : null
+            );
+          })
+          : null
+        }
       </div>
     </section>
   );

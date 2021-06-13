@@ -5,7 +5,7 @@ import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
 import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
-import RelatedItemsAndComparison from './relatedItems/relatedItemsAndComparison.jsx';
+import RelatedItemsAndComparison from './relatedItems/RelatedEntry.jsx';
 
 
 const App = () => {
@@ -27,7 +27,9 @@ const App = () => {
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId}
-          currentProduct={currentProduct}/>
+          overviewProduct={currentProduct}
+          overviewRating={rating}
+        />
       </div>
       <div>
         <QAwidget
