@@ -710,7 +710,7 @@ h1.reviewModalSize {
 .cards-container {
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 44vh;
   display: grid;
   grid-auto-flow: column;
   justify-content: left;
@@ -903,7 +903,7 @@ h1.reviewModalSize {
 }
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 3000ms linear;
+    transition: opacity 1000ms linear;
 }
 
 /* exit */
@@ -912,7 +912,7 @@ h1.reviewModalSize {
 }
 .fade-exit.fade-exit-active {
     opacity: 0;
-    transition: opacity 3000ms linear;
+    transition: opacity 1000ms linear;
 }
 .fade-exit-done {
   opacity: 0;

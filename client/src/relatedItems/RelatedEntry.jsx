@@ -4,8 +4,9 @@ import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, overviewRating}) => {
-  const [relatedProducts, setRelatedProducts] = useState(null);
-  const [outfits, setOutfits] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [outfits, setOutfits] = useState([]);
+  const [animate, setAnimate] = useState(false);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -34,6 +35,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
       });
       let relatedItems = await Promise.all(items);
       setRelatedProducts(relatedItems);
+      setAnimate(true);
     } catch (err) {
       console.log(err);
     }
@@ -57,9 +59,9 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
     <>
       <h2 className='section-header'>RELATED PRODUCTS</h2>
       <CSSTransition
-        in={relatedProducts}
+        in={animate}
         appear={true}
-        timeout={3000}
+        timeout={1000}
         classNames="fade"
         unmountOnExit
       >
@@ -74,9 +76,9 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
       </CSSTransition>
       <h2 className='section-header'>YOUR OUTFIT</h2>
       <CSSTransition
-        in={relatedProducts}
+        in={animate}
         appear={true}
-        timeout={3000}
+        timeout={1000}
         classNames="fade"
         unmountOnExit
       >
