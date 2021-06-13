@@ -15,19 +15,14 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [twoStarReviews, setTwoStarReviews] = useState([]);
   const [oneStarReviews, setOneStarReviews] = useState([]);
   const [emptyArray, setEmptyArray] = useState([]);
+  const [currentFilterArray, setCurrentFilterArray] = useState([]);
 
 
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
-        setCurrentlyShowing(emptyArray.slice());
-        setFiveStarReviews(emptyArray.slice());
-        setFourStarReviews(emptyArray.slice());
-        setThreeStarReviews(emptyArray.slice());
-        setTwoStarReviews(emptyArray.slice());
-        setOneStarReviews(emptyArray.slice());
-
+        resetArrays();
         response.data.results.map((element) => {
           if (element.rating === 5) {
             setFiveStarReviews((previousState) => previousState.concat(element));
@@ -64,6 +59,14 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     setReviewCount(sortedReviews.length);
   }, [sortedReviews]);
 
+  var resetArrays = () => {
+    setCurrentlyShowing(emptyArray.slice());
+    setFiveStarReviews(emptyArray.slice());
+    setFourStarReviews(emptyArray.slice());
+    setThreeStarReviews(emptyArray.slice());
+    setTwoStarReviews(emptyArray.slice());
+    setOneStarReviews(emptyArray.slice());
+  };
 
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
@@ -89,16 +92,57 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var handleMoreReviews = () => {
-    var length = currentlyShowing.length;
-    setCurrentlyShowing(() => []);
-    var checkCurrentSort = document.getElementById('currentDrop');
-    if (checkCurrentSort.innerText === 'newest') {
-      setCurrentlyShowing(previousState => previousState.concat(sortedReviews.slice(0, length + 2)));
-    } else {
-      setCurrentlyShowing(previousState => previousState.concat(storedReviews.slice(0, length + 2)));
+    var currentFilters = currentFilterArray;
+    var checkCurrentSort = document.getElementById('currentDrop').innerText;
+    var currentLength = currentlyShowing.length;
+    if (checkCurrentSort === 'newest') {
+      addReviewsWithFilters(currentFilters, sortedReviews);
+    } else if (checkCurrentSort === 'relevance') {
+      addReviewsWithFilters(currentFilters, storedReviews);
     }
-
   };
+
+  var addReviewsWithFilters = (currentlyFilteredRatingsArray, currentDropDownArray) => {
+    var count = 0;
+    for (var i = 0; i < currentDropDownArray.length; i++) {
+      var currentlyShowingJSON = JSON.stringify(currentlyShowing);
+      var currentIterationArray = JSON.stringify(currentDropDownArray[i].review_id);
+      if (currentlyShowingJSON.indexOf(currentIterationArray) === -1) {
+        setCurrentlyShowing((previousState) => previousState.concat(currentDropDownArray[i]));
+        count++;
+      }
+      if (count === 2) {
+        break;
+      }
+    }
+  };
+
+  var resetFilter = () => {
+    var currentDropDown = document.getElementById('currentDrop').innerText;
+
+    if (currentDropDown === 'newest') {
+      setCurrentlyShowing(sortedReviews.slice(0, 2));
+    } else {
+      setCurrentlyShowing(storedReviews.slice(0, 2));
+    }
+    setCurrentFilterArray([]);
+    resetFilterState();
+  };
+
+  var resetFilterState = () => {
+    var fiveStarId = document.getElementById('5Stars');
+    var fourStarId = document.getElementById('4Stars');
+    var threeStarId = document.getElementById('3Stars');
+    var twoStarId = document.getElementById('2Stars');
+    var oneStarId = document.getElementById('1Stars');
+    fiveStarId.className = 'numRating';
+    fourStarId.className = 'numRating';
+    threeStarId.className = 'numRating';
+    twoStarId.className = 'numRating';
+    oneStarId.className = 'numRating';
+  };
+
+
 
   var handleAddReview = () => {
     var modal = document.getElementById('reviewModal');
@@ -126,8 +170,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var dropDown = (event) => {
-    var length = currentlyShowing.length;
-    setCurrentlyShowing(() => []);
     var currentlyShowingSort = document.getElementById('currentDrop');
     var selectedDropDownText = document.getElementById('dropDownOption1');
     var temp = currentlyShowingSort.innerHTML;
@@ -135,10 +177,12 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     selectedDropDownText.innerHTML = temp;
 
     if (currentlyShowingSort.innerText === 'newest') {
-      setCurrentlyShowing(() => sortedReviews.slice(0, length));
+      setCurrentlyShowing(() => sortedReviews.slice(0, 2));
     } else {
-      setCurrentlyShowing(()=> storedReviews.slice(0, length));
+      setCurrentlyShowing(() => storedReviews.slice(0, 2));
     }
+    setCurrentFilterArray([]);
+    resetFilter();
   };
 
 
@@ -147,20 +191,23 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
       <RatingEntry
         currentProductId={productId}
         setRating={setRating}
-        currentlyShowing={currentlyShowing} setCurrentlyShowing={setCurrentlyShowing}
+        currentlyShowing={currentlyShowing}
+        setCurrentlyShowing={setCurrentlyShowing}
         fiveStarReviews={fiveStarReviews}
         fourStarReviews={fourStarReviews}
         threeStarReviews={threeStarReviews}
         twoStarReviews={twoStarReviews}
         oneStarReviews={oneStarReviews}
         storedReviews={storedReviews}
-        sortedReviews = {sortedReviews} />
+        sortedReviews={sortedReviews}
+        currentFilterArray={currentFilterArray}
+        setCurrentFilterArray={setCurrentFilterArray} />
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{masterListOfReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
-            <span id = 'currentDrop'> relevance</span>
+            <span id='currentDrop'> relevance</span>
             <div className="dropdown-content">
-              <p id ='dropDownOption1' onClick={dropDown}>newest</p>
+              <p id='dropDownOption1' onClick={dropDown}>newest</p>
             </div>
           </div></div>
         {currentlyShowing.length > 0 ?

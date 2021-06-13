@@ -7,9 +7,10 @@ import StarsRating from 'stars-rating';
 import ReviewEntry from './ReviewEntry.jsx';
 
 
-const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews }) => {
+const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray }) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentFilter, setCurrentFilter] = useState('');
+
 
   useEffect(() => {
     axios.get('/fetchMeta', { params: { productId: currentProductId } })
@@ -44,111 +45,144 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     return result * 100;
   };
 
+  var grabReviews = (rating, array) => {
+    var resultArray = [];
+    array.forEach((element) => {
+      if (element.rating === rating) {
+        resultArray.push(element);
+      }
+    });
+    return resultArray;
+  };
+
+  var clearFilteredArray = (array, currentStar) => {
+    var idx = currentFilterArray.indexOf(currentStar);
+    currentFilterArray.splice(idx, 1);
+    var tempArray = [];
+    array.forEach((element) => {
+      if (element.rating !== currentStar) {
+        tempArray.push(element);
+      }
+    });
+    setCurrentlyShowing(tempArray);
+  };
+
   var handleStarClick = function (event) {
     var length = document.getElementsByClassName('numRatingClickedTrue').length;
     if (length === 0) {
       setCurrentlyShowing([]);
       setCurrentFilter(() => '');
     }
+
+
+
     var currentStar = event.target.innerText.toString()[0];
     var clickedYet = document.getElementById(currentStar + 'Stars');
+    var currentSort = document.getElementById('currentDrop').innerText;
 
     if (clickedYet.className === 'numRating') {
       clickedYet.className += 'ClickedTrue';
       if (currentStar === '5') {
-        setCurrentlyShowing((previousState) => previousState.concat(fiveStarReviews));
-        setCurrentFilter((previousState) => previousState + ' 5 Stars ');
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 5 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 5 Stars ');
+        }
+        currentFilterArray.push(5);
       }
 
       if (currentStar === '4') {
-        setCurrentlyShowing((previousState) => previousState.concat(fourStarReviews));
-        setCurrentFilter((previousState) => previousState + ' 4 Stars ');
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 4 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 4 Stars ');
+
+        }
+        currentFilterArray.push(4);
       }
 
       if (currentStar === '3') {
-        setCurrentlyShowing((previousState) => previousState.concat(threeStarReviews));
-        setCurrentFilter((previousState) => previousState + ' 3 Stars ');
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 3 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 3 Stars ');
+        }
+        currentFilterArray.push(3);
       }
 
+
       if (currentStar === '2') {
-        setCurrentlyShowing((previousState) => previousState.concat(twoStarReviews));
-        setCurrentFilter((previousState) => previousState + ' 2 Stars ');
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 2 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 2 Stars ');
+        }
+        currentFilterArray.push(2);
       }
 
       if (currentStar === '1') {
-        setCurrentlyShowing((previousState) => previousState.concat(oneStarReviews));
-        setCurrentFilter((previousState) => previousState + ' 1 Stars ');
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 1 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 1 Stars ');
+        }
+        currentFilterArray.push(1);
       }
+
 
     } else {
       clickedYet.className = 'numRating';
 
       if (currentStar === '5') {
         setCurrentFilter((previousState) => previousState.replace('5 Stars', ' '));
-        var tempArray = [];
-        currentlyShowing.forEach((element) => {
-          if (element.rating !== 5) {
-            tempArray.push(element);
-          }
-        });
-
-        setCurrentlyShowing(tempArray);
+        clearFilteredArray(currentlyShowing, 5);
       }
 
       if (currentStar === '4') {
         setCurrentFilter((previousState) => previousState.replace('4 Stars', ' '));
-        var tempArray = [];
-        currentlyShowing.forEach((element) => {
-          if (element.rating !== 4) {
-            tempArray.push(element);
-          }
-        });
-        setCurrentlyShowing(tempArray);
+        clearFilteredArray(currentlyShowing, 4);
       }
 
       if (currentStar === '3') {
         setCurrentFilter((previousState) => previousState.replace('3 Stars', ' '));
-        var tempArray = [];
-        currentlyShowing.forEach((element) => {
-          if (element.rating !== 3) {
-            tempArray.push(element);
-          }
-        });
-        setCurrentlyShowing(tempArray);
+        clearFilteredArray(currentlyShowing, 3);
       }
 
       if (currentStar === '2') {
         setCurrentFilter((previousState) => previousState.replace('2 Stars', ' '));
-        var tempArray = [];
-        currentlyShowing.forEach((element) => {
-          if (element.rating !== 2) {
-            tempArray.push(element);
-          }
-        });
-        setCurrentlyShowing(tempArray);
+        clearFilteredArray(currentlyShowing, 2);
       }
 
       if (currentStar === '1') {
         setCurrentFilter((previousState) => previousState.replace('1 Stars', ' '));
-        var tempArray = [];
-        currentlyShowing.forEach((element) => {
-          if (element.rating !== 1) {
-            tempArray.push(element);
-          }
-        });
-        setCurrentlyShowing(tempArray);
+        clearFilteredArray(currentlyShowing, 1);
       }
     }
 
     if (document.getElementsByClassName('numRatingClickedTrue').length === 0) {
-      setCurrentlyShowing(storedReviews.slice(0, 2));
+      resetFilter();
     }
   };
 
 
-  var copyOfStoredReviews = storedReviews.slice();
   var resetFilter = () => {
-    setCurrentlyShowing(() => copyOfStoredReviews.slice(0, 2));
+    var currentDropDown = document.getElementById('currentDrop').innerText;
+    if (currentDropDown === 'newest') {
+      setCurrentlyShowing(sortedReviews.slice(0, 2));
+    } else {
+      setCurrentlyShowing(storedReviews.slice(0, 2));
+    }
+    setCurrentFilterArray([]);
     resetFilterState();
   };
 
@@ -166,10 +200,6 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     oneStarId.className = 'numRating';
   };
 
-  var determineFilters = () => {
-    var currentFilters = document.getElementsByClassName('numRatingClickedTrue');
-    return currentFilters.length;
-  };
 
   return (
     <div>
@@ -224,11 +254,11 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
                 Number(calculateEachAverage(currentProduct.ratings, '1')) :
                 0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
-            {determineFilters() !== 0 ?
+            {currentFilterArray.length !== 0 ?
               <div className='filters'>
-                <div id='currentFilters'>Current Filter(s): {currentFilter}
+                <div id='currentFilters'> Current Filter: {currentFilter}
                 </div>
-                <div id='ratingReset' onClick={resetFilter}>Remove all filters</div>
+                <div id='ratingReset' onClick={resetFilter}>Reset Filter</div>
               </div> :
               <div className='filters'>
                 <div id='currentFilters' className='reviewHidden'>
