@@ -6,7 +6,6 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
   const [defaultStyle, setDefaultStyle] = useState({});
   const imageURL = outfit.styles.results[0].photos[0].thumbnail_url;
 
-
   useEffect(() => {
     (async () => {
       let style = await getDefaultStyle(outfit);
