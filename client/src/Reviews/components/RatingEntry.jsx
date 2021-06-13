@@ -91,6 +91,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
             tempArray.push(element);
           }
         });
+
         setCurrentlyShowing(tempArray);
       }
 
@@ -149,7 +150,6 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
   var resetFilter = () => {
     setCurrentlyShowing(() => copyOfStoredReviews.slice(0, 2));
     resetFilterState();
-
   };
 
   var resetFilterState = () => {
@@ -166,10 +166,10 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     oneStarId.className = 'numRating';
   };
 
-  var calculateProgressComplete = () => {
-
-  }
-
+  var determineFilters = () => {
+    var currentFilters = document.getElementsByClassName('numRatingClickedTrue');
+    return currentFilters.length;
+  };
 
   return (
     <div>
@@ -224,11 +224,11 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
                 Number(calculateEachAverage(currentProduct.ratings, '1')) :
                 0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
             </div>
-            {currentFilter.length !== 0 ?
+            {determineFilters() !== 0 ?
               <div className='filters'>
-                <div id='currentFilters'> Current Filter: {currentFilter}
+                <div id='currentFilters'>Current Filter(s): {currentFilter}
                 </div>
-                <div id='ratingReset' onClick={resetFilter}>Reset Filter</div>
+                <div id='ratingReset' onClick={resetFilter}>Remove all filters</div>
               </div> :
               <div className='filters'>
                 <div id='currentFilters' className='reviewHidden'>

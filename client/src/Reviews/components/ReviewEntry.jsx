@@ -49,8 +49,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
             setOneStarReviews((previousState) => previousState.concat(element));
           }
         });
-
-        setSortedReviews(response.data.results.slice(0).sort((a, b) => parseFloat(a.review_id) - parseFloat(b.review_id)));
+        setSortedReviews(response.data.results.slice(0).sort((a, b) => { return b.review_id - a.review_id; }));
         setStoredReviews(response.data.results.slice(0));
         setMasterListOfReviews(response.data.results.slice(0));
         setCurrentlyShowing(response.data.results.slice(0, 2));
@@ -142,9 +141,9 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     }
   };
 
+
   return (
     <div className="ReviewsOverview" id="jumpEntry">
-
       <RatingEntry
         currentProductId={productId}
         setRating={setRating}
@@ -154,7 +153,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         threeStarReviews={threeStarReviews}
         twoStarReviews={twoStarReviews}
         oneStarReviews={oneStarReviews}
-        storedReviews={storedReviews} />
+        storedReviews={storedReviews}
+        sortedReviews = {sortedReviews} />
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{masterListOfReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
