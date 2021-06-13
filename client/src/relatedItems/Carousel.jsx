@@ -107,7 +107,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
             return (
               index >= currentPos || currentPos + 2 >= length ?
                 <RelatedCard
-                  key={Math.random() * 100000 + 1}
+                  key={product.overview.id}
                   product={product}
                   productId={productId}
                   setProductId={setProductId}
@@ -130,7 +130,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
             return (
               index >= currentPos || currentPos + 1 >= length ?
                 <OutfitCard
-                  key={Math.random() * 100000 + 1}
+                  key={product.overview.id}
                   outfit={product}
                   productId={productId}
                   setProductId={setProductId}
