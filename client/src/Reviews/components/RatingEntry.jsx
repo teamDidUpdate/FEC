@@ -74,11 +74,8 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
       setCurrentFilter(() => '');
     }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 8134be8638c7dcb679afd162fd64e4f92adddf7b
     var currentStar = event.target.innerText.toString()[0];
     var clickedYet = document.getElementById(currentStar + 'Stars');
     var currentSort = document.getElementById('currentDrop').innerText;
@@ -103,10 +100,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
         } else {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, sortedReviews)));
           setCurrentFilter((previousState) => previousState + ' 4 Stars ');
-<<<<<<< HEAD
 
-=======
->>>>>>> 8134be8638c7dcb679afd162fd64e4f92adddf7b
         }
         currentFilterArray.push(4);
       }
