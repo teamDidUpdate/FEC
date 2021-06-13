@@ -23,20 +23,20 @@ const App = () => {
           setProductId={setProductId}
           setCurrentProduct={setCurrentProduct} />
       </div>
-      {/* <div>
+      <div>
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId}
           overviewProduct={currentProduct}
           overviewRating={rating}
         />
-      </div> */}
-      {/* <div>
+      </div>
+      <div>
         <QAwidget
           productId={productId}
           setProductId={setProductId}/>
       </div>
-      <br></br> */}
+      <br></br>
       <div>
         <ReviewEntry productId={productId}
           setProductId={setProductId}
