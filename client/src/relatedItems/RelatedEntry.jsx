@@ -4,8 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, overviewRating}) => {
-  const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfits, setOutfits] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState(null);
+  const [outfits, setOutfits] = useState(null);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -59,7 +59,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
       <CSSTransition
         in={relatedProducts}
         appear={true}
-        timeout={10000}
+        timeout={3000}
         classNames="fade"
         unmountOnExit
       >
@@ -74,9 +74,9 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
       </CSSTransition>
       <h2 className='section-header'>YOUR OUTFIT</h2>
       <CSSTransition
-        in={outfits}
+        in={relatedProducts}
         appear={true}
-        timeout={10000}
+        timeout={3000}
         classNames="fade"
         unmountOnExit
       >

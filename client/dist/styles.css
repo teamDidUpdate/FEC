@@ -859,7 +859,7 @@ h1.reviewModalSize {
 }
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 10000ms linear 1000ms;
+    transition: opacity 2000ms linear;
 }
 
 /* exit */
@@ -868,7 +868,7 @@ h1.reviewModalSize {
 }
 .fade-exit.fade-exit-active {
     opacity: 0;
-    transition: opacity 10000ms linear;
+    transition: opacity 2000ms linear;
 }
 .fade-exit-done {
   opacity: 0;
