@@ -5,9 +5,9 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import Stars from './stars.jsx';
 import StarsRating from 'stars-rating';
 import ReviewEntry from './ReviewEntry.jsx';
+import Slider from 'react-input-slider';
 
-
-const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray }) => {
+const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray, masterListOfReviews }) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentFilter, setCurrentFilter] = useState('');
 
@@ -74,8 +74,6 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
       setCurrentFilter(() => '');
     }
 
-
-
     var currentStar = event.target.innerText.toString()[0];
     var clickedYet = document.getElementById(currentStar + 'Stars');
     var currentSort = document.getElementById('currentDrop').innerText;
@@ -139,7 +137,6 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
         currentFilterArray.push(1);
       }
 
-
     } else {
       clickedYet.className = 'numRating';
 
@@ -174,7 +171,6 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
     }
   };
 
-
   var resetFilter = () => {
     var currentDropDown = document.getElementById('currentDrop').innerText;
     if (currentDropDown === 'newest') {
@@ -203,6 +199,8 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
 
   return (
     <div>
+      <div>
+      </div>
       {Object.keys(currentProduct).length > 0 ?
         <div>
           <div className='RatingsHeading'>Ratings {'&'} Reviews </div>
@@ -214,9 +212,9 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
 
           <div className='StarsGraphRating'>
             <div className='theStars'>
-              <span className='numRating' id='5Stars' onClick={handleStarClick} value={5}>5 Stars</span>
+              <span className='numRating' id='5Stars' onClick={handleStarClick} value={5}>5 Stars </span>
+              <span className='numOfReviews'> {(currentProduct.ratings[5])} </span>
               <div className='progressBar'>
-                {console.log()}
                 <ProgressBar completed={
                   Number(calculateEachAverage(currentProduct.ratings, '5')).toString() !== 'NaN' ?
                     Number(calculateEachAverage(currentProduct.ratings, '5')) :
@@ -226,6 +224,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
 
             <div className='theStars'>
               <span className='numRating' id='4Stars' onClick={handleStarClick} value={4}>4 Stars</span>
+              <span className='numOfReviews'>{(currentProduct.ratings[4])} </span>
               <ProgressBar completed={
                 Number(calculateEachAverage(currentProduct.ratings, '4')).toString() !== 'NaN' ?
                   Number(calculateEachAverage(currentProduct.ratings, '4')) :
@@ -234,6 +233,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
 
             <div className='theStars'>
               <span className='numRating' id='3Stars' onClick={handleStarClick} >3 Stars</span>
+              <span className='numOfReviews'> {(currentProduct.ratings[3])} </span>
               <ProgressBar completed={
                 Number(calculateEachAverage(currentProduct.ratings, '3')).toString() !== 'NaN' ?
                   Number(calculateEachAverage(currentProduct.ratings, '3')) :
@@ -242,6 +242,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
 
             <div className='theStars'>
               <span className='numRating' id='2Stars' onClick={handleStarClick}>2 Stars</span>
+              <span className='numOfReviews'>{(currentProduct.ratings[2])} </span>
               <ProgressBar completed={
                 Number(calculateEachAverage(currentProduct.ratings, '2')).toString() !== 'NaN' ?
                   Number(calculateEachAverage(currentProduct.ratings, '2')) :
@@ -250,6 +251,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
 
             <div className='theStars'>
               <span className='numRating' id='1Stars' onClick={handleStarClick}>1 Stars</span>
+              <span className='numOfReviews'> {(currentProduct.ratings[1])}  </span>
               <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1')).toString() !== 'NaN' ?
                 Number(calculateEachAverage(currentProduct.ratings, '1')) :
                 0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
@@ -258,7 +260,7 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
               <div className='filters'>
                 <div id='currentFilters'> Current Filter: {currentFilter}
                 </div>
-                <div id='ratingReset' onClick={resetFilter}>Reset Filter</div>
+                <div id='ratingReset' onClick={resetFilter}>Remove all filters</div>
               </div> :
               <div className='filters'>
                 <div id='currentFilters' className='reviewHidden'>

@@ -158,10 +158,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     event.preventDefault();
   };
 
-  var handleTextChange = (event) => {
-    console.log(event.target.value);
-  };
-
   var convertDate = (string) => {
     var strDate = string.substring(0, 10);
     var readableDate = new Date(strDate);
@@ -185,6 +181,26 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     resetFilter();
   };
 
+  var postRequestObject = {};
+  var recommended = '';
+  var submission = (event) => {
+    postRequestObject['rating'] = document.getElementById('rating').value;
+    postRequestObject['summary'] = document.getElementById('reviewSummary').value;
+    postRequestObject['body'] = document.getElementById('reviewBody').value;
+    postRequestObject['summary'] = document.getElementById('reviewSummary').value;
+    postRequestObject['email'] = document.getElementById('reviewEmail').value;
+    postRequestObject['nickname'] = document.getElementById('reviewNickName').value;
+    axios.post('/submitReview', postRequestObject);
+    event.preventDefault();
+  };
+
+  var setRecommended = (string) => {
+    recommended = string;
+    postRequestObject['recommended'] = string;
+  };
+
+
+
 
   return (
     <div className="ReviewsOverview" id="jumpEntry">
@@ -201,7 +217,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         storedReviews={storedReviews}
         sortedReviews={sortedReviews}
         currentFilterArray={currentFilterArray}
-        setCurrentFilterArray={setCurrentFilterArray} />
+        setCurrentFilterArray={setCurrentFilterArray}
+        masterListOfReviews={masterListOfReviews} />
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{masterListOfReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
@@ -252,6 +269,53 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
             <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
             <div id="reviewModal" className="modal">
               <div className="addReview-modal-content">
+                <h1 className='writeReviewHeader'>Write your Review!</h1>
+                <form id='submitReview'>
+                  <div id='reviewModalFormatted'>
+                    <div className='column1'>
+                      <label htmlFor='rating'>Overall Rating</label>
+                      <br></br>
+                      <select name='rating' id='rating'>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Great</option>
+                      </select>
+
+                      <br></br>
+                      <label htmlFor='recommend'>Do you recommend this product?</label>
+
+                      Yes
+                      <input type="radio" name="option" value="Yes" onClick={function () { setRecommended('No'); }}></input>
+                      No
+                      <input type="radio" name="option" value="No" onClick={function () { setRecommended('No'); }} ></input>
+
+                      <br></br>
+                      Summary
+                      <br></br>
+                      <textarea cols='30' rows='10' id='reviewSummary' placeholder='Example: Best purchase ever!'></textarea>
+                      <br></br>
+                      Body
+                      <br></br>
+                      <textarea cols='30' rows='10' id='reviewBody' placeholder='Why did you like the product or not?'></textarea>
+                      <input type="submit" id='reviewSubmission' value="Submit" onClick={submission}></input>
+                    </div>
+                    <div className='column2'>
+                      Nickname:
+                      <input type="text" placeholder='Jackson11' id='reviewNickName'></input>
+                      <br></br>
+                      For privacy reasons, do not use your full name or email address
+                      <br></br>
+                      <br></br>
+                      Email:
+                      <input type="email" id="reviewEmail" size="30" id='reviewEmail'required></input>
+                      <br></br>
+                      For authentication reasons, you will not be emailed
+
+                    </div>
+                  </div>
+                </form>
                 <span className="close" onClick={handleReviewModalClose}>&times;</span>
               </div>
             </div>

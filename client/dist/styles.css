@@ -402,8 +402,26 @@ body {
   cursor:pointer;
 }
 
+#reviewModalFormatted{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
 .reviewHidden {
   display: none;
+}
+
+.numOfReviews {
+  float: right;
+}
+
+.writeReviewHeader{
+  font-size: 32px;
+  text-align: center;
+}
+
+#reviewSubmission{
+  float: right;
 }
 
 #currentFilters {
