@@ -35,8 +35,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
     "@ramonak/react-progress-bar": "^3.1.0",
     "axios": "^0.21.0",
     "express": "^4.15.0",
