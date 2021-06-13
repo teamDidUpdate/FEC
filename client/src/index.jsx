@@ -9,7 +9,7 @@ import RelatedItemsAndComparison from './relatedItems/RelatedEntry.jsx';
 
 
 const App = () => {
-  const [productId, setProductId] = useState(13028);
+  const [productId, setProductId] = useState(13023);
   const [reviewCount, setReviewCount] = useState(0);
   const [rating, setRating] = useState(0);
   const [currentProduct, setCurrentProduct] = useState({});
@@ -23,14 +23,14 @@ const App = () => {
           setProductId={setProductId}
           setCurrentProduct={setCurrentProduct} />
       </div>
-      <div>
+      {/* <div>
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId}
           overviewProduct={currentProduct}
           overviewRating={rating}
         />
-      </div>
+      </div> */}
       {/* <div>
         <QAwidget
           productId={productId}
