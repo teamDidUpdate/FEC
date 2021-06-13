@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel.jsx';
+import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, overviewRating}) => {
-  const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfits, setOutfits] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState(null);
+  const [outfits, setOutfits] = useState(null);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -55,24 +56,40 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   return (
     <>
       <h2 className='section-header'>RELATED PRODUCTS</h2>
-      <Carousel
-        related={true}
-        products={relatedProducts}
-        productId={productId}
-        setProductId={setProductId}
-        overviewProduct={overviewProduct}
-        overviewRating={overviewRating}
-      />
+      <CSSTransition
+        in={relatedProducts}
+        appear={true}
+        timeout={3000}
+        classNames="fade"
+        unmountOnExit
+      >
+        <Carousel
+          related={true}
+          products={relatedProducts}
+          productId={productId}
+          setProductId={setProductId}
+          overviewProduct={overviewProduct}
+          overviewRating={overviewRating}
+        />
+      </CSSTransition>
       <h2 className='section-header'>YOUR OUTFIT</h2>
-      <Carousel
-        related={false}
-        products={outfits}
-        productId={productId}
-        setProductId={setProductId}
-        setOutfits={setOutfits}
-        overviewProduct={overviewProduct}
-        overviewRating={overviewRating}
-      />
+      <CSSTransition
+        in={relatedProducts}
+        appear={true}
+        timeout={3000}
+        classNames="fade"
+        unmountOnExit
+      >
+        <Carousel
+          related={false}
+          products={outfits}
+          productId={productId}
+          setProductId={setProductId}
+          setOutfits={setOutfits}
+          overviewProduct={overviewProduct}
+          overviewRating={overviewRating}
+        />
+      </CSSTransition>
     </>
   );
 };

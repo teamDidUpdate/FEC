@@ -3,7 +3,7 @@ import RelatedCard from './RelatedCard.jsx';
 import OutfitCard from './OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
 import { FiPlusCircle } from 'react-icons/Fi';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 
 const Carousel = ({ products, productId, setProductId, related, overviewProduct, overviewRating, setOutfits}) => {
@@ -106,14 +106,22 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
           products.map((product, index) => {
             return (
               index >= currentPos || currentPos + 2 >= length ?
-                <RelatedCard
-                  product={product}
-                  key={product.overview.id}
-                  productId={productId}
-                  setProductId={setProductId}
-                  getStarRating={getStarRating}
-                  getDefaultStyle={getDefaultStyle}
-                />
+                <TransitionGroup className="card-container">
+                  <CSSTransition
+                    key={product.overview.id}
+                    timeout={4500}
+                    classNames="slide"
+                  >
+                    <RelatedCard
+                      product={product}
+                      key={product.overview.id}
+                      productId={productId}
+                      setProductId={setProductId}
+                      getStarRating={getStarRating}
+                      getDefaultStyle={getDefaultStyle}
+                    />
+                  </CSSTransition>
+                </TransitionGroup>
                 : null
             );
           })
@@ -129,14 +137,22 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
           Object.values(products).map((product, index) => {
             return (
               index >= currentPos || currentPos + 1 >= length ?
-                <OutfitCard
-                  outfit={product}
-                  key={product.overview.id}
-                  productId={productId}
-                  setProductId={setProductId}
-                  getDefaultStyle={getDefaultStyle}
-                  deleteOutfit={deleteOutfit}
-                />
+                <TransitionGroup className="card-container">
+                  <CSSTransition
+                    key={product.overview.id}
+                    timeout={4500}
+                    classNames="slide"
+                  >
+                    <OutfitCard
+                      outfit={product}
+                      key={product.overview.id}
+                      productId={productId}
+                      setProductId={setProductId}
+                      getDefaultStyle={getDefaultStyle}
+                      deleteOutfit={deleteOutfit}
+                    />
+                  </CSSTransition>
+                </TransitionGroup>
                 : null
             );
           })
