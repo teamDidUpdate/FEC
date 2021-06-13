@@ -106,22 +106,14 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
           products.map((product, index) => {
             return (
               index >= currentPos || currentPos + 2 >= length ?
-                <TransitionGroup className="card-container">
-                  <CSSTransition
-                    key={product.overview.id}
-                    timeout={4500}
-                    classNames="slide"
-                  >
-                    <RelatedCard
-                      product={product}
-                      key={product.overview.id}
-                      productId={productId}
-                      setProductId={setProductId}
-                      getStarRating={getStarRating}
-                      getDefaultStyle={getDefaultStyle}
-                    />
-                  </CSSTransition>
-                </TransitionGroup>
+                <RelatedCard
+                  key={Math.random() * 100000 + 1}
+                  product={product}
+                  productId={productId}
+                  setProductId={setProductId}
+                  getStarRating={getStarRating}
+                  getDefaultStyle={getDefaultStyle}
+                />
                 : null
             );
           })
@@ -137,22 +129,14 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
           Object.values(products).map((product, index) => {
             return (
               index >= currentPos || currentPos + 1 >= length ?
-                <TransitionGroup className="card-container">
-                  <CSSTransition
-                    key={product.overview.id}
-                    timeout={4500}
-                    classNames="slide"
-                  >
-                    <OutfitCard
-                      outfit={product}
-                      key={product.overview.id}
-                      productId={productId}
-                      setProductId={setProductId}
-                      getDefaultStyle={getDefaultStyle}
-                      deleteOutfit={deleteOutfit}
-                    />
-                  </CSSTransition>
-                </TransitionGroup>
+                <OutfitCard
+                  key={Math.random() * 100000 + 1}
+                  outfit={product}
+                  productId={productId}
+                  setProductId={setProductId}
+                  getDefaultStyle={getDefaultStyle}
+                  deleteOutfit={deleteOutfit}
+                />
                 : null
             );
           })
