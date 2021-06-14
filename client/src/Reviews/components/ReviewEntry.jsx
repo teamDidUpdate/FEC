@@ -17,8 +17,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [emptyArray, setEmptyArray] = useState([]);
   const [currentFilterArray, setCurrentFilterArray] = useState([]);
 
-
-
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
       .then((response) => {
