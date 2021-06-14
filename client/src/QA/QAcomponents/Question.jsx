@@ -8,16 +8,8 @@ const Question = ({ question, productId }) => {
   let answerList = answerKey.map(Ans => question.answers[Ans]);
 
   return (
-    <div style={{
-      marginTop: '10px'
-    }}>
-      <span className='question' style={{
-        display: 'flex',
-        fontSize: '20px',
-        fontWeight: 'bold',
-        justifyContent: 'space-between',
-        overflowWrap: 'anywhere'
-      }}>
+    <div className='question'>
+      <span className='question-control'>
         Q: {question.question_body}
         <Helpful
           productId={productId}

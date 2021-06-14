@@ -74,9 +74,17 @@ app.get('/qa/questions', (req, res) => {
     .catch(err => res.status(400).send('Error while fetching Q&A'));
 });
 
+app.post('/qa/questions', (req, res) => {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', req.body, {headers: { Authorization: APIToken.TOKEN }})
+    .then(response => {
+      res.status(201).send(response.data);
+    })
+    .catch(err => res.status(400).send(`Err adding question, server side ${err}`));
+});
+
 app.put('/question/helpful', (req, res) => {
   let questionId = req.body.questionId;
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/helpful`, 'placeholder', {headers: { Authorization: APIToken.TOKEN }})
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/helpful`, null, {headers: { Authorization: APIToken.TOKEN }})
     .then(response => res.status(204))
     .catch(err => {
       res.status(400).send('Error updating helpful status');
@@ -217,6 +225,11 @@ app.get('/getNumberOfReviews', function (req, res) {
     .catch((err) => {
       res.send(404);
     });
+});
+
+app.post('/submitReview', (req, res) => {
+  console.log(req.body);
+  res.send(200);
 });
 
 app.get('/fetchMeta', (req, res) => {
