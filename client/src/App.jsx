@@ -14,38 +14,47 @@ const App = () => {
   const [reviewCount, setReviewCount] = useState(0);
   const [rating, setRating] = useState(0);
   const [currentProduct, setCurrentProduct] = useState({});
-  const [darkTheme, setDarkTheme] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(false);
+  const themeStyles = {
+    backgroundColor: darkTheme ? 'black' : 'white',
+    color: darkTheme ? 'white' : 'black'
+  };
 
   return (
-    <div>
-      <div>
-        <OverviewApp productId={productId}
-          reviewCount={reviewCount}
-          rating={rating}
-          setProductId={setProductId}
-          setCurrentProduct={setCurrentProduct} />
+    <ThemeContext.Provider value={darkTheme}>
+      <div id="darkTheme" style={themeStyles}>
+        <div id="padding">
+          <div>
+            <OverviewApp productId={productId}
+              reviewCount={reviewCount}
+              rating={rating}
+              setProductId={setProductId}
+              setCurrentProduct={setCurrentProduct}
+              setDarkTheme={setDarkTheme} />
+          </div>
+          <div>
+            <RelatedItemsAndComparison
+              productId={productId}
+              setProductId={setProductId}
+              overviewProduct={currentProduct}
+              overviewRating={rating}
+            />
+          </div>
+          <div>
+            <QAwidget
+              productId={productId}
+              setProductId={setProductId}/>
+          </div>
+          <br></br>
+          <div>
+            <ReviewEntry productId={productId}
+              setProductId={setProductId}
+              setReviewCount={setReviewCount}
+              setRating={setRating} />
+          </div>
+        </div>
       </div>
-      {/* <div>
-        <RelatedItemsAndComparison
-          productId={productId}
-          setProductId={setProductId}
-          overviewProduct={currentProduct}
-          overviewRating={rating}
-        />
-      </div>
-      <div>
-        <QAwidget
-          productId={productId}
-          setProductId={setProductId}/>
-      </div>
-      <br></br>
-      <div>
-        <ReviewEntry productId={productId}
-          setProductId={setProductId}
-          setReviewCount={setReviewCount}
-          setRating={setRating} />
-      </div> */}
-    </div>
+    </ThemeContext.Provider>
   );
 };
 

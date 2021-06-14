@@ -68,9 +68,14 @@ html {
 /* ------------ Overview and General ------------ */
 
 body {
+  /* padding-left: 16%;
+  padding-right: 16%; */
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+#padding {
   padding-left: 16%;
   padding-right: 16%;
-  font-family:Arial, Helvetica, sans-serif;
 }
 
 .overview-header {
