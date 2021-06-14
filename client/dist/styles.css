@@ -178,7 +178,7 @@ body {
   margin-right: 0.8vw;
 }
 
-.gallery-image {
+.gallary-image {
   width: 4.4vw;
   height: 4.4vw;
   border: 1px black solid;
@@ -297,7 +297,7 @@ body {
   height: auto;
 }
 
-.gallery-container {
+.gallary-container {
   margin-top: 7px;
   margin-left: 3px;
   display: grid;
