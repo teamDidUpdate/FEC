@@ -1,4 +1,4 @@
 node_modules
+coverage
 client/dist/bundle.js
 config.js
-coverage
