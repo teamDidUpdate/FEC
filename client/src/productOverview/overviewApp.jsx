@@ -34,6 +34,11 @@ const OverviewApp = (props) => {
       <div id="header" className="overview-header">
         <h1>THREADS</h1>
         <img className="logo-img" src="icon/threadsLogo.png"></img>
+
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
       </div>
       <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
