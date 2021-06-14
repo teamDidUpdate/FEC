@@ -16,6 +16,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [oneStarReviews, setOneStarReviews] = useState([]);
   const [emptyArray, setEmptyArray] = useState([]);
   const [currentFilterArray, setCurrentFilterArray] = useState([]);
+  const [helpfulReviews, setHelpfulReviews] = useState([]);
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
@@ -44,6 +45,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         });
         setSortedReviews(response.data.results.slice(0).sort((a, b) => { return b.review_id - a.review_id; }));
         setStoredReviews(response.data.results.slice(0));
+        setHelpfulReviews(response.data.results.slice(0).sort((a, b) => { return b.helpfulness - a.helpfulness; }));
         setMasterListOfReviews(response.data.results.slice(0));
         setCurrentlyShowing(response.data.results.slice(0, 2));
       })
@@ -69,7 +71,11 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   var handleImageClick = function (event) {
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById('img01');
-    modal.style.display = 'block';
+    if (modal.style.display === 'block') {
+      modal.style.display = 'none';
+    } else {
+      modal.style.display = 'block';
+    }
     modalImg.src = event.target.src;
   };
 
@@ -90,21 +96,23 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var handleMoreReviews = () => {
-    var currentFilters = currentFilterArray;
     var checkCurrentSort = document.getElementById('currentDrop').innerText;
-    var currentLength = currentlyShowing.length;
     if (checkCurrentSort === 'newest') {
-      addReviewsWithFilters(currentFilters, sortedReviews);
+      addReviewsWithFilters(sortedReviews);
     } else if (checkCurrentSort === 'relevance') {
-      addReviewsWithFilters(currentFilters, storedReviews);
+      addReviewsWithFilters(storedReviews);
+    } else if (checkCurrentSort === 'helpful') {
+      addReviewsWithFilters(helpfulReviews);
     }
   };
 
-  var addReviewsWithFilters = (currentlyFilteredRatingsArray, currentDropDownArray) => {
+  var addReviewsWithFilters = (currentDropDownArray) => {
     var count = 0;
+    var currentlyShowingJSON = '';
+    var currentIterationArray = '';
     for (var i = 0; i < currentDropDownArray.length; i++) {
-      var currentlyShowingJSON = JSON.stringify(currentlyShowing);
-      var currentIterationArray = JSON.stringify(currentDropDownArray[i].review_id);
+      currentlyShowingJSON = JSON.stringify(currentlyShowing);
+      currentIterationArray = JSON.stringify(currentDropDownArray[i].review_id);
       if (currentlyShowingJSON.indexOf(currentIterationArray) === -1) {
         setCurrentlyShowing((previousState) => previousState.concat(currentDropDownArray[i]));
         count++;
@@ -117,11 +125,12 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
   var resetFilter = () => {
     var currentDropDown = document.getElementById('currentDrop').innerText;
-
     if (currentDropDown === 'newest') {
       setCurrentlyShowing(sortedReviews.slice(0, 2));
-    } else {
+    } else if (currentDropDown === 'relevance') {
       setCurrentlyShowing(storedReviews.slice(0, 2));
+    } else if (currentDropDown === 'helpful') {
+      setCurrentlyShowing(helpfulReviews.slice(0, 2));
     }
     setCurrentFilterArray([]);
     resetFilterState();
@@ -142,11 +151,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
 
 
-  var handleAddReview = () => {
-    var modal = document.getElementById('reviewModal');
-    modal.style.display = 'block';
-  };
-
   var handleReviewModalClose = () => {
     var modal = document.getElementById('reviewModal');
     modal.style.display = 'none';
@@ -165,14 +169,16 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
   var dropDown = (event) => {
     var currentlyShowingSort = document.getElementById('currentDrop');
-    var selectedDropDownText = document.getElementById('dropDownOption1');
+    var selectedDropDownText = event.target;
     var temp = currentlyShowingSort.innerHTML;
     currentlyShowingSort.innerHTML = selectedDropDownText.innerHTML;
     selectedDropDownText.innerHTML = temp;
 
-    if (currentlyShowingSort.innerText === 'newest') {
+    if (currentlyShowingSort.innerHTML === 'newest') {
       setCurrentlyShowing(() => sortedReviews.slice(0, 2));
-    } else {
+    } else if (currentlyShowingSort.innerHTML === 'helpful') {
+      setCurrentlyShowing(() => helpfulReviews.slice(0, 2));
+    } else if (currentlyShowingSort.innerHTML === 'relevance') {
       setCurrentlyShowing(() => storedReviews.slice(0, 2));
     }
     setCurrentFilterArray([]);
@@ -197,8 +203,26 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
     postRequestObject['recommended'] = string;
   };
 
+  var handleAddReview = () => {
+    fetchCurrentCharacteristics();
+    var modal = document.getElementById('reviewModal');
+    modal.style.display = 'block';
+  };
 
-
+  var fetchCurrentCharacteristics = () => {
+    axios.get('/fetchCurrentCharacteristics', { params: { productId: productId } })
+      .then((response) => {
+        var currentCharacteristics = response.data.characteristics;
+        var count = 1;
+        for (var key in currentCharacteristics) {
+          var char = document.getElementById(`char${count}`);
+          char.className = 'notHidden';
+          char.innerText = '';
+          char.innerText += key;
+          count++;
+        }
+      });
+  };
 
   return (
     <div className="ReviewsOverview" id="jumpEntry">
@@ -216,13 +240,17 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         sortedReviews={sortedReviews}
         currentFilterArray={currentFilterArray}
         setCurrentFilterArray={setCurrentFilterArray}
-        masterListOfReviews={masterListOfReviews} />
+        masterListOfReviews={masterListOfReviews}
+        setHelpfulReviews={setHelpfulReviews}
+        helpfulReviews={helpfulReviews} />
+
       <div className='reviewEntry'>
         <div className='numberOfReviews'>{masterListOfReviews.length} reviews, sorted by {' '}
           <div className="dropdown" id='dropdown'>
-            <span id='currentDrop'> relevance</span>
+            <span id='currentDrop'>relevance</span>
             <div className="dropdown-content">
               <p id='dropDownOption1' onClick={dropDown}>newest</p>
+              <p id='dropDownOption2' onClick={dropDown}>helpful</p>
             </div>
           </div></div>
         {currentlyShowing.length > 0 ?
@@ -271,7 +299,70 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 <form id='submitReview'>
                   <div id='reviewModalFormatted'>
                     <div className='column1'>
-                      <label htmlFor='rating'>Overall Rating</label>
+                      <div className='addNickName'>
+                        Nickname:
+                        <input type="text" placeholder='Jackson11' id='reviewNickName'></input>
+                        <br></br>
+                        For privacy reasons, do not use your full name or email address
+                      </div>
+                      <div className='addEmail'>
+                        Email:
+                        <input type="email" id="reviewEmail" size="30" id='reviewEmail' required></input>
+                        <br></br>
+                        For authentication reasons, you will not be emailed
+                      </div>
+                      <div className='characteristics'>
+                        Characteristics:
+                        <div id='char1' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+
+                        <div id='char2' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+
+                        <div id='char3' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+                        <div id='char4' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+                        <div id='char5' id='rating' className='hidden'>
+                          <select name='rating' className='hidden'>
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Great</option>
+                          </select>
+                        </div>
+                      </div>
+                      <br></br>
+                      <label htmlFor='rating' className='boldRating'>Overall Rating</label>
                       <br></br>
                       <select name='rating' id='rating'>
                         <option value="1">1 - Poor</option>
@@ -283,13 +374,16 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
                       <br></br>
                       <label htmlFor='recommend'>Do you recommend this product?</label>
-
                       Yes
                       <input type="radio" name="option" value="Yes" onClick={function () { setRecommended('No'); }}></input>
                       No
                       <input type="radio" name="option" value="No" onClick={function () { setRecommended('No'); }} ></input>
 
                       <br></br>
+
+                    </div>
+                    <div className='column2'>
+
                       Summary
                       <br></br>
                       <textarea cols='30' rows='10' id='reviewSummary' placeholder='Example: Best purchase ever!'></textarea>
@@ -297,24 +391,26 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                       Body
                       <br></br>
                       <textarea cols='30' rows='10' id='reviewBody' placeholder='Why did you like the product or not?'></textarea>
-                      <input type="submit" id='reviewSubmission' value="Submit" onClick={submission}></input>
-                    </div>
-                    <div className='column2'>
-                      Nickname:
-                      <input type="text" placeholder='Jackson11' id='reviewNickName'></input>
-                      <br></br>
-                      For privacy reasons, do not use your full name or email address
-                      <br></br>
-                      <br></br>
-                      Email:
-                      <input type="email" id="reviewEmail" size="30" id='reviewEmail'required></input>
-                      <br></br>
-                      For authentication reasons, you will not be emailed
 
                     </div>
+
+                    <div className='column3'>
+
+                      <label for="myfile">Select up to 5 photos: </label>
+                      <div>
+                        <input type="file" className="photoUploadReview"></input>
+                        <input type="file" className="photoUploadReview"></input>
+                        <input type="file" className="photoUploadReview"></input>
+                        <input type="file" className="photoUploadReview"></input>
+                        <input type="file" className="photoUploadReview"></input>
+                      </div>
+                      <div>
+                        <input type="submit" id='reviewSubmission' value="Submit" onClick={submission}></input>
+                      </div>
+                    </div>
+                    <span className="close" onClick={handleReviewModalClose}>&times;</span>
                   </div>
                 </form>
-                <span className="close" onClick={handleReviewModalClose}>&times;</span>
               </div>
             </div>
           </div>

@@ -497,7 +497,7 @@ body {
 
 #reviewModalFormatted{
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .reviewHidden {
@@ -514,7 +514,17 @@ body {
 }
 
 #reviewSubmission{
-  float: right;
+    margin-left: 150px;
+    margin-top: 50px;
+    font-size: medium;
+    height: 60px;
+    width: 235px;
+    background-color: rgba(255, 255, 255, 0.555);
+    padding: 10px;
+    margin: 25px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+
 }
 
 #currentFilters {
@@ -596,6 +606,23 @@ p#alignright {
     font-size: 18px;
 }
 
+.hidden {
+  display: none;
+}
+
+#myModal {
+  display: none;
+}
+
+.addEmail {
+  margin-bottom:20px;
+  margin-top:20px;
+}
+
+.addnickName {
+  margin-bottom:20px;
+}
+
 .ReviewsOverview {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -605,6 +632,13 @@ p#alignright {
   margin-top: 50px;
 }
 
+.photoUploadReview {
+margin:10px;
+}
+
+.boldRating{
+  font-weight: bold;
+}
 .recommendationPercent {
   font-size: 16px;
 }
@@ -640,16 +674,21 @@ p.recommendedTrue {
   font-size: small;
 }
 
-.individualReview {
-  box-shadow: 0 8px 6px -6px grey;
+p#dropDownOption1 {
+  margin-bottom: 10px;
 }
 
 .moreReviews{
   float: left;
-}
+  font-size: medium;
+  height: 60px;
+  width: 235px;
+  background-color: rgba(255, 255, 255, 0.555);
+  padding: 10px;
+  margin: 25px;
+  cursor: pointer;
+  transition: all ease 0.3s;
 
-.addReviews{
-  float:right;
 }
 
 .clickedTrue{
@@ -682,7 +721,6 @@ h1.reviewModalSize {
 
 /*********REVIEW IMAGES MODAL**********/
 #myImg {
-  border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -706,6 +744,15 @@ h1.reviewModalSize {
 
 .addReview {
   float: right;
+  font-size: medium;
+  height: 60px;
+  width: 235px;
+  background-color: rgba(255, 255, 255, 0.555);
+  padding: 10px;
+  margin: 25px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+
 }
 
 /* Modal Content (Image) */
@@ -765,18 +812,17 @@ h1.reviewModalSize {
   display: block;
 }
 
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 .addReview-modal-content {
@@ -784,7 +830,7 @@ h1.reviewModalSize {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 50%; /* Could be more or less, depending on screen size */
 }
 
 .addReview-modal-content-close {

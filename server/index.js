@@ -244,6 +244,18 @@ app.get('/fetchMeta', (req, res) => {
     });
 });
 
+app.get('/fetchCurrentCharacteristics', (req, res) => {
+  let productId = req.query.productId;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {
+    headers: {
+      Authorization: APIToken.TOKEN
+    }
+  })
+    .then((response) => {
+      res.send(response.data);
+    });
+});
+
 
 let PORT = process.env.PORT || 1128;
 
