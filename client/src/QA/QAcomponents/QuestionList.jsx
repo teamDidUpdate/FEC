@@ -2,7 +2,7 @@ import React from 'react';
 import Question from './Question.jsx';
 import MoreQuestions from './MoreQuestions.jsx';
 
-const QuestionList = ({ questions, searchInput, productId }) => (
+const QuestionList = ({ questions, searchInput, productId, openModal, handleModalOpen, handleModalClose }) => (
   <div className='question-list'>
     {
       searchInput === null
@@ -11,8 +11,14 @@ const QuestionList = ({ questions, searchInput, productId }) => (
           .slice(0, 5)
           .map((question, count) => (
             count > 3
-              ? <MoreQuestions questions={questions} key={questions.question_id} />
-              : <Question question={question} productId={productId} key={question.question_id} />
+              ? <MoreQuestions
+                questions={questions}
+                key={questions.question_id}
+              />
+              : <Question
+                question={question}
+                productId={productId}
+                key={question.question_id} />
           ))
         :
         questions.filter(q => {
@@ -24,8 +30,15 @@ const QuestionList = ({ questions, searchInput, productId }) => (
           .slice(0, 5)
           .map((question, count) => (
             count > 3
-              ? <MoreQuestions questions={questions} key={questions.question_id} />
-              : <Question question={question} key={question.question_id} />
+              ? <MoreQuestions
+                questions={questions}
+                key={questions.question_id}
+              />
+              : <Question
+                question={question}
+                productId={productId}
+                key={question.question_id}
+              />
           ))
     }
   </div>

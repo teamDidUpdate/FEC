@@ -1,26 +1,26 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Helpful = ({ inputText, helpfulness, questionId, productId }) => {
   // State
-  const [helpfulToggle = setHelpfulToggle] = useState(false);
-  const [reportToggle = setReportToggle] = useState(false);
+  const [helpfulToggle, setHelpfulToggle] = useState(false);
+  const [reportToggle, setReportToggle] = useState(false);
 
-  // UseCallback on toggles
   const togglePut = () => {
     helpfulToggle
       ? console.log('already toggled')
       : axios.put('/question/helpful', { questionId: questionId })
-        .then(() => setHelpfulToggle(true))
-        .then(() => refresh(productId))
+        .then(() => console.log('+1'))
         .catch(err => console.log(`Err at Marked helpful in Q&A widget ${questionId} ${err}`));
+    setHelpfulToggle(true);
   };
 
   // Render
   return (
     <div style={{
       display: 'inline-flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      fontSize: 17
     }}>
       Helpful?&nbsp;
       <p
