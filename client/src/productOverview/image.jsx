@@ -4,7 +4,7 @@ const Image = (props) => {
   const currentImg = props.currentStyle;
   const [images, setImages] = useState(currentImg.photos);
   const [imageIdx, setImageIdx] = useState(0);
-  const [imageURL, setImageURL] = useState(images[imageIdx].url);
+  const [imageURL, setImageURL] = useState(images[imageIdx].url || 'https://bit.ly/2Tg8g4s');
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(7);
   const [imgStyle, setImgStyle] = useState({});
