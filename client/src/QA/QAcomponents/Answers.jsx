@@ -1,6 +1,6 @@
 import React from 'react';
 import Helpful from './Helpful.jsx';
-import Photos from './Photos.jsx';
+import AnswerPhotos from './AnswerPhotos.jsx';
 
 const Answers = ({ answer }) => (
   <div>
@@ -14,7 +14,7 @@ const Answers = ({ answer }) => (
 
     <div className='answer-photo'>
       {answer.photos.map((photo, id) => (
-        <Photos photo={photo} key={id}/>
+        <AnswerPhotos photo={photo} key={id}/>
       ))}
     </div>
 
@@ -22,7 +22,6 @@ const Answers = ({ answer }) => (
       marginLeft: '40px',
       color: 'GrayText'
     }}>by {answer.answerer_name}, {Date(answer.date).substring(4, 15)} | Helpful? Yes ({answer.helpfulness}) | Report
-      {/* <Helpful helpfulness={answer.helpfulness} report='Report' /> */}
     </span>
 
 
@@ -30,3 +29,4 @@ const Answers = ({ answer }) => (
 );
 
 export default Answers;
+

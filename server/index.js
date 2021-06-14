@@ -75,9 +75,10 @@ app.get('/qa/questions', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
-  let productId = req.body.productId;
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', null, {headers: { Authorization: APIToken.TOKEN }})
-    .then(respose => res.status(201))
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', req.body, {headers: { Authorization: APIToken.TOKEN }})
+    .then(response => {
+      res.status(201).send(response.data);
+    })
     .catch(err => res.status(400).send(`Err adding question, server side ${err}`));
 });
 

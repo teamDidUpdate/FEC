@@ -2,175 +2,117 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const AddQuestion = ({ productId }) => {
-  // TODO: add functionalities and verificatio for name/email, etc
-  const [formData, setFormData] = useState({ productId: productId });
-  const [formValidate, setFormValidate] = useState({
-    body: [false, null],
-    name: [false, null],
-    email: [false, null]
-  });
-  // Event handlers
-  var handleFormOpen = (event) => {
-    var modal = document.getElementById('myModal');
-    var modalForm = document.getElementById('question-form');
-    modal.style.display = 'block';
+const AddQuestion = ({ productId, handleModalClose, openModal }) => {
+  // TODO: add functionalities and verification for name/email, etc
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [questionBody, setQuestionBody] = useState('');
+
+  const selectModal = (event) => {
+    event.stopPropagation();
+    handleModalClose();
   };
-  var handleFormClose = (event) => {
-    var modal = document.getElementById('myModal');
-    var span = document.getElementsByClassName('close')[0];
-    modal.style.display = 'none';
-  };
+  // console.log(productId)
 
   const regexVerifyEmail = (email) => {
     const characterTest = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return characterTest.test(email);
   };
 
-  const handleSubmit = (event) => {
+  const dataFill = (event) => {
+    event.target.placeholder === 'Example: jack@email.com'
+      ? setEmail(event.target.value)
+      : event.target.placeholder === 'Examples: jackson11!'
+        ? setName(event.target.value)
+        : setQuestionBody(event.target.value);
+  };
+
+  const handleSubmitQuestion = (event) => {
     event.preventDefault();
 
-    regexVerifyEmail(formData.email)
-      ? axios.post('/qa/questions', formData)
-        .then(() => {
-
+    regexVerifyEmail(email)
+      ? axios.post('/qa/questions', {
+        body: questionBody,
+        name: name,
+        email: email,
+        productId: productId
+      })
+        .then((response) => {
+          console.log('succesful question post', response.data);
+          handleModalClose();
         })
         .catch(err => {
           console.log(err);
         })
-
-      : setFormValidate({
-        ...formValidate, email: [true, 'Invalid Email']
-      });
+      : null;
   };
+  const QuestionModalForm = (
+    <div
+      className='question-modals'
+      onClick={event => selectModal(event)}>
+      <div
+        className='question-modal-control'
+        onClick={event => event.stopPropagation()}>
+        <span
+          className='close-button'
+          onClick={event => selectModal(event)}>
+          &times;</span>
 
-  const handleChange = (prop, target, limit) => {
-    let newFormData;
-    if (target.value.length > limit) {
-      target.value = target.value.slice(0, limit);
-      newFormData = JSON.parse(JSON.stringify(formValidate));
-      newFormData[prop][1] = 'Character Limit Reached';
-      setFormValidate(newFormData);
+        <form className='question-modal-form'>
+          <p>Email, Name, Question</p>
+          <input required
+            className='question-email-input'
+            onChange={(event) => { dataFill(event); }}
+            placeholder="Example: jack@email.com"
+            type="email"
+            maxLength="60"
+            autoComplete="off"
+            value={email}
+          >
+          </input>
+          <p>For authentication reasons, you will not be emailed</p>
 
-    } else {
-      newFormData = JSON.parse(JSON.stringify(formValidate));
-      for (const prop of newFormData) {
-        newFormData[prop][1] = false;
-      }
-      if (regexVerifyEmail(formData.email)) {
-        newFormData.email[0] = false;
-        newFormData.email[1] = null;
-      }
-      setFormValidate(newFormData);
-      newFormData = JSON.parse(JSON.stringify(formData));
-      newFormData[prop] = target.value;
-      setFormData(newFormData);
-    }
-  };
+          <input required
+            className='question-name-input'
+            onChange={(event) => { dataFill(event); }}
+            placeholder="Examples: jackson11!"
+            type="text"
+            maxLength="60"
+            autoComplete="off"
+            value={name}
+          >
+          </input>
+          <p>For privacy reasons, do not use your full name or email address</p>
 
-  let modalBody = (
-    <div style={{
-      position: 'absolute',
-      width: 400,
-      backgroundColor: 'grey',
-      border: '2px solid #000',
-      boxShadow: '10px, 5px, 5px, red',
-      padding: '2, 4, 3',
-    }}>
-      <div>
+          <textarea required
+            className='question-ask'
+            onChange={(event) => { dataFill(event); }}
+            placeholder="Enter Question Here..."
+            type="text"
+            maxLength="1000"
+            minLength=""
+            autoComplete="off"
+            value={questionBody}
+          >
+          </textarea>
 
-        <div>
-          <h4>Ask Your Question</h4>
-        </div>
+          <button
+            className='submit-new-question'
+            onClick={(event) => { handleSubmitQuestion(event); }}
+          >
+            Submit Question
+          </button>
+        </form>
 
-        <div>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <div>
-                <label for='add-question'>Answer*</label>
-                <input
-                  id='add-question'
-                  required
-                  onChange={(element) => handleChange('body', element.target, 1000)}
-                />
-                <span>
-                  {formValidate.body[1]}
-                </span>
-              </div>
-              <div>
-                <label color='primary' for='add-question-name'>
-                  Name*
-                </label>
-                <span>
-                  <p>
-                    For privacy reasons, do not use your full name or email
-                    address
-                  </p>
-                </span>
-                <input
-                  id='add-question-name'
-                  required
-                  onChange={(e) => handleChange('name', e.target, 60)}
-                />
-                <span>
-                  {formValidate.name[1]}
-                </span>
-              </div>
-              <div>
-                <label for='add-question-email'>Email*</label>
-                <span>
-                  <p>
-                    For authentication reasons, you will not be emailed
-                  </p>
-                </span>
-                <input
-                  id='add-question-email'
-                  required
-                  onChange={(e) => handleChange('email', e.target, 60)}
-                  error={formValidate.email[0]}
-                />
-                <span>
-                  {formValidate.email[1]}
-                </span>
-              </div>
-              <div>
-                <button type='submit'>
-                  ADD
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   );
 
-
   return (
     <div>
-
-      <button onClick={handleFormOpen}>
-        ADD A QUESTION +
-      </button>
-
-      <div className='Modals' key={photo}>
-        <img id='q-form' onClick={handleFormOpen} width='100px' height='100px'></img>
-        <div id='myModal' className='modal'>
-          <span className='close' onClick={handleFormClose}>&times;</span>
-          <img className='modal-content' id='question-form'></img>
-          <div id='caption'></div>
-        </div>
-      </div>
-
-      {/* <Modal
-        open={open}
-        onClose={handleCloseForm}
-        aria-labelledby="add-question-title"
-      >
-        {modalBody}
-      </Modal> */}
-
+      {openModal ? QuestionModalForm : null}
     </div>
+
   );
 };
 
