@@ -19,6 +19,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
     axios.get('/relatedIds', { params: { productId: productId } })
       .then((response) => {
         let relatedIds = response.data;
+        console.log('relatedIds', relatedIds);
         return getRelatedProducts(relatedIds);
       })
       .catch((err) => {

@@ -12,6 +12,8 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
   const [length, setLength] = useState(0);
   const [scrollable, setScrollable] = useState({right: false, left: false});
 
+  console.log('products', products);
+
   // set varibles to determine scrollability
   useEffect(() => {
     if (related) {
@@ -67,6 +69,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
     await axios.get('/getAverageRating', { params: { productId: id } })
       .then((response) => {
         averageRating = response.data;
+        console.log('average rating', averageRating);
         return;
       })
       .catch((err) => {
