@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import RelatedCard from './RelatedCard.jsx';
-import OutfitCard from './OutfitCard.jsx';
+import RelatedCard from '../RelatedCard/RelatedCard.jsx';
+import OutfitCard from '../OutfitCard/OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
 import { FiPlusCircle } from 'react-icons/Fi';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
