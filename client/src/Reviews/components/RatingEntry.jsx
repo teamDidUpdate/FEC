@@ -5,15 +5,18 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import Stars from './stars.jsx';
 import StarsRating from 'stars-rating';
 import ReviewEntry from './ReviewEntry.jsx';
+import Slider from 'react-input-slider';
 
-
-const RatingEntry = ({ currentProductId, setRating }) => {
+const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray, masterListOfReviews }) => {
   const [currentProduct, setCurrentProduct] = useState({});
+  const [currentFilter, setCurrentFilter] = useState('');
+
 
   useEffect(() => {
-    axios.get('/fetchMeta', {params: { productId: currentProductId } } )
+    axios.get('/fetchMeta', { params: { productId: currentProductId } })
       .then((response) => {
         setCurrentProduct(response.data);
+        resetFilterState();
       });
   }, [currentProductId]);
 
@@ -36,33 +39,238 @@ const RatingEntry = ({ currentProductId, setRating }) => {
   var calculateEachAverage = (object, currentNumber) => {
     var total = 0;
     for (var key in object) {
-      total += key * object[key];
+      total += Number(object[key]);
     }
-    var result = total / (object[currentNumber] * currentNumber);
-    return result;
+    var result = object[currentNumber] / total;
+    return result * 100;
+  };
+
+  var grabReviews = (rating, array) => {
+    var resultArray = [];
+    array.forEach((element) => {
+      if (element.rating === rating) {
+        resultArray.push(element);
+      }
+    });
+    return resultArray;
+  };
+
+  var clearFilteredArray = (array, currentStar) => {
+    var idx = currentFilterArray.indexOf(currentStar);
+    currentFilterArray.splice(idx, 1);
+    var tempArray = [];
+    array.forEach((element) => {
+      if (element.rating !== currentStar) {
+        tempArray.push(element);
+      }
+    });
+    setCurrentlyShowing(tempArray);
   };
 
   var handleStarClick = function (event) {
-    console.log(<ReviewEntry/>);
+    var length = document.getElementsByClassName('numRatingClickedTrue').length;
+    if (length === 0) {
+      setCurrentlyShowing([]);
+      setCurrentFilter(() => '');
+    }
+
+    var currentStar = event.target.innerText.toString()[0];
+    var clickedYet = document.getElementById(currentStar + 'Stars');
+    var currentSort = document.getElementById('currentDrop').innerText;
+
+    if (clickedYet.className === 'numRating') {
+      clickedYet.className += 'ClickedTrue';
+      if (currentStar === '5') {
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 5 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 5 Stars ');
+        }
+        currentFilterArray.push(5);
+      }
+
+      if (currentStar === '4') {
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 4 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 4 Stars ');
+
+        }
+        currentFilterArray.push(4);
+      }
+
+      if (currentStar === '3') {
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 3 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 3 Stars ');
+        }
+        currentFilterArray.push(3);
+      }
+
+
+      if (currentStar === '2') {
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 2 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 2 Stars ');
+        }
+        currentFilterArray.push(2);
+      }
+
+      if (currentStar === '1') {
+        if (currentSort === 'relevance') {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, storedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 1 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, sortedReviews)));
+          setCurrentFilter((previousState) => previousState + ' 1 Stars ');
+        }
+        currentFilterArray.push(1);
+      }
+
+    } else {
+      clickedYet.className = 'numRating';
+
+      if (currentStar === '5') {
+        setCurrentFilter((previousState) => previousState.replace('5 Stars', ' '));
+        clearFilteredArray(currentlyShowing, 5);
+      }
+
+      if (currentStar === '4') {
+        setCurrentFilter((previousState) => previousState.replace('4 Stars', ' '));
+        clearFilteredArray(currentlyShowing, 4);
+      }
+
+      if (currentStar === '3') {
+        setCurrentFilter((previousState) => previousState.replace('3 Stars', ' '));
+        clearFilteredArray(currentlyShowing, 3);
+      }
+
+      if (currentStar === '2') {
+        setCurrentFilter((previousState) => previousState.replace('2 Stars', ' '));
+        clearFilteredArray(currentlyShowing, 2);
+      }
+
+      if (currentStar === '1') {
+        setCurrentFilter((previousState) => previousState.replace('1 Stars', ' '));
+        clearFilteredArray(currentlyShowing, 1);
+      }
+    }
+
+    if (document.getElementsByClassName('numRatingClickedTrue').length === 0) {
+      resetFilter();
+    }
   };
+
+  var resetFilter = () => {
+    var currentDropDown = document.getElementById('currentDrop').innerText;
+    if (currentDropDown === 'newest') {
+      setCurrentlyShowing(sortedReviews.slice(0, 2));
+    } else {
+      setCurrentlyShowing(storedReviews.slice(0, 2));
+    }
+    setCurrentFilterArray([]);
+    resetFilterState();
+  };
+
+  var resetFilterState = () => {
+    setCurrentFilter('');
+    var fiveStarId = document.getElementById('5Stars');
+    var fourStarId = document.getElementById('4Stars');
+    var threeStarId = document.getElementById('3Stars');
+    var twoStarId = document.getElementById('2Stars');
+    var oneStarId = document.getElementById('1Stars');
+    fiveStarId.className = 'numRating';
+    fourStarId.className = 'numRating';
+    threeStarId.className = 'numRating';
+    twoStarId.className = 'numRating';
+    oneStarId.className = 'numRating';
+  };
+
+
   return (
     <div>
-
+      <div>
+      </div>
       {Object.keys(currentProduct).length > 0 ?
         <div>
-          <div className='RatingsHeading'>Ratings {'&'} Reviews</div>
+          <div className='RatingsHeading'>Ratings {'&'} Reviews </div>
           <div className='StarAndQuarterRating'>
             <div className='quarterRating' >{calculate(currentProduct.ratings)}</div>
             <Stars calValue={calculate(currentProduct.ratings)} />
           </div>
-          <div className='recommendationPercent'>{((Number(currentProduct.recommended.true) / (Number(currentProduct.recommended.false) + Number(currentProduct.recommended.true))) * 100).toString().substring(0, 2)}% of people recommend this product!</div>
+          <div className='recommendationPercent'>{((Number(currentProduct.recommended.true) / (Number(currentProduct.recommended.false) + Number(currentProduct.recommended.true))) * 100).toString().substring(0, 2)}% of people recommend this product!  </div>
+
           <div className='StarsGraphRating'>
-            <div className='theStars' id='5Stars' onClick={handleStarClick}>5 Stars
-              <div className='progressBar'><ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '5'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div></div>
-            <div className='theStars' id='4Stars'>4 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '4'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
-            <div className='theStars' id='3Stars'>3 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '3'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
-            <div className='theStars' id='2Stars'>2 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '2'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
-            <div className='theStars' id='1Stars'>1 Stars<ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1'))} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} /></div>
+            <div className='theStars'>
+              <span className='numRating' id='5Stars' onClick={handleStarClick} value={5}>5 Stars </span>
+              <span className='numOfReviews'> {(currentProduct.ratings[5])} </span>
+              <div className='progressBar'>
+                <ProgressBar completed={
+                  Number(calculateEachAverage(currentProduct.ratings, '5')).toString() !== 'NaN' ?
+                    Number(calculateEachAverage(currentProduct.ratings, '5')) :
+                    0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              </div>
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='4Stars' onClick={handleStarClick} value={4}>4 Stars</span>
+              <span className='numOfReviews'>{(currentProduct.ratings[4])} </span>
+              <ProgressBar completed={
+                Number(calculateEachAverage(currentProduct.ratings, '4')).toString() !== 'NaN' ?
+                  Number(calculateEachAverage(currentProduct.ratings, '4')) :
+                  0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='3Stars' onClick={handleStarClick} >3 Stars</span>
+              <span className='numOfReviews'> {(currentProduct.ratings[3])} </span>
+              <ProgressBar completed={
+                Number(calculateEachAverage(currentProduct.ratings, '3')).toString() !== 'NaN' ?
+                  Number(calculateEachAverage(currentProduct.ratings, '3')) :
+                  0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='2Stars' onClick={handleStarClick}>2 Stars</span>
+              <span className='numOfReviews'>{(currentProduct.ratings[2])} </span>
+              <ProgressBar completed={
+                Number(calculateEachAverage(currentProduct.ratings, '2')).toString() !== 'NaN' ?
+                  Number(calculateEachAverage(currentProduct.ratings, '2')) :
+                  0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+
+            <div className='theStars'>
+              <span className='numRating' id='1Stars' onClick={handleStarClick}>1 Stars</span>
+              <span className='numOfReviews'> {(currentProduct.ratings[1])}  </span>
+              <ProgressBar completed={Number(calculateEachAverage(currentProduct.ratings, '1')).toString() !== 'NaN' ?
+                Number(calculateEachAverage(currentProduct.ratings, '1')) :
+                0} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+            </div>
+            {currentFilterArray.length !== 0 ?
+              <div className='filters'>
+                <div id='currentFilters'> Current Filter: {currentFilter}
+                </div>
+                <div id='ratingReset' onClick={resetFilter}>Remove all filters</div>
+              </div> :
+              <div className='filters'>
+                <div id='currentFilters' className='reviewHidden'>
+                  Current Filters:
+                </div>
+                <div id='ratingReset' onClick={resetFilter} className='reviewHidden' >Reset Filter</div>
+              </div>
+            }
+
+
           </div>
           <br></br>
           <div className='characteristics'>

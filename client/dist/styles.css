@@ -380,6 +380,68 @@ body {
 } */
 
 /* ------------ Review ------------ */
+
+#ratingReset {
+  float: right;
+}
+
+#ratingReset{
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}
+
+.filters{
+  display: grid;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#currentDrop, #dropdown {
+  text-decoration: underline;
+  cursor:pointer;
+}
+
+#reviewModalFormatted{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.reviewHidden {
+  display: none;
+}
+
+.numOfReviews {
+  float: right;
+}
+
+.writeReviewHeader{
+  font-size: 32px;
+  text-align: center;
+}
+
+#reviewSubmission{
+  float: right;
+}
+
+#currentFilters {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.numRatingClickedTrue {
+  font-weight:bold;
+}
+
+.numRatingClickedTrue:hover {
+  cursor:pointer;
+}
+
+.numRating:hover {
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #00b300;
+
+}
 .individualReview{
     border-bottom: 1px solid #494949;
     margin-bottom: 30px;
