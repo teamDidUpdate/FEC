@@ -513,18 +513,17 @@ body {
   text-align: center;
 }
 
-#reviewSubmission{
-    margin-left: 150px;
-    margin-top: 50px;
-    font-size: medium;
-    height: 60px;
-    width: 235px;
-    background-color: rgba(255, 255, 255, 0.555);
-    padding: 10px;
-    margin: 25px;
-    cursor: pointer;
-    transition: all ease 0.3s;
-
+#reviewSubmission {
+  margin-left: 150px;
+  margin-top: 50px;
+  font-size: medium;
+  height: 50px;
+  width: 150px;
+  background-color: rgba(255, 255, 255, 0.555);
+  padding: 10px;
+  margin: 25px;
+  cursor: pointer;
+  transition: all ease 0.3s;
 }
 
 #currentFilters {
@@ -827,10 +826,10 @@ h1.reviewModalSize {
 
 .addReview-modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 65%;
 }
 
 .addReview-modal-content-close {
