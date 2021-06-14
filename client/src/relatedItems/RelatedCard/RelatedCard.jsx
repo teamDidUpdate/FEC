@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CompareModal from './CompareModal.jsx';
+import CompareModal from '../CompareModal/CompareModal.jsx';
 import {MdStarBorder} from 'react-icons/Md';
 import StarsRating from 'stars-rating';
 

@@ -1,7 +1,7 @@
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OverviewApp from '../productOverview/overviewApp.jsx';
+import OverviewApp from '../overviewApp.jsx';
 
 
 it('renders without crashing', () => {
