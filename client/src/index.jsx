@@ -5,7 +5,7 @@ import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
 import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
-import RelatedItemsAndComparison from './relatedItems/RelatedEntry.jsx';
+import RelatedItemsAndComparison from './relatedItems/RelatedEntry/RelatedEntry.jsx';
 
 
 const App = () => {

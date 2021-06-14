@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Carousel from './Carousel.jsx';
+import Carousel from '../Carousel/Carousel.jsx';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
