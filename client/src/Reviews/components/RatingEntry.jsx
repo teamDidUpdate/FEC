@@ -7,7 +7,7 @@ import StarsRating from 'stars-rating';
 import ReviewEntry from './ReviewEntry.jsx';
 import Slider from 'react-input-slider';
 
-const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray, masterListOfReviews }) => {
+const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray, masterListOfReviews, setHelpfulReviews, helpfulReviews }) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentFilter, setCurrentFilter] = useState('');
 
@@ -83,57 +83,60 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
       if (currentStar === '5') {
         if (currentSort === 'relevance') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, storedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 5 Stars ');
-        } else {
+        } else if (currentSort === 'newest') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, sortedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 5 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(5, helpfulReviews)));
         }
+        setCurrentFilter((previousState) => previousState + ' 5 Stars ');
         currentFilterArray.push(5);
       }
 
       if (currentStar === '4') {
         if (currentSort === 'relevance') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, storedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 4 Stars ');
-        } else {
+        } else if (currentSort === 'newest') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, sortedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 4 Stars ');
-
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(4, helpfulReviews)));
         }
+        setCurrentFilter((previousState) => previousState + ' 4 Stars ');
         currentFilterArray.push(4);
       }
 
       if (currentStar === '3') {
         if (currentSort === 'relevance') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, storedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 3 Stars ');
-        } else {
+        } else if (currentSort === 'newest') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, sortedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 3 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(3, helpfulReviews)));
         }
+        setCurrentFilter((previousState) => previousState + ' 3 Stars ');
         currentFilterArray.push(3);
       }
-
 
       if (currentStar === '2') {
         if (currentSort === 'relevance') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, storedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 2 Stars ');
-        } else {
+        } else if (currentSort === 'newest') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, sortedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 2 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(2, helpfulReviews)));
         }
+        setCurrentFilter((previousState) => previousState + ' 2 Stars ');
         currentFilterArray.push(2);
       }
 
       if (currentStar === '1') {
         if (currentSort === 'relevance') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, storedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 1 Stars ');
-        } else {
+        } else if (currentSort === 'newest') {
           setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, sortedReviews)));
-          setCurrentFilter((previousState) => previousState + ' 1 Stars ');
+        } else {
+          setCurrentlyShowing((previousState) => previousState.concat(grabReviews(1, helpfulReviews)));
         }
+        setCurrentFilter((previousState) => previousState + ' 1 Stars ');
         currentFilterArray.push(1);
       }
 

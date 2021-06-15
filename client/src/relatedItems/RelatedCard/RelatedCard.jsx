@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CompareModal from '../CompareModal/CompareModal.jsx';
 import {MdStarBorder} from 'react-icons/Md';
 import StarsRating from 'stars-rating';
+import { ThemeContext } from '../../App.jsx';
 
 const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefaultStyle }) => {
   const [defaultStyle, setDefaultStyle] = useState({});
   const [averageRating, setAverageRating] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const imageURL = product.styles.results[0].photos[0].thumbnail_url;
+  const darkTheme = useContext(ThemeContext);
+
 
   useEffect(() => {
     (async () => {
@@ -41,7 +44,7 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
           : <div className='card-item text'>${defaultStyle.original_price}</div>
         }
         <div className='card-item text rating'>
-          <StarsRating count={5} value={averageRating} half={true} edit={false} color2={'#333300'}/>
+          <StarsRating count={5} value={averageRating} half={true} edit={false} color2={darkTheme ? '#d6d6d6' : '#333'}/>
         </div>
       </div>
     </div>

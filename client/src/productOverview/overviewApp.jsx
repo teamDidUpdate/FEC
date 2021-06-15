@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import Rating from './rating.jsx';
 import Title from './title.jsx';
@@ -8,12 +8,15 @@ import Description from './description.jsx';
 import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
+import { ThemeContext } from '../App.jsx';
 
 const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
   const [allStyles, setAllStyles] = useState(productStyle.results);
   const [currentStyle, setCurrentStyle] = useState(productStyle.results[0]);
   const [expendView, setView] = useState(false);
+  const darkTheme = useContext(ThemeContext);
+
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: props.productId } })
@@ -29,13 +32,22 @@ const OverviewApp = (props) => {
       });
   }, [props.productId]);
 
+  const toggleTheme = () => {
+    props.setDarkTheme(prevDarkTheme => !prevDarkTheme);
+  };
+
   return (
     <div>
       <div id="header" className="overview-header">
         <h1>THREADS</h1>
         <img className="logo-img" src="icon/threadsLogo.png"></img>
+
+        <label className="switch">
+          <input type="checkbox" onClick={() => toggleTheme()}/>
+          <span className="slider round"></span>
+        </label>
       </div>
-      <div className="highlight">SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
+      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :
