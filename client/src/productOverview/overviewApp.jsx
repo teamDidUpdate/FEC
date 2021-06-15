@@ -42,9 +42,9 @@ const OverviewApp = (props) => {
         <h1>THREADS</h1>
         <img className="logo-img" src="icon/threadsLogo.png"></img>
 
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox" onClick={() => toggleTheme()}/>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </div>
       <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>

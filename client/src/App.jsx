@@ -6,6 +6,7 @@ import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/RelatedEntry/RelatedEntry.jsx';
+import SectionTracker from './Tracker/SectionTracker.jsx';
 
 export const ThemeContext = React.createContext();
 
@@ -24,34 +25,53 @@ const App = () => {
     <ThemeContext.Provider value={darkTheme}>
       <div id="darkTheme" style={themeStyles}>
         <div id="padding">
-          <div>
-            <OverviewApp productId={productId}
-              reviewCount={reviewCount}
-              rating={rating}
-              setProductId={setProductId}
-              setCurrentProduct={setCurrentProduct}
-              setDarkTheme={setDarkTheme} />
-          </div>
-          <div>
-            <RelatedItemsAndComparison
-              productId={productId}
-              setProductId={setProductId}
-              overviewProduct={currentProduct}
-              overviewRating={rating}
-            />
-          </div>
-          <div>
-            <QAwidget
-              productId={productId}
-              setProductId={setProductId}/>
-          </div>
+          <section id='product-overview-section'>
+            <SectionTracker sectionName={'product-overview-section'} render={(handleTracking) => (
+              <OverviewApp productId={productId}
+                reviewCount={reviewCount}
+                rating={rating}
+                setProductId={setProductId}
+                setCurrentProduct={setCurrentProduct}
+                setDarkTheme={setDarkTheme}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
+          <section id='related-items-and-comparison-section'>
+            <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
+              <RelatedItemsAndComparison
+                productId={productId}
+                setProductId={setProductId}
+                overviewProduct={currentProduct}
+                overviewRating={rating}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
+          <section id='questions-and-answers-section'>
+            <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
+              <QAwidget
+                productId={productId}
+                setProductId={setProductId}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
           <br></br>
-          <div>
-            <ReviewEntry productId={productId}
-              setProductId={setProductId}
-              setReviewCount={setReviewCount}
-              setRating={setRating} />
-          </div>
+          <section id='reviews-and-ratings-section'>
+            <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
+              <ReviewEntry productId={productId}
+                setProductId={setProductId}
+                setReviewCount={setReviewCount}
+                setRating={setRating}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
         </div>
       </div>
     </ThemeContext.Provider>

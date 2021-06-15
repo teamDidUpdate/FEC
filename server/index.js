@@ -178,12 +178,6 @@ app.get('/helpfulReview', (req, res) => {
     });
 });
 /************METADATA ************/
-/*
-Need to do two things
-1. import StarsRating from 'stars-rating';
-2. <div className='StarsRating'><StarsRating count={5} value={YOUR VALUE HERE!!!!} half={true} edit={false} color2={'#333300'} /></div>
-*/
-
 //Helper for Below
 var calculateAverage = function (object) {
   var sum = 0;
@@ -257,6 +251,17 @@ app.get('/fetchCurrentCharacteristics', (req, res) => {
 });
 
 
+/************Interactions************/
+app.post('/tracking', (req, res) => {
+  // console.log(JSON.stringify(req.body));
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/interactions', req.body, {headers: { Authorization: APIToken.TOKEN }})
+    .then(response => {
+      res.status(201).json(response.data);
+    })
+    .catch(err => res.status(422).send(`Err adding question, server side ${err}`));
+});
+
+/************Port************/
 let PORT = process.env.PORT || 1128;
 
 app.listen(PORT, function () {

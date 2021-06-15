@@ -379,3 +379,5 @@ const outfits = {
     }
   }
 };
+
+export default outfits;
