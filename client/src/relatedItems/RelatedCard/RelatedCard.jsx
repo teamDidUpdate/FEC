@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import CompareModal from '../CompareModal/CompareModal.jsx';
-import {MdStarBorder} from 'react-icons/Md';
+import { MdStarBorder } from 'react-icons/Md';
 import StarsRating from 'stars-rating';
 import { ThemeContext } from '../../App.jsx';
 
@@ -28,7 +28,9 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
 
   return (
     <div className='card-container'>
-      <MdStarBorder className='action-btn' onClick={() => setModalOpen(true)}/>
+      <MdStarBorder className='action-btn'
+        style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
+        onClick={() => setModalOpen(true)}/>
       <CompareModal open={modalOpen} productId={productId} relatedProduct={product} onClose={() => setModalOpen(false)}/>
       <div className='card-inner-container'onClick={() => handleRelatedCardClick()}>
         <div className='card-item'>
@@ -44,7 +46,7 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
           : <div className='card-item text'>${defaultStyle.original_price}</div>
         }
         <div className='card-item text rating'>
-          <StarsRating count={5} value={averageRating} half={true} edit={false}/>
+          <StarsRating count={5} value={averageRating} half={true} edit={false} />
         </div>
       </div>
     </div>

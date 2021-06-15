@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import StarsRating from 'stars-rating';
 import { IoMdCloseCircleOutline } from 'react-icons/Io';
+import { ThemeContext } from '../../App.jsx';
 
 const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOutfit}) => {
   const [defaultStyle, setDefaultStyle] = useState({});
   const imageURL = outfit.styles.results[0].photos[0].thumbnail_url;
+  const darkTheme = useContext(ThemeContext);
 
   useEffect(() => {
     (async () => {
@@ -16,7 +18,9 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
   return (
     <>
       <div className='card-container'>
-        <IoMdCloseCircleOutline className='action-btn' onClick={() => deleteOutfit(outfit.overview.id)}/>
+        <IoMdCloseCircleOutline className='action-btn'
+          style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
+          onClick={() => deleteOutfit(outfit.overview.id)}/>
         <div className='card-inner-container'onClick={() => setProductId(outfit.overview.id)}>
           <div className='card-item'>
             <img className='card-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
@@ -31,7 +35,7 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
             : <div className='card-item text'>${defaultStyle.original_price}</div>
           }
           <div className='card-item text rating'>
-            <StarsRating count={5} value={outfit.rating} half={true} edit={false}/>
+            <StarsRating count={5} value={outfit.rating} half={true} edit={false} />
           </div>
         </div>
       </div>
