@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { ThemeContext } from '../../App.jsx';
 import StarsRating from 'stars-rating';
 import RatingEntry from './RatingEntry.jsx';
 
@@ -17,6 +18,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   const [emptyArray, setEmptyArray] = useState([]);
   const [currentFilterArray, setCurrentFilterArray] = useState([]);
   const [helpfulReviews, setHelpfulReviews] = useState([]);
+  const darkTheme = useContext(ThemeContext);
 
   useEffect(() => {
     axios.get('/fetchReviews', { params: { productId: productId } })
@@ -257,7 +259,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
               <div className='reviewHeader'>
-                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={'#333300'} /></div>
+                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={darkTheme ? '#d6d6d6' : '#333'} /></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + convertDate(review.date)}</p>
                 <br></br>
                 <br></br>

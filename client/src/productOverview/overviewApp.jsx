@@ -18,19 +18,19 @@ const OverviewApp = (props) => {
   const darkTheme = useContext(ThemeContext);
 
 
-  // useEffect(() => {
-  //   axios.get('/overview', { params: { productId: props.productId } })
-  //     .then((response) => {
-  //       setOverviewProduct(response.data.overview);
-  //       setAllStyles(response.data.styles.results);
-  //       setCurrentStyle(response.data.styles.results[0]);
-  //       props.setCurrentProduct(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return;
-  //     });
-  // }, [props.productId]);
+  useEffect(() => {
+    axios.get('/overview', { params: { productId: props.productId } })
+      .then((response) => {
+        setOverviewProduct(response.data.overview);
+        setAllStyles(response.data.styles.results);
+        setCurrentStyle(response.data.styles.results[0]);
+        props.setCurrentProduct(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        return;
+      });
+  }, [props.productId]);
 
   const toggleTheme = () => {
     props.setDarkTheme(prevDarkTheme => !prevDarkTheme);
