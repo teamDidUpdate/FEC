@@ -17,34 +17,50 @@ const App = () => {
   return (
     <div>
       <section id='product-overview-section'>
-        <OverviewApp productId={productId}
-          reviewCount={reviewCount}
-          rating={rating}
-          setProductId={setProductId}
-          setCurrentProduct={setCurrentProduct}
-        />
+        <SectionTracker sectionName={'product-overview-section'} render={(handleTracking) => (
+          <OverviewApp productId={productId}
+            reviewCount={reviewCount}
+            rating={rating}
+            setProductId={setProductId}
+            setCurrentProduct={setCurrentProduct}
+            handleTracking={handleTracking}
+          />
+        )}>
+        </SectionTracker>
       </section>
       <section id='related-items-and-comparison-section'>
-        <RelatedItemsAndComparison
-          productId={productId}
-          setProductId={setProductId}
-          overviewProduct={currentProduct}
-          overviewRating={rating}
-        />
+        <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
+          <RelatedItemsAndComparison
+            productId={productId}
+            setProductId={setProductId}
+            overviewProduct={currentProduct}
+            overviewRating={rating}
+            handleTracking={handleTracking}
+          />
+        )}>
+        </SectionTracker>
       </section>
       <section id='questions-and-answers-section'>
-        <QAwidget
-          productId={productId}
-          setProductId={setProductId}
-        />
+        <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
+          <QAwidget
+            productId={productId}
+            setProductId={setProductId}
+            handleTracking={handleTracking}
+          />
+        )}>
+        </SectionTracker>
       </section>
       <br></br>
       <section id='reviews-and-ratings-section'>
-        <ReviewEntry productId={productId}
-          setProductId={setProductId}
-          setReviewCount={setReviewCount}
-          setRating={setRating}
-        />
+        <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
+          <ReviewEntry productId={productId}
+            setProductId={setProductId}
+            setReviewCount={setReviewCount}
+            setRating={setRating}
+            handleTracking={handleTracking}
+          />
+        )}>
+        </SectionTracker>
       </section>
     </div>
   );

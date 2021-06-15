@@ -239,6 +239,17 @@ app.get('/fetchMeta', (req, res) => {
 });
 
 
+/************Interactions************/
+app.post('/tracking', (req, res) => {
+  // console.log(JSON.stringify(req.body));
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/interactions', req.body, {headers: { Authorization: APIToken.TOKEN }})
+    .then(response => {
+      res.status(201).json(response.data);
+    })
+    .catch(err => res.status(422).send(`Err adding question, server side ${err}`));
+});
+
+/************Port************/
 let PORT = process.env.PORT || 1128;
 
 app.listen(PORT, function () {
