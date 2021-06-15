@@ -396,7 +396,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
                     <div className='column3'>
 
-                      <label for="myfile">Select up to 5 photos: </label>
+                      <label htmlFor="myfile">Select up to 5 photos: </label>
                       <div>
                         <input type="file" className="photoUploadReview"></input>
                         <input type="file" className="photoUploadReview"></input>
@@ -407,6 +407,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                       <div>
                         <input type="submit" id='reviewSubmission' value="Submit" onClick={submission}></input>
                       </div>
+
                     </div>
                     <span className="close" onClick={handleReviewModalClose}>&times;</span>
                   </div>
