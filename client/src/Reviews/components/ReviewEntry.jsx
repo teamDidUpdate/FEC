@@ -283,13 +283,15 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
               <div className='reviewPhotos'>{review.photos.length > 0 ?
                 review.photos.map((element) => (
-                  <div className='Modals' key={element.url}>
-                    <img id='myImg' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
-                    <div id='myModal' className='modal'>
-                      <span className='close' onClick={handleModalClose}>&times;</span>
-                      <img className='modal-content' id='img01'></img>
-                    </div>
-                  </div>
+                  element.url.includes('jpg') || element.url.includes('gif') ?
+                    <div className='Modals' key={element.url}>
+                      <img id='myImg' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
+                      <div id='myModal' className='modal'>
+                        <span className='close' onClick={handleModalClose}>&times;</span>
+                        <img className='modal-content' id='img01'></img>
+                      </div>
+                    </div> :
+                    null
                 )) :
                 null}</div>
             </div>) :
