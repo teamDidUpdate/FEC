@@ -32,7 +32,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
         body: questionBody,
         name: name,
         email: email,
-        productId: productId
+        product_id: productId
       })
         .then((response) => {
           console.log('succesful question post', response.data);
@@ -58,46 +58,59 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
         >&times;</span>
 
         <form className='question-modal-form'>
-          <p>Email, Name, Question</p>
+
+          <p className='modal-question-title'>
+            {document.getElementsByClassName('product-name')[0].innerText}
+          </p>
+
+          <label className='modal-label' htmlFor='name'>Email:</label>
           <input required
             className='question-email-input'
             onChange={(event) => { dataFill(event); }}
             placeholder="Example: jack@email.com"
             type="email"
+            name='email'
             maxLength="60"
             autoComplete="off"
             value={email}
-          >
-          </input>
-          <p>For authentication reasons, you will not be emailed</p>
+          ></input>
 
+          <p className='answer-modal-text'>
+            For authentication reasons, you will not be emailed
+          </p>
+
+          <label className='modal-label' htmlFor='name'>Nickname:</label>
           <input required
             className='question-name-input'
             onChange={(event) => { dataFill(event); }}
             placeholder="Examples: jackson11!"
             type="text"
+            name='name'
             maxLength="60"
             autoComplete="off"
             value={name}
-          >
-          </input>
-          <p>For privacy reasons, do not use your full name or email address</p>
+          ></input>
 
+          <p className='answer-modal-text'>
+            For privacy reasons, do not use your full name or email address
+          </p>
+
+          <label className='modal-label' htmlFor='question'>Question:</label>
           <textarea required
             className='question-ask'
             onChange={(event) => { dataFill(event); }}
             placeholder="Enter Question Here..."
             type="text"
+            name="question"
             maxLength="1000"
             minLength=""
             autoComplete="off"
             value={questionBody}
-          >
-          </textarea>
+          ></textarea>
 
           <button
             className='submit-new-question'
-            onClick={(event) => { handleSubmitQuestion(event); }}
+            onClick={(event) => handleSubmitQuestion(event)}
           >
             Submit Question
           </button>

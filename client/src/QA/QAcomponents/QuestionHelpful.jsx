@@ -67,29 +67,36 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
       <div className='answer-modal-control' onClick={event => event.stopPropagation()}>
         <span className='answer-modal-close-x'
           onClick={event => handleCloseModal(event)}>&times;</span>
-        <p>Q:{questionBody}</p>
+        <p className='modal-question-title'>Q:{questionBody}</p>
         <form className='answer-modal-form'>
+
+          <label className='modal-label' htmlFor='email'>Email:</label>
           <input className='answer-modal-email' required
             placeholder='Example: jack@email.com'
             value={email}
             type='email'
+            name='email'
             maxLength='60'
             autoComplete='off'
             onChange={event => { event.preventDefault(); dataFill(event); }}></input>
-          <p>For authentication reasons, you will not be emailed</p>
+          <p className='answer-modal-text'>For authentication reasons, you will not be emailed</p>
 
+          <label className='modal-label' htmlFor='name'>Nickname:</label>
           <input className='answer-modal-name' required
             placeholder='Example: jack543!'
             type='text'
+            name='name'
             maxLength='75'
             autoComplete='off'
             value={name}
             onChange={event => { event.preventDefault(); dataFill(event); }}></input>
-          <p>For privacy reasons, do not use your full name or email address</p>
+          <p className='answer-modal-text'>For privacy reasons, do not use your full name or email address</p>
 
+          <label className='modal-label' htmlFor='answer'>Answer:</label>
           <textarea className='answer-modal-body' required
             placeholder='Enter Answer Here...'
             type='text'
+            name='answer'
             maxLength='1000'
             minLength='1'
             autoComplete='off'
@@ -128,7 +135,7 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
         }}>
         Yes
       </p>
-      &nbsp;({helpfulToggle ? helpfulness + 1 : helpfulness}) |
+      &nbsp;({helpfulToggle ? helpfulness + 1 : helpfulness}) | &nbsp;
 
       <div
         className='add-answer'
@@ -137,7 +144,7 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
           textDecoration: 'underline',
           cursor: 'pointer'
         }}
-      >&nbsp;Add Answer</div>
+      >Add Answer</div>
       <div>{addAnswerModal ? addAnswerModalBody : null}</div>
     </div>
   );

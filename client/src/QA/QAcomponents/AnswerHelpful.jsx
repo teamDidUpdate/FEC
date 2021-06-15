@@ -5,6 +5,13 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
   const [helpfulToggle, setHelpfulToggle] = useState(false);
   const [reportToggle, setReportToggle] = useState(false);
 
+  const convertDate = (string) => {
+    return new Date(string.substring(0, 10))
+      .toString()
+      .substring(0, 10);
+  };
+
+
   const handleEventPut = (event) => {
     !helpfulToggle && event.target.getAttribute('name') === 'helpful'
 
@@ -33,7 +40,7 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
       marginLeft: '40px',
       color: 'GrayText'
     }}>
-      <p>by {answerName}, {Date(answerDate).substring(4, 15)}</p>
+      <p>by {answerName}, {convertDate(answerDate)}</p>
       &nbsp;Helpful?&nbsp;
       <p
         className='answer-helpful-button'
@@ -45,7 +52,7 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
           cursor: 'pointer'
         }}
       >Yes</p>
-      &nbsp;({helpfulToggle ? answerHelpfulness + 1 : answerHelpfulness}) |
+      &nbsp;({helpfulToggle ? answerHelpfulness + 1 : answerHelpfulness}) | &nbsp;
       <div
         className='answer-report'
         name='report'
@@ -54,7 +61,7 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
           textDecoration: 'underline',
           cursor: 'pointer'
         }}
-      >&nbsp;{reportToggle ? 'Reported!' : 'Report'}</div>
+      >{reportToggle ? 'Reported!' : 'Report'}</div>
     </div>
   );
 };
