@@ -498,6 +498,7 @@ body {
 #reviewModalFormatted{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
 }
 
 .reviewHidden {
@@ -525,6 +526,8 @@ body {
   cursor: pointer;
   transition: all ease 0.3s;
 }
+
+
 
 #currentFilters {
   margin-top: 10px;
