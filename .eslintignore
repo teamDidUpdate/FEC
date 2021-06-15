@@ -4,3 +4,6 @@
 **/vendor
 **/*.min.js
 **/bundle.js
+**/sampleProducts.js
+**/coverage
+**/data

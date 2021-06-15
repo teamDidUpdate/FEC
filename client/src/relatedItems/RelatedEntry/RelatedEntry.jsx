@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Carousel from './Carousel.jsx';
+import Carousel from '../Carousel/Carousel.jsx';
+import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
 
 const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, overviewRating}) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfits, setOutfits] = useState([]);
+  const [animate, setAnimate] = useState(false);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -33,6 +35,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
       });
       let relatedItems = await Promise.all(items);
       setRelatedProducts(relatedItems);
+      setAnimate(true);
     } catch (err) {
       console.log(err);
     }
@@ -55,24 +58,40 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   return (
     <>
       <h2 className='section-header'>RELATED PRODUCTS</h2>
-      <Carousel
-        related={true}
-        products={relatedProducts}
-        productId={productId}
-        setProductId={setProductId}
-        overviewProduct={overviewProduct}
-        overviewRating={overviewRating}
-      />
+      <CSSTransition
+        in={animate}
+        appear={true}
+        timeout={1000}
+        classNames="fade"
+        unmountOnExit
+      >
+        <Carousel
+          related={true}
+          products={relatedProducts}
+          productId={productId}
+          setProductId={setProductId}
+          overviewProduct={overviewProduct}
+          overviewRating={overviewRating}
+        />
+      </CSSTransition>
       <h2 className='section-header'>YOUR OUTFIT</h2>
-      <Carousel
-        related={false}
-        products={outfits}
-        productId={productId}
-        setProductId={setProductId}
-        setOutfits={setOutfits}
-        overviewProduct={overviewProduct}
-        overviewRating={overviewRating}
-      />
+      <CSSTransition
+        in={animate}
+        appear={true}
+        timeout={1000}
+        classNames="fade"
+        unmountOnExit
+      >
+        <Carousel
+          related={false}
+          products={outfits}
+          productId={productId}
+          setProductId={setProductId}
+          setOutfits={setOutfits}
+          overviewProduct={overviewProduct}
+          overviewRating={overviewRating}
+        />
+      </CSSTransition>
     </>
   );
 };

@@ -246,7 +246,24 @@ app.get('/getNumberOfReviews', function (req, res) {
     });
 });
 
+app.post('/submitReview', (req, res) => {
+  console.log(req.body);
+  res.send(200);
+});
+
 app.get('/fetchMeta', (req, res) => {
+  let productId = req.query.productId;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {
+    headers: {
+      Authorization: APIToken.TOKEN
+    }
+  })
+    .then((response) => {
+      res.send(response.data);
+    });
+});
+
+app.get('/fetchCurrentCharacteristics', (req, res) => {
   let productId = req.query.productId;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta/?product_id=${productId}`, {
     headers: {

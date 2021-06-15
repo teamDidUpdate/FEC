@@ -4,7 +4,7 @@ const Image = (props) => {
   const currentImg = props.currentStyle;
   const [images, setImages] = useState(currentImg.photos);
   const [imageIdx, setImageIdx] = useState(0);
-  const [imageURL, setImageURL] = useState(images[imageIdx].url);
+  const [imageURL, setImageURL] = useState(images[imageIdx].url || 'https://bit.ly/2Tg8g4s');
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(7);
   const [imgStyle, setImgStyle] = useState({});
@@ -113,8 +113,8 @@ const Image = (props) => {
         </div>
         {!zoomIn &&
         <div className="style-pics">
-          {images.slice(start, end).map((image) => <div className="gallery-container" key={image.url} onClick={(e) => handleThumClick(image.url)}>
-            <img className="gallery-image" src={image.thumbnail_url}></img>
+          {images.slice(start, end).map((image) => <div className="gallary-container" key={image.url} onClick={(e) => handleThumClick(image.url)}>
+            <img className="gallary-image" src={image.thumbnail_url}></img>
             {(imageURL === image.url) && <span className="blackLine"></span>}
           </div>)}
           {(images.length > 7 && start > 0) && <div className="arrow up" onClick={() => handleScroll('up')}>︿</div>}

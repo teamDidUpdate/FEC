@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import RelatedCard from './RelatedCard.jsx';
-import OutfitCard from './OutfitCard.jsx';
+import RelatedCard from '../RelatedCard/RelatedCard.jsx';
+import OutfitCard from '../OutfitCard/OutfitCard.jsx';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/Md';
 import { FiPlusCircle } from 'react-icons/Fi';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 
 const Carousel = ({ products, productId, setProductId, related, overviewProduct, overviewRating, setOutfits}) => {
@@ -107,8 +107,8 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
             return (
               index >= currentPos || currentPos + 2 >= length ?
                 <RelatedCard
-                  product={product}
                   key={product.overview.id}
+                  product={product}
                   productId={productId}
                   setProductId={setProductId}
                   getStarRating={getStarRating}
@@ -130,8 +130,8 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
             return (
               index >= currentPos || currentPos + 1 >= length ?
                 <OutfitCard
-                  outfit={product}
                   key={product.overview.id}
+                  outfit={product}
                   productId={productId}
                   setProductId={setProductId}
                   getDefaultStyle={getDefaultStyle}

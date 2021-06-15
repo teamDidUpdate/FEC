@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarsRating from 'stars-rating';
-import {IoMdCloseCircleOutline} from 'react-icons/Io';
+import { IoMdCloseCircleOutline } from 'react-icons/Io';
 
 const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOutfit}) => {
   const [defaultStyle, setDefaultStyle] = useState({});
