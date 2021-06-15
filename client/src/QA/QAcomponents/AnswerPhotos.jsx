@@ -26,8 +26,8 @@ const AnswerPhotos = ({ photo }) => {
           className='answer-photo'
           src={photo}
           alt='product'
-          onClick={handlePhotoClick}></img>
-
+          onClick={handlePhotoClick}
+        ></img>
         {modal ? answerPhotoModal : null}
       </div>
     </div>

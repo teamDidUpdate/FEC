@@ -1,6 +1,7 @@
 import React from 'react';
 import Question from './Question.jsx';
 import MoreQuestions from './MoreQuestions.jsx';
+import AddQuestion from './AddQuestion.jsx';
 
 const QuestionList = ({ questions, searchInput, productId, openModal, handleModalOpen, handleModalClose }) => (
   <div className='question-list'>
@@ -41,6 +42,14 @@ const QuestionList = ({ questions, searchInput, productId, openModal, handleModa
               />
           ))
     }
+    <button className='add-question-button'onClick={handleModalOpen}>
+      ADD A QUESTION +
+    </button>
+    <AddQuestion
+      productId={productId}
+      openModal={openModal}
+      handleModalClose={handleModalClose}
+    />
   </div>
 );
 

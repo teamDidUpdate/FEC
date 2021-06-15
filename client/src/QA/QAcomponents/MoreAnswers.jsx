@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Answers from './Answers.jsx';
 
 const MoreAnswers = ({ answer, answerList }) => {
@@ -24,7 +23,7 @@ const MoreAnswers = ({ answer, answerList }) => {
               );
             })}
             <div>
-              <button className='collapse-answers'
+              <button className='more-answers'
                 onClick={() => {
                   setCollapseAnswers(!collapseAnswers);
                 }}>
