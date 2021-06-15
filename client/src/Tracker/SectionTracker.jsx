@@ -7,16 +7,12 @@ const SectionTracker = ({sectionName, render}) => {
     document.getElementById(sectionName).addEventListener('click', handleTrackingClick);
   }, []);
 
-  // console.log('section name is ', sectionName);
-
   // pass handle tracking clicks to children
   const handleTrackingClick = async (event) => {
     let data = {};
     data.time = new Date();
     data.element = await event.target.outerHTML.toString();
     data.widget = sectionName;
-
-    // console.log(`tracking click for ${JSON.stringify(data)}`);
 
     await axios.post('/tracking', data)
       .then((response) => {

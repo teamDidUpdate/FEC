@@ -259,7 +259,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
               <div className='reviewHeader'>
-                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={darkTheme ? '#d6d6d6' : '#333'} /></div>
+                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false}/></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + convertDate(review.date)}</p>
                 <br></br>
                 <br></br>
@@ -360,6 +360,80 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     </select>
                     <div id='char5' id='rating' className='hidden'>
                       <select name='rating' className='hidden'>
+          <div className='reviewButton'>
+            <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
+            <div id="reviewModal" className="modal" style={{'color': 'black'}}>
+              <div className="addReview-modal-content">
+                <h1 className='writeReviewHeader'>Write your Review!</h1>
+                <form id='submitReview'>
+                  <div id='reviewModalFormatted'>
+                    <div className='column1'>
+                      <div className='addNickName'>
+                        Nickname:
+                        <input type="text" placeholder='Jackson11' id='reviewNickName'></input>
+                        <br></br>
+                        For privacy reasons, do not use your full name or email address
+                      </div>
+                      <div className='addEmail'>
+                        Email:
+                        <input type="email" id="reviewEmail" size="30" id='reviewEmail' required></input>
+                        <br></br>
+                        For authentication reasons, you will not be emailed
+                      </div>
+                      <div className='characteristics'>
+                        Characteristics:
+                        <div id='char1' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+
+                        <div id='char2' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+
+                        <div id='char3' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+                        <div id='char4' className='hidden'>
+                        </div>
+                        <select name='rating'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+                        <div id='char5' id='rating' className='hidden'>
+                          <select name='rating' className='hidden'>
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Great</option>
+                          </select>
+                        </div>
+                      </div>
+                      <br></br>
+                      <label htmlFor='rating' className='boldRating'>Overall Rating</label>
+                      <br></br>
+                      <select name='rating' id='rating'>
                         <option value="1">1 - Poor</option>
                         <option value="2">2 - Fair</option>
                         <option value="3">3 - Average</option>
