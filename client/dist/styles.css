@@ -175,6 +175,7 @@ html {
   border: solid 1px rgb(56, 55, 55);
   border-radius: 10em;
   margin-right: 0.8vw;
+  object-fit: cover;
 }
 
 .gallary-image {
@@ -182,6 +183,7 @@ html {
   height: 4.4vw;
   border: 1px black solid;
   box-shadow: 3px 2px 2px rgb(61, 61, 61);
+  object-fit: cover;
 }
 
 .blackLine {
@@ -290,6 +292,10 @@ html {
   height: auto;
 }
 
+.share-detail img:hover {
+  opacity: 0.6;
+}
+
 .gallary-container {
   margin-top: 7px;
   margin-left: 3px;
@@ -364,7 +370,7 @@ html {
 }
 
 input:checked + .slider {
-  background-color: #202020;
+  background-color: #222;
 }
 
 input:focus + .slider {
