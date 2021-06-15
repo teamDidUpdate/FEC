@@ -420,7 +420,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
                   </div>
                   <div>
-                    <input type="submit" id='reviewSubmission' value="Submit" onClick={submission}></input>
+                    <input type="submit" id='reviewSubmission' value="Submit" onClick={handleReviewModalClose}></input>
                   </div>
 
                 </div>
