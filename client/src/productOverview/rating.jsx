@@ -7,7 +7,7 @@ const Rating = (props) => {
   const darkTheme = useContext(ThemeContext);
   return (
     <div className="rating">
-      <StarsRating count={5} value={props.rating} half={true} edit={false} color2={darkTheme ? '#d6d6d6' : '#333'} />
+      <StarsRating count={5} value={props.rating} half={true} edit={false}/>
       {props.reviewCount > 0
         ? <a href='#jumpEntry' className="review-text" style={{color: darkTheme ? '#d6d6d6' : '#333'}} onClick={() => {
           document.getElementsByClassName('numberOfReviews')[0].focus();
