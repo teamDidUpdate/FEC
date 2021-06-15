@@ -44,7 +44,7 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
           : <div className='card-item text'>${defaultStyle.original_price}</div>
         }
         <div className='card-item text rating'>
-          <StarsRating count={5} value={averageRating} half={true} edit={false} color2={darkTheme ? '#d6d6d6' : '#333'}/>
+          <StarsRating count={5} value={averageRating} half={true} edit={false}/>
         </div>
       </div>
     </div>

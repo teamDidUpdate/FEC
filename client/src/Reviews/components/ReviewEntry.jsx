@@ -259,7 +259,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
               <div className='reviewHeader'>
-                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} color2={darkTheme ? '#d6d6d6' : '#333'} /></div>
+                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false}/></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + convertDate(review.date)}</p>
                 <br></br>
                 <br></br>
@@ -295,7 +295,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
           <div className='reviewButton'>
             <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
-            <div id="reviewModal" className="modal">
+            <div id="reviewModal" className="modal" style={{'color': 'black'}}>
               <div className="addReview-modal-content">
                 <h1 className='writeReviewHeader'>Write your Review!</h1>
                 <form id='submitReview'>

@@ -31,7 +31,7 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
             : <div className='card-item text'>${defaultStyle.original_price}</div>
           }
           <div className='card-item text rating'>
-            <StarsRating count={5} value={outfit.rating} half={true} edit={false} color2={'#333300'}/>
+            <StarsRating count={5} value={outfit.rating} half={true} edit={false}/>
           </div>
         </div>
       </div>

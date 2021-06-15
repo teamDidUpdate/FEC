@@ -9,6 +9,7 @@ import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 import { ThemeContext } from '../App.jsx';
+import { FiMoon, FiSun } from 'react-icons/Fi';
 
 const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
@@ -41,11 +42,14 @@ const OverviewApp = (props) => {
       <div id="header" className="overview-header">
         <h1>THREADS</h1>
         <img className="logo-img" src="icon/threadsLogo.png"></img>
-
-        <label className="switch">
-          <input type="checkbox" onClick={() => toggleTheme()}/>
-          <span className="slider round"></span>
-        </label>
+        <div className="switch-container">
+          <label className="switch">
+            <input type="checkbox" onClick={() => toggleTheme()}/>
+            <span className="slider round"></span>
+            {!darkTheme && <FiMoon className="moon-icon"/>}
+            {darkTheme && <FiSun className="sun-icon" />}
+          </label>
+        </div>
       </div>
       <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
