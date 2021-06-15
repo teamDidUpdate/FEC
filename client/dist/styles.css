@@ -1060,7 +1060,7 @@ h1.reviewModalSize {
   width: 16vw;
   height: 40vh;
   box-shadow: 3px 2px 2px grey;
-  border: 1px solid black;
+  border: 1px solid;
 }
 
 .card-item.text {
@@ -1091,9 +1091,9 @@ h1.reviewModalSize {
   width: 16vw;
   height: 40vh;
   margin-right: 2em;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   box-shadow: 3px 2px 2px grey;
-  border: 1px solid black;
+  border: 1px solid;
   cursor: pointer;
   user-select: none;
 }
@@ -1135,7 +1135,7 @@ h1.reviewModalSize {
   right: 8px;
   cursor: pointer;
   user-select: none;
-  background: #FFF;
+  /* background: #FFF; */
   opacity: .75;
   border-radius: 2rem;
   box-shadow: 3px 2px 2px #333;
@@ -1148,7 +1148,7 @@ h1.reviewModalSize {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #000;
+  /* background-color: #000; */
   opacity: .7;
   z-index: 1000;
 }
@@ -1160,14 +1160,14 @@ h1.reviewModalSize {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #FFF;
+  /* background-color: #FFF; */
   padding: 1em;
   height: 36vh;
   width: 28vw;
   z-index: 1000;
   text-align: center;
   font: 16px Arial, sans-serif;
-  border: 1px solid #000;
+  border: 1px solid;
   box-shadow: 3px 2px 2px #333;
   /* color: #333; */
 }

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
+import { ThemeContext } from '../../App.jsx';
 
 const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
   if (!open) {
@@ -9,6 +10,7 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
 
   const [overviewProduct, setOverviewProduct] = useState({});
   const [comparedFeatures, setComparedFeatures] = useState(null);
+  const darkTheme = useContext(ThemeContext);
 
   useEffect(() => {
     axios.get('/overview', { params: { productId: productId } })
@@ -42,8 +44,12 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
 
   return ReactDom.createPortal(
     <>
-      <div className='overlay' onClick={onClose}/>
-      <div className='compare-modal'>
+      <div className='overlay' onClick={onClose}
+        style={{backgroundColor: darkTheme ? '#fff' : '#000'}}
+      />
+      <div className='compare-modal'
+        style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
+      >
         <h2 className='modal-title'>Comparing</h2>
         <table className='compare-table'>
           <thead>
