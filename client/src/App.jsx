@@ -17,8 +17,9 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [darkTheme, setDarkTheme] = useState(false);
   const themeStyles = {
-    backgroundColor: darkTheme ? '#222222' : 'white',
-    color: darkTheme ? '#ffffff' : '#333'
+    backgroundColor: darkTheme ? '#222' : '#fff',
+    color: darkTheme ? '#fff' : '#333',
+    borderColor: darkTheme ? '#fff' : '#222'
   };
 
   return (

@@ -38,7 +38,7 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
 
   const addAnswerImg = (event) => {
     const photos = [];
-    photos.push(URL.createObjectURL(event.target.files[0]));
+    photos.push((event.target.value));
     setImages(photos);
   };
 
@@ -103,9 +103,13 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
             value={answerBody}
             onChange={event => { event.preventDefault(); dataFill(event); }}></textarea>
 
+          <label className='modal-label' htmlFor='imageUpload'>Img URL:</label>
           <input className='answer-modal-img'
-            type='file'
-            onChange={addAnswerImg}></input>
+            placeholder='Image URL...'
+            type='text'
+            name='imageUpload'
+            value={images}
+            onChange={event => { event.preventDefault(); addAnswerImg(event); }}></input>
 
           <button className='submit-answer-form-button'
             onClick={event => handleAddAnswer(event)}>
