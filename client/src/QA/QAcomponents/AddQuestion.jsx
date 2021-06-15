@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-
 const AddQuestion = ({ productId, handleModalClose, openModal }) => {
-  // TODO: add functionalities and verification for name/email, etc
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [questionBody, setQuestionBody] = useState('');
@@ -12,7 +10,6 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
     event.stopPropagation();
     handleModalClose();
   };
-  // console.log(productId)
 
   const regexVerifyEmail = (email) => {
     const characterTest = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -49,14 +46,16 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
   const QuestionModalForm = (
     <div
       className='question-modals'
-      onClick={event => selectModal(event)}>
+      onClick={event => selectModal(event)}
+    >
       <div
         className='question-modal-control'
-        onClick={event => event.stopPropagation()}>
+        onClick={event => event.stopPropagation()}
+      >
         <span
           className='close-button'
-          onClick={event => selectModal(event)}>
-          &times;</span>
+          onClick={event => selectModal(event)}
+        >&times;</span>
 
         <form className='question-modal-form'>
           <p>Email, Name, Question</p>
@@ -103,7 +102,6 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
             Submit Question
           </button>
         </form>
-
       </div>
     </div>
   );

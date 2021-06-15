@@ -1,5 +1,5 @@
 import React from 'react';
-import Helpful from './Helpful.jsx';
+import QuestionHelpful from './QuestionHelpful.jsx';
 import Answers from './Answers.jsx';
 import MoreAnswers from './MoreAnswers.jsx';
 
@@ -11,11 +11,12 @@ const Question = ({ question, productId }) => {
     <div className='question'>
       <span className='question-control'>
         Q: {question.question_body}
-        <Helpful
+        <QuestionHelpful
+          questionBody={question.question_body}
           productId={productId}
           helpfulness={question.question_helpfulness}
-          inputText={'Add Answer'}
-          questionId={question.question_id}/>
+          questionId={question.question_id}
+        />
       </span>
       {
         answerList

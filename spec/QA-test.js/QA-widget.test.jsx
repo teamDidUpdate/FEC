@@ -9,5 +9,5 @@ test('QAwidget mounted properly', () => {
   const widget = shallow(<QAwidget productId={13023} />);
 
   expect(widget.find('div.qa-header').text())
-    .toEqual('Question And Answers');
+    .toEqual('Questions & Answers');
 });
