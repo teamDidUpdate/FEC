@@ -16,8 +16,8 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [darkTheme, setDarkTheme] = useState(false);
   const themeStyles = {
-    backgroundColor: darkTheme ? 'black' : 'white',
-    color: darkTheme ? 'white' : 'black'
+    backgroundColor: darkTheme ? '#333' : 'white',
+    color: darkTheme ? '#d6d6d6' : '#333'
   };
 
   return (
@@ -32,7 +32,7 @@ const App = () => {
               setCurrentProduct={setCurrentProduct}
               setDarkTheme={setDarkTheme} />
           </div>
-          <div>
+          {/* <div>
             <RelatedItemsAndComparison
               productId={productId}
               setProductId={setProductId}
@@ -51,7 +51,7 @@ const App = () => {
               setProductId={setProductId}
               setReviewCount={setReviewCount}
               setRating={setRating} />
-          </div>
+          </div> */}
         </div>
       </div>
     </ThemeContext.Provider>

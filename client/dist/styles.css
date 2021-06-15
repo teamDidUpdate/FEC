@@ -67,23 +67,18 @@ html {
 
 /* ------------ Overview and General ------------ */
 
-body {
-  /* padding-left: 16%;
-  padding-right: 16%; */
-  font-family:Arial, Helvetica, sans-serif;
-}
-
 #padding {
   padding-left: 16%;
   padding-right: 16%;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .overview-header {
+  background-color: #d6d6d6;
   margin-top: 1px;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 4.6vw;
-  background-color: #d6d6d6;
   color: #2d2d2d;
   font-size: 3vh;
   font-weight: bold;
@@ -99,7 +94,6 @@ body {
 
 .highlight {
   text-align: center;
-  color: #69706e;
   margin-top: 1.5%;
 }
 
@@ -213,7 +207,6 @@ body {
   margin-top: 8px;
   display: grid;
   grid-template-columns: 6vw auto;
-  color: #494949;
 }
 
 .style-section div {
@@ -237,16 +230,13 @@ body {
 
 .stlye-text {
   font-size: 18px;
-  color: rgb(46, 45, 45);
 }
 
 .bold-text {
-  color: black;
   font-weight: bold;
 }
 
 .product-name{
-  color: black;
   font-size: 2em;
   font-weight: bold;
 }
@@ -257,13 +247,11 @@ body {
   grid-template-columns: 4fr 1fr;
   gap: 10px;
   height: 40px;
-  background-color: white;
 }
 
 .container {
   position: relative;
   text-align: center;
-  color: rgb(12, 12, 12);
 }
 
 .top-right {
@@ -275,6 +263,7 @@ body {
   height: 1.4vw;
   background-color: white;
   border: solid 1px black;
+  color: #333;
   border-radius: 2vw;
   font-size: 1.2vw;
 }
@@ -283,11 +272,10 @@ body {
   padding-left: 13%;
   display: grid;
   gap:10px;
-  border-right: solid 2px rgb(99, 97, 97);
+  border-right: solid 2px ;
 }
 
 .product-slogan {
-  color: #494949;
   font-weight: bold;
   font-size: 120%;
 }
@@ -366,10 +354,10 @@ body {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 22px;
+  width: 22px;
   left: 4px;
-  bottom: 4px;
+  bottom: 3px;
   background-color: #f8f8fa;
   -webkit-transition: .4s;
   transition: .4s;
@@ -390,16 +378,16 @@ input:checked + .slider:before {
 }
 
 .switch {
-  right:3%;
-  bottom: 25%;
+  right: 1%;
+  bottom: 19%;
   position: absolute;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 3.8vw;
+  height: 2vw;
 }
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 30px;
 }
 
 .slider.round:before {

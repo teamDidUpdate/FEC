@@ -5,7 +5,7 @@ const Feature = (props) => {
     <div>
       {props.features &&
           <div className="feature-container">
-            {props.features.map((f) => <div style={{ color: '#69706e', marginTop: '1%' }} key={f.feature}> ✓&nbsp; {f.value}</div>)}
+            {props.features.map((f) => <div style={{ marginTop: '1%' }} key={f.feature}> ✓&nbsp; {f.value}</div>)}
           </div>
       }
     </div>
