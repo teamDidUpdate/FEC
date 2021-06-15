@@ -553,6 +553,7 @@ input:checked+.slider:before {
 
 .more-questions {
   font-size: medium;
+  font-weight: bold;
   height: 60px;
   width: 235px;
   background-color: rgba(255, 255, 255, 0.555);
@@ -583,7 +584,7 @@ input:checked+.slider:before {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
+  background-color: lightgrey;
   width: 35%;
   max-width: 320px;
   height: auto;
@@ -623,15 +624,23 @@ input:checked+.slider:before {
 }
 
 .submit-new-question {
+  font-weight: bold;
+  font-size: medium;
   padding: 10px;
   width: 175px;
   height: 60px;
   margin-top: 10px;
   background-color: white;
+  cursor: pointer;
+}
+.submit-new-question:hover {
+  background-color: lightgrey;
+  border: 1px solid black;
 }
 
 .add-question-button {
   font-size: medium;
+  font-weight: bold;
   height: 60px;
   width: 235px;
   background-color: rgba(255, 255, 255, 0.555);
@@ -679,13 +688,14 @@ input:checked+.slider:before {
   left: 0;
   overflow: auto;
   padding-top: 275px;
+  margin: 10px;
 }
 
 .answer-modal-control {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
+  background-color: lightgrey;
   width: 35%;
   max-width: 320px;
   height: auto;
@@ -693,7 +703,20 @@ input:checked+.slider:before {
   padding: 10px;
   border: 1px solid black;
 }
-
+.modal-question-title {
+  color: #000;
+  font-size: medium;
+  margin-bottom: 14px;
+  border-bottom: solid gray;
+}
+.answer-modal-text {
+  font-size: small;
+  color: gray;
+  margin: 10px;
+}
+.modal-label {
+  color: #000;
+}
 .answer-modal-close-x {
   float: right;
   color: #aaaaaa;
@@ -721,21 +744,46 @@ input:checked+.slider:before {
 }
 
 .answer-modal-img {
-  margin-left: auto;
+  padding: 5px;
+  width: 170px;
 }
 
 .submit-answer-form-button {
+  font-weight: bold;
+  font-size: medium;
   height: 60px;
   width: 175px;
   background-color: white;
   padding: 10px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .submit-answer-form-button:hover {
   background-color: lightgrey;
   border: 1px solid black;
   transition: all ease 0.3s;
+}
+
+/* Answers */
+.answer {
+  margin: 10px 10px 10px 30px;
+  font-size: 18px;
+  text-decoration: underline;
+  overflow-wrap: normal;
+}
+.more-answers {
+  font-weight: bold;
+  font-size: medium;
+  background: transparent;
+  border: solid gray;
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: all ease 0.3s;
+}
+.more-answers:hover {
+  background-color: lightgrey;
 }
 
 /* Photo & Modals */
@@ -768,6 +816,7 @@ input:checked+.slider:before {
   max-height: 100%;
   max-width: 100%;
   margin-left: 25px;
+  cursor: pointer;
 }
 
 .answer-photo {
@@ -776,7 +825,6 @@ input:checked+.slider:before {
   margin: 20px 15px;
   height: 100px;
   width: 100px;
-  cursor: pointer;
   object-fit: cover;
 }
 

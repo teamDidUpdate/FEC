@@ -1,3 +1,4 @@
+
 import React from 'react';
 import AnswerPhotos from './AnswerPhotos.jsx';
 import AnswerHelpful from './AnswerHelpful.jsx';
@@ -5,11 +6,11 @@ import AnswerHelpful from './AnswerHelpful.jsx';
 const Answers = ({ answer }) => (
   <div>
     <div className='answer'>A: {answer.body}</div>
-    <div className='answer-photo'>
-      {answer.photos.map((photo, id) => (
+    {answer.photos.length ? answer.photos.map((photo, id) => (
+      <div className='answer-photo'>
         <AnswerPhotos photo={photo} key={id} />
-      ))}
-    </div>
+      </div>
+    )) : null}
     <AnswerHelpful
       answerId={answer.id}
       answerHelpfulness={answer.helpfulness}
@@ -20,4 +21,3 @@ const Answers = ({ answer }) => (
 );
 
 export default Answers;
-
