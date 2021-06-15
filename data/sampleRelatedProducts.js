@@ -375,6 +375,6 @@ const productWithStyle = {
       }
     ]
   }
-}
+};
 
 export default productWithStyle;

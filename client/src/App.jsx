@@ -6,7 +6,7 @@ import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/RelatedEntry/RelatedEntry.jsx';
-
+import SectionTracker from './Tracker/SectionTracker.jsx';
 
 const App = () => {
   const [productId, setProductId] = useState(13023);
@@ -16,33 +16,36 @@ const App = () => {
 
   return (
     <div>
-      <div>
+      <section id='product-overview-section'>
         <OverviewApp productId={productId}
           reviewCount={reviewCount}
           rating={rating}
           setProductId={setProductId}
-          setCurrentProduct={setCurrentProduct} />
-      </div>
-      <div>
+          setCurrentProduct={setCurrentProduct}
+        />
+      </section>
+      <section id='related-items-and-comparison-section'>
         <RelatedItemsAndComparison
           productId={productId}
           setProductId={setProductId}
           overviewProduct={currentProduct}
           overviewRating={rating}
         />
-      </div>
-      <div>
+      </section>
+      <section id='questions-and-answers-section'>
         <QAwidget
           productId={productId}
-          setProductId={setProductId}/>
-      </div>
+          setProductId={setProductId}
+        />
+      </section>
       <br></br>
-      <div>
+      <section id='reviews-and-ratings-section'>
         <ReviewEntry productId={productId}
           setProductId={setProductId}
           setReviewCount={setReviewCount}
-          setRating={setRating} />
-      </div>
+          setRating={setRating}
+        />
+      </section>
     </div>
   );
 };

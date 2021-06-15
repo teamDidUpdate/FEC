@@ -178,12 +178,6 @@ app.get('/helpfulReview', (req, res) => {
     });
 });
 /************METADATA ************/
-/*
-Need to do two things
-1. import StarsRating from 'stars-rating';
-2. <div className='StarsRating'><StarsRating count={5} value={YOUR VALUE HERE!!!!} half={true} edit={false} color2={'#333300'} /></div>
-*/
-
 //Helper for Below
 var calculateAverage = function (object) {
   var sum = 0;
