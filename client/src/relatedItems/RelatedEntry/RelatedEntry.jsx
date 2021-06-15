@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Carousel from '../Carousel/Carousel.jsx';
 import { CSSTransition } from 'react-transition-group';
 import axios from 'axios';
@@ -7,6 +7,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfits, setOutfits] = useState([]);
   const [animate, setAnimate] = useState(false);
+  const [relatedIds, setRelatedIds] = useState([13024, 13025, 13030, 13029]);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -18,14 +19,22 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   useEffect(() => {
     axios.get('/relatedIds', { params: { productId: productId } })
       .then((response) => {
-        let relatedIds = response.data;
-        return getRelatedProducts(relatedIds);
+        setRelatedIds(response.data);
       })
       .catch((err) => {
         console.log(err);
         return;
       });
   }, [productId]);
+
+  useEffect(() => {
+    // memo this!
+    (async () => {
+      let allRelatedProducts = await getRelatedProductsMemo;
+      setRelatedProducts(allRelatedProducts);
+      setAnimate(true);
+    })();
+  }, [relatedIds]);
 
   // gets related products for each id
   const getRelatedProducts = async (ids) => {
@@ -34,8 +43,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
         return getRelatedProductById(id);
       });
       let relatedItems = await Promise.all(items);
-      setRelatedProducts(relatedItems);
-      setAnimate(true);
+      return relatedItems;
     } catch (err) {
       console.log(err);
     }
@@ -54,6 +62,10 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
       });
     return relatedProduct;
   };
+
+  const getRelatedProductsMemo = useMemo(() => {
+    return getRelatedProducts(relatedIds);
+  }, [relatedIds]);
 
   return (
     <>

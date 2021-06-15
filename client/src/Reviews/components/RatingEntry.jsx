@@ -304,7 +304,14 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
               null}
 
             {currentProduct.characteristics.Quality !== undefined ?
-              <div className='Quality'>Quality<ProgressBar completed={(currentProduct.characteristics.Quality.value / 5) * 100} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              <div className='Quality'>Quality
+                {/* <img src="https://lh3.googleusercontent.com/proxy/D8rlBkVT_66GbOjv3GyctoKV_RTMtLwmCx3f4ERhSvOq25cXUJeO-ucSamYfONvP4PSUvDPtC8ZqQdY0--eT3rS0gd_5SDIu6wvZLFq3j1_PUvE"
+                  style={{
+                    'marginLeft': ((currentProduct.characteristics.Quality.value / 5) * 100),
+                    'width': '15px',
+                    'height': '15px'
+                  }}></img> */}
+                <ProgressBar completed={(currentProduct.characteristics.Quality.value / 5) * 100} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
                 <div className='characteristicsValues'>
                   <div className='characteristicsValuesLeft'>Poor</div>
                   <div className='characteristicsValuesRight'>Perfect</div>
