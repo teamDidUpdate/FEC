@@ -8,6 +8,7 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
   const imageURL = outfit.styles.results[0].photos[0].thumbnail_url;
   const darkTheme = useContext(ThemeContext);
 
+
   useEffect(() => {
     (async () => {
       let style = await getDefaultStyle(outfit);
@@ -15,13 +16,18 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
     })();
   }, [outfit]);
 
+  const handleOutfitCardClick = async () => {
+    await setProductId(outfit.overview.id);
+    document.getElementById('header').scrollIntoView();
+  };
+
   return (
     <>
       <div className='card-container'>
         <IoMdCloseCircleOutline className='action-btn'
           style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
           onClick={() => deleteOutfit(outfit.overview.id)}/>
-        <div className='card-inner-container'onClick={() => setProductId(outfit.overview.id)}>
+        <div className='card-inner-container'onClick={() => handleOutfitCardClick()}>
           <div className='card-item'>
             <img className='card-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
           </div>
