@@ -1226,11 +1226,11 @@ h1.reviewModalSize {
 }
 
 .left {
-  text-align: left;
+  text-align: center;
 }
 
 .right {
-  text-align: right;
+  text-align: center;
 }
 
 .center {
