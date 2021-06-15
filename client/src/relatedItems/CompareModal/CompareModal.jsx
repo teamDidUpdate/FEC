@@ -45,7 +45,7 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
   return ReactDom.createPortal(
     <>
       <div className='overlay' onClick={onClose}
-        style={{backgroundColor: darkTheme ? '#fff' : '#000'}}
+        style={{backgroundColor: darkTheme ? '#333' : '#000'}}
       />
       <div className='compare-modal'
         style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
