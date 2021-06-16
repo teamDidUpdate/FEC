@@ -274,7 +274,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               <p className='reviewBody'>{review.body}</p>
               {review.recommend === true ?
                 <p className='recommendedTrue'>
-                  <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
+                  <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' alt='Recommend True CheckBox Image' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
                 null}
               <p className='helpfulness'>Was this review helpful?
                 <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
@@ -285,10 +285,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 review.photos.map((element) => (
                   element.url.includes('jpg') || element.url.includes('gif') ?
                     <div className='Modals' key={element.url}>
-                      <img id='myImg' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
+                      <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
                       <div id='myModal' className='modal'>
                         <span className='close' onClick={handleModalClose}>&times;</span>
-                        <img className='modal-content' id='img01'></img>
+                        <img className='modal-content' alt='modalImage' id='img01'></img>
                       </div>
                     </div> :
                     null
