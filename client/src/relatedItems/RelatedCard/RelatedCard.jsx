@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import CompareModal from '../CompareModal/CompareModal.jsx';
-import { MdStarBorder } from 'react-icons/Md';
+import { MdStarBorder } from 'react-icons/md';
 import StarsRating from 'stars-rating';
 import { ThemeContext } from '../../App.jsx';
 
@@ -34,7 +34,7 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
       <CompareModal open={modalOpen} productId={productId} relatedProduct={product} onClose={() => setModalOpen(false)}/>
       <div className='card-inner-container'onClick={() => handleRelatedCardClick()}>
         <div className='card-item'>
-          <img className='card-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
+          <img className='card-image' alt='related-card' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
         </div>
         <div className='card-item text category'>{product.overview.category.toUpperCase()}</div>
         <div className='card-item text name'>{product.overview.name}</div>
