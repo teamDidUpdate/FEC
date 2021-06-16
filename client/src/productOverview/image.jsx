@@ -92,7 +92,7 @@ const Image = (props) => {
     <div>
       <div className="images">
         <div className="image-container" style={containerStyle}>
-          <img id="main-img" src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'} alt={imageURL} style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
+          <img id="main-img" src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'} alt="main product image" style={imgStyle} onClick={() => props.setView(!props.expendView) }></img>
           {props.expendView &&
             <div id="main-div" onClick={(e) => {
               if (!zoomIn) {
@@ -114,7 +114,7 @@ const Image = (props) => {
         {!zoomIn &&
         <div className="style-pics">
           {images.slice(start, end).map((image) => <div className="gallary-container" key={image.url} onClick={(e) => handleThumClick(image.url)}>
-            <img className="gallary-image" src={image.thumbnail_url} alt={image.thumbnail_url}></img>
+            <img className="gallary-image" src="thumbnail image" alt={image.thumbnail_url}></img>
             {(imageURL === image.url) && <span className="blackLine"></span>}
           </div>)}
           {(images.length > 7 && start > 0) && <div className="arrow up" onClick={() => handleScroll('up')}>︿</div>}
