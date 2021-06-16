@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import StarsRating from 'stars-rating';
-import { IoMdCloseCircleOutline } from 'react-icons/Io';
+import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { ThemeContext } from '../../App.jsx';
 
 const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOutfit}) => {
@@ -29,7 +29,7 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
           onClick={() => deleteOutfit(outfit.overview.id)}/>
         <div className='card-inner-container'onClick={() => handleOutfitCardClick()}>
           <div className='card-item'>
-            <img className='card-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
+            <img className='card-image' alt='outfit-image' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
           </div>
           <div className='card-item text category'>{outfit.overview.category.toUpperCase()}</div>
           <div className='card-item text name'>{outfit.overview.name}</div>
