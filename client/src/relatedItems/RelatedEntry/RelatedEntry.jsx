@@ -8,6 +8,7 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   const [outfits, setOutfits] = useState([]);
   const [animate, setAnimate] = useState(false);
   const [relatedIds, setRelatedIds] = useState([13024, 13025, 13030, 13029]);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
   // get saved outfits on inital render
   useEffect(() => {
@@ -17,22 +18,28 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
 
   // get related products when the productId changes
   useEffect(() => {
-    axios.get('/relatedIds', { params: { productId: productId } })
-      .then((response) => {
-        setRelatedIds(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        return;
-      });
+    if (initialLoadDone) {
+      axios.get('/relatedIds', { params: { productId: productId } })
+        .then((response) => {
+          setRelatedIds(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          return;
+        });
+    } else {
+      setInitialLoadDone(true);
+    }
   }, [productId]);
 
   useEffect(() => {
-    (async () => {
-      let allRelatedProducts = await getRelatedProductsMemo;
-      setRelatedProducts(allRelatedProducts);
-      setAnimate(true);
-    })();
+    if (relatedIds.length !== 0) {
+      (async () => {
+        let allRelatedProducts = await getRelatedProductsMemo;
+        setRelatedProducts(allRelatedProducts);
+        setAnimate(true);
+      })();
+    }
   }, [relatedIds]);
 
   // gets related products for each id
