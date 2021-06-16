@@ -41,7 +41,7 @@ const OverviewApp = (props) => {
     <div>
       <div id="header" className="overview-header">
         <h1>THREADS</h1>
-        <img className="logo-img" src="icon/threadsLogo.png"></img>
+        <img className="logo-img" src="icon/threadsLogo.png" alt="threads logo"></img>
         <div className="switch-container">
           <label className="switch">
             <input type="checkbox" onClick={() => toggleTheme()}/>
