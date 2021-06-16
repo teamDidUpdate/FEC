@@ -20,7 +20,7 @@ const AnswerPhotos = ({ photo }) => {
   );
 
   return (
-    <>
+    <div>
       <div className='answer-photo-box'>
         <img
           className='answer-photo'
@@ -30,7 +30,7 @@ const AnswerPhotos = ({ photo }) => {
         ></img>
         {modal ? answerPhotoModal : null}
       </div>
-    </>
+    </div>
   );
 
 };

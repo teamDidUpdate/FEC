@@ -22,14 +22,14 @@ const MoreAnswers = ({ answer, answerList }) => {
                 <Answers answer={answer} key={answer.id} />
               );
             })}
-            <>
+            <div>
               <button className='more-answers'
                 onClick={() => {
                   setCollapseAnswers(!collapseAnswers);
                 }}>
                 Collapse Answers
               </button>
-            </>
+            </div>
           </>
       }
     </div>

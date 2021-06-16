@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const AddQuestion = ({ productId, handleModalClose, openModal }) => {
+const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [questionBody, setQuestionBody] = useState('');
@@ -60,7 +60,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
         <form className='question-modal-form'>
 
           <p className='modal-question-title'>
-            {document.getElementsByClassName('product-name')[0].innerText}
+            Ask a Question
           </p>
 
           <label className='modal-label' htmlFor='name'>Email:</label>

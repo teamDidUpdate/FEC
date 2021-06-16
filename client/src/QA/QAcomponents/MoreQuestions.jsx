@@ -5,7 +5,7 @@ const MoreQuestions = ({ questions }) => {
   const [collapseQuestions, setCollapseQuestions] = useState(true);
 
   return (
-    <div className='more-answered-questions-button'>
+    <div>
       {
         collapseQuestions
           ? <>

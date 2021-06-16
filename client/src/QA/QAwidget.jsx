@@ -10,7 +10,6 @@ const QAwidget = ( { productId } ) => {
   const [searchInput, setSearchInput] = useState(null);
   const [displayQuestions, setDisplayQuestions] = useState(4);
   const [openModal, setOpenModal] = useState(false);
-  const [rendered, setRendered] = useState(false);
 
   useEffect(() => {
     axios.get('/qa/questions', {params: { productId: productId }})
@@ -38,16 +37,24 @@ const QAwidget = ( { productId } ) => {
           handleSearch={handleSearch}
           searchInput={searchInput}
         />
-        {questions !== undefined && Object.keys(questions).length !== 0 && !rendered ?
-          (<QuestionList
+        {questions !== undefined && Object.keys(questions).length !== 0 ?
+          <QuestionList
             productId={productId}
             searchInput={searchInput}
             questions={questions}
             openModal={openModal}
             handleModalClose={handleModalClose}
             handleModalOpen={handleModalOpen}
-          />, setRendered(true))
+          />
           : null}
+        <button className='add-question-button' onClick={handleModalOpen}>
+          ADD A QUESTION +
+        </button>
+        <AddQuestion
+          productId={productId}
+          openModal={openModal}
+          handleModalClose={handleModalClose}
+        />
       </div>
     </>
   );
