@@ -39,7 +39,7 @@ const App = () => {
             )}>
             </SectionTracker>
           </section>
-          {/* <section id='related-items-and-comparison-section'>
+          <section id='related-items-and-comparison-section'>
             <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
               <RelatedItemsAndComparison
                 productId={productId}
@@ -71,7 +71,7 @@ const App = () => {
               />
             )}>
             </SectionTracker>
-          </section> */}
+          </section>
         </div>
       </div>
     </ThemeContext.Provider>
