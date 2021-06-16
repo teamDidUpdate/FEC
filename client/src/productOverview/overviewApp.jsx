@@ -51,7 +51,7 @@ const OverviewApp = (props) => {
           </label>
         </div>
       </div>
-      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
+      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODUCT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :
