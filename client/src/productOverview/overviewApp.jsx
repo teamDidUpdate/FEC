@@ -9,7 +9,7 @@ import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 import { ThemeContext } from '../App.jsx';
-import { FiMoon, FiSun } from 'react-icons/Fi';
+import { FiMoon, FiSun } from 'react-icons/fi';
 
 const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
