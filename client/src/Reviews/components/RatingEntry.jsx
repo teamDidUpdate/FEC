@@ -5,7 +5,6 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import Stars from './stars.jsx';
 import StarsRating from 'stars-rating';
 import ReviewEntry from './ReviewEntry.jsx';
-import Slider from 'react-input-slider';
 
 const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrentlyShowing, fiveStarReviews, fourStarReviews, threeStarReviews, twoStarReviews, oneStarReviews, storedReviews, sortedReviews, currentFilterArray, setCurrentFilterArray, masterListOfReviews, setHelpfulReviews, helpfulReviews }) => {
   const [currentProduct, setCurrentProduct] = useState({});
