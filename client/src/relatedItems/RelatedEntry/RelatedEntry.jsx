@@ -28,7 +28,6 @@ const RelatedItemsAndComparison = ({productId, setProductId, overviewProduct, ov
   }, [productId]);
 
   useEffect(() => {
-    // memo this!
     (async () => {
       let allRelatedProducts = await getRelatedProductsMemo;
       setRelatedProducts(allRelatedProducts);

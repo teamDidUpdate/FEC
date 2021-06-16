@@ -9,7 +9,7 @@ import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 import { ThemeContext } from '../App.jsx';
-import { FiMoon, FiSun } from 'react-icons/Fi';
+import { RiMoonFill, RiSunFill } from 'react-icons/ri';
 
 const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
@@ -46,12 +46,12 @@ const OverviewApp = (props) => {
           <label className="switch">
             <input type="checkbox" onClick={() => toggleTheme()}/>
             <span className="slider round"></span>
-            {!darkTheme && <FiMoon className="moon-icon"/>}
-            {darkTheme && <FiSun className="sun-icon" />}
+            {!darkTheme && <RiMoonFill className="moon-icon"/>}
+            {darkTheme && <RiSunFill className="sun-icon" />}
           </label>
         </div>
       </div>
-      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
+      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODUCT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :
