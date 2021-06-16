@@ -4,9 +4,11 @@
   "description": "Front End Capstone for Hack Reactor",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start:prod": "node server/index.js",
+    "start:dev": "nodemon server/index.js",
     "test": "jest",
-    "react-dev": "webpack --mode development --watch"
+    "react:dev": "webpack --mode development --watch",
+    "react:prod": "webpack"
   },
   "repository": {
     "type": "git",
