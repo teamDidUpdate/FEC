@@ -11,7 +11,6 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
       .substring(0, 10);
   };
 
-
   const handleEventPut = (event) => {
     !helpfulToggle && event.target.getAttribute('name') === 'helpful'
 
@@ -34,13 +33,8 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
         : null;
   };
   return (
-    <div className='answer-helpfulness-div' style={{
-      display: 'inline-flex',
-      flexDirection: 'row',
-      marginLeft: '40px',
-      color: 'GrayText'
-    }}>
-      <p>by {answerName}, {convertDate(answerDate)}</p>
+    <div className='answer-helpfulness-div'>
+      <>by {answerName}, {convertDate(answerDate)} |</>
       &nbsp;Helpful?&nbsp;
       <p
         className='answer-helpful-button'
