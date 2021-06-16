@@ -26,7 +26,7 @@ const App = () => {
     <ThemeContext.Provider value={darkTheme}>
       <div id="darkTheme" style={themeStyles}>
         <div id="padding">
-          {/* <section id='product-overview-section'>
+          <section id='product-overview-section'>
             <SectionTracker sectionName={'product-overview-section'} render={(handleTracking) => (
               <OverviewApp productId={productId}
                 reviewCount={reviewCount}
@@ -39,7 +39,7 @@ const App = () => {
             )}>
             </SectionTracker>
           </section>
-          <section id='related-items-and-comparison-section'>
+          {/* <section id='related-items-and-comparison-section'>
             <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
               <RelatedItemsAndComparison
                 productId={productId}
@@ -60,7 +60,7 @@ const App = () => {
               />
             )}>
             </SectionTracker>
-          </section> */}
+          </section>
           <section id='reviews-and-ratings-section'>
             <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
               <ReviewEntry productId={productId}
@@ -71,7 +71,7 @@ const App = () => {
               />
             )}>
             </SectionTracker>
-          </section>
+          </section> */}
         </div>
       </div>
     </ThemeContext.Provider>
