@@ -259,7 +259,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           currentlyShowing.map((review) =>
             <div className='individualReview' key={review.review_id}>
               <div className='reviewHeader'>
-                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false}/></div>
+                <div className='ratingReview' id='alignleft'><StarsRating count={5} value={review.rating} edit={false} /></div>
                 <p className='reviewDateAndName' id='alignright'>{review.reviewer_name + ', ' + ' ' + convertDate(review.date)}</p>
                 <br></br>
                 <br></br>
@@ -296,9 +296,12 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 null}</div>
             </div>) :
           null}
-        <div className='reviewButtons'>
-          <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
-        </div>
+        {currentlyShowing.length === masterListOfReviews.length ?
+          null :
+          <div className='reviewButtons'>
+            <button className='moreReviews' onClick={handleMoreReviews}>More Reviews</button>
+          </div>}
+
         <div className='reviewButton'>
           <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
         </div>
