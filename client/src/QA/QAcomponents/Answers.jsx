@@ -4,7 +4,7 @@ import AnswerPhotos from './AnswerPhotos.jsx';
 import AnswerHelpful from './AnswerHelpful.jsx';
 
 const Answers = ({ answer }) => (
-  <div>
+  <>
     <div className='answer'>A: {answer.body}</div>
     {answer.photos.length ? answer.photos.map((photo, id) => (
       <div className='answer-photo'>
@@ -17,7 +17,7 @@ const Answers = ({ answer }) => (
       answerDate={answer.date}
       answerName={answer.answerer_name}
     />
-  </div>
+  </>
 );
 
 export default Answers;

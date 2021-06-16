@@ -8,29 +8,29 @@ const MoreAnswers = ({ answer, answerList }) => {
     <div>
       {
         collapseAnswers
-          ? <div>
+          ? <>
             <button className='more-answers'
               onClick={() => {
                 setCollapseAnswers(!collapseAnswers);
               }}>
            More Answers
             </button>
-          </div>
-          : <div>
+          </>
+          : <>
             {answerList.slice(2).map((answer) => {
               return (
                 <Answers answer={answer} key={answer.id} />
               );
             })}
-            <div>
+            <>
               <button className='more-answers'
                 onClick={() => {
                   setCollapseAnswers(!collapseAnswers);
                 }}>
                 Collapse Answers
               </button>
-            </div>
-          </div>
+            </>
+          </>
       }
     </div>
   );

@@ -120,9 +120,9 @@ const AddQuestion = ({ productId, handleModalClose, openModal }) => {
   );
 
   return (
-    <div>
+    <>
       {openModal ? QuestionModalForm : null}
-    </div>
+    </>
 
   );
 };

@@ -520,6 +520,10 @@ input:checked+.slider:before {
   display: inline-flex;
   flex-direction: row;
 }
+.question-list {
+  /* display: inline-flex;
+  flex-direction: row; */
+}
 
 /* Search Question */
 .qa-search-bar {
@@ -826,6 +830,14 @@ input:checked+.slider:before {
   height: 100px;
   width: 100px;
   object-fit: cover;
+}
+
+.answer-helpfulness-div {
+display: inline-flex;
+flex-direction: row;
+margin-left: 40px;
+margin-top: 20px;
+color: grey;
 }
 
 
