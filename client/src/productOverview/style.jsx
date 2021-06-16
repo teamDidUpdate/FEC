@@ -88,7 +88,7 @@ const Style = (props) => {
 
         {styles.map((style) =>
           <div className="container" key={style.style_id}>
-            <img className="style-image" src={style.photos[0].thumbnail_url} onClick={(e) => { props.setCurrentStyle(style); setCurrentStyleId(style.style_id); } }></img>
+            <img className="style-image" src={style.photos[0].thumbnail_url} alt={style.photos[0].name} onClick={(e) => { props.setCurrentStyle(style); setCurrentStyleId(style.style_id); } }></img>
             {currentStyleId === style.style_id && <div className="top-right">✔</div>}
           </div>
         )}
