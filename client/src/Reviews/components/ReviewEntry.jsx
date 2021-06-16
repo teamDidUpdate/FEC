@@ -327,7 +327,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     Characteristics:
                     <div id='char1' className='hidden'>
                     </div>
-                    <select name='rating'>
+                    <select name='ratingChar1'>
                       <option value="1">1 - Poor</option>
                       <option value="2">2 - Fair</option>
                       <option value="3">3 - Average</option>
@@ -363,7 +363,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                       <option value="4">4 - Good</option>
                       <option value="5">5 - Great</option>
                     </select>
-                    <div id='char5' id='rating' className='hidden'>
+                    <div id='char5'className='hidden'>
                       <select name='rating' className='hidden'>
                         <option value="1">1 - Poor</option>
                         <option value="2">2 - Fair</option>
@@ -376,7 +376,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                   <br></br>
                   <label htmlFor='rating' className='boldRating'>Overall Rating</label>
                   <br></br>
-                  <select name='rating' id='rating'>
+                  <select name='rating'>
                     <option value="1">1 - Poor</option>
                     <option value="2">2 - Fair</option>
                     <option value="3">3 - Average</option>
