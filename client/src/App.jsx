@@ -61,7 +61,6 @@ const App = () => {
             )}>
             </SectionTracker>
           </section>
-          <br></br>
           <section id='reviews-and-ratings-section'>
             <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
               <ReviewEntry productId={productId}

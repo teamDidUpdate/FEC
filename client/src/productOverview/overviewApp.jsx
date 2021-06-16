@@ -9,7 +9,11 @@ import Feature from './feature.jsx';
 import products from './sampleProducts.js';
 import productStyle from './sampleStyle.js';
 import { ThemeContext } from '../App.jsx';
+<<<<<<< HEAD
 import { FiMoon, FiSun } from 'react-icons/fi';
+=======
+import { RiMoonFill, RiSunFill } from 'react-icons/Ri';
+>>>>>>> 5571f2a59de027e86228f2923fdd6f5a10f20664
 
 const OverviewApp = (props) => {
   const [overviewProduct, setOverviewProduct] = useState(products[0]);
@@ -46,12 +50,12 @@ const OverviewApp = (props) => {
           <label className="switch">
             <input type="checkbox" onClick={() => toggleTheme()}/>
             <span className="slider round"></span>
-            {!darkTheme && <FiMoon className="moon-icon"/>}
-            {darkTheme && <FiSun className="sun-icon" />}
+            {!darkTheme && <RiMoonFill className="moon-icon"/>}
+            {darkTheme && <RiSunFill className="sun-icon" />}
           </label>
         </div>
       </div>
-      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODECT HIGHLIGHT</div>
+      <div className="highlight" style={{color: darkTheme ? '#d6d6d6' : '#69706e'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT OFFER -- NEW PRODUCT HIGHLIGHT</div>
       {(overviewProduct === null || allStyles === null || currentStyle === null)
         ? <div>Loading</div>
         :
