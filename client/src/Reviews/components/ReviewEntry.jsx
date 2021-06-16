@@ -274,7 +274,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
               <p className='reviewBody'>{review.body}</p>
               {review.recommend === true ?
                 <p className='recommendedTrue'>
-                  <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
+                  <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' alt='Recommend True CheckBox Image' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
                 null}
               <p className='helpfulness'>Was this review helpful?
                 <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
@@ -285,10 +285,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 review.photos.map((element) => (
                   element.url.includes('jpg') || element.url.includes('gif') ?
                     <div className='Modals' key={element.url}>
-                      <img id='myImg' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
+                      <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
                       <div id='myModal' className='modal'>
                         <span className='close' onClick={handleModalClose}>&times;</span>
-                        <img className='modal-content' id='img01'></img>
+                        <img className='modal-content' alt='modalImage' id='img01'></img>
                       </div>
                     </div> :
                     null
@@ -327,7 +327,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     Characteristics:
                     <div id='char1' className='hidden'>
                     </div>
-                    <select name='rating'>
+                    <select name='ratingChar1'>
                       <option value="1">1 - Poor</option>
                       <option value="2">2 - Fair</option>
                       <option value="3">3 - Average</option>
@@ -363,7 +363,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                       <option value="4">4 - Good</option>
                       <option value="5">5 - Great</option>
                     </select>
-                    <div id='char5' id='rating' className='hidden'>
+                    <div id='char5'className='hidden'>
                       <select name='rating' className='hidden'>
                         <option value="1">1 - Poor</option>
                         <option value="2">2 - Fair</option>
@@ -376,7 +376,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                   <br></br>
                   <label htmlFor='rating' className='boldRating'>Overall Rating</label>
                   <br></br>
-                  <select name='rating' id='rating'>
+                  <select name='rating'>
                     <option value="1">1 - Poor</option>
                     <option value="2">2 - Fair</option>
                     <option value="3">3 - Average</option>
