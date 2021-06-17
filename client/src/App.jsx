@@ -38,6 +38,7 @@ const App = () => {
               />
             )}>
             </SectionTracker>
+
           </section>
           <section id='related-items-and-comparison-section'>
             <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
@@ -50,14 +51,14 @@ const App = () => {
               />
             )}>
             </SectionTracker>
+
           </section>
           <section id='questions-and-answers-section'>
             <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
               <QAwidget
                 productId={productId}
                 setProductId={setProductId}
-                handleTracking={handleTracking}
-              />
+                handleTracking={handleTracking} />
             )}>
             </SectionTracker>
           </section>

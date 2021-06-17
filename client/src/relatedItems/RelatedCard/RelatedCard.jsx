@@ -34,7 +34,7 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
       <CompareModal open={modalOpen} productId={productId} relatedProduct={product} onClose={() => setModalOpen(false)}/>
       <div className='card-inner-container'onClick={() => handleRelatedCardClick()}>
         <div className='card-item'>
-          <img className='card-image' alt='related-card' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
+          <img loading='lazy' className='card-image' alt='related-card' src={imageURL !== null ? imageURL : 'https://bit.ly/2Tg8g4s'}></img>
         </div>
         <div className='card-item text category'>{product.overview.category.toUpperCase()}</div>
         <div className='card-item text name'>{product.overview.name}</div>

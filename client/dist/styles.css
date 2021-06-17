@@ -273,6 +273,9 @@ html {
   margin-right: 0.8vw;
   object-fit: cover;
 }
+.style-image:hover, .gallary-image:hover {
+  cursor: pointer;
+}
 
 .gallary-image {
   width: 4.4vw;
@@ -630,14 +633,13 @@ input:checked+.slider:before {
 .add-question-button,
 .more-questions {
   font-size: medium;
-  font-weight: bold;
   height: 60px;
   width: 235px;
-  background-color: rgba(255, 255, 255, 0.555);
   padding: 10px;
   margin: 25px;
   cursor: pointer;
   transition: all ease 0.3s;
+  float: left;
 }
 
 .add-question-button:hover,
@@ -871,9 +873,6 @@ color: #525151;
 }
 
 #reviewModalFormatted {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
 }
 
 .reviewHidden {
@@ -1013,8 +1012,7 @@ p#alignright {
   grid-template-columns: 1fr 3fr;
   font: 1.6rem/1.4 Helvetica, Arial, sans-serif;
   font-size: 12px;
-  margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 .photoUploadReview {
@@ -1191,8 +1189,8 @@ h1.reviewModalSize {
 /* The Close Button */
 .close {
   position: absolute;
-  top: 15px;
-  right: 35px;
+  top: 5px;
+  right: 15px;
   color: black;
   font-size: 40px;
   font-weight: bold;
@@ -1243,11 +1241,13 @@ h1.reviewModalSize {
   position: absolute;
   left: 50%;
   top: 50%;
+  text-align-last: center;
   transform: translate(-50%, -50%);
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
-  width: 65%;
+  height: 50%;
+  overflow: scroll;
 
 }
 
@@ -1301,6 +1301,7 @@ h1.reviewModalSize {
   width: 16vw;
   height: 40vh;
   margin-right: 1em;
+  cursor: pointer;
 }
 
 .card-inner-container {
