@@ -225,6 +225,8 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
       });
   };
 
+
+
   return (
     <div className="ReviewsOverview" id="jumpEntry">
       <RatingEntry
@@ -288,7 +290,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                   element.url.includes('jpg') || element.url.includes('gif') ?
                     <div className='Modals' key={element.url}>
                       <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
-                      <div id='myModal' className='modal'>
+                      <div id='myModal' onClick={handleModalClose} className='modal'>
                         <span className='close' onClick={handleModalClose}>&times;</span>
                         <img className='modal-content' alt='modalImage' id='img01'></img>
                       </div>
@@ -307,7 +309,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         <div className='reviewButton'>
           <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
         </div>
-        <div id="reviewModal" className="modal" style={{ 'color': 'black' }}>
+        <div id="reviewModal" onClick={handleReviewModalClose} className="modal" style={{ 'color': 'black' }}>
           <div className="addReview-modal-content">
             <h1 className='writeReviewHeader'>Write your Review!</h1>
             <form id='submitReview'>
@@ -325,6 +327,17 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     <br></br>
                     For authentication reasons, you will not be emailed
                   </div>
+                  <br></br>
+                  <label htmlFor='rating' className='boldRating'>Overall Rating</label>
+                  <br></br>
+                  <select name='rating'>
+                    <option value="1">1 - Poor</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="3">3 - Average</option>
+                    <option value="4">4 - Good</option>
+                    <option value="5">5 - Great</option>
+                  </select>
+                  <br></br>
                   <div className='characteristics'>
                     Characteristics:
                     <div id='char1' className='hidden'>
@@ -376,15 +389,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                     </div>
                   </div>
                   <br></br>
-                  <label htmlFor='rating' className='boldRating'>Overall Rating</label>
-                  <br></br>
-                  <select name='rating'>
-                    <option value="1">1 - Poor</option>
-                    <option value="2">2 - Fair</option>
-                    <option value="3">3 - Average</option>
-                    <option value="4">4 - Good</option>
-                    <option value="5">5 - Great</option>
-                  </select>
+
 
                   <br></br>
                   <label htmlFor='recommend'>Do you recommend this product?</label>
@@ -393,6 +398,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                   No
                   <input type="radio" name="option" value="No" onClick={function () { setRecommended('No'); }} ></input>
 
+                  <br></br>
                   <br></br>
 
                 </div>
@@ -410,10 +416,11 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
                 <div className='column3'>
 
-                  <label htmlFor="myfile">Link a</label>
+                  <label htmlFor="myfile">Link a photo!</label>
+                  <br></br>
                   <div>
                     <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
-
+                    <br></br>
                     <input type="submit" id='reviewSubmission' value="Submit" onClick={handleReviewModalClose}></input>
                   </div>
 
