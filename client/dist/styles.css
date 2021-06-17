@@ -224,9 +224,14 @@ html {
   font-size: 1.1vw;
 }
 
-.zoom-icon-down {
+.expand-icon {
+  font-size: 2vw;
   position: absolute;
-  top: 0.6vw;
+  right: -3%;
+}
+
+.expand-icon:hover {
+  opacity: 70%;
 }
 
 .next,
