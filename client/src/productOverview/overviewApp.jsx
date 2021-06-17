@@ -46,8 +46,8 @@ const OverviewApp = (props) => {
           <label className="switch">d
             <input type="checkbox" onClick={() => toggleTheme()}/>
             <span className="slider round"></span>
-            {!darkTheme && <RiMoonFill className="moon-icon" color="#333"/>}
-            {darkTheme && <RiSunFill className="sun-icon" color="#fff" />}
+            {darkTheme && <RiMoonFill className="moon-icon" color="#fff"/>}
+            {!darkTheme && <RiSunFill className="sun-icon" color="#fff" />}
           </label>
         </div>
       </div>

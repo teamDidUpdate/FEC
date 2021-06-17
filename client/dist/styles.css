@@ -498,17 +498,16 @@ input:checked+.slider:before {
   position: relative;
 }
 
-.moon-icon {
-  position: absolute;
-  right: 5%;
-  top: 5%;
-}
-
 .sun-icon {
   position: absolute;
+  right: 5%;
+  top: 7%;
+}
+
+.moon-icon {
+  position: absolute;
   left: 5%;
-  top: 5%;
-  color: #ffff;
+  top: 6%;
 }
 
 /* ------------ Q & A ------------ */
