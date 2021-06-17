@@ -633,14 +633,13 @@ input:checked+.slider:before {
 .add-question-button,
 .more-questions {
   font-size: medium;
-  font-weight: bold;
   height: 60px;
   width: 235px;
-  background-color: rgba(255, 255, 255, 0.555);
   padding: 10px;
   margin: 25px;
   cursor: pointer;
   transition: all ease 0.3s;
+  float: left;
 }
 
 .add-question-button:hover,
@@ -1014,7 +1013,7 @@ p#alignright {
   font: 1.6rem/1.4 Helvetica, Arial, sans-serif;
   font-size: 12px;
   margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 .photoUploadReview {
