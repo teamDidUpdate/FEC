@@ -1012,7 +1012,6 @@ p#alignright {
   grid-template-columns: 1fr 3fr;
   font: 1.6rem/1.4 Helvetica, Arial, sans-serif;
   font-size: 12px;
-  margin-bottom: 30px;
   margin-top: 150px;
 }
 

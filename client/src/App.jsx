@@ -7,7 +7,6 @@ import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/RelatedEntry/RelatedEntry.jsx';
 import SectionTracker from './Tracker/SectionTracker.jsx';
-import LazyLoad from 'react-lazy-load';
 
 export const ThemeContext = React.createContext();
 
@@ -27,7 +26,7 @@ const App = () => {
     <ThemeContext.Provider value={darkTheme}>
       <div id="darkTheme" style={themeStyles}>
         <div id="padding">
-          <section id='product-overview-section' style={{ margin: '2vh' }}>
+          <section id='product-overview-section'>
             <SectionTracker sectionName={'product-overview-section'} render={(handleTracking) => (
               <OverviewApp productId={productId}
                 reviewCount={reviewCount}
@@ -41,7 +40,7 @@ const App = () => {
             </SectionTracker>
 
           </section>
-          <section id='related-items-and-comparison-section' style={{ margin: '2vh' }}>
+          <section id='related-items-and-comparison-section'>
             <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
               <RelatedItemsAndComparison
                 productId={productId}
@@ -54,7 +53,7 @@ const App = () => {
             </SectionTracker>
 
           </section>
-          <section id='questions-and-answers-section' style={{ margin: '2vh' }}>
+          <section id='questions-and-answers-section'>
             <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
               <QAwidget
                 productId={productId}
@@ -63,7 +62,7 @@ const App = () => {
             )}>
             </SectionTracker>
           </section>
-          <section id='reviews-and-ratings-section' style={{ margin: '2vh' }}>
+          <section id='reviews-and-ratings-section'>
             <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
               <ReviewEntry productId={productId}
                 setProductId={setProductId}
