@@ -617,12 +617,14 @@ input:checked+.slider:before {
   background-color: white;
   cursor: pointer;
 }
+
 .submit-new-question:hover {
   background-color: lightgrey;
   border: 1px solid black;
 }
 
-.add-question-button, .more-questions {
+.add-question-button,
+.more-questions {
   font-size: medium;
   font-weight: bold;
   height: 60px;
@@ -633,7 +635,9 @@ input:checked+.slider:before {
   cursor: pointer;
   transition: all ease 0.3s;
 }
-.add-question-button:hover, .more-questions:hover {
+
+.add-question-button:hover,
+.more-questions:hover {
   background-color: lightgrey;
   border: 1px solid black;
 }
@@ -655,6 +659,7 @@ input:checked+.slider:before {
   margin: 10px;
   transition: all ease 0.3s;
 }
+
 .more-answers:hover {
   background-color: lightgrey;
 }
@@ -685,20 +690,24 @@ input:checked+.slider:before {
   padding: 10px;
   border: 1px solid black;
 }
+
 .modal-question-title {
   color: #000;
   font-size: medium;
   margin-bottom: 14px;
   border-bottom: solid gray;
 }
+
 .answer-modal-text {
   font-size: small;
   color: gray;
   margin: 10px;
 }
+
 .modal-label {
   color: #000;
 }
+
 .answer-modal-close-x {
   float: right;
   color: #aaaaaa;
@@ -754,6 +763,7 @@ input:checked+.slider:before {
   text-decoration: underline;
   overflow-wrap: normal;
 }
+
 .more-answers {
   font-weight: bold;
   font-size: medium;
@@ -764,6 +774,7 @@ input:checked+.slider:before {
   margin: 10px;
   transition: all ease 0.3s;
 }
+
 .more-answers:hover {
   background-color: lightgrey;
 }
@@ -811,17 +822,18 @@ input:checked+.slider:before {
   width: 100px;
   object-fit: cover;
 }
+
 .photo-div {
   display: flex;
   flex-direction: row;
 }
 
 .answer-helpfulness-div {
-display: inline-flex;
-flex-direction: row;
-margin-left: 40px;
-margin-top: 20px;
-color: grey;
+  display: inline-flex;
+  flex-direction: row;
+  margin-left: 40px;
+  margin-top: 20px;
+  color: grey;
 }
 
 
@@ -905,13 +917,14 @@ color: grey;
 
 .individualReview {
   border-bottom: 1px solid #494949;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   margin-left: 30px;
   padding: 10px;
+  padding-bottom: 25px;
 }
 
 .clickedTrue {
-  cursor: pointer
+  cursor: pointer;
 }
 
 .clickedTrue,
@@ -1069,8 +1082,10 @@ p#dropDownOption1 {
 }
 
 p.helpfulness {
-  margin-top: 10px;
+  float: right;
+  margin-top: 5px;
 }
+
 
 span.reviewSort {
   text-decoration: underline;
@@ -1087,6 +1102,9 @@ h1.reviewModalSize {
 #myImg {
   cursor: pointer;
   transition: 0.3s;
+  height: 75px;
+  width: 75px;
+  margin-bottom: -20px;
 }
 
 #myImg:hover {
