@@ -1274,7 +1274,7 @@ h1.reviewModalSize {
   grid-template-rows: 1fr;
   width: 16vw;
   height: 40vh;
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 .card-inner-container {

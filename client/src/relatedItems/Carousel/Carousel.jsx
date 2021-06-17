@@ -33,7 +33,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
 
   // check to see if arrow buttons appear
   useEffect(() => {
-    let buffer = related ? 3 : 2;
+    let buffer = related ? 4 : 3;
     if (currentPos === 0 && currentPos + buffer >= length) {
       setScrollable({left: false, right: false});
     } else if (currentPos === 0 && currentPos + buffer < length) {
