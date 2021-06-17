@@ -43,11 +43,11 @@ const OverviewApp = (props) => {
         <h1>THREADS</h1>
         <img className="logo-img" src="icon/threadsLogo.png" alt="threads logo"></img>
         <div className="switch-container">
-          <label className="switch" for="darkMode">dark mode
-            <input name="darkMode" type="checkbox" onClick={() => toggleTheme()}/>
+          <label className="switch">d
+            <input type="checkbox" onClick={() => toggleTheme()}/>
             <span className="slider round"></span>
-            {!darkTheme && <RiMoonFill className="moon-icon"/>}
-            {darkTheme && <RiSunFill className="sun-icon" />}
+            {!darkTheme && <RiMoonFill className="moon-icon" color="#333"/>}
+            {darkTheme && <RiSunFill className="sun-icon" color="#fff" />}
           </label>
         </div>
       </div>

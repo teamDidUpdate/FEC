@@ -477,8 +477,6 @@ input:checked+.slider:before {
 }
 
 .switch {
-  color: #d6d6d6;
-  font-size: 0%;
   right: 1%;
   bottom: 19%;
   position: absolute;
