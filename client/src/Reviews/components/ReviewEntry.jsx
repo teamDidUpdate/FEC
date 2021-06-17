@@ -152,7 +152,6 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
 
-
   var handleReviewModalClose = () => {
     var modal = document.getElementById('reviewModal');
     modal.style.display = 'none';
@@ -272,23 +271,26 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
               <br></br>
               <p className='reviewBody'>{review.body}</p>
-              {review.recommend === true ?
-                <p className='recommendedTrue'>
-                  <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' alt='Recommend True CheckBox Image' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
-                null}
-              <p className='helpfulness'>Was this review helpful?
-                <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
-                (<span className={review.review_id}>{review.helpfulness}</span>)
-              </p>
+              <div>
+                <p className='helpfulness'>Was this review helpful?
+                  <span className='clickedTrue' onClick={handleHelpfulnessClick} id={review.review_id}>Yes</span>
+                  (<span className={review.review_id}>{review.helpfulness}</span>)
+                </p>
+                {review.recommend === true ?
+                  <p className='recommendedTrue'>
+                    <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' alt='Recommend True CheckBox Image' height='10' width='10' className='recommendCheck' loading='lazy' ></img> I recommend this product</p> :
+                  null}
+
+              </div>
 
               <div className='reviewPhotos'>{review.photos.length > 0 ?
                 review.photos.map((element) => (
                   element.url.includes('jpg') || element.url.includes('gif') ?
                     <div className='Modals' key={element.url}>
-                      <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
+                      <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px' loading='lazy'></img>
                       <div id='myModal' className='modal'>
                         <span className='close' onClick={handleModalClose}>&times;</span>
-                        <img className='modal-content' alt='modalImage' id='img01'></img>
+                        <img className='modal-content' alt='modalImage' id='img01' loading='lazy'></img>
                       </div>
                     </div> :
                     null
@@ -363,7 +365,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                       <option value="4">4 - Good</option>
                       <option value="5">5 - Great</option>
                     </select>
-                    <div id='char5'className='hidden'>
+                    <div id='char5' className='hidden'>
                       <select name='rating' className='hidden'>
                         <option value="1">1 - Poor</option>
                         <option value="2">2 - Fair</option>
