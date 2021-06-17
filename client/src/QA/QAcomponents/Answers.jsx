@@ -6,11 +6,11 @@ import AnswerHelpful from './AnswerHelpful.jsx';
 const Answers = ({ answer }) => (
   <div>
     <div className='answer'>A: {answer.body}</div>
-    {answer.photos.length ? answer.photos.map((photo, id) => (
-      <div className='answer-photo'>
+    <div className='photo-div'>
+      {answer.photos.length ? answer.photos.map((photo, id) => (
         <AnswerPhotos photo={photo} key={id} />
-      </div>
-    )) : null}
+      )) : null}
+    </div>
     <AnswerHelpful
       answerId={answer.id}
       answerHelpfulness={answer.helpfulness}

@@ -1,6 +1,7 @@
 const express = require('express');
 const APIToken = require('../config.js');
 const axios = require('axios');
+const compression = require('compression');
 let app = express();
 
 // adding middleware
@@ -8,6 +9,8 @@ app.use(express.urlencoded({
   extended: false
 }));
 app.use(express.json());
+app.use(compression());
+
 
 app.use(express.static(__dirname + '/../client/dist'));
 

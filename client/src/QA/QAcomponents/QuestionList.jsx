@@ -42,14 +42,6 @@ const QuestionList = ({ questions, searchInput, productId, openModal, handleModa
               />
           ))
     }
-    <button className='add-question-button'onClick={handleModalOpen}>
-      ADD A QUESTION +
-    </button>
-    <AddQuestion
-      productId={productId}
-      openModal={openModal}
-      handleModalClose={handleModalClose}
-    />
   </div>
 );
 
