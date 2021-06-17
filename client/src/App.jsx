@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ReviewEntry from './Reviews/components/ReviewEntry.jsx';
+import RatingEntry from './Reviews/components/RatingEntry.jsx';
 import OverviewApp from './productOverview/overviewApp.jsx';
-const ReviewEntry = lazy(() => import('./Reviews/components/ReviewEntry.jsx'));
-const RatingEntry = lazy(() => import('./Reviews/components/RatingEntry.jsx'));
-const QAwidget = lazy(() => import('./QA/QAwidget.jsx'));
-const RelatedItemsAndComparison = lazy(() => import('./relatedItems/RelatedEntry/RelatedEntry.jsx'));
+import QAwidget from './QA/QAwidget.jsx';
+import RelatedItemsAndComparison from './relatedItems/RelatedEntry/RelatedEntry.jsx';
 import SectionTracker from './Tracker/SectionTracker.jsx';
 
 export const ThemeContext = React.createContext();
@@ -38,45 +39,39 @@ const App = () => {
             )}>
             </SectionTracker>
           </section>
-          <Suspense fallback={<div>Loading...</div>}>
-            <section id='related-items-and-comparison-section'>
-              <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
-                <RelatedItemsAndComparison
-                  productId={productId}
-                  setProductId={setProductId}
-                  overviewProduct={currentProduct}
-                  overviewRating={rating}
-                  handleTracking={handleTracking}
-                />
-              )}>
-              </SectionTracker>
-            </section>
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
-            <section id='questions-and-answers-section'>
-              <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
-                <QAwidget
-                  productId={productId}
-                  setProductId={setProductId}
-                  handleTracking={handleTracking}
-                />
-              )}>
-              </SectionTracker>
-            </section>
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
-            <section id='reviews-and-ratings-section'>
-              <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
-                <ReviewEntry productId={productId}
-                  setProductId={setProductId}
-                  setReviewCount={setReviewCount}
-                  setRating={setRating}
-                  handleTracking={handleTracking}
-                />
-              )}>
-              </SectionTracker>
-            </section>
-          </Suspense>
+          <section id='related-items-and-comparison-section'>
+            <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
+              <RelatedItemsAndComparison
+                productId={productId}
+                setProductId={setProductId}
+                overviewProduct={currentProduct}
+                overviewRating={rating}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
+          <section id='questions-and-answers-section'>
+            <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
+              <QAwidget
+                productId={productId}
+                setProductId={setProductId}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
+          <section id='reviews-and-ratings-section'>
+            <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
+              <ReviewEntry productId={productId}
+                setProductId={setProductId}
+                setReviewCount={setReviewCount}
+                setRating={setRating}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
         </div>
       </div>
     </ThemeContext.Provider>
