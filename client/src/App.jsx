@@ -7,6 +7,7 @@ import OverviewApp from './productOverview/overviewApp.jsx';
 import QAwidget from './QA/QAwidget.jsx';
 import RelatedItemsAndComparison from './relatedItems/RelatedEntry/RelatedEntry.jsx';
 import SectionTracker from './Tracker/SectionTracker.jsx';
+import LazyLoad from 'react-lazy-load';
 
 export const ThemeContext = React.createContext();
 
@@ -26,18 +27,20 @@ const App = () => {
     <ThemeContext.Provider value={darkTheme}>
       <div id="darkTheme" style={themeStyles}>
         <div id="padding">
-          <section id='product-overview-section'>
-            <SectionTracker sectionName={'product-overview-section'} render={(handleTracking) => (
-              <OverviewApp productId={productId}
-                reviewCount={reviewCount}
-                rating={rating}
-                setProductId={setProductId}
-                setCurrentProduct={setCurrentProduct}
-                setDarkTheme={setDarkTheme}
-                handleTracking={handleTracking}
-              />
-            )}>
-            </SectionTracker>
+          <section id='product-overview-section' style={{margin: '2vh'}}>
+            <LazyLoad height={'105vh'} width={'65vw'} offsetVertical={0}>
+              <SectionTracker sectionName={'product-overview-section'} render={(handleTracking) => (
+                <OverviewApp productId={productId}
+                  reviewCount={reviewCount}
+                  rating={rating}
+                  setProductId={setProductId}
+                  setCurrentProduct={setCurrentProduct}
+                  setDarkTheme={setDarkTheme}
+                  handleTracking={handleTracking}
+                />
+              )}>
+              </SectionTracker>
+            </LazyLoad>
           </section>
           <section id='related-items-and-comparison-section'>
             <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
@@ -71,6 +74,44 @@ const App = () => {
               />
             )}>
             </SectionTracker>
+          <section id='related-items-and-comparison-section'style={{margin: '2vh'}}>
+            <LazyLoad height={'100vh'} width={'65vw'} offsetVertical={300}>
+              <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
+                <RelatedItemsAndComparison
+                  productId={productId}
+                  setProductId={setProductId}
+                  overviewProduct={currentProduct}
+                  overviewRating={rating}
+                  handleTracking={handleTracking}
+                />
+              )}>
+              </SectionTracker>
+            </LazyLoad>
+          </section>
+          <section id='questions-and-answers-section' style={{margin: '2vh'}}>
+            <LazyLoad height={'20vh'} width={'65vw'} offsetVertical={300}>
+              <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
+                <QAwidget
+                  productId={productId}
+                  setProductId={setProductId}
+                  handleTracking={handleTracking}
+                />
+              )}>
+              </SectionTracker>
+            </LazyLoad>
+          </section>
+          <section id='reviews-and-ratings-section' style={{margin: '2vh'}}>
+            <LazyLoad height={'20vh'} width={'65vw'} offsetVertical={200}>
+              <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
+                <ReviewEntry productId={productId}
+                  setProductId={setProductId}
+                  setReviewCount={setReviewCount}
+                  setRating={setRating}
+                  handleTracking={handleTracking}
+                />
+              )}>
+              </SectionTracker>
+            </LazyLoad>
           </section>
         </div>
       </div>

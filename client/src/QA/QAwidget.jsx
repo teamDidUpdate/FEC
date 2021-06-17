@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import Search from './QAcomponents/Search.jsx';
 import QuestionList from './QAcomponents/QuestionList.jsx';
 import AddQuestion from './QAcomponents/AddQuestion.jsx';
@@ -42,9 +41,6 @@ const QAwidget = ( { productId } ) => {
             productId={productId}
             searchInput={searchInput}
             questions={questions}
-            openModal={openModal}
-            handleModalClose={handleModalClose}
-            handleModalOpen={handleModalOpen}
           />
           : null}
         <button className='add-question-button' onClick={handleModalOpen}>

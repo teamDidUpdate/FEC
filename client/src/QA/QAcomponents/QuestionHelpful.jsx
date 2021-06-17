@@ -71,29 +71,31 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
         <form className='answer-modal-form'>
 
           <label className='modal-label' htmlFor='email'>Email:</label>
-          <input className='answer-modal-email' required
+          <input className='answer-modal-email'
             placeholder='Example: jack@email.com'
             value={email}
             type='email'
             name='email'
             maxLength='60'
             autoComplete='off'
-            onChange={event => { event.preventDefault(); dataFill(event); }}></input>
+            onChange={event => { event.preventDefault(); dataFill(event); }}
+            required></input>
           <p className='answer-modal-text'>For authentication reasons, you will not be emailed</p>
 
           <label className='modal-label' htmlFor='name'>Nickname:</label>
-          <input className='answer-modal-name' required
+          <input className='answer-modal-name'
             placeholder='Example: jack543!'
             type='text'
             name='name'
             maxLength='75'
             autoComplete='off'
             value={name}
-            onChange={event => { event.preventDefault(); dataFill(event); }}></input>
+            onChange={event => { event.preventDefault(); dataFill(event); }}
+            required></input>
           <p className='answer-modal-text'>For privacy reasons, do not use your full name or email address</p>
 
           <label className='modal-label' htmlFor='answer'>Answer:</label>
-          <textarea className='answer-modal-body' required
+          <textarea className='answer-modal-body'
             placeholder='Enter Answer Here...'
             type='text'
             name='answer'
@@ -101,7 +103,8 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
             minLength='1'
             autoComplete='off'
             value={answerBody}
-            onChange={event => { event.preventDefault(); dataFill(event); }}></textarea>
+            onChange={event => { event.preventDefault(); dataFill(event); }}
+            required></textarea>
 
           <label className='modal-label' htmlFor='imageUpload'>Img URL:</label>
           <input className='answer-modal-img'
@@ -112,6 +115,7 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
             onChange={event => { event.preventDefault(); addAnswerImg(event); }}></input>
 
           <button className='submit-answer-form-button'
+            type='submit'
             onClick={event => handleAddAnswer(event)}>
             Submit Answer
           </button>

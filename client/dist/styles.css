@@ -273,6 +273,9 @@ html {
   margin-right: 0.8vw;
   object-fit: cover;
 }
+.style-image:hover, .gallary-image:hover {
+  cursor: pointer;
+}
 
 .gallary-image {
   width: 4.4vw;
@@ -542,7 +545,7 @@ input:checked+.slider:before {
 /* Question */
 .question {
   margin-top: 20px;
-  border-bottom: solid grey 10px;
+  border-bottom: solid grey 2px;
 }
 
 .question-control {
@@ -763,6 +766,7 @@ input:checked+.slider:before {
 /* Answers */
 .answer {
   margin: 10px 10px 10px 30px;
+  font-weight: 500;
   font-size: 18px;
   text-decoration: underline;
   overflow-wrap: normal;
@@ -833,13 +837,17 @@ input:checked+.slider:before {
 }
 
 .answer-helpfulness-div {
-  display: inline-flex;
-  flex-direction: row;
-  margin-left: 40px;
-  margin-top: 20px;
-  color: grey;
+display: inline-flex;
+flex-direction: row;
+margin-left: 40px;
+margin-top: 20px;
+margin-bottom: 10px;
+color: grey;
 }
-
+.answer-div {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 /* ------------ Review ------------ */
 
@@ -1296,6 +1304,7 @@ h1.reviewModalSize {
   width: 16vw;
   height: 40vh;
   margin-right: 1em;
+  cursor: pointer;
 }
 
 .card-inner-container {
