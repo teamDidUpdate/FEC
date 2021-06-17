@@ -68,7 +68,7 @@ app.post('/addToCart', (req, res) => {
 /* -------- QUESTION & ANSWER -------- */
 app.get('/qa/questions', (req, res) => {
   let productId = req.query.productId;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=${productId}`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=${productId}&count=15`, {
     headers: {
       Authorization: APIToken.TOKEN
     }
