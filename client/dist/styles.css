@@ -273,6 +273,9 @@ html {
   margin-right: 0.8vw;
   object-fit: cover;
 }
+.style-image:hover, .gallary-image:hover {
+  cursor: pointer;
+}
 
 .gallary-image {
   width: 4.4vw;
