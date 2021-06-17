@@ -278,7 +278,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 </p>
                 {review.recommend === true ?
                   <p className='recommendedTrue'>
-                    <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' alt='Recommend True CheckBox Image' height='10' width='10' className='recommendCheck' loading='lazy' ></img> I recommend this product</p> :
+                    <img src='https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/checkmark-24-512.png' alt='Recommend True CheckBox Image' height='10' width='10' className='recommendCheck'></img> I recommend this product</p> :
                   null}
 
               </div>
@@ -287,10 +287,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                 review.photos.map((element) => (
                   element.url.includes('jpg') || element.url.includes('gif') ?
                     <div className='Modals' key={element.url}>
-                      <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px' loading='lazy'></img>
+                      <img id='myImg' alt='Review Photo' src={element.url} onClick={handleImageClick} width='100px' height='100px'></img>
                       <div id='myModal' className='modal'>
                         <span className='close' onClick={handleModalClose}>&times;</span>
-                        <img className='modal-content' alt='modalImage' id='img01' loading='lazy'></img>
+                        <img className='modal-content' alt='modalImage' id='img01'></img>
                       </div>
                     </div> :
                     null
@@ -410,23 +410,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
 
                 <div className='column3'>
 
-                  <label htmlFor="myfile">Link up to 5 photos!</label>
+                  <label htmlFor="myfile">Link a</label>
                   <div>
                     <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
-                    <br></br>
-                    <br></br>
-                    <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
-                    <br></br>
-                    <br></br>
-                    <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
-                    <br></br>
-                    <br></br>
-                    <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
-                    <br></br>
-                    <br></br>
-                    <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
-                  </div>
-                  <div>
+
                     <input type="submit" id='reviewSubmission' value="Submit" onClick={handleReviewModalClose}></input>
                   </div>
 
