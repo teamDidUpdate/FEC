@@ -33,7 +33,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
 
   // check to see if arrow buttons appear
   useEffect(() => {
-    let buffer = related ? 4 : 3;
+    let buffer = related ? 3 : 2;
     if (currentPos === 0 && currentPos + buffer >= length) {
       setScrollable({left: false, right: false});
     } else if (currentPos === 0 && currentPos + buffer < length) {
@@ -93,10 +93,12 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
 
   return (
     <section className='carousel'>
-      {scrollable.left ?
-        <MdKeyboardArrowLeft className='left-arrow' onClick={prevCard}/>
-        : null
-      }
+      <div>
+        {scrollable.left ?
+          <MdKeyboardArrowLeft className='left-arrow' onClick={prevCard}/>
+          : null
+        }
+      </div>
       <div className='cards-container'>
         { length !== 0 && related && products ?
           products.map((product, index) => {
@@ -138,6 +140,8 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
           })
           : null
         }
+      </div>
+      <div>
         {scrollable.right ?
           <MdKeyboardArrowRight className='right-arrow' onClick={nextCard}/>
           : null
