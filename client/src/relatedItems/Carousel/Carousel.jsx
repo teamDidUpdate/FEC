@@ -97,12 +97,8 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
         <MdKeyboardArrowLeft className='left-arrow' onClick={prevCard}/>
         : null
       }
-      {scrollable.right ?
-        <MdKeyboardArrowRight className='right-arrow' onClick={nextCard}/>
-        : null
-      }
       <div className='cards-container'>
-        { length !== 0 && related ?
+        { length !== 0 && related && products ?
           products.map((product, index) => {
             return (
               index >= currentPos || currentPos + 2 >= length ?
@@ -125,7 +121,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
             <FiPlusCircle id='add-outfit-btn' />
           </div>
           : null }
-        { length !== 0 && !related ?
+        { length !== 0 && !related && products ?
           Object.values(products).map((product, index) => {
             return (
               index >= currentPos || currentPos + 1 >= length ?
@@ -140,6 +136,10 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
                 : null
             );
           })
+          : null
+        }
+        {scrollable.right ?
+          <MdKeyboardArrowRight className='right-arrow' onClick={nextCard}/>
           : null
         }
       </div>

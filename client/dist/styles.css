@@ -1327,7 +1327,7 @@ h1.reviewModalSize {
 }
 
 .right-arrow {
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
   right: 0;
   font-size: 3rem;
@@ -1340,7 +1340,7 @@ h1.reviewModalSize {
 }
 
 .left-arrow {
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
   left: 0;
   font-size: 3rem;
