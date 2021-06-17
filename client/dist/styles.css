@@ -874,9 +874,6 @@ color: grey;
 }
 
 #reviewModalFormatted {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
 }
 
 .reviewHidden {
@@ -1194,8 +1191,8 @@ h1.reviewModalSize {
 /* The Close Button */
 .close {
   position: absolute;
-  top: 15px;
-  right: 35px;
+  top: 5px;
+  right: 15px;
   color: black;
   font-size: 40px;
   font-weight: bold;
@@ -1246,11 +1243,13 @@ h1.reviewModalSize {
   position: absolute;
   left: 50%;
   top: 50%;
+  text-align-last: center;
   transform: translate(-50%, -50%);
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
-  width: 65%;
+  height: 50%;
+  overflow: scroll;
 
 }
 
