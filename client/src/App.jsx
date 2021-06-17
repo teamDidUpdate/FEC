@@ -42,6 +42,38 @@ const App = () => {
               </SectionTracker>
             </LazyLoad>
           </section>
+          <section id='related-items-and-comparison-section'>
+            <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
+              <RelatedItemsAndComparison
+                productId={productId}
+                setProductId={setProductId}
+                overviewProduct={currentProduct}
+                overviewRating={rating}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
+          <section id='questions-and-answers-section'>
+            <SectionTracker sectionName={'questions-and-answers-section'} render={(handleTracking) => (
+              <QAwidget
+                productId={productId}
+                setProductId={setProductId}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
+          </section>
+          <section id='reviews-and-ratings-section'>
+            <SectionTracker sectionName={'reviews-and-ratings-section'} render={(handleTracking) => (
+              <ReviewEntry productId={productId}
+                setProductId={setProductId}
+                setReviewCount={setReviewCount}
+                setRating={setRating}
+                handleTracking={handleTracking}
+              />
+            )}>
+            </SectionTracker>
           <section id='related-items-and-comparison-section'style={{margin: '2vh'}}>
             <LazyLoad height={'100vh'} width={'65vw'} offsetVertical={300}>
               <SectionTracker sectionName={'related-items-and-comparison-section'} render={(handleTracking) => (
