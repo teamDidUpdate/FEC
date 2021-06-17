@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {AiOutlineExpand} from 'react-icons/ai';
 
 const Image = (props) => {
   const currentImg = props.currentStyle;
@@ -105,8 +106,7 @@ const Image = (props) => {
             }} style={{backgroundImage: `url(${imageURL})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></div>
           }
           {!zoomIn && <div className="zoom-icon" onClick={() => props.setView(!props.expendView) }>
-            <span className="zoom-icon-up">⌜ ⌝</span>
-            <span className="zoom-icon-down">⌞ ⌟</span>
+            <AiOutlineExpand className="expand-icon" />
           </div>}
           {(imageURL !== images[images.length - 1].url && !zoomIn) && <a className="next" onClick={() => { handleClick(1); }}>&#10095;</a>}
           {(imageURL !== images[0].url && !zoomIn) && <a className="prev" onClick={() => { handleClick(0); }}>&#10094;</a>}

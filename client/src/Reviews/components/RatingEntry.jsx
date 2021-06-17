@@ -287,7 +287,8 @@ const RatingEntry = ({ currentProductId, setRating, currentlyShowing, setCurrent
               null}
 
             {currentProduct.characteristics.Length !== undefined ?
-              <div className='Length'>Length <ProgressBar completed={(currentProduct.characteristics.Length.value / 5) * 100} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
+              <div className='Length'>Length
+                <ProgressBar completed={(currentProduct.characteristics.Length.value / 5) * 100} bgColor={'#00b300'} baseBgColor={'#d8d8d8'} isLabelVisible={false} borderRadius={'0'} height={'10px'} width={'100%'} />
                 <div className='characteristicsValues'>
                   <div className='characteristicsValuesLeft'>Runs Short</div>
                   <div className='characteristicsValuesRight'>Runs long</div>
