@@ -14,7 +14,7 @@ const QuestionList = ({ questions, searchInput, productId, openModal, handleModa
             count > 3
               ? <MoreQuestions
                 questions={questions}
-                key={questions.question_id}
+                key={question.question_id}
               />
               : <Question
                 question={question}
@@ -33,7 +33,7 @@ const QuestionList = ({ questions, searchInput, productId, openModal, handleModa
             count > 3
               ? <MoreQuestions
                 questions={questions}
-                key={questions.question_id}
+                key={question.question_id}
               />
               : <Question
                 question={question}

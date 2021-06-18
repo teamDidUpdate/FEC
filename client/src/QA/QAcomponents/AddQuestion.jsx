@@ -25,9 +25,8 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
   };
 
   const handleSubmitQuestion = (event) => {
-    event.preventDefault();
 
-    regexVerifyEmail(email)
+    regexVerifyEmail(email) && name.length && questionBody.length
       ? axios.post('/qa/questions', {
         body: questionBody,
         name: name,
@@ -64,7 +63,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
           </p>
 
           <label className='modal-label' htmlFor='name'>Email:</label>
-          <input required
+          <input
             className='question-email-input'
             onChange={(event) => { dataFill(event); }}
             placeholder="Example: jack@email.com"
@@ -73,6 +72,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
             maxLength="60"
             autoComplete="off"
             value={email}
+            required
           ></input>
 
           <p className='answer-modal-text'>
@@ -80,7 +80,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
           </p>
 
           <label className='modal-label' htmlFor='name'>Nickname:</label>
-          <input required
+          <input
             className='question-name-input'
             onChange={(event) => { dataFill(event); }}
             placeholder="Examples: jackson11!"
@@ -89,6 +89,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
             maxLength="60"
             autoComplete="off"
             value={name}
+            required
           ></input>
 
           <p className='answer-modal-text'>
@@ -96,7 +97,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
           </p>
 
           <label className='modal-label' htmlFor='question'>Question:</label>
-          <textarea required
+          <textarea
             className='question-ask'
             onChange={(event) => { dataFill(event); }}
             placeholder="Enter Question Here..."
@@ -106,14 +107,15 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
             minLength=""
             autoComplete="off"
             value={questionBody}
+            required
           ></textarea>
 
-          <button
+          <input
+            type='submit'
+            value='Submit Question'
             className='submit-new-question'
             onClick={(event) => handleSubmitQuestion(event)}
-          >
-            Submit Question
-          </button>
+          ></input>
         </form>
       </div>
     </div>
