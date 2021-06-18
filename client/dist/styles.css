@@ -228,10 +228,11 @@ html {
   font-size: 2vw;
   position: absolute;
   right: -3%;
+  color: white;
 }
 
 .expand-icon:hover {
-  opacity: 70%;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .next,
