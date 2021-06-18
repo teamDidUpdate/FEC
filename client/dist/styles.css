@@ -1226,7 +1226,7 @@ h1.reviewModalSize {
   top: 50%;
   text-align-last: center;
   transform: translate(-50%, -50%);
-  background-color: #fefefe;
+  background-color: lightgrey;
   padding: 20px;
   border: 1px solid #888;
   height: 50%;
