@@ -658,14 +658,12 @@ input:checked+.slider:before {
 .more-answers {
   font-weight: bold;
   font-size: medium;
-  background: transparent;
   border: solid gray;
   outline: none;
   cursor: pointer;
   margin: 10px;
   transition: all ease 0.3s;
 }
-
 .more-answers:hover {
   background-color: lightgrey;
 }
@@ -771,21 +769,6 @@ input:checked+.slider:before {
   overflow-wrap: normal;
 }
 
-.more-answers {
-  font-weight: bold;
-  font-size: medium;
-  background: transparent;
-  border: solid gray;
-  outline: none;
-  cursor: pointer;
-  margin: 10px;
-  transition: all ease 0.3s;
-}
-
-.more-answers:hover {
-  background-color: lightgrey;
-}
-
 /* Photo & Modals */
 .answer-photo-modal {
   background-color: rgba(0, 0, 0, 0.4);
@@ -836,12 +819,12 @@ input:checked+.slider:before {
 }
 
 .answer-helpfulness-div {
+font-size: 16px;
 display: inline-flex;
 flex-direction: row;
 margin-left: 40px;
 margin-top: 20px;
 margin-bottom: 10px;
-color: grey;
 }
 .answer-div {
   margin-top: 5px;
