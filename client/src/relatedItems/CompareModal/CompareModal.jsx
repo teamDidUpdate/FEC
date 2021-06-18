@@ -30,13 +30,17 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
   const getCompareList = () => {
     let featureList = {};
     overviewProduct.features.forEach((obj) => {
-      featureList[obj.feature] = [obj.value, ' '];
+      featureList[obj.feature] = [obj.value, '-'];
     });
     relatedProduct.overview.features.forEach((obj) => {
       if (featureList[obj.feature]) {
         featureList[obj.feature][1] = [obj.value];
       } else {
-        featureList[obj.feature] = [' ', obj.value];
+        if (obj.value) {
+          featureList[obj.feature] = ['-', obj.value];
+        } else {
+          featureList[obj.feature] = ['-', '-'];
+        }
       }
     });
     setComparedFeatures(featureList);
@@ -50,7 +54,10 @@ const CompareModal = ({ open, onClose, relatedProduct, productId }) => {
       <div className='compare-modal'
         style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
       >
-        <h2 className='modal-title'>Comparing</h2>
+        <div>
+          <p className='modal-title'>Comparing</p>
+          <span className="close" onClick={onClose}>&times;</span>
+        </div>
         <table className='compare-table'>
           <thead>
             <tr className='compare-header'>

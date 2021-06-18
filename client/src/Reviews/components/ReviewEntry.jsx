@@ -82,6 +82,7 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
   var handleModalClose = (event) => {
+
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName('close')[0];
     modal.style.display = 'none';
@@ -152,9 +153,18 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
   };
 
 
-  var handleReviewModalClose = () => {
-    var modal = document.getElementById('reviewModal');
-    modal.style.display = 'none';
+  var handleReviewModalClose = (event) => {
+    if (event.target.id === 'reviewSubmission') {
+      var modal = document.getElementById('reviewModal');
+      modal.style.display = 'none';
+      event.preventDefault();
+    }
+    if (event.target.className === 'close' || event.target.className === 'modal') {
+      var modal = document.getElementById('reviewModal');
+      modal.style.display = 'none';
+    }
+
+
   };
 
   var handleReviewSubmission = (event) => {
@@ -223,6 +233,10 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
           count++;
         }
       });
+  };
+
+  var doNothing = () => {
+    event.preventDefault();
   };
 
 
@@ -309,49 +323,28 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
         <div className='reviewButton'>
           <button className='addReview' id="myBtn" onClick={handleAddReview}>Add a Review</button>
         </div>
-        <div id="reviewModal" onClick={handleReviewModalClose} className="modal" style={{ 'color': 'black' }}>
-          <div className="addReview-modal-content">
-            <h1 className='writeReviewHeader'>Write your Review!</h1>
-            <form id='submitReview'>
-              <div id='reviewModalFormatted'>
-                <div className='column1'>
-                  <div className='addNickName'>
-                    Nickname:
-                    <input type="text" placeholder='Jackson11' id='reviewNickName'></input>
+        <div className = 'test' onClick={handleReviewModalClose}>
+          <div id="reviewModal" className="modal" style={{ 'color': 'black' }}>
+            <div className="addReview-modal-content">
+              <h1 className='writeReviewHeader'>Write your Review!</h1>
+              <form id='submitReview'>
+                <div id='reviewModalFormatted'>
+                  <div className='column1'>
+                    <div className='addNickName'>
+                      Nickname:
+                      <input type="text" placeholder='Jackson11' id='reviewNickName'></input>
+                      <br></br>
+                      For privacy reasons, do not use your full name or email address
+                    </div>
+                    <div className='addEmail'>
+                      Email:
+                      <input type="email" id="reviewEmail" size="30" id='reviewEmail' required></input>
+                      <br></br>
+                      For authentication reasons, you will not be emailed
+                    </div>
                     <br></br>
-                    For privacy reasons, do not use your full name or email address
-                  </div>
-                  <div className='addEmail'>
-                    Email:
-                    <input type="email" id="reviewEmail" size="30" id='reviewEmail' required></input>
+                    <label htmlFor='rating' className='boldRating'>Overall Rating</label>
                     <br></br>
-                    For authentication reasons, you will not be emailed
-                  </div>
-                  <br></br>
-                  <label htmlFor='rating' className='boldRating'>Overall Rating</label>
-                  <br></br>
-                  <select name='rating'>
-                    <option value="1">1 - Poor</option>
-                    <option value="2">2 - Fair</option>
-                    <option value="3">3 - Average</option>
-                    <option value="4">4 - Good</option>
-                    <option value="5">5 - Great</option>
-                  </select>
-                  <br></br>
-                  <div className='characteristics'>
-                    Characteristics:
-                    <div id='char1' className='hidden'>
-                    </div>
-                    <select name='ratingChar1'>
-                      <option value="1">1 - Poor</option>
-                      <option value="2">2 - Fair</option>
-                      <option value="3">3 - Average</option>
-                      <option value="4">4 - Good</option>
-                      <option value="5">5 - Great</option>
-                    </select>
-
-                    <div id='char2' className='hidden'>
-                    </div>
                     <select name='rating'>
                       <option value="1">1 - Poor</option>
                       <option value="2">2 - Fair</option>
@@ -359,75 +352,98 @@ const ReviewEntry = ({ productId, setReviewCount, setRating }) => {
                       <option value="4">4 - Good</option>
                       <option value="5">5 - Great</option>
                     </select>
-
-                    <div id='char3' className='hidden'>
-                    </div>
-                    <select name='rating'>
-                      <option value="1">1 - Poor</option>
-                      <option value="2">2 - Fair</option>
-                      <option value="3">3 - Average</option>
-                      <option value="4">4 - Good</option>
-                      <option value="5">5 - Great</option>
-                    </select>
-                    <div id='char4' className='hidden'>
-                    </div>
-                    <select name='rating'>
-                      <option value="1">1 - Poor</option>
-                      <option value="2">2 - Fair</option>
-                      <option value="3">3 - Average</option>
-                      <option value="4">4 - Good</option>
-                      <option value="5">5 - Great</option>
-                    </select>
-                    <div id='char5' className='hidden'>
-                      <select name='rating' className='hidden'>
+                    <br></br>
+                    <div className='characteristics'>
+                      Characteristics:
+                      <div id='char1' className='hidden'>
+                      </div>
+                      <select name='ratingChar1'>
                         <option value="1">1 - Poor</option>
                         <option value="2">2 - Fair</option>
                         <option value="3">3 - Average</option>
                         <option value="4">4 - Good</option>
                         <option value="5">5 - Great</option>
                       </select>
+
+                      <div id='char2' className='hidden'>
+                      </div>
+                      <select name='rating'>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Great</option>
+                      </select>
+
+                      <div id='char3' className='hidden'>
+                      </div>
+                      <select name='rating'>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Great</option>
+                      </select>
+                      <div id='char4' className='hidden'>
+                      </div>
+                      <select name='rating'>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Great</option>
+                      </select>
+                      <div id='char5' className='hidden'>
+                        <select name='rating' className='hidden'>
+                          <option value="1">1 - Poor</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="3">3 - Average</option>
+                          <option value="4">4 - Good</option>
+                          <option value="5">5 - Great</option>
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                  <br></br>
-
-
-                  <br></br>
-                  <label htmlFor='recommend'>Do you recommend this product?</label>
-                  Yes
-                  <input type="radio" name="option" value="Yes" onClick={function () { setRecommended('No'); }}></input>
-                  No
-                  <input type="radio" name="option" value="No" onClick={function () { setRecommended('No'); }} ></input>
-
-                  <br></br>
-                  <br></br>
-
-                </div>
-                <div className='column2'>
-
-                  Summary
-                  <br></br>
-                  <textarea cols='30' rows='10' id='reviewSummary' placeholder='Example: Best purchase ever!'></textarea>
-                  <br></br>
-                  Body
-                  <br></br>
-                  <textarea cols='30' rows='10' id='reviewBody' placeholder='Why did you like the product or not?'></textarea>
-
-                </div>
-
-                <div className='column3'>
-
-                  <label htmlFor="myfile">Link a photo!</label>
-                  <br></br>
-                  <div>
-                    <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
                     <br></br>
-                    <input type="submit" id='reviewSubmission' value="Submit" onClick={handleReviewModalClose}></input>
+
+
+                    <br></br>
+                    <label htmlFor='recommend'>Do you recommend this product?</label>
+                    Yes
+                    <input type="radio" name="option" value="Yes" onClick={function () { setRecommended('No'); }}></input>
+                    No
+                    <input type="radio" name="option" value="No" onClick={function () { setRecommended('No'); }} ></input>
+
+                    <br></br>
+                    <br></br>
+
+                  </div>
+                  <div className='column2'>
+
+                    Summary
+                    <br></br>
+                    <textarea cols='30' rows='10' id='reviewSummary' placeholder='Example: Best purchase ever!'></textarea>
+                    <br></br>
+                    Body
+                    <br></br>
+                    <textarea cols='30' rows='10' id='reviewBody' placeholder='Why did you like the product or not?'></textarea>
+
                   </div>
 
+                  <div className='column3'>
+
+                    <label htmlFor="myfile">Link a photo!</label>
+                    <br></br>
+                    <div>
+                      <input type="url" className="linkUploadReview" placeholder='https:google.com/images'></input>
+                      <br></br>
+                      <input type="submit" id='reviewSubmission' value="Submit" onClick={handleReviewModalClose}></input>
+                    </div>
+
+                  </div>
+                  <span className="close" onClick={handleReviewModalClose}>&times;</span>
                 </div>
-                <span className="close" onClick={handleReviewModalClose}>&times;</span>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
