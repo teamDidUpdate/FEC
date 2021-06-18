@@ -1174,8 +1174,7 @@ h1.reviewModalSize {
   position: absolute;
   top: 5px;
   right: 15px;
-  color: black;
-  font-size: 40px;
+  font-size: 4vh;
   font-weight: bold;
   transition: 0.3s;
 }
@@ -1299,7 +1298,6 @@ h1.reviewModalSize {
 
 .card-item.text {
   margin: 6px 12px 8px 12px;
-  /* color: #333; */
   font: 16px Arial, sans-serif;
 }
 
@@ -1325,7 +1323,6 @@ h1.reviewModalSize {
   width: 16vw;
   height: 40vh;
   margin-right: 1em;
-  /* background-color: #f1f1f1; */
   box-shadow: 3px 2px 2px grey;
   border: 1px solid;
   cursor: pointer;
@@ -1337,9 +1334,6 @@ h1.reviewModalSize {
 }
 
 .right-arrow {
-  /* position: absolute; */
-  /* top: 50%;
-  right: 0; */
   font-size: 3rem;
   color: #000;
   background: white;
@@ -1350,9 +1344,6 @@ h1.reviewModalSize {
 }
 
 .left-arrow {
-  /* position: absolute;
-  top: 50%;
-  left: 0; */
   font-size: 3rem;
   color: #000;
   background: white;
@@ -1369,7 +1360,6 @@ h1.reviewModalSize {
   right: 8px;
   cursor: pointer;
   user-select: none;
-  /* background: #FFF; */
   opacity: .75;
   border-radius: 2rem;
   box-shadow: 3px 2px 2px #333;
@@ -1382,7 +1372,6 @@ h1.reviewModalSize {
   left: 0;
   right: 0;
   bottom: 0;
-  /* background-color: #000; */
   opacity: .7;
   z-index: 1000;
 }
@@ -1397,11 +1386,11 @@ h1.reviewModalSize {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2em;
-  height: 50vh;
-  width: 40vw;
+  height: auto;
+  width: auto;
   z-index: 1000;
   text-align: center;
-  font: 16px Arial, sans-serif;
+  font: 2vh Arial, sans-serif;
   border: 1px solid;
   box-shadow: 3px 2px 2px #333;
 }
@@ -1409,50 +1398,39 @@ h1.reviewModalSize {
 .compare-table {
   display: grid;
   grid-template-rows: 1fr 8fr;
-  border: 1px solid #000;
+  border: 1px solid;
   height: 30vh;
 }
 
 .compare-header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  border: 1px solid #000;
+  place-items: center;
+  border: 1px solid;
 }
 
 .compare-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  border: 1px solid #ddd;
+  border: 1px solid;
 }
 
 .modal-title {
-  font-size: 24;
+  font-size: 2.5vh;
   font-weight: lighter;
   text-align: left;
 }
 
 .modal-header {
+  margin: .5vw;
   font-weight: bold;
-  height: 4vh;
 }
 
 
 .modal-body {
+  margin: .5vw;
   font-weight: lighter;
-}
-
-.left {
-  text-align: center;
-}
-
-.right {
-  text-align: center;
-}
-
-.center {
-  text-align: center;
 }
 
 .feature-list {
