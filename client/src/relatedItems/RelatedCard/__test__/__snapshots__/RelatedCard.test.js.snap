@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`related card matches snapshot 1`] = `
+<div
+  className="card-container"
+  data-testid="related-13023"
+>
+  <svg
+    className="action-btn"
+    fill="currentColor"
+    height="1em"
+    onClick={[Function]}
+    stroke="currentColor"
+    strokeWidth="0"
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "color": "#000",
+      }
+    }
+    viewBox="0 0 24 24"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+    />
+  </svg>
+  <div
+    className="card-inner-container"
+    onClick={[Function]}
+  >
+    <div
+      className="card-item"
+    >
+      <img
+        alt="related-card"
+        className="card-image"
+        loading="lazy"
+        src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+      />
+    </div>
+    <div
+      className="card-item text category"
+    >
+      JACKETS
+    </div>
+    <div
+      className="card-item text name"
+    >
+      Camo Onesie
+    </div>
+    <div
+      className="card-item text"
+    >
+      $
+    </div>
+    <div
+      className="card-item text rating"
+    >
+      <div
+        style={
+          Object {
+            "overflow": "hidden",
+            "position": "relative",
+          }
+        }
+      >
+        <style
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "
+    .stars-rating-06652301704036518:before {
+      position: absolute;
+      overflow: hidden;
+      display: block;
+      z-index: 1;
+      top: 0; left: 0;
+      width: 50%;
+      content: attr(data-forhalf);
+      color: #ffd700;
+  }",
+            }
+          }
+        />
+        <span
+          className=""
+          data-forhalf="★"
+          data-index={0}
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "color": "gray",
+              "cursor": "default",
+              "display": "block",
+              "float": "left",
+              "fontSize": "15px",
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          ★
+        </span>
+        <span
+          className=""
+          data-forhalf="★"
+          data-index={1}
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "color": "gray",
+              "cursor": "default",
+              "display": "block",
+              "float": "left",
+              "fontSize": "15px",
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          ★
+        </span>
+        <span
+          className=""
+          data-forhalf="★"
+          data-index={2}
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "color": "gray",
+              "cursor": "default",
+              "display": "block",
+              "float": "left",
+              "fontSize": "15px",
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          ★
+        </span>
+        <span
+          className=""
+          data-forhalf="★"
+          data-index={3}
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "color": "gray",
+              "cursor": "default",
+              "display": "block",
+              "float": "left",
+              "fontSize": "15px",
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          ★
+        </span>
+        <span
+          className=""
+          data-forhalf="★"
+          data-index={4}
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "color": "gray",
+              "cursor": "default",
+              "display": "block",
+              "float": "left",
+              "fontSize": "15px",
+              "overflow": "hidden",
+              "position": "relative",
+            }
+          }
+        >
+          ★
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

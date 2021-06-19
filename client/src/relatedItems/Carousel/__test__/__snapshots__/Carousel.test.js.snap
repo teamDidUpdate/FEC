@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`related carousel matches snapshot 1`] = `
+<section
+  className="carousel"
+  data-testid="carousel-1"
+>
+  <div />
+  <div
+    className="cards-container"
+  />
+  <div />
+</section>
+`;
