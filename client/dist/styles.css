@@ -548,7 +548,11 @@ input:checked+.slider:before {
   margin-top: 20px;
   border-bottom: solid grey 2px;
 }
-
+/* .question-list {
+  width: auto;
+  height: 40vh;
+  overflow-y: scroll;
+} */
 .question-control {
   display: flex;
   justify-content: space-between;

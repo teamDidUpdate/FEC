@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from '../QAcomponents//Search.jsx';
+import Search from '../QAcomponents/Search.jsx';
 import QuestionList from '../QAcomponents/QuestionList.jsx';
 import AddQuestion from '../QAcomponents/AddQuestion.jsx';
 import AnswerHelpful from '../QAcomponents/AnswerHelpful.jsx';
@@ -9,23 +9,71 @@ import Answers from '../QAcomponents/Answers.jsx';
 import MoreAnswers from '../QAcomponents/MoreAnswers.jsx';
 import Question from '../QAcomponents/Question.jsx';
 import QuestionHelpful from '../QAcomponents/QuestionHelpful.jsx';
+import sample from './sampleData.js';
 
-it ('render Q&A without crashing', () => {
+
+// npm test -- -t 'render Q&A Search without crashing'
+it ('render Q&A Search without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Search />, div);
 });
-
+// npm test -- -t 'render Question List without crashing'
 it ('render Question List without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<QuestionList />, div);
+  ReactDOM.render(<QuestionList
+    questions={sample.questions.results}
+    searchInput={null}
+    productId={13023}/>, div);
 });
-
+// npm test -- -t 'render Add Question Button Modal crashing'
 it ('render Add Question Button Modal crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<AddQuestion />, div);
 });
-
-it ('render Helpfulness Answer without crashing', () => {
+// npm test -- -t 'render Answer Helpfulness without crashing'
+it ('render Answer Helpfulness without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AnswerHelpful />, div);
+  ReactDOM.render(<AnswerHelpful
+    answerId={sample.questions.results[0].answers.id}
+    answerHelpfulness={sample.questions.results[0].answers.helpfulness}
+    answerDate={'2018-08-18T00:00:00.000Z'}
+    answerName={sample.questions.results[0].answers.answerer_name}/>, div);
 });
+// npm test -- -t 'render Answer Photos without crashing'
+it ('render Answer Photos without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<AnswerPhotos
+    photo={'urlplaceholder/answer_5_photo_number_1.jpg'}
+    key={1}/>, div);
+});
+// npm test -- -t 'render Answer List without crashing'
+it ('render Answer List without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Answers
+    key={sample.questions.results[0].answers.id}
+    answer={[{
+      0: {
+        answerer_name: "notKathy!",
+        body: "This is a an answer!",
+        date: "2021-06-19T00:00:00.000Z",
+        helpfulness: 0,
+        id: 1992060
+      },
+      photos: []
+    }]}/>, div);
+});
+
+// it ('render More Answer button without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(<MoreAnswers />, div);
+// });
+
+// it ('render Individual Questions without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(<Question />, div);
+// });
+
+// it ('render Question Helpfulness section without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(<QuestionHelpful />, div);
+// });

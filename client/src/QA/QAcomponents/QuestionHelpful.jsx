@@ -43,8 +43,7 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
   };
 
   const handleAddAnswer = (event) => {
-    event.preventDefault();
-    regexVerifyEmail(email)
+    regexVerifyEmail(email) && name.length && answerBody.length
       ? axios.post('/qa/questions/answer', {
         body: answerBody,
         name: name,
