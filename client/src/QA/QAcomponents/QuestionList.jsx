@@ -4,7 +4,7 @@ import MoreQuestions from './MoreQuestions.jsx';
 import AddQuestion from './AddQuestion.jsx';
 
 const QuestionList = ({ questions, searchInput, productId, openModal, handleModalOpen, handleModalClose }) => (
-  <div className='question-list'>
+  <div className='question-list' data-testid='qa-list-test'>
     {
       searchInput === null
         ?

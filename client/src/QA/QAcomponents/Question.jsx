@@ -8,7 +8,7 @@ const Question = ({ question, productId }) => {
   let answerList = answerKey.map(Ans => question.answers[Ans]);
 
   return (
-    <div className='question'>
+    <div className='question' data-testid='individual-question-test'>
       <span className='question-control'>
         Q: {question.question_body}
         <QuestionHelpful

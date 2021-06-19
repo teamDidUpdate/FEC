@@ -45,7 +45,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
       : null;
   };
   const QuestionModalForm = (
-    <div
+    <div data-testid='add-question-test'
       className='question-modals'
       onClick={event => selectModal(event)}
     >

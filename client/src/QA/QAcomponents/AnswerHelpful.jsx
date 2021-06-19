@@ -33,7 +33,7 @@ const AnswerHelpful = ({ answerHelpfulness, answerDate, answerId, answerName }) 
         : null;
   };
   return (
-    <div className='answer-helpfulness-div'>
+    <div className='answer-helpfulness-div' data-testid='answer-helpful-test'>
       <>by {answerName}, {convertDate(answerDate)} |</>
       &nbsp;Helpful?&nbsp;
       <p

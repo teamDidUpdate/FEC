@@ -4,7 +4,7 @@ import AnswerPhotos from './AnswerPhotos.jsx';
 import AnswerHelpful from './AnswerHelpful.jsx';
 
 const Answers = ({ answer }) => (
-  <div className='answer-div'>
+  <div className='answer-div' data-testid='answer-list-test'>
     <div className='answer'>A: {answer.body}</div>
     <div className='photo-div'>
       {answer.photos.length ? answer.photos.map((photo, id) => (

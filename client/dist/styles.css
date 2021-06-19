@@ -548,9 +548,15 @@ input:checked+.slider:before {
   margin-top: 20px;
   border-bottom: solid grey 2px;
 }
+
+.question-helpful-div {
+  display: inline-flex;
+  flex-direction: row;
+  font-size: 15px;
+}
 /* .question-list {
   width: auto;
-  height: 40vh;
+  height: 50vh;
   overflow-y: scroll;
 } */
 .question-control {
