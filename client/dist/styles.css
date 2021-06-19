@@ -1231,7 +1231,7 @@ h1.reviewModalSize {
   padding: 20px;
   border: 1px solid #888;
   height: 50%;
-  overflow: scroll;
+  overflow-y: scroll;
 
 }
 
