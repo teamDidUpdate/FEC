@@ -11,7 +11,7 @@ afterEach(() => {
   cleanup();
 });
 
-it ('renders the Related Carousel without crashing', () => {
+test('renders the Related Carousel without crashing', () => {
   render(<Carousel
     products={productsWithStyle}
     productId={13023}
@@ -23,7 +23,7 @@ it ('renders the Related Carousel without crashing', () => {
   expect(carouselElement).toBeInTheDocument();
 });
 
-it ('renders Outfit Carousel without crashing', () => {
+test('renders Outfit Carousel without crashing', () => {
   render(<Carousel
     products={sampleOutfits}
     productId={13023}
@@ -33,4 +33,26 @@ it ('renders Outfit Carousel without crashing', () => {
   />);
   const carouselElement = screen.getByTestId('carousel-1');
   expect(carouselElement).toBeInTheDocument();
+});
+
+test('related carousel matches snapshot', () => {
+  const relatedTree = renderer.create(<Carousel
+    products={productsWithStyle}
+    productId={13023}
+    related={true}
+    overviewProduct={products[0]}
+    overviewRating={4}
+  />).toJSON();
+  expect(relatedTree).toMatchSnapshot();
+});
+
+test('outfit carousel matches snapshot', () => {
+  const outfitTree = renderer.create(<Carousel
+    products={sampleOutfits}
+    productId={13023}
+    related={false}
+    overviewProduct={products[0]}
+    overviewRating={4}
+  />).toJSON();
+  expect(outfitTree).toMatchSnapshot();
 });
