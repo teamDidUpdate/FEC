@@ -23,7 +23,7 @@ const OutfitCard = ({outfit, productId, setProductId, getDefaultStyle, deleteOut
 
   return (
     <>
-      <div className='card-container'>
+      <div className='card-container' data-testid={`outfit-${outfit.overview.id}`}>
         <IoMdCloseCircleOutline className='action-btn'
           style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
           onClick={() => deleteOutfit(outfit.overview.id)}/>

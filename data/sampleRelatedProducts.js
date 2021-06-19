@@ -1,5 +1,5 @@
-const productWithStyle = {
-  overview: {
+const productWithStyle = [
+  {overview: {
     campus: 'hr-sjo',
     category: 'Jackets',
     created_at: '2021-02-22T20:24:51.561Z',
@@ -375,6 +375,6 @@ const productWithStyle = {
       }
     ]
   }
-};
+  }];
 
 export default productWithStyle;

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from '../QAcomponents/QAcomponents/Search.jsx';
-import QuestionList from '../QAcomponents/QAcomponents/QuestionList.jsx';
-import AddQuestion from '../QAcomponents/QAcomponents/AddQuestion.jsx';
-import AnswerHelpful from '../QAcomponents/QAcomponents/AnswerHelpful.jsx';
-import AnswerPhotos from '../QAcomponents/QAcomponents/AnswerPhotos.jsx';
-import Answers from '../QAcomponents/QAcomponents/Answers.jsx';
-import MoreAnswers from '../QAcomponents/QAcomponents/MoreAnswers.jsx';
-import Question from '../QAcomponents/QAcomponents/Question.jsx';
-import QuestionHelpful from '../QAcomponents/QAcomponents/QuestionHelpful.jsx';
+import Search from '../QAcomponents//Search.jsx';
+import QuestionList from '../QAcomponents/QuestionList.jsx';
+import AddQuestion from '../QAcomponents/AddQuestion.jsx';
+import AnswerHelpful from '../QAcomponents/AnswerHelpful.jsx';
+import AnswerPhotos from '../QAcomponents/AnswerPhotos.jsx';
+import Answers from '../QAcomponents/Answers.jsx';
+import MoreAnswers from '../QAcomponents/MoreAnswers.jsx';
+import Question from '../QAcomponents/Question.jsx';
+import QuestionHelpful from '../QAcomponents/QuestionHelpful.jsx';
 
 it ('render Q&A without crashing', () => {
   const div = document.createElement('div');
