@@ -92,7 +92,7 @@ const Carousel = ({ products, productId, setProductId, related, overviewProduct,
   };
 
   return (
-    <section className='carousel'>
+    <section className='carousel' data-testid='carousel-1'>
       <div>
         {scrollable.left ?
           <MdKeyboardArrowLeft className='left-arrow' onClick={prevCard}/>

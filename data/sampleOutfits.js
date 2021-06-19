@@ -1,4 +1,4 @@
-const outfits = {
+const sampleOutfits = {
   13023: {
     overview: {
       campus: 'hr-sjo',
@@ -380,4 +380,4 @@ const outfits = {
   }
 };
 
-export default outfits;
+export default sampleOutfits;
