@@ -971,6 +971,10 @@ p#alignright {
   font-size: 18px;
 }
 
+#myImg {
+  object-fit: cover;
+}
+
 .hidden {
   display: none;
 }
