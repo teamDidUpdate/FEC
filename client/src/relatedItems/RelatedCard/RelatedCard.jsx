@@ -27,7 +27,7 @@ const RelatedCard = ({ product, productId, setProductId, getStarRating, getDefau
   };
 
   return (
-    <div className='card-container'>
+    <div className='card-container' data-testid={`related-${product.overview.id}`}>
       <MdStarBorder className='action-btn'
         style={{color: darkTheme ? '#fff' : '#000', backgroundColor: darkTheme ? '#000' : '#fff'}}
         onClick={() => setModalOpen(true)}/>
