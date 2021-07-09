@@ -981,6 +981,10 @@ p#alignright {
   font-size: 18px;
 }
 
+#myImg {
+  object-fit: cover;
+}
+
 .hidden {
   display: none;
 }
@@ -1237,7 +1241,7 @@ h1.reviewModalSize {
   padding: 20px;
   border: 1px solid #888;
   height: 50%;
-  overflow: scroll;
+  overflow-y: scroll;
 
 }
 
