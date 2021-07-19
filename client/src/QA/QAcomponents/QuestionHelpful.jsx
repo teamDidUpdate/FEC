@@ -119,18 +119,12 @@ const QuestionHelpful = ({ questionBody, helpfulness, questionId, productId }) =
             Submit Answer
           </button>
         </form>
-
       </div>
-
     </div>
   );
 
   return (
-    <div style={{
-      display: 'inline-flex',
-      flexDirection: 'row',
-      fontSize: 15
-    }}>
+    <div className='question-helpful-div' data-testid='question-helpful-test'>
       Helpful?&nbsp;
       <p
         className='helpful-button'

@@ -9,7 +9,7 @@ const Search = ({ handleSearch, searchInput }) => {
   };
 
   return (
-    <div className='qa-search'>
+    <div className='qa-search' data-testid='search-test'>
       <form>
         <input
           className='qa-search-bar'

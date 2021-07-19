@@ -20,7 +20,7 @@ const AnswerPhotos = ({ photo }) => {
   );
 
   return (
-    <div>
+    <div data-testid='answer-photo-test'>
       <div className='answer-photo-box'>
         <img
           className='answer-photo'

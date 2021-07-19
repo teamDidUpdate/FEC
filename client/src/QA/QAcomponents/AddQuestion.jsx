@@ -12,7 +12,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
   };
 
   const regexVerifyEmail = (email) => {
-    const characterTest = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const characterTest = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return characterTest.test(email);
   };
 
@@ -31,7 +31,9 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
         body: questionBody,
         name: name,
         email: email,
+        /* eslint-disable */
         product_id: productId
+        /* eslint-enable */
       })
         .then((response) => {
           console.log('succesful question post', response.data);
@@ -43,7 +45,7 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
       : null;
   };
   const QuestionModalForm = (
-    <div
+    <div data-testid='add-question-test'
       className='question-modals'
       onClick={event => selectModal(event)}
     >
@@ -66,11 +68,11 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
           <input
             className='question-email-input'
             onChange={(event) => { dataFill(event); }}
-            placeholder="Example: jack@email.com"
-            type="email"
+            placeholder='Example: jack@email.com'
+            type='email'
             name='email'
-            maxLength="60"
-            autoComplete="off"
+            maxLength='60'
+            autoComplete='off'
             value={email}
             required
           ></input>
@@ -83,11 +85,11 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
           <input
             className='question-name-input'
             onChange={(event) => { dataFill(event); }}
-            placeholder="Examples: jackson11!"
-            type="text"
+            placeholder='Examples: jackson11!'
+            type='text'
             name='name'
-            maxLength="60"
-            autoComplete="off"
+            maxLength='60'
+            autoComplete='off'
             value={name}
             required
           ></input>
@@ -100,12 +102,12 @@ const AddQuestion = ({ productId, handleModalClose, openModal, prodName }) => {
           <textarea
             className='question-ask'
             onChange={(event) => { dataFill(event); }}
-            placeholder="Enter Question Here..."
-            type="text"
-            name="question"
-            maxLength="1000"
-            minLength=""
-            autoComplete="off"
+            placeholder='Enter Question Here...'
+            type='text'
+            name='question'
+            maxLength='1000'
+            minLength=''
+            autoComplete='off'
             value={questionBody}
             required
           ></textarea>

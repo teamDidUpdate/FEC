@@ -1,3 +1,4 @@
+/* eslint-disable */
 var sample = {
   "questions": {
     "product_id": "5",
@@ -83,6 +84,7 @@ var sample = {
     ]
   }
 };
+/* eslint-enable */
 
 
 module.exports = sample;

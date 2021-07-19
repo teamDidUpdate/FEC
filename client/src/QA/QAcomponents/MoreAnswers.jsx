@@ -5,7 +5,7 @@ const MoreAnswers = ({ answer, answerList }) => {
   const [collapseAnswers, setCollapseAnswers] = useState(true);
 
   return (
-    <div>
+    <div data-testid='more-answer-test'>
       {
         collapseAnswers
           ? <>
