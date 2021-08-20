@@ -1,5 +1,8 @@
-# FEC
-Front End Capstone for Hack Reactor
+# FEC - Threads
+An online clothing store application with a modern design and responsive UX
+
+# Video Demo
+https://bit.ly/3j5nzra
 
 ## Getting a Copy of the Repo
 If you haven't already, fork the repository on GitHub and clone your newly created repo down to your computer.
